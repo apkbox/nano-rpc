@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema id="idlxml-pb"
+		xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		elementFormDefault="qualified"
+		targetNamespace="urn:odgs-oce-net:schemas-nano-rpc-idl-pb"
+		xmlns="urn:odgs-oce-net:schemas-nano-rpc-idl-pb" >
+
+	<xs:attribute name="position" type="xs:positiveInteger"/>
+	<xs:attribute name="field" type="field_rules_type"/>
+
+	<xs:simpleType name="field_rules_type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="required"/>
+			<xs:enumeration value="optional"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+</xs:schema>

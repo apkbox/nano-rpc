@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<PropertyGroup>
+		<Configuration Condition="'$(Configuration)'==''">Debug</Configuration>
+		<Platform Condition="'$(Platform)'==''">Win32</Platform>
+	</PropertyGroup>
+
+	<Target Name="Build" DependsOnTargets="third_party"/>
+
+	<Target Name="Clean">
+		<MSBuild Projects="googlemock\vs2010\googlemock.sln;protobuf\vs2010\protobuf.sln"
+						Targets="Clean" Properties="Configuration=$(Configuration);Platform=$(Platform)"/>
+		<MSBuild Projects="protobuf-csharp-port\vs2010\ProtocolBuffers.sln"
+						Targets="Clean" Properties="Configuration=$(Configuration);Platform=Any CPU"/>
+
+		<RemoveDir Directories="googlemock/include"/>
+		<RemoveDir Directories="protobuf/include"/>
+		<RemoveDir Directories="protobuf/$(Platform)/$(Configuration)"/>
+		<RemoveDir Directories="protobuf-csharp-port/$(Platform)/$(Configuration)"/>
+		<RemoveDir Directories="protobuf-csharp-port/bin"/>
+	</Target>
+
+	<Target Name="third_party" DependsOnTargets="googlemock;protobuf;protobuf-csharp-port"/>
+
+	<Target Name="googlemock">
+		<MSBuild Projects="googlemock\vs2010\googlemock.sln" Properties="Platform=$(Platform);Configuration=$(Configuration)"/>
+		<Exec Command="extract_includes.cmd" WorkingDirectory="googlemock"/>
+	</Target>
+
+	<Target Name="protobuf">
+		<MSBuild Projects="protobuf\vs2010\protobuf.sln" Properties="Platform=$(Platform);Configuration=$(Configuration)"/>
+		<Exec Command="extract_includes.cmd" WorkingDirectory="protobuf"/>
+
+		<ItemGroup>
+			<ProtobufOutputFiles Include="protobuf\vs2010\$(Platform)\$(Configuration)\*" Exclude="protobuf\vs2010\$(Platform)\$(Configuration)\*.ilk"/>
+		</ItemGroup>
+		<Copy SourceFiles="@(ProtobufOutputFiles)" DestinationFolder="protobuf\$(Platform)\$(Configuration)" SkipUnchangedFiles="true"/>
+	</Target>
+
+	<Target Name="protobuf-csharp-port">
+		<MSBuild Projects="protobuf-csharp-port\vs2010\ProtocolBuffers.sln" Properties="Configuration=$(Configuration);Platform=Any CPU"/>
+
+		<ItemGroup>
+			<ProtobufCSharpPortOutputFiles Include="protobuf-csharp-port\vs2010\bin\$(Configuration)\*"/>
+		</ItemGroup>
+		<Copy SourceFiles="@(ProtobufCSharpPortOutputFiles)" DestinationFolder="protobuf-csharp-port\$(Configuration)" SkipUnchangedFiles="true"/>
+		<RemoveDir Directories="protobuf-csharp-port\bin"/>
+		<Copy SourceFiles="@(ProtobufCSharpPortOutputFiles)" DestinationFolder="protobuf-csharp-port\bin" SkipUnchangedFiles="true"/>
+	</Target>
+
+</Project>
+

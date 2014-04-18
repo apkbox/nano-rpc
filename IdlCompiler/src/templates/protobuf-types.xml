@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<types>
+	<type name="bool" mapped="bool" />
+	<type name="int" mapped="int32" />
+	<type name="long" mapped="int64" />
+	<type name="double" mapped="double" />
+	<type name="string" mapped="string" />
+</types>

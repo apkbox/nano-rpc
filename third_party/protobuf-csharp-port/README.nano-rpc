@@ -1,0 +1,66 @@
+Contains modified version of Google Protocol Buffers port for C# by Jonathan Skeet.
+
+
+Summary of modifications:
+	The modified includes support for two command line options:
+
+		--output-extension=<extension>
+
+		The option specifies desired output file extension (or rather suffix).
+		If not specified, the default extension is ".cs".
+
+        --output-directory=<directory>
+
+		Specifies the output directory. The directory must exist.
+		If not specified the current directory assumed.
+
+
+	The patch with stated modifications in options.patch.
+
+
+Project location:
+
+	http://code.google.com/p/protobuf-csharp-port/
+
+	The more up-to-date revision is located at 
+	https://github.com/jskeet/dotnet-protobufs and Google Code is
+	periodically synchronized to it.
+
+	We use pull from Google Code.
+	The current base revision number is stored in VERSION file.
+
+
+To retrieve latest revision:
+
+	svn export http://protobuf-csharp-port.googlecode.com/svn/trunk/ protobuf-csharp-port/src
+
+
+To update to the new revision:
+
+	TODO: Update procedure.
+
+
+
+Build requirements:
+	Microsoft Visual Studio 2008 SP1
+
+	or
+
+	Microsoft Visual Studio 2010
+
+
+To build:
+
+	For VS2008
+
+	devenv vs2008/ProtocolBuffers.sln /build Debug
+	devenv vs2008/ProtocolBuffers.sln /build Release
+	extract_output_vs2008.cmd
+
+
+	For VS2010
+
+	devenv vs2010/ProtocolBuffers.sln /build Debug
+	devenv vs2010/ProtocolBuffers.sln /build Release
+	extract_output_vs2010.cmd
+

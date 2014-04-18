@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema id="idlxml"
+		xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		elementFormDefault="qualified"
+		targetNamespace="urn:odgs-oce-net:schemas-nano-rpc-idl"
+		xmlns="urn:odgs-oce-net:schemas-nano-rpc-idl">
+
+	<xs:element name="idl" type="idl"/>
+
+	<xs:complexType name="idl">
+		<xs:sequence>
+			<xs:element name="import" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="src" type="xs:string" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="enumerations" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="enum" type="enum_definition" minOccurs="0" maxOccurs="unbounded">
+							<xs:unique name="unique_enum_field_name">
+								<xs:selector xpath="field"/>
+								<xs:field xpath="@name"/>
+							</xs:unique>
+							<xs:unique name="unique_enum_field_value">
+								<xs:selector xpath="field"/>
+								<xs:field xpath="@value"/>
+							</xs:unique>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="types" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="type" type="type_definition" minOccurs="0" maxOccurs="unbounded">
+							<xs:unique name="unique_type_field_name">
+								<xs:selector xpath="field"/>
+								<xs:field xpath="@name"/>
+							</xs:unique>
+							<xs:unique name="unique_type_field_position">
+								<xs:selector xpath="field"/>
+								<xs:field xpath="@position"/>
+							</xs:unique>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="interfaces" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="interface" type="interface_definition" minOccurs="0" maxOccurs="unbounded">
+							<xs:unique name="unique_interface_member_name">
+								<xs:selector xpath="property | method"/>
+								<xs:field xpath="@name"/>
+							</xs:unique>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+		</xs:sequence>
+		<xs:attribute name="namespace" use="optional" type="xs:string"/>
+	</xs:complexType>
+
+	<xs:simpleType name="documentation_content_type">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+
+	<xs:complexType name="enum_definition">
+		<xs:sequence>
+			<xs:element name="documentation" type="documentation_content_type" minOccurs="0"/>
+			<xs:element name="field" type="enum_field" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+	</xs:complexType>
+
+	<xs:complexType name="enum_field">
+		<xs:sequence>
+			<xs:element name="documentation" type="documentation_content_type" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+		<xs:attribute name="value" use="optional"/>
+	</xs:complexType>
+
+	<xs:complexType name="type_definition">
+		<xs:sequence>
+			<xs:element name="documentation" type="documentation_content_type" minOccurs="0"/>
+			<xs:element name="field" type="type_field" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+	</xs:complexType>
+
+	<xs:complexType name="type_field">
+		<xs:sequence>
+			<xs:element name="documentation" type="documentation_content_type" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+		<xs:attribute name="type" type="idl_type" use="required"/>
+		<xs:attribute name="array" type="xs:boolean" default="false" use="optional"/>
+		<xs:anyAttribute namespace="##other" processContents="lax"/>
+	</xs:complexType>
+
+	<xs:complexType name="interface_definition">
+		<xs:sequence>
+			<xs:element name="documentation" type="documentation_content_type" minOccurs="0"/>
+			<xs:element name="property" type="property_definition" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="method" type="method_definition" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+		<xs:attribute name="source" type="xs:boolean" use="optional"/>
+	</xs:complexType>
+
+	<xs:complexType name="property_definition">
+		<xs:sequence>
+			<xs:element name="documentation" type="documentation_content_type" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+		<xs:attribute name="type" type="idl_type" use="required"/>
+		<xs:attribute name="readonly" type="xs:boolean" default="false" use="optional"/>
+	</xs:complexType>
+
+	<xs:complexType name="method_definition">
+		<xs:sequence>
+			<xs:element name="documentation" type="documentation_content_type" minOccurs="0"/>
+			<xs:element name="returns" minOccurs="0" type="return_type_declaration"/>
+			<xs:element name="arguments" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element name="argument" type="argument_type_declaration"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:unique name="unique_argument_name">
+					<xs:selector xpath="argument"/>
+					<xs:field xpath="@name"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+	</xs:complexType>
+
+	<xs:complexType name="return_type_declaration">
+		<xs:sequence>
+			<xs:element name="documentation" type="documentation_content_type" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="optional"/>
+		<xs:attribute name="type" type="idl_type" use="required"/>
+	</xs:complexType>
+
+	<xs:complexType name="argument_type_declaration">
+		<xs:sequence>
+			<xs:element name="documentation" type="documentation_content_type" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+		<xs:attribute name="type" type="idl_type" use="required"/>
+	</xs:complexType>
+
+	<xs:simpleType name="idl_type">
+		<xs:union memberTypes="idl_basic_types idl_complex_types"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="idl_basic_types">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="bool"/>
+			<xs:enumeration value="int"/>
+			<xs:enumeration value="long"/>
+			<xs:enumeration value="double"/>
+			<xs:enumeration value="string"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="idl_complex_types">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="type_field_id">
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+
+</xs:schema>
+

@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdlCompiler", "IdlCompiler\IdlCompiler.csproj", "{ACBF7B37-E750-4703-936E-52C0146DE6FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Odgs.Common", "Odgs.Common\Odgs.Common.csproj", "{DA463929-2917-4BAB-95A6-D2DFB06C1AD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Odgs.Common.Test", "Odgs.Common.Test\Odgs.Common.Test.csproj", "{0642BE44-DCEE-4953-8886-A7089611FCCD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ACBF7B37-E750-4703-936E-52C0146DE6FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACBF7B37-E750-4703-936E-52C0146DE6FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACBF7B37-E750-4703-936E-52C0146DE6FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACBF7B37-E750-4703-936E-52C0146DE6FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA463929-2917-4BAB-95A6-D2DFB06C1AD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA463929-2917-4BAB-95A6-D2DFB06C1AD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA463929-2917-4BAB-95A6-D2DFB06C1AD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA463929-2917-4BAB-95A6-D2DFB06C1AD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0642BE44-DCEE-4953-8886-A7089611FCCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0642BE44-DCEE-4953-8886-A7089611FCCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0642BE44-DCEE-4953-8886-A7089611FCCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0642BE44-DCEE-4953-8886-A7089611FCCD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

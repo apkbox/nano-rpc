@@ -1,0 +1,46 @@
+This contains Google Mock and Google Test.
+
+
+Note that Google Mock includes Google Test.
+
+
+Project location:
+
+	http://code.google.com/p/googlemock/
+
+	Google Test is located at http://code.google.com/p/googletest/
+
+
+To retrieve latest revision:
+
+	svn export http://googlemock.googlecode.com/svn/trunk/ googlemock/src
+
+
+To update to the new revision:
+
+	TODO: Update procedure.
+
+
+Build requirements:
+	Microsoft Visual Studio 2008 SP1
+
+	or
+
+	Microsoft Visual Studio 2010 SP1
+
+
+To build:
+
+	For VS2008
+
+	devenv vs2008\googlemock.sln /build "Debug"
+	devenv vs2008\googlemock.sln /build "Release"
+	extract_includes.cmd
+
+
+	For VS2010
+
+	devenv vs2010\googlemock.sln /build "Debug"
+	devenv vs2010\googlemock.sln /build "Release"
+	extract_includes.cmd
+

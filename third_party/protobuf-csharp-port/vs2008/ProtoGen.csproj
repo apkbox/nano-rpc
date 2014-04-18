@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{250ADE34-82FD-4BAE-86D5-985FBE589C4A}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Google.ProtocolBuffers.ProtoGen</RootNamespace>
+    <AssemblyName>ProtoGen</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\src\src\ProtoGen\Properties\Google.ProtocolBuffers.ProtoGen.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Silverlight2|AnyCPU' ">
+    <OutputPath>bin\Silverlight2\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\src\src\ProtoGen\DescriptorUtil.cs" />
+    <Compile Include="..\src\src\ProtoGen\EnumFieldGenerator.cs" />
+    <Compile Include="..\src\src\ProtoGen\EnumGenerator.cs" />
+    <Compile Include="..\src\src\ProtoGen\ExtensionGenerator.cs" />
+    <Compile Include="..\src\src\ProtoGen\FieldGeneratorBase.cs" />
+    <Compile Include="..\src\src\ProtoGen\IFieldSourceGenerator.cs" />
+    <Compile Include="..\src\src\ProtoGen\ISourceGenerator.cs" />
+    <Compile Include="..\src\src\ProtoGen\MessageFieldGenerator.cs" />
+    <Compile Include="..\src\src\ProtoGen\MessageGenerator.cs" />
+    <Compile Include="..\src\src\ProtoGen\PrimitiveFieldGenerator.cs" />
+    <Compile Include="..\src\src\ProtoGen\RepeatedEnumFieldGenerator.cs" />
+    <Compile Include="..\src\src\ProtoGen\RepeatedMessageFieldGenerator.cs" />
+    <Compile Include="..\src\src\ProtoGen\RepeatedPrimitiveFieldGenerator.cs" />
+    <Compile Include="..\src\src\ProtoGen\ServiceGenerator.cs" />
+    <Compile Include="..\src\src\ProtoGen\DependencyResolutionException.cs" />
+    <Compile Include="..\src\src\ProtoGen\Generator.cs" />
+    <Compile Include="..\src\src\ProtoGen\GeneratorOptions.cs" />
+    <Compile Include="..\src\src\ProtoGen\Helpers.cs" />
+    <Compile Include="..\src\src\ProtoGen\InvalidOptionsException.cs" />
+    <Compile Include="..\src\src\ProtoGen\Program.cs" />
+    <Compile Include="..\src\src\ProtoGen\Properties\AssemblyInfo.cs" />
+    <Compile Include="..\src\src\ProtoGen\SourceGeneratorBase.cs" />
+    <Compile Include="..\src\src\ProtoGen\SourceGenerators.cs" />
+    <Compile Include="..\src\src\ProtoGen\UmbrellaClassGenerator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\src\src\ProtoGen\app.config" />
+    <None Include="..\src\src\ProtoGen\Properties\Google.ProtocolBuffers.ProtoGen.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="ProtocolBuffers.csproj">
+      <Project>{6908BDCE-D925-43F3-94AC-A531E6DF2591}</Project>
+      <Name>ProtocolBuffers</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

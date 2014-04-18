@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6908BDCE-D925-43F3-94AC-A531E6DF2591}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Google.ProtocolBuffers</RootNamespace>
+    <AssemblyName>Google.ProtocolBuffers</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\src\src\ProtocolBuffers\Properties\Google.ProtocolBuffers.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>true</NoStdLib>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>true</NoStdLib>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Silverlight2|AnyCPU' ">
+    <OutputPath>bin\Silverlight2\</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT2</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\src\src\ProtocolBuffers\AbstractBuilder.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\AbstractMessage.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\ByteString.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\Collections\Enumerables.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\Collections\IPopsicleList.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\Collections\PopsicleList.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\Delegates.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\CodedInputStream.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\CodedOutputStream.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\Collections\Dictionaries.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\Collections\Lists.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\Collections\ReadOnlyDictionary.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\DescriptorProtos\CSharpOptions.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\DescriptorProtos\DescriptorProtoFile.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\DescriptorProtos\IDescriptorProto.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\DescriptorProtos\PartialClasses.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\Descriptors\DescriptorBase.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\Descriptors\DescriptorPool.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\Descriptors\DescriptorUtil.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\Descriptors\DescriptorValidationException.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\Descriptors\EnumDescriptor.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\Descriptors\EnumValueDescriptor.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\Descriptors\FieldDescriptor.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\Descriptors\FieldMappingAttribute.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\Descriptors\FieldType.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\Descriptors\FileDescriptor.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\Descriptors\IDescriptor.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\Descriptors\IndexedDescriptorBase.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\Descriptors\MappedType.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\Descriptors\MessageDescriptor.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\Descriptors\MethodDescriptor.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\Descriptors\PackageDescriptor.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\Descriptors\ServiceDescriptor.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\DynamicMessage.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\ExtendableBuilder.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\ExtendableMessage.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\ExtensionInfo.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\ExtensionRegistry.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\FieldAccess\ReflectionUtil.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\FieldAccess\SingleEnumAccessor.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\FieldAccess\SingleMessageAccessor.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\FieldAccess\SinglePrimitiveAccessor.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\FieldAccess\RepeatedPrimitiveAccessor.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\FieldAccess\RepeatedEnumAccessor.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\FieldAccess\IFieldAccessor.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\FieldAccess\FieldAccessorTable.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\FieldAccess\RepeatedMessageAccessor.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\FieldSet.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\GeneratedBuilder.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\GeneratedRepeatExtension.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\GeneratedSingleExtension.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\GeneratedMessage.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\IBuilder.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\GeneratedExtensionBase.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\IMessage.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\InvalidProtocolBufferException.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\IRpcChannel.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\IRpcController.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\IService.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\MessageStreamIterator.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\MessageStreamWriter.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\MessageUtil.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\NameHelpers.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\Properties\AssemblyInfo.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\RpcUtil.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\SilverlightCompatibility.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\SortedList.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\TextFormat.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\TextGenerator.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\TextTokenizer.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\ThrowHelper.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\UninitializedMessageException.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\UnknownField.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\UnknownFieldSet.cs" />
+    <Compile Include="..\src\src\ProtocolBuffers\WireFormat.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\src\src\ProtocolBuffers\Properties\Google.ProtocolBuffers.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" Condition=" '$(Configuration)' != 'Silverlight2' " />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight\v2.0\Microsoft.Silverlight.CSharp.targets" Condition=" '$(Configuration)' == 'Silverlight2' " />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

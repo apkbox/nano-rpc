@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<platforms xmlns="urn:odgs-oce-net:schemas-nano-rpc-idlcompiler-config" >
+	
+	<!-- 
+		TODO: The 'depends' feature not supported yet, so for now platforms/components/outputs 
+		must be ordered in the file to satisfy dependency relationship.
+		Also, when specifying platform filter option in the command line, all dependencies must be specified too.
+	-->
+	<platform name="protobuf">
+		<component name="type">
+			<output type="source" template="templates\protobuf.xsl" extension=".proto" id="proto" />
+		</component>
+		<component name="descriptor" run="protoc.exe" with="&quot;${output_dir}\\${document_basename}.proto&quot; -o&quot;${output_dir}\\${document_basename}.protobin&quot;" depends="proto" >
+			<output type="binary" extension=".protobin" id="protobin" />
+		</component>
+	</platform>
+	
+	<platform name="csharp">
+		<component name="type" run="ProtoGen.exe" with="&quot;${output_dir}\\${document_basename}.protobin&quot; --output-directory=&quot;${output_dir}&quot; --output-extension=&quot;.pb.cs&quot;" depends="protobin" >
+			<output type="source" extension=".pb.cs" />
+		</component>
+		<component name="interface">
+			<output type="source" template="templates\csharp-interfaces.xsl" extension=".rpc.cs" />
+		</component>
+	</platform>
+	
+	<platform name="cpp">
+		<component name="type" run="protoc.exe" with="&quot;${output_dir}\\${document_basename}.proto&quot; --cpp_out=." depends="proto" >
+			<output type="header" extension=".pb.h" />
+			<output type="source" extension=".pb.cc" />
+		</component>
+		<component name="interface">
+			<output type="header" template="templates\cpp-interfaces.xsl" extension=".rpc.hpp" />
+		</component>
+		<component name="stub">
+			<output type="header" template="templates\cpp-stub-header.xsl" extension="-stub.rpc.hpp" />
+			<output type="source" template="templates\cpp-stub-source.xsl" extension="-stub.rpc.cpp" />
+		</component>
+		<component name="proxy">
+			<output type="header" template="templates\cpp-proxy-header.xsl" extension="-proxy.rpc.hpp" />
+			<output type="source" template="templates\cpp-proxy-source.xsl" extension="-proxy.rpc.cpp" />
+		</component>
+	</platform>
+</platforms>
+

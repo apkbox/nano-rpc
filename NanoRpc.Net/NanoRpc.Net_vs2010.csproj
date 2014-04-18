@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F16BC131-C4AB-4B23-B9DD-A51386EFEBB8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NanoRpc</RootNamespace>
+    <AssemblyName>NanoRpc.Net</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Google.ProtocolBuffers, Version=0.9.0.0, Culture=neutral, PublicKeyToken=17b3b1f090c3ea48, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\third_party\protobuf-csharp-port\bin\Google.ProtocolBuffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="src\ClientNamedPipeConnector.cs" />
+    <Compile Include="src\ClientPipeConnectedEventArgs.cs" />
+    <Compile Include="src\ClientSocketConnector.cs" />
+    <Compile Include="src\CodeContracts.cs" />
+    <Compile Include="src\IRpcClient.cs" />
+    <Compile Include="src\IRpcMessageRecipient.cs" />
+    <Compile Include="src\IRpcMessageSender.cs" />
+    <Compile Include="src\IRpcObjectManager.cs" />
+    <Compile Include="src\IRpcServer.cs" />
+    <Compile Include="src\IRpcService.cs" />
+    <Compile Include="src\PendingCall.cs" />
+    <Compile Include="src\PendingCallManager.cs" />
+    <Compile Include="src\Properties\AssemblyInfo.cs" />
+    <Compile Include="src\RpcChannel.cs" />
+    <Compile Include="src\RpcClient.cs" />
+    <Compile Include="src\RpcClientController.cs" />
+    <Compile Include="src\RpcController.cs" />
+    <Compile Include="src\RpcDynamicStub.cs" />
+    <Compile Include="src\RpcEventService.cs" />
+    <Compile Include="src\RpcException.cs" />
+    <Compile Include="src\RpcMessageTypes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\RpcObjectManager.cs" />
+    <Compile Include="src\RpcProxyBuilder.cs" />
+    <Compile Include="src\RpcProxyGenerator.cs" />
+    <Compile Include="src\RpcProxyHelpers.cs" />
+    <Compile Include="src\RpcReflectedStub.cs" />
+    <Compile Include="src\RpcServer.cs" />
+    <Compile Include="src\RpcServerController.cs" />
+    <Compile Include="src\ServerSocketConnector.cs" />
+    <Compile Include="src\SocketRpcChannel.cs" />
+    <Compile Include="src\StreamRpcChannel.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

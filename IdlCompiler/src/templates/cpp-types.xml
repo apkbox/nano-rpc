@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<types>
+	<type name="bool" mapped="bool" />
+	<type name="int" mapped="int" />
+	<type name="long" mapped="long long" />
+	<type name="double" mapped="double" />
+	<type name="string" mapped="std::wstring" />
+</types>

@@ -1,0 +1,45 @@
+This contains Google Protocol Buffers.
+
+
+
+Project location:
+
+	http://code.google.com/p/protobuf/
+
+To retrieve latest revision:
+
+    svn export http://protobuf.googlecode.com/svn/trunk/ protobuf/src
+
+
+To update to the new revision:
+
+	TODO: Update procedure.
+
+
+Build requirements:
+	Microsoft Visual Studio 2008 SP1
+
+	or
+
+	Microsoft Visual Studio 2010
+
+
+To build:
+
+	For VS2008
+
+	devenv vs2008\protobuf.sln /build "Debug"
+	devenv vs2008\protobuf.sln /build "Release"
+	extract_output_vs2008.cmd
+	extract_includes.cmd
+
+
+	For VS2010
+
+	devenv protobuf.sln /build "Debug"
+	devenv protobuf.sln /build "Release"
+	extract_includes.cmd
+
+	
+
+
