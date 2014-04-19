@@ -15,102 +15,102 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\async_callback.cpp">
+    <ClCompile Include="src\async_callback.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\buffer_pool.cpp">
+    <ClCompile Include="src\buffer_pool.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\named_pipe_connector.cpp">
+    <ClCompile Include="src\named_pipe_connector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\named_pipe_rpc_channel.cpp">
+    <ClCompile Include="src\named_pipe_rpc_channel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\rpc_channel.cpp">
+    <ClCompile Include="src\rpc_channel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\rpc_controller.cpp">
+    <ClCompile Include="src\rpc_controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\rpc_event_service.cpp">
+    <ClCompile Include="src\rpc_event_service.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\rpc_object_manager.cpp">
+    <ClCompile Include="src\rpc_object_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\rpc_server.cpp">
+    <ClCompile Include="src\rpc_server.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\RpcMessageTypes.pb.cc">
+    <ClCompile Include="src\RpcMessageTypes.pb.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\string_conversion.cpp">
+    <ClCompile Include="src\string_conversion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\synchronization_primitives.cpp">
+    <ClCompile Include="src\synchronization_primitives.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\async_callback.hpp">
+    <ClInclude Include="src\async_callback.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\basictypes.hpp">
+    <ClInclude Include="src\basictypes.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\buffer_pool.hpp">
+    <ClInclude Include="src\buffer_pool.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\callback.hpp">
+    <ClInclude Include="src\callback.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\named_pipe_connector.hpp">
+    <ClInclude Include="src\named_pipe_connector.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\named_pipe_rpc_channel.hpp">
+    <ClInclude Include="src\named_pipe_rpc_channel.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\nano_rpc.hpp">
+    <ClInclude Include="src\nano_rpc.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\object_pool.hpp">
+    <ClInclude Include="src\object_pool.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\rpc_channel.hpp">
+    <ClInclude Include="src\rpc_channel.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\rpc_client.hpp">
+    <ClInclude Include="src\rpc_client.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\rpc_controller.hpp">
+    <ClInclude Include="src\rpc_controller.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\rpc_event_service.hpp">
+    <ClInclude Include="src\rpc_event_service.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\rpc_message_sender.hpp">
+    <ClInclude Include="src\rpc_message_sender.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\rpc_object_manager.hpp">
+    <ClInclude Include="src\rpc_object_manager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\rpc_server.hpp">
+    <ClInclude Include="src\rpc_server.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\rpc_service.hpp">
+    <ClInclude Include="src\rpc_service.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\rpc_stub.hpp">
+    <ClInclude Include="src\rpc_stub.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\RpcMessageTypes.pb.h">
+    <ClInclude Include="src\RpcMessageTypes.pb.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\string_conversion.hpp">
+    <ClInclude Include="src\string_conversion.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\synchronization_primitives.hpp">
+    <ClInclude Include="src\synchronization_primitives.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -28,19 +28,23 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -72,7 +76,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../third_party/protobuf/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../third_party/protobuf/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -87,7 +91,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../third_party/protobuf/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../third_party/protobuf/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -102,7 +106,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../third_party/protobuf/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../third_party/protobuf/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -117,7 +121,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../third_party/protobuf/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../third_party/protobuf/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -129,40 +133,40 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\async_callback.cpp" />
-    <ClCompile Include="..\src\buffer_pool.cpp" />
-    <ClCompile Include="..\src\named_pipe_connector.cpp" />
-    <ClCompile Include="..\src\named_pipe_rpc_channel.cpp" />
-    <ClCompile Include="..\src\rpc_channel.cpp" />
-    <ClCompile Include="..\src\rpc_controller.cpp" />
-    <ClCompile Include="..\src\rpc_event_service.cpp" />
-    <ClCompile Include="..\src\rpc_object_manager.cpp" />
-    <ClCompile Include="..\src\rpc_server.cpp" />
-    <ClCompile Include="..\src\RpcMessageTypes.pb.cc" />
-    <ClCompile Include="..\src\string_conversion.cpp" />
-    <ClCompile Include="..\src\synchronization_primitives.cpp" />
+    <ClCompile Include="src\async_callback.cpp" />
+    <ClCompile Include="src\buffer_pool.cpp" />
+    <ClCompile Include="src\named_pipe_connector.cpp" />
+    <ClCompile Include="src\named_pipe_rpc_channel.cpp" />
+    <ClCompile Include="src\rpc_channel.cpp" />
+    <ClCompile Include="src\rpc_controller.cpp" />
+    <ClCompile Include="src\rpc_event_service.cpp" />
+    <ClCompile Include="src\rpc_object_manager.cpp" />
+    <ClCompile Include="src\rpc_server.cpp" />
+    <ClCompile Include="src\RpcMessageTypes.pb.cc" />
+    <ClCompile Include="src\string_conversion.cpp" />
+    <ClCompile Include="src\synchronization_primitives.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\async_callback.hpp" />
-    <ClInclude Include="..\src\basictypes.hpp" />
-    <ClInclude Include="..\src\buffer_pool.hpp" />
-    <ClInclude Include="..\src\callback.hpp" />
-    <ClInclude Include="..\src\named_pipe_connector.hpp" />
-    <ClInclude Include="..\src\named_pipe_rpc_channel.hpp" />
-    <ClInclude Include="..\src\nano_rpc.hpp" />
-    <ClInclude Include="..\src\object_pool.hpp" />
-    <ClInclude Include="..\src\rpc_channel.hpp" />
-    <ClInclude Include="..\src\rpc_client.hpp" />
-    <ClInclude Include="..\src\rpc_controller.hpp" />
-    <ClInclude Include="..\src\rpc_event_service.hpp" />
-    <ClInclude Include="..\src\rpc_message_sender.hpp" />
-    <ClInclude Include="..\src\rpc_object_manager.hpp" />
-    <ClInclude Include="..\src\rpc_server.hpp" />
-    <ClInclude Include="..\src\rpc_service.hpp" />
-    <ClInclude Include="..\src\rpc_stub.hpp" />
-    <ClInclude Include="..\src\RpcMessageTypes.pb.h" />
-    <ClInclude Include="..\src\string_conversion.hpp" />
-    <ClInclude Include="..\src\synchronization_primitives.hpp" />
+    <ClInclude Include="src\async_callback.hpp" />
+    <ClInclude Include="src\basictypes.hpp" />
+    <ClInclude Include="src\buffer_pool.hpp" />
+    <ClInclude Include="src\callback.hpp" />
+    <ClInclude Include="src\named_pipe_connector.hpp" />
+    <ClInclude Include="src\named_pipe_rpc_channel.hpp" />
+    <ClInclude Include="src\nano_rpc.hpp" />
+    <ClInclude Include="src\object_pool.hpp" />
+    <ClInclude Include="src\rpc_channel.hpp" />
+    <ClInclude Include="src\rpc_client.hpp" />
+    <ClInclude Include="src\rpc_controller.hpp" />
+    <ClInclude Include="src\rpc_event_service.hpp" />
+    <ClInclude Include="src\rpc_message_sender.hpp" />
+    <ClInclude Include="src\rpc_object_manager.hpp" />
+    <ClInclude Include="src\rpc_server.hpp" />
+    <ClInclude Include="src\rpc_service.hpp" />
+    <ClInclude Include="src\rpc_stub.hpp" />
+    <ClInclude Include="src\RpcMessageTypes.pb.h" />
+    <ClInclude Include="src\string_conversion.hpp" />
+    <ClInclude Include="src\synchronization_primitives.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

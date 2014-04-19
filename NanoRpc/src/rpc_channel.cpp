@@ -4,26 +4,18 @@
 
 namespace NanoRpc {
 
-RpcChannel::RpcChannel( RpcController *controller ) :
-	controller_( controller )
-{
-	controller_->set_channel( this );
+RpcChannel::RpcChannel(RpcController *controller) : controller_(controller) {
+  controller_->set_channel(this);
 }
 
-
-RpcChannel::~RpcChannel()
-{
-	if( controller_ != NULL )
-		controller_->set_channel( NULL );
-	controller_ = NULL;
+RpcChannel::~RpcChannel() {
+  if (controller_ != NULL)
+    controller_->set_channel(NULL);
+  controller_ = NULL;
 }
 
-
-void RpcChannel::Receive( const RpcMessage &message )
-{
-	controller_->Receive( message );
+void RpcChannel::Receive(const RpcMessage &message) {
+  controller_->Receive(message);
 }
-
 
 } // namespace
-

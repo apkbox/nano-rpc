@@ -6,28 +6,19 @@
 
 namespace NanoRpc {
 
+void RpcController::Send(const RpcMessage &message) { channel_->Send(message); }
 
-void RpcController::Send( const RpcMessage &message )
-{
-	channel_->Send( message );
+void RpcController::Receive(const RpcMessage &message) {
+  // TODO: Implement client handling
+  if (message.has_result() && message.result().status() != RpcSucceeded) {
+    if (server_ != NULL)
+      server_->Receive(message);
+  } else {
+    if (message.has_call()) {
+      if (server_ != NULL)
+        server_->Receive(message);
+    }
+  }
 }
 
-
-void RpcController::Receive( const RpcMessage &message )
-{
-	// TODO: Implement client handling
-	if( message.has_result() && message.result().status() != RpcSucceeded ) {
-		if( server_ != NULL )
-			server_->Receive( message );
-	}
-	else {
-		if( message.has_call() )
-		{
-			if( server_ != NULL )
-				server_->Receive( message );
-		}
-	}
- }
-
 } // namespace
-
