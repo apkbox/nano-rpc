@@ -21,7 +21,7 @@ namespace NanoRpc
     using System.Linq;
     using System.Reflection;
     using System.Reflection.Emit;
-    using Google.ProtocolBuffers;
+    using Google.Protobuf;
 
     /// <summary>
     /// Provides low level implementation of the proxy generator.

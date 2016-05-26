@@ -20,7 +20,7 @@ void RpcEventService::CallMethod(const RpcCall &rpc_call,
       rpc_result->set_error_message("Invalid call parameter.");
     } else {
       const std::string &event_interface_name =
-          rpc_call.parameters().Get(0).string_value();
+          rpc_call.parameters().Get(0).string_value().value();
       Add(event_interface_name);
     }
   } else if (rpc_call.method() == "Remove") {
@@ -33,7 +33,7 @@ void RpcEventService::CallMethod(const RpcCall &rpc_call,
       rpc_result->set_error_message("Invalid call parameter.");
     } else {
       const std::string &event_interface_name =
-          rpc_call.parameters().Get(0).string_value();
+          rpc_call.parameters().Get(0).string_value().value();
       Remove(event_interface_name);
     }
   }

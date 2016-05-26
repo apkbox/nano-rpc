@@ -89,7 +89,7 @@ void RpcObjectManager::CallMethod(const RpcCall &rpc_call,
       rpc_result->set_status(RpcInvalidCallParameter);
       rpc_result->set_error_message("Invalid call parameter.");
     } else {
-      RpcObjectId object_id = rpc_call.parameters().Get(0).uint32_value();
+      RpcObjectId object_id = rpc_call.parameters().Get(0).uint32_value().value();
       DeleteObject(object_id);
     }
   } else {

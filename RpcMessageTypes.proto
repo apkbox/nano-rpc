@@ -1,4 +1,102 @@
+syntax = "proto3";
+
 package NanoRpc;
+
+// Wrapper message for `double`.
+//
+// The JSON representation for `DoubleValue` is JSON number.
+message DoubleValue {
+  // The double value.
+  double value = 1;
+}
+
+// Wrapper message for `float`.
+//
+// The JSON representation for `FloatValue` is JSON number.
+message FloatValue {
+  // The float value.
+  float value = 1;
+}
+
+// Wrapper message for `int64`.
+//
+// The JSON representation for `Int64Value` is JSON string.
+message Int64Value {
+  // The int64 value.
+  int64 value = 1;
+}
+
+// Wrapper message for `uint64`.
+//
+// The JSON representation for `UInt64Value` is JSON string.
+message UInt64Value {
+  // The uint64 value.
+  uint64 value = 1;
+}
+
+// Wrapper message for `int32`.
+//
+// The JSON representation for `Int32Value` is JSON number.
+message Int32Value {
+  // The int32 value.
+  int32 value = 1;
+}
+
+// Wrapper message for `uint32`.
+//
+// The JSON representation for `UInt32Value` is JSON number.
+message UInt32Value {
+  // The uint32 value.
+  uint32 value = 1;
+}
+
+// Wrapper message for `bool`.
+//
+// The JSON representation for `BoolValue` is JSON `true` and `false`.
+message BoolValue {
+  // The bool value.
+  bool value = 1;
+}
+
+// Wrapper message for `string`.
+//
+// The JSON representation for `StringValue` is JSON string.
+message StringValue {
+  // The string value.
+  string value = 1;
+}
+
+// Wrapper message for `bytes`.
+//
+// The JSON representation for `BytesValue` is JSON string.
+message BytesValue {
+  // The bytes value.
+  bytes value = 1;
+}
+
+message SInt32Value {
+  sint32 value = 1;
+}
+
+message SInt64Value {
+  sint64 value = 1;
+}
+
+message Fixed32Value {
+  fixed32 value = 1;
+}
+
+message Fixed64Value {
+  fixed64 value = 1;
+}
+
+message SFixed32Value {
+  sfixed32 value = 1;
+}
+
+message SFixed64Value {
+  sfixed64 value = 1;
+}
 
 
 enum RpcStatus {
@@ -12,44 +110,44 @@ enum RpcStatus {
 
 
 message RpcParameter {
-	optional bytes proto_value = 1;
-	optional bool bool_value = 2;
-	optional int32 int32_value = 3;
-	optional int64 int64_value = 4;
-	optional uint32 uint32_value = 5;
-	optional uint64 uint64_value = 6;
-	optional sint32 sint32_value = 7;
-	optional sint64 sint64_value = 8;
-	optional fixed32 fixed32_value = 9;
-	optional fixed64 fixed64_value = 10;
-	optional sfixed32 sfixed32_value = 11;
-	optional sfixed64 sfixed64_value = 12;
-	optional float float_value = 13;
-	optional double double_value = 14;
-	optional string string_value = 15;
-	optional bool is_null = 16;
-	optional uint32 object_id_value = 17;
+	BytesValue proto_value = 1;
+	BoolValue bool_value = 2;
+	Int32Value int32_value = 3;
+	Int64Value int64_value = 4;
+	UInt32Value uint32_value = 5;
+	UInt64Value uint64_value = 6;
+	SInt32Value sint32_value = 7;
+	SInt64Value sint64_value = 8;
+	Fixed32Value fixed32_value = 9;
+	Fixed64Value fixed64_value = 10;
+	SFixed32Value sfixed32_value = 11;
+	SFixed64Value sfixed64_value = 12;
+	FloatValue float_value = 13;
+	DoubleValue double_value = 14;
+	StringValue string_value = 15;
+	bool is_null = 16;
+	uint32 object_id_value = 17;
 }
 
 
 message RpcResult {
-	optional RpcStatus status = 1;
-	optional string error_message = 2;
-	optional RpcParameter call_result = 3;
+	RpcStatus status = 1;
+	string error_message = 2;
+	RpcParameter call_result = 3;
 }
 
 
 message RpcCall {
-	optional string service = 1;
-	optional string method = 2;
+	string service = 1;
+	string method = 2;
 	repeated RpcParameter parameters = 3;
-	optional bool expects_result = 4;
-	optional uint32 object_id = 5;
+	bool expects_result = 4;
+	uint32 object_id = 5;
 }
 
 message RpcMessage {
-	optional int32 id = 1;
-	optional RpcCall call = 2;
-	optional RpcResult result = 3;
+	int32 id = 1;
+	RpcCall call = 2;
+	RpcResult result = 3;
 }
 
