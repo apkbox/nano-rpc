@@ -1,29 +1,24 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NanoRpc.Net", "NanoRpc.Net\NanoRpc.Net.csproj", "{F16BC131-C4AB-4B23-B9DD-A51386EFEBB8}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NanoRpc.Net", "NanoRpc.Net\NanoRpc.Net_vs2010.csproj", "{F16BC131-C4AB-4B23-B9DD-A51386EFEBB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NanoRpc.Net.Test", "NanoRpc.Net.Test\NanoRpc.Net.Test.csproj", "{4B02D02E-2DB9-47BE-8F4B-957F53AEE33F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NanoRpc.Net.Test", "NanoRpc.Net.Test\vs2010\NanoRpc.Net.Test.csproj", "{4B02D02E-2DB9-47BE-8F4B-957F53AEE33F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-		Silverlight2|Any CPU = Silverlight2|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{F16BC131-C4AB-4B23-B9DD-A51386EFEBB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F16BC131-C4AB-4B23-B9DD-A51386EFEBB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F16BC131-C4AB-4B23-B9DD-A51386EFEBB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F16BC131-C4AB-4B23-B9DD-A51386EFEBB8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F16BC131-C4AB-4B23-B9DD-A51386EFEBB8}.Silverlight2|Any CPU.ActiveCfg = Release|Any CPU
-		{F16BC131-C4AB-4B23-B9DD-A51386EFEBB8}.Silverlight2|Any CPU.Build.0 = Release|Any CPU
 		{4B02D02E-2DB9-47BE-8F4B-957F53AEE33F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4B02D02E-2DB9-47BE-8F4B-957F53AEE33F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B02D02E-2DB9-47BE-8F4B-957F53AEE33F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B02D02E-2DB9-47BE-8F4B-957F53AEE33F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4B02D02E-2DB9-47BE-8F4B-957F53AEE33F}.Silverlight2|Any CPU.ActiveCfg = Release|Any CPU
-		{4B02D02E-2DB9-47BE-8F4B-957F53AEE33F}.Silverlight2|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

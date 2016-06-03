@@ -119,7 +119,6 @@ void RpcServer::Receive(const RpcMessage &rpcMessage) {
     // rpc_result containing an error.
     if (rpcMessage.call().expects_result()) {
       // Send back the result to the client if client requested it.
-      assert(resultMessage.has_id());
       resultMessage.mutable_result()->MergeFrom(rpc_result);
       controller_->Send(resultMessage);
     }
@@ -133,9 +132,7 @@ void RpcServer::Receive(const RpcMessage &rpcMessage) {
     // whether the server replies with an error message, even if the call does
     // not expect the result, through an option on the server.
     if (rpcMessage.call().expects_result()) {
-      assert(resultMessage.has_id());
       assert(resultMessage.has_result());
-      assert(resultMessage.result().has_status());
       controller_->Send(resultMessage);
     }
   }

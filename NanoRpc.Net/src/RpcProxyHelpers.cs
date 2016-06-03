@@ -7,7 +7,7 @@ namespace NanoRpc
     using System;
     using System.Diagnostics;
     using System.Reflection;
-    using Google.ProtocolBuffers;
+    using Google.Protobuf;
 
     /// <summary>
     /// Implements helper methods that are used by <see cref="RpcProxyGenerator"/>.
@@ -15,7 +15,7 @@ namespace NanoRpc
     public static class RpcProxyHelpers
     {
         public static readonly MethodInfo BuildRpcMessageMethodInfo =
-            GetMethod("BuildRpcMessage", typeof( RpcCall.Builder ));
+            GetMethod("BuildRpcMessage", typeof( RpcCall ));
 
         public static readonly MethodInfo CreateServiceRpcCallBuilderMethodInfo =
             GetMethod("CreateServiceRpcCallBuilder", typeof( string ), typeof( string ));
@@ -60,24 +60,24 @@ namespace NanoRpc
         /// </param>
         /// <returns>
         /// </returns>
-        public static RpcMessage BuildRpcMessage(RpcCall.Builder rpcCallBuilder)
+        public static RpcMessage BuildRpcMessage(RpcCall rpcCallBuilder)
         {
-            var rpcMessageBuilder = new RpcMessage.Builder();
-            rpcMessageBuilder.Call = rpcCallBuilder.Build();
-            return rpcMessageBuilder.Build();
+            var rpcMessageBuilder = new RpcMessage();
+            rpcMessageBuilder.Call = rpcCallBuilder;
+            return rpcMessageBuilder;
         }
 
-        public static RpcCall.Builder CreateServiceRpcCallBuilder(string interfaceName, string methodName)
+        public static RpcCall CreateServiceRpcCallBuilder(string interfaceName, string methodName)
         {
-            var callBuilder = new RpcCall.Builder();
+            var callBuilder = new RpcCall();
             callBuilder.Service = interfaceName;
             callBuilder.Method = methodName;
             return callBuilder;
         }
 
-        public static RpcCall.Builder CreateObjectRpcCallBuilder(uint objectId, string methodName)
+        public static RpcCall CreateObjectRpcCallBuilder(uint objectId, string methodName)
         {
-            var callBuilder = new RpcCall.Builder();
+            var callBuilder = new RpcCall();
             callBuilder.ObjectId = objectId;
             callBuilder.Method = methodName;
             return callBuilder;
@@ -89,9 +89,11 @@ namespace NanoRpc
         /// </param>
         /// <returns>
         /// </returns>
-        public static RpcParameter.Builder CreateRpcParameterBuilder(IMessage value)
+        public static RpcParameter CreateRpcParameterBuilder(IMessage value)
         {
-            return new RpcParameter.Builder().SetProtoValue(value.ToByteString());
+            var par = new RpcParameter();
+            par.ProtoValue.Value = value.ToByteString();
+            return par;
         }
 
         /// <summary>
@@ -100,9 +102,11 @@ namespace NanoRpc
         /// </param>
         /// <returns>
         /// </returns>
-        public static RpcParameter.Builder CreateRpcParameterBuilder(bool value)
+        public static RpcParameter CreateRpcParameterBuilder(bool value)
         {
-            return new RpcParameter.Builder().SetBoolValue(value);
+            var par = new RpcParameter();
+            par.BoolValue.Value = value;
+            return par;
         }
 
         /// <summary>
@@ -111,9 +115,11 @@ namespace NanoRpc
         /// </param>
         /// <returns>
         /// </returns>
-        public static RpcParameter.Builder CreateRpcParameterBuilder(int value)
+        public static RpcParameter CreateRpcParameterBuilder(int value)
         {
-            return new RpcParameter.Builder().SetInt32Value(value);
+            var par = new RpcParameter();
+            par.Int32Value.Value = value;
+            return par;
         }
 
         /// <summary>
@@ -122,9 +128,11 @@ namespace NanoRpc
         /// </param>
         /// <returns>
         /// </returns>
-        public static RpcParameter.Builder CreateRpcParameterBuilder(long value)
+        public static RpcParameter CreateRpcParameterBuilder(long value)
         {
-            return new RpcParameter.Builder().SetInt64Value(value);
+            var par = new RpcParameter();
+            par.Int64Value.Value = value;
+            return par;
         }
 
         /// <summary>
@@ -133,9 +141,11 @@ namespace NanoRpc
         /// </param>
         /// <returns>
         /// </returns>
-        public static RpcParameter.Builder CreateRpcParameterBuilder(double value)
+        public static RpcParameter CreateRpcParameterBuilder(double value)
         {
-            return new RpcParameter.Builder().SetDoubleValue(value);
+            var par = new RpcParameter();
+            par.DoubleValue.Value = value;
+            return par;
         }
 
         /// <summary>
@@ -144,9 +154,11 @@ namespace NanoRpc
         /// </param>
         /// <returns>
         /// </returns>
-        public static RpcParameter.Builder CreateRpcParameterBuilder(string value)
+        public static RpcParameter CreateRpcParameterBuilder(string value)
         {
-            return new RpcParameter.Builder().SetStringValue(value);
+            var par = new RpcParameter();
+            par.StringValue.Value = value;
+            return par;
         }
 
         /// <summary>
@@ -176,14 +188,14 @@ namespace NanoRpc
         {
             if (objectId != 0)
             {
-                var rpcCall = new RpcCall.Builder();
+                var rpcCall = new RpcCall();
                 rpcCall.Service = "NanoRpc.ObjectManagerService";
                 rpcCall.Method = "Delete";
-                rpcCall.ParametersList.Add(new RpcParameter.Builder().SetUint32Value(objectId).Build());
+                rpcCall.Parameters.Add(new RpcParameter() { Uint32Value = { Value = objectId } });
 
-                var rpcMessage = new RpcMessage.Builder();
-                rpcMessage.SetCall(rpcCall);
-                client.Send(rpcMessage.Build());
+                var rpcMessage = new RpcMessage();
+                rpcMessage.Call = (rpcCall);
+                client.Send(rpcMessage);
             }
         }
     }

@@ -90,12 +90,12 @@ namespace NanoRpc {
   }
   #region Enums
   public enum RpcStatus {
-    RpcSucceeded = 0,
-    RpcChannelFailure = 1,
-    RpcUnknownMethod = 2,
-    RpcProtocolError = 3,
-    RpcUnknownInterface = 4,
-    RpcInvalidCallParameter = 5,
+    [pbr::OriginalName("RpcSucceeded")] RpcSucceeded = 0,
+    [pbr::OriginalName("RpcChannelFailure")] RpcChannelFailure = 1,
+    [pbr::OriginalName("RpcUnknownMethod")] RpcUnknownMethod = 2,
+    [pbr::OriginalName("RpcProtocolError")] RpcProtocolError = 3,
+    [pbr::OriginalName("RpcUnknownInterface")] RpcUnknownInterface = 4,
+    [pbr::OriginalName("RpcInvalidCallParameter")] RpcInvalidCallParameter = 5,
   }
 
   #endregion
@@ -1764,6 +1764,9 @@ namespace NanoRpc {
     /// <summary>Field number for the "proto_value" field.</summary>
     public const int ProtoValueFieldNumber = 1;
     private global::NanoRpc.BytesValue protoValue_;
+    /// <summary>
+    ///  Structure type
+    /// </summary>
     public global::NanoRpc.BytesValue ProtoValue {
       get { return protoValue_; }
       set {
@@ -1774,6 +1777,9 @@ namespace NanoRpc {
     /// <summary>Field number for the "bool_value" field.</summary>
     public const int BoolValueFieldNumber = 2;
     private global::NanoRpc.BoolValue boolValue_;
+    /// <summary>
+    ///  Primitive types
+    /// </summary>
     public global::NanoRpc.BoolValue BoolValue {
       get { return boolValue_; }
       set {
@@ -1914,6 +1920,9 @@ namespace NanoRpc {
     /// <summary>Field number for the "is_null" field.</summary>
     public const int IsNullFieldNumber = 16;
     private bool isNull_;
+    /// <summary>
+    ///  Additional parameters
+    /// </summary>
     public bool IsNull {
       get { return isNull_; }
       set {
@@ -2374,7 +2383,7 @@ namespace NanoRpc {
 
     /// <summary>Field number for the "status" field.</summary>
     public const int StatusFieldNumber = 1;
-    private global::NanoRpc.RpcStatus status_ = global::NanoRpc.RpcStatus.RpcSucceeded;
+    private global::NanoRpc.RpcStatus status_ = 0;
     public global::NanoRpc.RpcStatus Status {
       get { return status_; }
       set {
@@ -2421,7 +2430,7 @@ namespace NanoRpc {
 
     public override int GetHashCode() {
       int hash = 1;
-      if (Status != global::NanoRpc.RpcStatus.RpcSucceeded) hash ^= Status.GetHashCode();
+      if (Status != 0) hash ^= Status.GetHashCode();
       if (ErrorMessage.Length != 0) hash ^= ErrorMessage.GetHashCode();
       if (callResult_ != null) hash ^= CallResult.GetHashCode();
       return hash;
@@ -2432,7 +2441,7 @@ namespace NanoRpc {
     }
 
     public void WriteTo(pb::CodedOutputStream output) {
-      if (Status != global::NanoRpc.RpcStatus.RpcSucceeded) {
+      if (Status != 0) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Status);
       }
@@ -2448,7 +2457,7 @@ namespace NanoRpc {
 
     public int CalculateSize() {
       int size = 0;
-      if (Status != global::NanoRpc.RpcStatus.RpcSucceeded) {
+      if (Status != 0) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Status);
       }
       if (ErrorMessage.Length != 0) {
@@ -2464,7 +2473,7 @@ namespace NanoRpc {
       if (other == null) {
         return;
       }
-      if (other.Status != global::NanoRpc.RpcStatus.RpcSucceeded) {
+      if (other.Status != 0) {
         Status = other.Status;
       }
       if (other.ErrorMessage.Length != 0) {

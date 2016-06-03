@@ -1,11 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdlCompiler", "IdlCompiler\IdlCompiler.csproj", "{ACBF7B37-E750-4703-936E-52C0146DE6FB}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdlCompiler", "IdlCompiler\IdlCompiler_vs2010.csproj", "{ACBF7B37-E750-4703-936E-52C0146DE6FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Odgs.Common", "Odgs.Common\Odgs.Common.csproj", "{DA463929-2917-4BAB-95A6-D2DFB06C1AD2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Odgs.Common", "Odgs.Common\vs2010\Odgs.Common.csproj", "{DA463929-2917-4BAB-95A6-D2DFB06C1AD2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Odgs.Common.Test", "Odgs.Common.Test\Odgs.Common.Test.csproj", "{0642BE44-DCEE-4953-8886-A7089611FCCD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Odgs.Common.Test", "Odgs.Common.Test\vs2010\Odgs.Common.Test.csproj", "{0642BE44-DCEE-4953-8886-A7089611FCCD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

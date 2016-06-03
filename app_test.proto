@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+import "RpcMessageTypes.proto";
+
+package app;
+
+enum AppEnum {
+	EnumValue0 = 0;
+	EnumValue1 = 1;
+	EnumValue2 = 2;
+	EnumValue3 = 3;
+	EnumValue4 = 4;
+}
+
+message AppStruct {
+	bool bool_value = 1;
+	int32 int_value = 2;
+	AppEnum enum_value = 3;
+	string string_value = 4;
+}
+
+message AppEnumValue {
+	AppEnum value = 1;
+}
+
+service ITestApp {
+	rpc get_BoolValue(NanoRpc.RpcVoid) returns (google.protobuf.BoolValue) {
+		option (NanoRpc.property_name) = "BoolValue";
+	}
+	rpc set_BoolValue(google.protobuf.BoolValue) returns (NanoRpc.RpcVoid) {
+		option (NanoRpc.property_name) = "BoolValue";
+	}
+
+	rpc get_IntValue(NanoRpc.RpcVoid) returns (google.protobuf.Int32Value) {
+		option (NanoRpc.property_name) = "IntValue";
+	}
+	rpc set_IntValue(google.protobuf.Int32Value) returns (NanoRpc.RpcVoid) {
+		option (NanoRpc.property_name) = "IntValue";
+	}
+
+	rpc get_EnumValue(NanoRpc.RpcVoid) returns (AppEnumValue) {
+		option (NanoRpc.property_name) = "EnumValue";
+	}
+	rpc set_EnumValue(AppEnumValue) returns (NanoRpc.RpcVoid) {
+		option (NanoRpc.property_name) = "EnumValue";
+	}
+
+	rpc get_StringValue(NanoRpc.RpcVoid) returns (google.protobuf.StringValue) {
+		option (NanoRpc.property_name) = "StringValue";
+	}
+	rpc set_StringValue(google.protobuf.StringValue) returns (NanoRpc.RpcVoid)  {
+		option (NanoRpc.property_name) = "StringValue";
+	}
+
+	rpc get_StructValue(NanoRpc.RpcVoid) returns (AppStruct) {
+		option (NanoRpc.property_name) = "StructValue";
+	}
+	rpc set_StructValue(AppStruct) returns (NanoRpc.RpcVoid) {
+		option (NanoRpc.property_name) = "StructValue";
+	}
+
+	rpc SyncVoidMethod(NanoRpc.RpcVoid) returns (NanoRpc.RpcVoid);
+	rpc AsyncVoidMethod(NanoRpc.RpcVoid) returns (NanoRpc.RpcVoid) {
+		option (NanoRpc.async) = true;
+	}
+
+	rpc SetStructReturnIntMethod(AppStruct) returns (google.protobuf.Int32Value);
+	rpc GetStructMethod(google.protobuf.Int32Value) returns (AppStruct);
+}

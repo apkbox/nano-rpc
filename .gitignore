@@ -1,0 +1,8 @@
+NanoRpc.Net.Test/vs2010/obj/*
+NanoRpc.Net/obj/*
+*.sdf
+*.user
+*.suo
+NanoRpc/Win32/*
+NanoRpc/x64/*
+packages/*

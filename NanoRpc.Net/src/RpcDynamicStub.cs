@@ -7,7 +7,7 @@ namespace NanoRpc
     using System;
     using System.Diagnostics;
     using System.Reflection;
-    using Google.ProtocolBuffers;
+    using Google.Protobuf;
 
     /// <summary>
     /// Implements .NET reflection based stub.

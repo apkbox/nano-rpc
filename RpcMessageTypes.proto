@@ -1,5 +1,18 @@
+syntax = "proto3";
+import "google/protobuf/any.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/descriptor.proto";
+
 package NanoRpc;
 
+extend google.protobuf.MessageOptions {
+	bool event_source = 51224;
+}
+
+extend google.protobuf.MethodOptions {
+	string property_name = 51223;
+	bool async = 51225;
+}
 
 enum RpcStatus {
 	RpcSucceeded = 0;
@@ -12,44 +25,41 @@ enum RpcStatus {
 
 
 message RpcParameter {
-	optional bytes proto_value = 1;
-	optional bool bool_value = 2;
-	optional int32 int32_value = 3;
-	optional int64 int64_value = 4;
-	optional uint32 uint32_value = 5;
-	optional uint64 uint64_value = 6;
-	optional sint32 sint32_value = 7;
-	optional sint64 sint64_value = 8;
-	optional fixed32 fixed32_value = 9;
-	optional fixed64 fixed64_value = 10;
-	optional sfixed32 sfixed32_value = 11;
-	optional sfixed64 sfixed64_value = 12;
-	optional float float_value = 13;
-	optional double double_value = 14;
-	optional string string_value = 15;
-	optional bool is_null = 16;
-	optional uint32 object_id_value = 17;
+	// Structure type
+	google.protobuf.BytesValue proto_value = 1;
+	google.protobuf.Any any_value = 2;
+	bytes value = 3;
+
+	// Additional parameters
+	// bool is_null = 16;
+	oneof control {
+		uint32 object_id_value = 17;
+		string event_name = 18;
+	}
 }
 
 
 message RpcResult {
-	optional RpcStatus status = 1;
-	optional string error_message = 2;
-	optional RpcParameter call_result = 3;
+	RpcStatus status = 1;
+	string error_message = 2;
+	RpcParameter call_result = 3;
 }
 
 
 message RpcCall {
-	optional string service = 1;
-	optional string method = 2;
+	string service = 1;
+	string method = 2;
 	repeated RpcParameter parameters = 3;
-	optional bool expects_result = 4;
-	optional uint32 object_id = 5;
+	bool expects_result = 4;
+	uint32 object_id = 5;
 }
 
 message RpcMessage {
-	optional int32 id = 1;
-	optional RpcCall call = 2;
-	optional RpcResult result = 3;
+	int32 id = 1;
+	RpcCall call = 2;
+	RpcResult result = 3;
+}
+
+message RpcVoid {
 }
 

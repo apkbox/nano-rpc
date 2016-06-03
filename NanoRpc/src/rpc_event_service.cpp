@@ -6,34 +6,33 @@ namespace NanoRpc {
 const char *const RpcEventService::ServiceName = "NanoRpc.RpcEventService";
 
 // Because the implementation is very simple, the stub and object are
-// implemented in
-// a single class.
+// implemented in a single class.
 void RpcEventService::CallMethod(const RpcCall &rpc_call,
                                  RpcResult *rpc_result) {
   if (rpc_call.method() == "Add") {
     assert(rpc_call.parameters_size() == 1);
-    assert(rpc_call.parameters().Get(0).has_string_value());
+    assert(!rpc_call.parameters().Get(0).event_name().empty());
 
     if (rpc_call.parameters_size() != 1 ||
-        !rpc_call.parameters().Get(0).has_string_value()) {
+        rpc_call.parameters().Get(0).event_name().empty()) {
       rpc_result->set_status(RpcInvalidCallParameter);
       rpc_result->set_error_message("Invalid call parameter.");
     } else {
       const std::string &event_interface_name =
-          rpc_call.parameters().Get(0).string_value();
+          rpc_call.parameters().Get(0).event_name();
       Add(event_interface_name);
     }
   } else if (rpc_call.method() == "Remove") {
     assert(rpc_call.parameters_size() == 1);
-    assert(rpc_call.parameters().Get(0).has_string_value());
+    assert(!rpc_call.parameters().Get(0).event_name().empty());
 
     if (rpc_call.parameters_size() != 1 ||
-        !rpc_call.parameters().Get(0).has_string_value()) {
+        rpc_call.parameters().Get(0).event_name().empty()) {
       rpc_result->set_status(RpcInvalidCallParameter);
       rpc_result->set_error_message("Invalid call parameter.");
     } else {
       const std::string &event_interface_name =
-          rpc_call.parameters().Get(0).string_value();
+          rpc_call.parameters().Get(0).event_name();
       Remove(event_interface_name);
     }
   }

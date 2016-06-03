@@ -1,0 +1,11 @@
+* Channel must operate with buffers instead of messages. The message should
+  already be serialized by the server before passing it to the channel.
+
+* object_id_value and event_name fields included into RpcParameter apparently
+  to make object manager and event service looks as any other service and yet
+  have strongly typed and expected parameters.
+  Thus it seems to be better to move these fields to RpcCall or RpcMessage.
+
+* Not sure why is_null was needed. Does not seem used anywhere.
+
+* With proto3 Any type is better suited to store a parameter.
