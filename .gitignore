@@ -6,3 +6,6 @@ NanoRpc.Net/obj/*
 NanoRpc/Win32/*
 NanoRpc/x64/*
 packages/*
+*.opensdf
+NanoRpc_TestServer/x64/*
+third_party/protobuf/*
