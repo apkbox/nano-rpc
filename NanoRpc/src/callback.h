@@ -1,7 +1,7 @@
 #if !defined(NANO_RPC_CALLBACK_HPP__)
 #define NANO_RPC_CALLBACK_HPP__
 
-namespace NanoRpc {
+namespace nanorpc2 {
 
 template <class Parameter_>
 class CallbackBase {

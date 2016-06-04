@@ -8,7 +8,7 @@
 #include "basictypes.hpp"
 #include "synchronization_primitives.hpp"
 
-namespace NanoRpc {
+namespace nanorpc2 {
 
 // This is default object initializer.
 template <class T>

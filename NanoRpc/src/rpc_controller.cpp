@@ -1,6 +1,6 @@
 
 #include "rpc_controller.hpp"
-#include "rpc_channel.hpp"
+#include "rpc_channel.h"
 #include "rpc_server.hpp"
 #include "rpc_client.hpp"
 

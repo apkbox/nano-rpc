@@ -1,16 +1,17 @@
 #if !defined(NANO_RPC_NAMED_PIPE_RPC_CHANNEL_HPP__)
 #define NANO_RPC_NAMED_PIPE_RPC_CHANNEL_HPP__
 
+#include <queue>
+#include <mutex>
+
 #include <windows.h>
 
-#include "RpcMessageTypes.pb.h"
-
-#include "rpc_channel.hpp"
+#include "rpc_channel.h"
 #include "buffer_pool.hpp"
 #include "object_pool.hpp"
-#include "callback.hpp"
+#include "callback.h"
 
-namespace NanoRpc {
+namespace nanorpc2 {
 
 class OverlappedOperation {
 public:
@@ -30,7 +31,7 @@ public:
 
   void Initialize() {
     memset(static_cast<OVERLAPPED *>(this), 0, sizeof(OVERLAPPED));
-    buffer = 0;
+    buffer = nullptr;
     operation_ = OverlappedOperation::Undefined;
   }
 
@@ -42,13 +43,64 @@ private:
   Overlapped &operator=(const Overlapped &);
 };
 
+class NamedPipeRpcChannel;
+
+class NamedPipeRpcChannelBuilder {
+public:
+  NamedPipeRpcChannelBuilder() : computer_(L"."), is_client_side_(false) {}
+
+  NamedPipeRpcChannelBuilder(const wchar_t *name, const wchar_t *computer = L".") :
+    pipe_name_(name), computer_(computer), is_client_side_(false) {
+  
+  }
+
+  void set_pipe_name(const wchar_t *name) { pipe_name_ = name; }
+  const std::wstring &get_pipe_name() const {
+    return pipe_name_;
+  }
+
+  void set_computer_name(const wchar_t *name) { computer_ = name; }
+  const std::wstring &get_computer_name() const {
+    return computer_;
+  }
+
+  void set_connect_timeout(int timeout) {}
+  int get_connect_timeout() const { return -1; }
+  void set_reconnect(bool reconnect) { }
+  bool get_reconnect() const { return false; }
+
+  void set_client_side(bool is_client_side) {
+    is_client_side_ = is_client_side;
+  }
+  bool get_client_side() const {
+    return is_client_side_;
+  }
+
+  NamedPipeRpcChannel *Build();
+
+private:
+  std::wstring pipe_name_;
+  std::wstring computer_;
+  bool is_client_side_;
+};
+
+
 class NamedPipeRpcChannel : public RpcChannel {
 public:
-  NamedPipeRpcChannel(RpcController *controller, HANDLE pipe_handle);
   ~NamedPipeRpcChannel();
 
-  virtual bool Start();
-  virtual void Close();
+  bool Connect() override;
+  void Close() override;
+
+  void Send(void *message, size_t bytes) override;
+
+  // Specifies a buffer and size of the buffer in bytes.
+  // Returns true is message is available and number of bytes
+  // copies to the message.
+  // Returns false if there is no message and message and bytes remain unchanged.
+  // message can be nullptr, in this case message size returned in bytes
+  // if available.
+  bool Receive(void *message, size_t *bytes) override;
 
   // Important: The handle passed in the disconnected callback is a closed pipe
   // handle.
@@ -59,11 +111,14 @@ public:
     return disconnected_callback_;
   }
 
-protected:
-  virtual void Send(const RpcMessage &message);
-
 private:
+  friend class NamedPipeRpcChannelBuilder;
+
   enum ChannelState { NotConnected = 0, Connected = 1, Disconnected = 2 };
+
+  NamedPipeRpcChannel(const NamedPipeRpcChannelBuilder &builder);
+
+  bool ConnectInternal(HANDLE pipe);
 
   int IoCompletionThreadProc();
 
@@ -97,11 +152,25 @@ private:
 
   CallbackBase<HANDLE> *disconnected_callback_;
 
+  struct InboundMessage {
+    size_t bytes;
+    Overlapped *message;
+  };
+
+  std::mutex queue_lock_;
+  std::queue<InboundMessage> messages_;
+
   volatile __declspec(align(32)) LONG is_connected_;  // TODO: Disconnected
                                                       // should be 0 = not
                                                       // connected, 1 =
                                                       // connected, 2 =
                                                       // disconnected/closed
+
+  NamedPipeRpcChannelBuilder builder_;
+
+  NamedPipeRpcChannel() = delete;
+  NamedPipeRpcChannel(const NamedPipeRpcChannel&) = delete;
+  NamedPipeRpcChannel &operator=(const NamedPipeRpcChannel&) = delete;
 };
 
 }  // namespace

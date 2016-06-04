@@ -7,7 +7,7 @@
 
 #include "basictypes.hpp"
 
-namespace NanoRpc {
+namespace nanorpc2 {
 
 class SynchronizationObject {
 public:

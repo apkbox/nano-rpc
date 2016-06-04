@@ -4,7 +4,7 @@
 
 #include <windows.h>
 
-namespace NanoRpc {
+namespace nanorpc2 {
 
 Event::Event()
     : SynchronizationObject(::CreateEvent(NULL, TRUE, FALSE, NULL)) {}

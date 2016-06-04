@@ -30,12 +30,6 @@
     <ClCompile Include="src\named_pipe_rpc_channel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\rpc_channel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\rpc_controller.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\rpc_event_service.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -65,28 +59,13 @@
     <ClInclude Include="src\buffer_pool.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\callback.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\named_pipe_connector.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\named_pipe_rpc_channel.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\nano_rpc.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\object_pool.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\rpc_channel.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\rpc_client.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\rpc_controller.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\rpc_event_service.hpp">
@@ -114,6 +93,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\synchronization_primitives.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rpc_channel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\callback.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\named_pipe_rpc_channel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\named_pipe_connector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

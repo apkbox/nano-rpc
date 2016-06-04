@@ -8,7 +8,7 @@
 #include "basictypes.hpp"
 #include "synchronization_primitives.hpp"
 
-namespace NanoRpc {
+namespace nanorpc2 {
 
 // Provides mechanism that allows to allocate and reuse buffers.
 // The buffer pool makes is faster to allocate often used buffer sizes

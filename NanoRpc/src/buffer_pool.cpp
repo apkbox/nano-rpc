@@ -1,6 +1,6 @@
 #include "buffer_pool.hpp"
 
-namespace NanoRpc {
+namespace nanorpc2 {
 
 namespace {
 
