@@ -1,4 +1,4 @@
-* Channel must operate with buffers instead of messages. The message should
+* done * Channel must operate with buffers instead of messages. The message should
   already be serialized by the server before passing it to the channel.
 
 * object_id_value and event_name fields included into RpcParameter apparently
