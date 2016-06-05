@@ -10,7 +10,8 @@ public:
   virtual bool Connect() = 0;
   virtual void Close() = 0;
 
-  virtual void Send(void *message, size_t bytes) = 0;
+  virtual void Send(const void *message, size_t bytes) = 0;
+  virtual bool ReceiveNonBlocking(void *message, size_t *bytes) = 0;
   virtual bool Receive(void *message, size_t *bytes) = 0;
 };
 

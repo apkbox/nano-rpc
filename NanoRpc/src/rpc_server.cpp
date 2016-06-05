@@ -63,17 +63,15 @@ void RpcServer::Receive(const RpcMessage &rpcMessage) {
   }
 
   // TODO: Asynchronous calls, see below.
-  /*
   // Here we have the option of handling incoming calls sequentually
   // (basically allowing single thread service) or making them asynchronously
   // thus making the service implementation responsible for handling
-  multithreaded calls.
+  // multithreaded calls.
   // This theoretically can be controlled by the attribute
-  AllowAsynchronousCalls that applies
-  // to class and method (in override fashion to the default server behavior).
+  // AllowAsynchronousCalls that applies to class and method (in override 
+  // fashion to the default server behavior).
   // The default server behavior can also be specified as Syncrhonous or
-  Asynchronous.
-   */
+  // Asynchronous.
   // For now make all calls synchronous.
 
   IRpcService *service = NULL;

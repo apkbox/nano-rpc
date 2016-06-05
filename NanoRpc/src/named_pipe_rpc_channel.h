@@ -92,7 +92,7 @@ public:
   bool Connect() override;
   void Close() override;
 
-  void Send(void *message, size_t bytes) override;
+  void Send(const void *message, size_t bytes) override;
 
   // Specifies a buffer and size of the buffer in bytes.
   // Returns true is message is available and number of bytes
@@ -100,6 +100,8 @@ public:
   // Returns false if there is no message and message and bytes remain unchanged.
   // message can be nullptr, in this case message size returned in bytes
   // if available.
+  bool ReceiveNonBlocking(void *message, size_t *bytes) override;
+
   bool Receive(void *message, size_t *bytes) override;
 
   // Important: The handle passed in the disconnected callback is a closed pipe
@@ -159,8 +161,9 @@ private:
 
   std::mutex queue_lock_;
   std::queue<InboundMessage> messages_;
+  HANDLE message_pending_event_;
 
-  volatile __declspec(align(32)) LONG is_connected_;  // TODO: Disconnected
+  volatile __declspec(align(32)) LONG channel_state_;  // TODO: Disconnected
                                                       // should be 0 = not
                                                       // connected, 1 =
                                                       // connected, 2 =

@@ -264,18 +264,21 @@ HANDLE NamedPipeConnector::AttemptConnectToServer() {
 }
 
 void NamedPipeConnector::InvokeConnectedCallback(HANDLE pipe) {
-  assert(callback_ != NULL);
   InterlockedExchange(&connection_state_, Connected);
   pipe_ = pipe;
   if (!is_asynchronous_connect_) {
     std::lock_guard<std::mutex> lock(cv_mutex_);
     cv_.notify_all();
+    if (callback_ != NULL)
+      callback_->Connected(pipe);
   }
-
-  if (callback_ != NULL)
-    callback_->Connected(pipe);
-  else
-    CloseHandle(pipe);
+  else {
+    assert(callback_ != NULL);
+    if (callback_ != NULL)
+      callback_->Connected(pipe);
+    else
+      CloseHandle(pipe);
+  }
 }
 
 }  // namespace

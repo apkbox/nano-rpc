@@ -36,7 +36,7 @@ bool NamedPipeRpcChannel::Connect() {
 }
 
 void NamedPipeRpcChannel::Close() {
-  LONG was = InterlockedExchange(&is_connected_, Disconnected);
+  LONG was = InterlockedExchange(&channel_state_, Disconnected);
   if (was != Disconnected) {
     DWORD flags = 0;
     if (GetNamedPipeInfo(pipe_, &flags, NULL, NULL, NULL) != FALSE) {
@@ -47,8 +47,8 @@ void NamedPipeRpcChannel::Close() {
   }
 }
 
-void NamedPipeRpcChannel::Send(void *message, size_t bytes) {
-  if (is_connected_ != Connected)
+void NamedPipeRpcChannel::Send(const void *message, size_t bytes) {
+  if (channel_state_ != Connected)
     return;  // TODO: false;
 
   Overlapped *overlapped = AllocateOverlappedState(bytes + sizeof(uint32_t));
@@ -82,7 +82,7 @@ void NamedPipeRpcChannel::Send(void *message, size_t bytes) {
   }
 }
 
-bool NamedPipeRpcChannel::Receive(void *message, size_t *bytes) {
+bool NamedPipeRpcChannel::ReceiveNonBlocking(void *message, size_t *bytes) {
   std::unique_lock<std::mutex> lock(queue_lock_);
   if (messages_.empty())
     return false;
@@ -103,6 +103,20 @@ bool NamedPipeRpcChannel::Receive(void *message, size_t *bytes) {
   return true;
 }
 
+bool NamedPipeRpcChannel::Receive(void *message, size_t *bytes) {
+  if (channel_state_ == Disconnected)
+    return false;
+
+  bool result = ReceiveNonBlocking(message, bytes);
+  if (result)
+    return true;
+
+  if (WaitForSingleObject(message_pending_event_, INFINITE) == WAIT_OBJECT_0)
+      return ReceiveNonBlocking(message, bytes);
+
+  return false;
+}
+
 NamedPipeRpcChannel::NamedPipeRpcChannel(
     const NamedPipeRpcChannelBuilder &builder)
     : builder_(builder),
@@ -111,12 +125,12 @@ NamedPipeRpcChannel::NamedPipeRpcChannel(
       completion_thread_id_(0),
       completion_thread_(nullptr),
       disconnected_callback_(nullptr),
-      is_connected_(NotConnected) {}
+      channel_state_(NotConnected) {}
 
 void NamedPipeRpcChannel::StartRead(
     int expected_size,
     OverlappedOperation::Type requested_operation) {
-  if (is_connected_ != Connected)
+  if (channel_state_ != Connected)
     return;  // TODO: false;
 
   Overlapped *overlapped = AllocateOverlappedState(expected_size);
@@ -130,13 +144,11 @@ void NamedPipeRpcChannel::StartRead(
 
     if (GetLastError() == ERROR_BROKEN_PIPE) {
       FreeOverlappedState(overlapped);
-      std::cout << "error: Pipe broken while attempting to read\n";
-      std::cout.flush();
+      std::cout << "error: Pipe broken while attempting to read" << std::endl << std::flush;
       HandleSurpriseDisconnect();
     } else if (GetLastError() != ERROR_IO_PENDING) {
       FreeOverlappedState(overlapped);
-      std::cout << "error: GetLastError() == " << GetLastError() << "\n";
-      std::cout.flush();
+      std::cout << "error: GetLastError() == " << GetLastError() << std::endl << std::flush;
     }
   }
 }
@@ -188,6 +200,7 @@ void NamedPipeRpcChannel::ReadOperationCompleted(Overlapped *overlapped,
     {
       std::unique_lock<std::mutex> lock(queue_lock_);
       messages_.push(msg);
+      SetEvent(message_pending_event_);
     }
   } else {
     assert(false);  // Unexpected operation
@@ -203,13 +216,14 @@ void NamedPipeRpcChannel::WriteOperationCompleted(Overlapped *overlapped,
 }
 
 bool NamedPipeRpcChannel::ConnectInternal(HANDLE pipe) {
+  message_pending_event_ = CreateEvent(nullptr, FALSE, FALSE, nullptr);
   pipe_ = pipe;
 
-  if (InterlockedCompareExchange(&is_connected_, Connected, NotConnected) ==
+  if (InterlockedCompareExchange(&channel_state_, Connected, NotConnected) ==
       NotConnected) {
     completion_port_ = CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, 0, 0);
     if (completion_port_ == NULL) {
-      InterlockedExchange(&is_connected_, NotConnected);
+      InterlockedExchange(&channel_state_, NotConnected);
       return false;
     }
 
@@ -221,14 +235,14 @@ bool NamedPipeRpcChannel::ConnectInternal(HANDLE pipe) {
                                       &completion_thread_id_);
     if (completion_thread_ == NULL) {
       CloseHandle(completion_port_);
-      InterlockedExchange(&is_connected_, NotConnected);
+      InterlockedExchange(&channel_state_, NotConnected);
       return false;
     }
 
     if (CreateIoCompletionPort(pipe_, completion_port_, (ULONG_PTR)pipe_, 0) ==
         NULL) {
       CloseHandle(completion_port_);
-      InterlockedExchange(&is_connected_, NotConnected);
+      InterlockedExchange(&channel_state_, NotConnected);
       return false;
     }
 
@@ -236,7 +250,7 @@ bool NamedPipeRpcChannel::ConnectInternal(HANDLE pipe) {
       // This is fatal condition. We cannot restart it again, because the pipe
       // is already associated with
       // completion port, so, we cannot retry it.
-      InterlockedExchange(&is_connected_, Disconnected);
+      InterlockedExchange(&channel_state_, Disconnected);
       return false;
     }
 
@@ -255,7 +269,7 @@ int NamedPipeRpcChannel::IoCompletionThreadProc() {
   // See note in Start
   StartRead(sizeof(uint32_t), OverlappedOperation::ReadPrefix);
 
-  while (is_connected_ == Connected) {
+  while (channel_state_ == Connected) {
     DWORD bytes_transferred;
     ULONG_PTR key;
     Overlapped *overlapped = NULL;
@@ -263,12 +277,19 @@ int NamedPipeRpcChannel::IoCompletionThreadProc() {
                                   &bytes_transferred,
                                   &key,
                                   (OVERLAPPED **)&overlapped,
-                                  INFINITE) == FALSE) {
-      std::cout << "Overlapped operation failed: " << GetLastError() << "\n";
+                                  500) == FALSE) {
+      std::cout << "Overlapped operation failed: " << GetLastError() << std::endl << std::flush;
+
+      if (overlapped == nullptr && channel_state_ == Disconnected) {
+        // TODO: This is incorrect, because we will have to wait for
+        // outstanding async operation to complete, even if we cancelled it.
+        CancelIo(pipe_);
+        break;
+      }
 
       // If overlapped is NULL then GetQueuedCompletionStatus failed because of
       // invalid parameter or completion_port_ handle was closed.
-      // This would also happen if timeout parameter is not INFINITE (which is
+      // This also happens if timeout parameter is not INFINITE (which is
       // not the case here).
       if (overlapped != NULL)
         FreeOverlappedState(overlapped);
@@ -277,7 +298,7 @@ int NamedPipeRpcChannel::IoCompletionThreadProc() {
       // CancelIOEx implementation added to disconnect.
       // This would not be a surprise disconnect though.
       if (GetLastError() == ERROR_BROKEN_PIPE) {
-        std::cout << "Pipe broken\n";
+        std::cout << "Pipe broken" << std::endl;
         HandleSurpriseDisconnect();
         break;
       }
@@ -304,15 +325,18 @@ int NamedPipeRpcChannel::IoCompletionThreadProc() {
 
 HANDLE NamedPipeRpcChannel::CloseConnection() {
   assert(completion_port_ != nullptr);
-  assert(pipe_ != NULL);
-  assert(completion_thread_ != NULL);
+  assert(pipe_ != nullptr);
+  assert(completion_thread_ != nullptr);
+
+  // Make sure blocking receive is let go.
+  SetEvent(message_pending_event_);
 
   // At this point we need to drain all pending operations from the
   // I/O completion port queue and ensure none new are queued.
   // We spin here until we see that all overlapped objects returned to the pool.
 
   int last_free_object_count = overlapped_pool_.GetFreeObjectsCount();
-  int attempts = 0;
+  int attempts = 10;
 
   while (overlapped_pool_.GetTotalObjectsCount() -
              overlapped_pool_.GetFreeObjectsCount() >
@@ -364,7 +388,7 @@ HANDLE NamedPipeRpcChannel::CloseConnection() {
       std::cout << "warning: The I/O completion thread seems to hung.\n";
     }
 
-    assert(wait_result == WAIT_TIMEOUT);
+    assert(wait_result == WAIT_OBJECT_0 || wait_result == WAIT_TIMEOUT);
   }
 
   HANDLE pipe = pipe_;
@@ -377,6 +401,8 @@ HANDLE NamedPipeRpcChannel::CloseConnection() {
   CloseHandle(completion_port_);
   completion_port_ = nullptr;
   pipe_ = nullptr;
+  CloseHandle(message_pending_event_);
+  message_pending_event_ = nullptr;
 
   return pipe;
 }
@@ -384,7 +410,7 @@ HANDLE NamedPipeRpcChannel::CloseConnection() {
 void NamedPipeRpcChannel::HandleSurpriseDisconnect() {
   // We can get here from multiple points, but only one should be allowed to do
   // the work.
-  if (InterlockedCompareExchange(&is_connected_, Disconnected, Connected) ==
+  if (InterlockedCompareExchange(&channel_state_, Disconnected, Connected) ==
       Connected) {
     HANDLE pipe = CloseConnection();
     InvokeDisconnectedCallback(pipe);
