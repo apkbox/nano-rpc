@@ -4,11 +4,11 @@
 #include <set>
 #include <string>
 
-#include "RpcMessageTypes.pb.h"
+#include "rpc_proto/rpc_types.pb.h"
 
 #include "rpc_service.hpp"
 
-namespace NanoRpc {
+namespace nanorpc2 {
 
 // This service keeps track of event subscriptions.
 // When client interested in receiving events through specific

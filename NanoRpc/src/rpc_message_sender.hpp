@@ -1,9 +1,9 @@
 #if !defined(NANO_RPC_RPC_MESSAGE_SENDER_HPP__)
 #define NANO_RPC_RPC_MESSAGE_SENDER_HPP__
 
-#include "RpcMessageTypes.pb.h"
+#include "rpc_proto/rpc_types.pb.h"
 
-namespace NanoRpc {
+namespace nanorpc2 {
 
 class IRpcMessageSender {
 public:

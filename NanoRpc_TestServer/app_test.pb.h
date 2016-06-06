@@ -29,7 +29,7 @@
 #include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 #include <google/protobuf/wrappers.pb.h>
-#include "RpcMessageTypes.pb.h"
+#include "rpc_proto/rpc_types.pb.h"
 // @@protoc_insertion_point(includes)
 
 namespace app {

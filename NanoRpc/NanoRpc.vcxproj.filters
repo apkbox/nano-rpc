@@ -33,19 +33,25 @@
     <ClCompile Include="src\rpc_event_service.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\rpc_object_manager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\rpc_server.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RpcMessageTypes.pb.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\string_conversion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\synchronization_primitives.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rpc_object_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\server_builder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rpc_proto\rpc_types.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\server_call_dispatcher.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -74,19 +80,10 @@
     <ClInclude Include="src\rpc_message_sender.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\rpc_object_manager.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\rpc_server.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\rpc_service.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\rpc_stub.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RpcMessageTypes.pb.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\string_conversion.hpp">
@@ -105,6 +102,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\named_pipe_connector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rpc_server.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rpc_object_manager.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\server_builder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rpc_proto\rpc_types.pb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\server_call_dispatcher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

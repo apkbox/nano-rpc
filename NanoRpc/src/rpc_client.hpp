@@ -1,7 +1,7 @@
 #if !defined(NANO_RPC_RPC_CLIENT_HPP__)
 #define NANO_RPC_RPC_CLIENT_HPP__
 
-namespace NanoRpc {
+namespace nanorpc2 {
 
 class IRpcClient : public IRpcMessageSender {
 public:

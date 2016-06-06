@@ -1,6 +1,6 @@
 #include "rpc_object_manager.hpp"
 
-namespace NanoRpc {
+namespace nanorpc2 {
 
 const char *const RpcObjectManager::ServiceName =
     "NanoRpc.ObjectManagerService";
@@ -15,29 +15,28 @@ RpcObjectManager::~RpcObjectManager() {
   }
 }
 
-void RpcObjectManager::RegisterService(const char *name, IRpcService *service) {
-  assert(service != NULL);
+void RpcObjectManager::RegisterService(const std::string &name, IRpcService *service) {
   services_[name] = RegisterInstance(service);
 }
 
 void RpcObjectManager::RegisterService(IRpcStub *stub) {
-  assert(stub != NULL);
+  assert(stub != nullptr);
   RegisterService(stub->GetInterfaceName(), stub);
 }
 
 // Currently implementation assumes that only unique instances are registered.
 // So, it is wrong if method returns the same object accross multiple calls.
 RpcObjectId RpcObjectManager::RegisterInstance(IRpcService *instance) {
-  assert(instance != NULL);
+  assert(instance != nullptr);
   objects_[++last_object_id_] = instance;
   return last_object_id_;
 }
 
 IRpcService *RpcObjectManager::GetService(const char *name) {
-  assert(name != NULL);
+  assert(name != nullptr);
 
-  if (name == NULL)
-    return NULL;
+  if (name == nullptr)
+    return nullptr;
 
   return GetService(std::string(name));
 }
@@ -46,19 +45,19 @@ IRpcService *RpcObjectManager::GetService(const std::string &name) {
   std::map<std::string, RpcObjectId>::const_iterator iter =
       services_.find(name);
   if (iter == services_.end())
-    return NULL;
+    return nullptr;
 
   return GetInstance(iter->second);
 }
 
 IRpcService *RpcObjectManager::GetInstance(RpcObjectId object_id) {
   if (object_id == 0)
-    return NULL;
+    return nullptr;
 
   std::map<RpcObjectId, IRpcService *>::const_iterator iter =
       objects_.find(object_id);
   if (iter == objects_.end())
-    return NULL;
+    return nullptr;
 
   return iter->second;
 }
@@ -67,8 +66,7 @@ void RpcObjectManager::DeleteObject(RpcObjectId object_id) {
   if (object_id == 0)
     return;
 
-  std::map<RpcObjectId, IRpcService *>::const_iterator iter =
-      objects_.find(object_id);
+  const auto iter = objects_.find(object_id);
   if (iter == objects_.end())
     return;
 
@@ -81,13 +79,12 @@ void RpcObjectManager::CallMethod(const RpcCall &rpc_call,
   rpc_result->set_status(RpcSucceeded);
 
   if (rpc_call.method() == "Delete") {
-    assert(rpc_call.parameters_size() == 1);
-
-    if (rpc_call.parameters_size() != 1) {
+    RpcObject rpc_object;
+    if (!rpc_object.ParseFromString(rpc_call.call_data())) {
       rpc_result->set_status(RpcInvalidCallParameter);
       rpc_result->set_error_message("Invalid call parameter.");
     } else {
-      RpcObjectId object_id = rpc_call.parameters().Get(0).object_id_value();
+      RpcObjectId object_id = rpc_object.object_id();
       DeleteObject(object_id);
     }
   } else {

@@ -9,3 +9,7 @@ packages/*
 *.opensdf
 NanoRpc_TestServer/x64/*
 third_party/protobuf/*
+channel_test/Debug/
+cpp/Debug/
+cpp/x64/
+Debug/

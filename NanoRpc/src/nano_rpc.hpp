@@ -1,10 +1,9 @@
 #if !defined(NANO_RPC_NANO_RPC_HPP__)
 #define NANO_RPC_NANO_RPC_HPP__
 
-#include "RpcMessageTypes.pb.h"
+#include "rpc_proto/rpc_types.pb.h"
 #include "rpc_channel.h"
-#include "rpc_controller.hpp"
-#include "rpc_server.hpp"
+#include "rpc_server.h"
 #include "rpc_client.hpp"
 #include "rpc_service.hpp"
 #include "rpc_stub.hpp"

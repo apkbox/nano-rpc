@@ -1,9 +1,9 @@
 syntax = "proto3";
-import "google/protobuf/any.proto";
-import "google/protobuf/wrappers.proto";
+// import "google/protobuf/any.proto";
+// import "google/protobuf/wrappers.proto";
 import "google/protobuf/descriptor.proto";
 
-package NanoRpc;
+package nanorpc2;
 
 extend google.protobuf.MessageOptions {
 	bool event_source = 51224;
@@ -23,35 +23,17 @@ enum RpcStatus {
 	RpcInvalidCallParameter = 5;
 }
 
-
-message RpcParameter {
-	// Structure type
-	google.protobuf.BytesValue proto_value = 1;
-	google.protobuf.Any any_value = 2;
-	bytes value = 3;
-
-	// Additional parameters
-	// bool is_null = 16;
-	oneof control {
-		uint32 object_id_value = 17;
-		string event_name = 18;
-	}
+message RpcCall {
+	string service = 1;
+	string method = 2;
+	uint32 object_id = 3;
+	bytes call_data = 4;
 }
-
 
 message RpcResult {
 	RpcStatus status = 1;
 	string error_message = 2;
-	RpcParameter call_result = 3;
-}
-
-
-message RpcCall {
-	string service = 1;
-	string method = 2;
-	repeated RpcParameter parameters = 3;
-	bool expects_result = 4;
-	uint32 object_id = 5;
+	bytes result_data = 3;
 }
 
 message RpcMessage {
@@ -63,3 +45,10 @@ message RpcMessage {
 message RpcVoid {
 }
 
+message RpcObject {
+	uint32 object_id = 1;
+}
+
+message RpcEvent {
+	string event_name = 1;
+}

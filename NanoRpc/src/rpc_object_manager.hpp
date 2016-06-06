@@ -4,12 +4,12 @@
 #include <string>
 #include <map>
 
-#include "RpcMessageTypes.pb.h"
+#include "rpc_proto/rpc_types.pb.h"
 
 #include "rpc_service.hpp"
 #include "rpc_stub.hpp"
 
-namespace NanoRpc {
+namespace nanorpc2 {
 
 typedef unsigned int RpcObjectId;
 
@@ -26,7 +26,7 @@ public:
   RpcObjectManager();
   virtual ~RpcObjectManager();
 
-  void RegisterService(const char *name, IRpcService *service);
+  void RegisterService(const std::string &name, IRpcService *service);
   void RegisterService(IRpcStub *stub);
 
   // Currently implementation assumes that only unique instances are registered.

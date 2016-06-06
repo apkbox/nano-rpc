@@ -12,11 +12,137 @@
 
 namespace nanorpc2 {
 
-NamedPipeRpcChannel *NamedPipeRpcChannelBuilder::Build() {
-  return new NamedPipeRpcChannel(*this);
+class OverlappedOperation {
+public:
+  enum Type { Undefined, ReadPrefix, ReadMessage, Write };
+};
+
+class Overlapped : public OVERLAPPED {
+public:
+  class Initializer {
+  public:
+    void operator()(Overlapped *overlapped) { overlapped->Initialize(); }
+  };
+
+  Overlapped() { Initialize(); }
+
+  ~Overlapped() {}
+
+  void Initialize() {
+    memset(static_cast<OVERLAPPED *>(this), 0, sizeof(OVERLAPPED));
+    buffer = nullptr;
+    operation_ = OverlappedOperation::Undefined;
+  }
+
+  char *buffer;
+  OverlappedOperation::Type operation_;
+
+private:
+  Overlapped(const Overlapped &);
+  Overlapped &operator=(const Overlapped &);
+};
+
+class NamedPipeRpcChannelImpl : public RpcChannel {
+public:
+  ~NamedPipeRpcChannelImpl();
+
+  bool Connect() override;
+  void Close() override;
+
+  void Send(const void *message, size_t bytes) override;
+
+  // Specifies a buffer and size of the buffer in bytes.
+  // Returns true is message is available and number of bytes
+  // copies to the message.
+  // Returns false if there is no message and message and bytes remain
+  // unchanged.
+  // message can be nullptr, in this case message size returned in bytes
+  // if available.
+  bool ReceiveNonBlocking(void *message, size_t *bytes) override;
+
+  bool Receive(void *message, size_t *bytes) override;
+
+  // Important: The handle passed in the disconnected callback is a closed pipe
+  // handle.
+  void set_disconnected_callback(CallbackBase<HANDLE> *callback) {
+    disconnected_callback_ = callback;
+  }
+  CallbackBase<HANDLE> *get_disconnected_callback() {
+    return disconnected_callback_;
+  }
+
+private:
+  friend class NamedPipeChannel;
+
+  enum ChannelState { NotConnected = 0, Connected = 1, Disconnected = 2 };
+
+  NamedPipeRpcChannelImpl(const NamedPipeChannel &params, bool client_side);
+
+  bool ConnectInternal(HANDLE pipe);
+
+  int IoCompletionThreadProc();
+
+  static DWORD WINAPI IoCompletionThreadProcThunk(void *parameter) {
+    NamedPipeRpcChannelImpl *channel =
+        reinterpret_cast<NamedPipeRpcChannelImpl *>(parameter);
+    return channel->IoCompletionThreadProc();
+  }
+
+  void StartRead(int size, OverlappedOperation::Type requested_operation);
+
+  void ReadOperationCompleted(Overlapped *overlapped, DWORD bytes_read);
+  void WriteOperationCompleted(Overlapped *overlapped, DWORD bytes_written);
+
+  HANDLE CloseConnection();
+
+  void HandleSurpriseDisconnect();
+
+  void InvokeDisconnectedCallback(HANDLE pipe);
+
+  Overlapped *AllocateOverlappedState(int size);
+  void FreeOverlappedState(Overlapped *overlapped);
+
+  bool client_side_;
+  HANDLE pipe_;
+  HANDLE completion_port_;
+  DWORD completion_thread_id_;
+  HANDLE completion_thread_;
+
+  BufferPool buffer_pool_;
+  ObjectPool<Overlapped, Overlapped::Initializer> overlapped_pool_;
+
+  CallbackBase<HANDLE> *disconnected_callback_;
+
+  struct InboundMessage {
+    size_t bytes;
+    Overlapped *message;
+  };
+
+  std::mutex queue_lock_;
+  std::queue<InboundMessage> messages_;
+  HANDLE message_pending_event_;
+
+  volatile __declspec(align(32)) LONG channel_state_;
+
+  NamedPipeChannel params_;
+
+  NamedPipeRpcChannelImpl() = delete;
+  NamedPipeRpcChannelImpl(const NamedPipeRpcChannelImpl &) = delete;
+  NamedPipeRpcChannelImpl &operator=(const NamedPipeRpcChannelImpl &) = delete;
+};
+
+NamedPipeChannel::NamedPipeChannel(const wchar_t *name, const wchar_t *computer)
+    : pipe_name_(name), computer_(computer) {}
+
+RpcChannel *NamedPipeChannel::BuildServerChannel() {
+  return new NamedPipeRpcChannelImpl(*this, false);
 }
 
-NamedPipeRpcChannel::~NamedPipeRpcChannel() {
+RpcChannel *NamedPipeChannel::BuildClientChannel() {
+  return new NamedPipeRpcChannelImpl(*this, true);
+}
+
+NamedPipeRpcChannelImpl::~NamedPipeRpcChannelImpl() {
   try {
     Close();
   }
@@ -24,18 +150,18 @@ NamedPipeRpcChannel::~NamedPipeRpcChannel() {
   }
 }
 
-bool NamedPipeRpcChannel::Connect() {
+bool NamedPipeRpcChannelImpl::Connect() {
   NamedPipeConnector connector;
-  connector.set_pipe_name(builder_.get_pipe_name().c_str());
-  connector.set_server_name(builder_.get_computer_name().c_str());
+  connector.set_pipe_name(params_.get_pipe_name().c_str());
+  connector.set_server_name(params_.get_computer_name().c_str());
   connector.set_asynchronous(false);
-  if (connector.StartConnection(builder_.get_client_side()))
+  if (connector.StartConnection(client_side_))
     return ConnectInternal(connector.get_pipe());
 
   return false;
 }
 
-void NamedPipeRpcChannel::Close() {
+void NamedPipeRpcChannelImpl::Close() {
   LONG was = InterlockedExchange(&channel_state_, Disconnected);
   if (was != Disconnected) {
     DWORD flags = 0;
@@ -47,7 +173,7 @@ void NamedPipeRpcChannel::Close() {
   }
 }
 
-void NamedPipeRpcChannel::Send(const void *message, size_t bytes) {
+void NamedPipeRpcChannelImpl::Send(const void *message, size_t bytes) {
   if (channel_state_ != Connected)
     return;  // TODO: false;
 
@@ -82,7 +208,7 @@ void NamedPipeRpcChannel::Send(const void *message, size_t bytes) {
   }
 }
 
-bool NamedPipeRpcChannel::ReceiveNonBlocking(void *message, size_t *bytes) {
+bool NamedPipeRpcChannelImpl::ReceiveNonBlocking(void *message, size_t *bytes) {
   std::unique_lock<std::mutex> lock(queue_lock_);
   if (messages_.empty())
     return false;
@@ -97,13 +223,16 @@ bool NamedPipeRpcChannel::ReceiveNonBlocking(void *message, size_t *bytes) {
   if (message == nullptr || buffer_size < msg.bytes)
     return true;
 
+  // TODO: We should be avoiding copying data. In this context we can return
+  // msg and let consumer use it with an agreement that it will be returned
+  // back (where FreeOverlappedState will happen).
   memcpy(message, msg.message->buffer, msg.bytes);
   FreeOverlappedState(msg.message);
   messages_.pop();
   return true;
 }
 
-bool NamedPipeRpcChannel::Receive(void *message, size_t *bytes) {
+bool NamedPipeRpcChannelImpl::Receive(void *message, size_t *bytes) {
   if (channel_state_ == Disconnected)
     return false;
 
@@ -112,14 +241,15 @@ bool NamedPipeRpcChannel::Receive(void *message, size_t *bytes) {
     return true;
 
   if (WaitForSingleObject(message_pending_event_, INFINITE) == WAIT_OBJECT_0)
-      return ReceiveNonBlocking(message, bytes);
+    return ReceiveNonBlocking(message, bytes);
 
   return false;
 }
 
-NamedPipeRpcChannel::NamedPipeRpcChannel(
-    const NamedPipeRpcChannelBuilder &builder)
-    : builder_(builder),
+NamedPipeRpcChannelImpl::NamedPipeRpcChannelImpl(const NamedPipeChannel &params,
+                                                 bool client_side)
+    : params_(params),
+      client_side_(client_side),
       pipe_(nullptr),
       completion_port_(nullptr),
       completion_thread_id_(0),
@@ -127,7 +257,7 @@ NamedPipeRpcChannel::NamedPipeRpcChannel(
       disconnected_callback_(nullptr),
       channel_state_(NotConnected) {}
 
-void NamedPipeRpcChannel::StartRead(
+void NamedPipeRpcChannelImpl::StartRead(
     int expected_size,
     OverlappedOperation::Type requested_operation) {
   if (channel_state_ != Connected)
@@ -144,17 +274,19 @@ void NamedPipeRpcChannel::StartRead(
 
     if (GetLastError() == ERROR_BROKEN_PIPE) {
       FreeOverlappedState(overlapped);
-      std::cout << "error: Pipe broken while attempting to read" << std::endl << std::flush;
+      std::cout << "error: Pipe broken while attempting to read" << std::endl
+                << std::flush;
       HandleSurpriseDisconnect();
     } else if (GetLastError() != ERROR_IO_PENDING) {
       FreeOverlappedState(overlapped);
-      std::cout << "error: GetLastError() == " << GetLastError() << std::endl << std::flush;
+      std::cout << "error: GetLastError() == " << GetLastError() << std::endl
+                << std::flush;
     }
   }
 }
 
-void NamedPipeRpcChannel::ReadOperationCompleted(Overlapped *overlapped,
-                                                 DWORD bytes_read) {
+void NamedPipeRpcChannelImpl::ReadOperationCompleted(Overlapped *overlapped,
+                                                     DWORD bytes_read) {
   // std::cout << "Read operation " << overlapped->operation_ << " completed\n";
   // std::cout.flush();
 
@@ -207,15 +339,15 @@ void NamedPipeRpcChannel::ReadOperationCompleted(Overlapped *overlapped,
   }
 }
 
-void NamedPipeRpcChannel::WriteOperationCompleted(Overlapped *overlapped,
-                                                  DWORD bytes_written) {
+void NamedPipeRpcChannelImpl::WriteOperationCompleted(Overlapped *overlapped,
+                                                      DWORD bytes_written) {
   // std::cout << "Write operation " << overlapped->operation_ << "
   // completed\n";
   // std::cout.flush();
   FreeOverlappedState(overlapped);
 }
 
-bool NamedPipeRpcChannel::ConnectInternal(HANDLE pipe) {
+bool NamedPipeRpcChannelImpl::ConnectInternal(HANDLE pipe) {
   message_pending_event_ = CreateEvent(nullptr, FALSE, FALSE, nullptr);
   pipe_ = pipe;
 
@@ -265,7 +397,7 @@ bool NamedPipeRpcChannel::ConnectInternal(HANDLE pipe) {
   return true;
 }
 
-int NamedPipeRpcChannel::IoCompletionThreadProc() {
+int NamedPipeRpcChannelImpl::IoCompletionThreadProc() {
   // See note in Start
   StartRead(sizeof(uint32_t), OverlappedOperation::ReadPrefix);
 
@@ -278,7 +410,8 @@ int NamedPipeRpcChannel::IoCompletionThreadProc() {
                                   &key,
                                   (OVERLAPPED **)&overlapped,
                                   500) == FALSE) {
-      std::cout << "Overlapped operation failed: " << GetLastError() << std::endl << std::flush;
+      std::cout << "Overlapped operation failed: " << GetLastError()
+                << std::endl << std::flush;
 
       if (overlapped == nullptr && channel_state_ == Disconnected) {
         // TODO: This is incorrect, because we will have to wait for
@@ -323,7 +456,7 @@ int NamedPipeRpcChannel::IoCompletionThreadProc() {
   return 0;
 }
 
-HANDLE NamedPipeRpcChannel::CloseConnection() {
+HANDLE NamedPipeRpcChannelImpl::CloseConnection() {
   assert(completion_port_ != nullptr);
   assert(pipe_ != nullptr);
   assert(completion_thread_ != nullptr);
@@ -407,7 +540,7 @@ HANDLE NamedPipeRpcChannel::CloseConnection() {
   return pipe;
 }
 
-void NamedPipeRpcChannel::HandleSurpriseDisconnect() {
+void NamedPipeRpcChannelImpl::HandleSurpriseDisconnect() {
   // We can get here from multiple points, but only one should be allowed to do
   // the work.
   if (InterlockedCompareExchange(&channel_state_, Disconnected, Connected) ==
@@ -417,12 +550,12 @@ void NamedPipeRpcChannel::HandleSurpriseDisconnect() {
   }
 }
 
-void NamedPipeRpcChannel::InvokeDisconnectedCallback(HANDLE pipe) {
+void NamedPipeRpcChannelImpl::InvokeDisconnectedCallback(HANDLE pipe) {
   if (disconnected_callback_ != nullptr)
     disconnected_callback_->Invoke(pipe);
 }
 
-Overlapped *NamedPipeRpcChannel::AllocateOverlappedState(int size) {
+Overlapped *NamedPipeRpcChannelImpl::AllocateOverlappedState(int size) {
   assert(size > 0);
 
   Overlapped *overlapped = overlapped_pool_.Allocate();
@@ -434,7 +567,7 @@ Overlapped *NamedPipeRpcChannel::AllocateOverlappedState(int size) {
   return overlapped;
 }
 
-void NamedPipeRpcChannel::FreeOverlappedState(Overlapped *overlapped) {
+void NamedPipeRpcChannelImpl::FreeOverlappedState(Overlapped *overlapped) {
   assert(overlapped != nullptr);
   if (overlapped->buffer != nullptr)
     buffer_pool_.Deallocate(overlapped->buffer);

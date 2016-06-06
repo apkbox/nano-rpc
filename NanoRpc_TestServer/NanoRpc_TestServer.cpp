@@ -28,7 +28,7 @@ int wmain(int argc, wchar_t *argv[]) {
   ch.set_reconnect(true);
 
   ServerBuilder server_builder;
-  server_builder.RegisterService(&ch);
+  server_builder.SetChannel(&ch);
   server_builder.RegisterService(new MyService());
 
   std::shared_ptr<NanoRpc::RpcServer> server(server_builder.Build());

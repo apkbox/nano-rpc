@@ -1,10 +1,10 @@
 #if !defined(NANO_RPC_RPC_STUB_HPP__)
 #define NANO_RPC_RPC_STUB_HPP__
 
-#include "RpcMessageTypes.pb.h"
+#include "rpc_proto/rpc_types.pb.h"
 #include "rpc_service.hpp"
 
-namespace NanoRpc {
+namespace nanorpc2 {
 
 class IRpcStub : public IRpcService {
 public:
