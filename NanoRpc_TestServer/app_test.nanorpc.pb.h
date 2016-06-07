@@ -8,7 +8,7 @@
 #include "rpc_stub.hpp"
 #include "rpc_object_manager.hpp"
 
-namespace app{
+namespace app {
 
 class ITestApp {
 public:
