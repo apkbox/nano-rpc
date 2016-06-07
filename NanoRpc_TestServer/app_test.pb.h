@@ -41,6 +41,7 @@ void protobuf_ShutdownFile_app_5ftest_2eproto();
 
 class AppEnumValue;
 class AppStruct;
+class MethodWithParameters_args;
 
 enum AppEnum {
   EnumValue0 = 0,
@@ -248,6 +249,97 @@ class AppEnumValue : public ::google::protobuf::Message {
   void InitAsDefaultInstance();
   static AppEnumValue* default_instance_;
 };
+// -------------------------------------------------------------------
+
+class MethodWithParameters_args : public ::google::protobuf::Message {
+ public:
+  MethodWithParameters_args();
+  virtual ~MethodWithParameters_args();
+
+  MethodWithParameters_args(const MethodWithParameters_args& from);
+
+  inline MethodWithParameters_args& operator=(const MethodWithParameters_args& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MethodWithParameters_args& default_instance();
+
+  void Swap(MethodWithParameters_args* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MethodWithParameters_args* New() const { return New(NULL); }
+
+  MethodWithParameters_args* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const MethodWithParameters_args& from);
+  void MergeFrom(const MethodWithParameters_args& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(MethodWithParameters_args* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional .google.protobuf.StringValue name = 1;
+  bool has_name() const;
+  void clear_name();
+  static const int kNameFieldNumber = 1;
+  const ::google::protobuf::StringValue& name() const;
+  ::google::protobuf::StringValue* mutable_name();
+  ::google::protobuf::StringValue* release_name();
+  void set_allocated_name(::google::protobuf::StringValue* name);
+
+  // optional .google.protobuf.Int32Value index = 2;
+  bool has_index() const;
+  void clear_index();
+  static const int kIndexFieldNumber = 2;
+  const ::google::protobuf::Int32Value& index() const;
+  ::google::protobuf::Int32Value* mutable_index();
+  ::google::protobuf::Int32Value* release_index();
+  void set_allocated_index(::google::protobuf::Int32Value* index);
+
+  // @@protoc_insertion_point(class_scope:app.MethodWithParameters_args)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::google::protobuf::StringValue* name_;
+  ::google::protobuf::Int32Value* index_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_app_5ftest_2eproto();
+  friend void protobuf_AssignDesc_app_5ftest_2eproto();
+  friend void protobuf_ShutdownFile_app_5ftest_2eproto();
+
+  void InitAsDefaultInstance();
+  static MethodWithParameters_args* default_instance_;
+};
 // ===================================================================
 
 
@@ -360,7 +452,99 @@ inline void AppEnumValue::set_value(::app::AppEnum value) {
   // @@protoc_insertion_point(field_set:app.AppEnumValue.value)
 }
 
+// -------------------------------------------------------------------
+
+// MethodWithParameters_args
+
+// optional .google.protobuf.StringValue name = 1;
+inline bool MethodWithParameters_args::has_name() const {
+  return !_is_default_instance_ && name_ != NULL;
+}
+inline void MethodWithParameters_args::clear_name() {
+  if (GetArenaNoVirtual() == NULL && name_ != NULL) delete name_;
+  name_ = NULL;
+}
+inline const ::google::protobuf::StringValue& MethodWithParameters_args::name() const {
+  // @@protoc_insertion_point(field_get:app.MethodWithParameters_args.name)
+  return name_ != NULL ? *name_ : *default_instance_->name_;
+}
+inline ::google::protobuf::StringValue* MethodWithParameters_args::mutable_name() {
+  
+  if (name_ == NULL) {
+    name_ = new ::google::protobuf::StringValue;
+  }
+  // @@protoc_insertion_point(field_mutable:app.MethodWithParameters_args.name)
+  return name_;
+}
+inline ::google::protobuf::StringValue* MethodWithParameters_args::release_name() {
+  // @@protoc_insertion_point(field_release:app.MethodWithParameters_args.name)
+  
+  ::google::protobuf::StringValue* temp = name_;
+  name_ = NULL;
+  return temp;
+}
+inline void MethodWithParameters_args::set_allocated_name(::google::protobuf::StringValue* name) {
+  delete name_;
+  if (name != NULL && name->GetArena() != NULL) {
+    ::google::protobuf::StringValue* new_name = new ::google::protobuf::StringValue;
+    new_name->CopyFrom(*name);
+    name = new_name;
+  }
+  name_ = name;
+  if (name) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:app.MethodWithParameters_args.name)
+}
+
+// optional .google.protobuf.Int32Value index = 2;
+inline bool MethodWithParameters_args::has_index() const {
+  return !_is_default_instance_ && index_ != NULL;
+}
+inline void MethodWithParameters_args::clear_index() {
+  if (GetArenaNoVirtual() == NULL && index_ != NULL) delete index_;
+  index_ = NULL;
+}
+inline const ::google::protobuf::Int32Value& MethodWithParameters_args::index() const {
+  // @@protoc_insertion_point(field_get:app.MethodWithParameters_args.index)
+  return index_ != NULL ? *index_ : *default_instance_->index_;
+}
+inline ::google::protobuf::Int32Value* MethodWithParameters_args::mutable_index() {
+  
+  if (index_ == NULL) {
+    index_ = new ::google::protobuf::Int32Value;
+  }
+  // @@protoc_insertion_point(field_mutable:app.MethodWithParameters_args.index)
+  return index_;
+}
+inline ::google::protobuf::Int32Value* MethodWithParameters_args::release_index() {
+  // @@protoc_insertion_point(field_release:app.MethodWithParameters_args.index)
+  
+  ::google::protobuf::Int32Value* temp = index_;
+  index_ = NULL;
+  return temp;
+}
+inline void MethodWithParameters_args::set_allocated_index(::google::protobuf::Int32Value* index) {
+  delete index_;
+  if (index != NULL && index->GetArena() != NULL) {
+    ::google::protobuf::Int32Value* new_index = new ::google::protobuf::Int32Value;
+    new_index->CopyFrom(*index);
+    index = new_index;
+  }
+  index_ = index;
+  if (index) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:app.MethodWithParameters_args.index)
+}
+
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 

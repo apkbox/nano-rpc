@@ -6,13 +6,29 @@ import "google/protobuf/descriptor.proto";
 package nanorpc2;
 
 extend google.protobuf.MessageOptions {
-	bool event_source = 51224;
+	// Specifies that message is a method argument list.
+	bool expand_as_arguments = 90001;
+
+	// Specifies that the message is an enumeration wrapper.
+	bool enum_wrapper = 90002;
+}
+
+// extend google.protobuf.FieldOptions {
+// }
+
+extend google.protobuf.ServiceOptions {
+	// Specifies that the service is an event source (implemented on client).
+	bool event_source = 90301;
 }
 
 extend google.protobuf.MethodOptions {
-	string property_name = 51223;
-	bool async = 51225;
+	// Specifies that the method is actually a description of property.
+	bool is_property = 90401;
+
+	// Specifies that the method is asynchronous.
+	bool async = 90402;
 }
+
 
 enum RpcStatus {
 	RpcSucceeded = 0;
@@ -43,6 +59,10 @@ message RpcMessage {
 }
 
 message RpcVoid {
+}
+
+message WideStringValue {
+	string value = 1;
 }
 
 message RpcObject {

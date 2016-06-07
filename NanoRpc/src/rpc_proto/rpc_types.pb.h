@@ -44,6 +44,7 @@ class RpcMessage;
 class RpcObject;
 class RpcResult;
 class RpcVoid;
+class WideStringValue;
 
 enum RpcStatus {
   RpcSucceeded = 0,
@@ -457,6 +458,89 @@ class RpcVoid : public ::google::protobuf::Message {
 };
 // -------------------------------------------------------------------
 
+class WideStringValue : public ::google::protobuf::Message {
+ public:
+  WideStringValue();
+  virtual ~WideStringValue();
+
+  WideStringValue(const WideStringValue& from);
+
+  inline WideStringValue& operator=(const WideStringValue& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const WideStringValue& default_instance();
+
+  void Swap(WideStringValue* other);
+
+  // implements Message ----------------------------------------------
+
+  inline WideStringValue* New() const { return New(NULL); }
+
+  WideStringValue* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const WideStringValue& from);
+  void MergeFrom(const WideStringValue& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(WideStringValue* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional string value = 1;
+  void clear_value();
+  static const int kValueFieldNumber = 1;
+  const ::std::string& value() const;
+  void set_value(const ::std::string& value);
+  void set_value(const char* value);
+  void set_value(const char* value, size_t size);
+  ::std::string* mutable_value();
+  ::std::string* release_value();
+  void set_allocated_value(::std::string* value);
+
+  // @@protoc_insertion_point(class_scope:nanorpc2.WideStringValue)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::google::protobuf::internal::ArenaStringPtr value_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_rpc_5fproto_2frpc_5ftypes_2eproto();
+  friend void protobuf_AssignDesc_rpc_5fproto_2frpc_5ftypes_2eproto();
+  friend void protobuf_ShutdownFile_rpc_5fproto_2frpc_5ftypes_2eproto();
+
+  void InitAsDefaultInstance();
+  static WideStringValue* default_instance_;
+};
+// -------------------------------------------------------------------
+
 class RpcObject : public ::google::protobuf::Message {
  public:
   RpcObject();
@@ -618,15 +702,23 @@ class RpcEvent : public ::google::protobuf::Message {
 };
 // ===================================================================
 
-static const int kEventSourceFieldNumber = 51224;
+static const int kExpandAsArgumentsFieldNumber = 90001;
 extern ::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::MessageOptions,
     ::google::protobuf::internal::PrimitiveTypeTraits< bool >, 8, false >
+  expand_as_arguments;
+static const int kEnumWrapperFieldNumber = 90002;
+extern ::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::MessageOptions,
+    ::google::protobuf::internal::PrimitiveTypeTraits< bool >, 8, false >
+  enum_wrapper;
+static const int kEventSourceFieldNumber = 90301;
+extern ::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::ServiceOptions,
+    ::google::protobuf::internal::PrimitiveTypeTraits< bool >, 8, false >
   event_source;
-static const int kPropertyNameFieldNumber = 51223;
+static const int kIsPropertyFieldNumber = 90401;
 extern ::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::MethodOptions,
-    ::google::protobuf::internal::StringTypeTraits, 9, false >
-  property_name;
-static const int kAsyncFieldNumber = 51225;
+    ::google::protobuf::internal::PrimitiveTypeTraits< bool >, 8, false >
+  is_property;
+static const int kAsyncFieldNumber = 90402;
 extern ::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::MethodOptions,
     ::google::protobuf::internal::PrimitiveTypeTraits< bool >, 8, false >
   async;
@@ -988,6 +1080,54 @@ inline void RpcMessage::set_allocated_result(::nanorpc2::RpcResult* result) {
 
 // -------------------------------------------------------------------
 
+// WideStringValue
+
+// optional string value = 1;
+inline void WideStringValue::clear_value() {
+  value_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& WideStringValue::value() const {
+  // @@protoc_insertion_point(field_get:nanorpc2.WideStringValue.value)
+  return value_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void WideStringValue::set_value(const ::std::string& value) {
+  
+  value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:nanorpc2.WideStringValue.value)
+}
+inline void WideStringValue::set_value(const char* value) {
+  
+  value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:nanorpc2.WideStringValue.value)
+}
+inline void WideStringValue::set_value(const char* value, size_t size) {
+  
+  value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:nanorpc2.WideStringValue.value)
+}
+inline ::std::string* WideStringValue::mutable_value() {
+  
+  // @@protoc_insertion_point(field_mutable:nanorpc2.WideStringValue.value)
+  return value_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* WideStringValue::release_value() {
+  // @@protoc_insertion_point(field_release:nanorpc2.WideStringValue.value)
+  
+  return value_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void WideStringValue::set_allocated_value(::std::string* value) {
+  if (value != NULL) {
+    
+  } else {
+    
+  }
+  value_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set_allocated:nanorpc2.WideStringValue.value)
+}
+
+// -------------------------------------------------------------------
+
 // RpcObject
 
 // optional uint32 object_id = 1;
@@ -1053,6 +1193,8 @@ inline void RpcEvent::set_allocated_event_name(::std::string* event_name) {
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

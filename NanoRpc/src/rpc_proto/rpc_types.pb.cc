@@ -33,6 +33,9 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* RpcVoid_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   RpcVoid_reflection_ = NULL;
+const ::google::protobuf::Descriptor* WideStringValue_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  WideStringValue_reflection_ = NULL;
 const ::google::protobuf::Descriptor* RpcObject_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   RpcObject_reflection_ = NULL;
@@ -116,7 +119,22 @@ void protobuf_AssignDesc_rpc_5fproto_2frpc_5ftypes_2eproto() {
       sizeof(RpcVoid),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RpcVoid, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RpcVoid, _is_default_instance_));
-  RpcObject_descriptor_ = file->message_type(4);
+  WideStringValue_descriptor_ = file->message_type(4);
+  static const int WideStringValue_offsets_[1] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(WideStringValue, value_),
+  };
+  WideStringValue_reflection_ =
+    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
+      WideStringValue_descriptor_,
+      WideStringValue::default_instance_,
+      WideStringValue_offsets_,
+      -1,
+      -1,
+      -1,
+      sizeof(WideStringValue),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(WideStringValue, _internal_metadata_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(WideStringValue, _is_default_instance_));
+  RpcObject_descriptor_ = file->message_type(5);
   static const int RpcObject_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RpcObject, object_id_),
   };
@@ -131,7 +149,7 @@ void protobuf_AssignDesc_rpc_5fproto_2frpc_5ftypes_2eproto() {
       sizeof(RpcObject),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RpcObject, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RpcObject, _is_default_instance_));
-  RpcEvent_descriptor_ = file->message_type(5);
+  RpcEvent_descriptor_ = file->message_type(6);
   static const int RpcEvent_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RpcEvent, event_name_),
   };
@@ -168,6 +186,8 @@ void protobuf_RegisterTypes(const ::std::string&) {
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       RpcVoid_descriptor_, &RpcVoid::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+      WideStringValue_descriptor_, &WideStringValue::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       RpcObject_descriptor_, &RpcObject::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       RpcEvent_descriptor_, &RpcEvent::default_instance());
@@ -184,6 +204,8 @@ void protobuf_ShutdownFile_rpc_5fproto_2frpc_5ftypes_2eproto() {
   delete RpcMessage_reflection_;
   delete RpcVoid::default_instance_;
   delete RpcVoid_reflection_;
+  delete WideStringValue::default_instance_;
+  delete WideStringValue_reflection_;
   delete RpcObject::default_instance_;
   delete RpcObject_reflection_;
   delete RpcEvent::default_instance_;
@@ -206,38 +228,50 @@ void protobuf_AddDesc_rpc_5fproto_2frpc_5ftypes_2eproto() {
     "tus\022\025\n\rerror_message\030\002 \001(\t\022\023\n\013result_dat"
     "a\030\003 \001(\014\"^\n\nRpcMessage\022\n\n\002id\030\001 \001(\005\022\037\n\004cal"
     "l\030\002 \001(\0132\021.nanorpc2.RpcCall\022#\n\006result\030\003 \001"
-    "(\0132\023.nanorpc2.RpcResult\"\t\n\007RpcVoid\"\036\n\tRp"
-    "cObject\022\021\n\tobject_id\030\001 \001(\r\"\036\n\010RpcEvent\022\022"
-    "\n\nevent_name\030\001 \001(\t*\226\001\n\tRpcStatus\022\020\n\014RpcS"
-    "ucceeded\020\000\022\025\n\021RpcChannelFailure\020\001\022\024\n\020Rpc"
-    "UnknownMethod\020\002\022\024\n\020RpcProtocolError\020\003\022\027\n"
-    "\023RpcUnknownInterface\020\004\022\033\n\027RpcInvalidCall"
-    "Parameter\020\005:7\n\014event_source\022\037.google.pro"
-    "tobuf.MessageOptions\030\230\220\003 \001(\010:7\n\rproperty"
-    "_name\022\036.google.protobuf.MethodOptions\030\227\220"
-    "\003 \001(\t:/\n\005async\022\036.google.protobuf.MethodO"
-    "ptions\030\231\220\003 \001(\010b\006proto3", 742);
+    "(\0132\023.nanorpc2.RpcResult\"\t\n\007RpcVoid\" \n\017Wi"
+    "deStringValue\022\r\n\005value\030\001 \001(\t\"\036\n\tRpcObjec"
+    "t\022\021\n\tobject_id\030\001 \001(\r\"\036\n\010RpcEvent\022\022\n\neven"
+    "t_name\030\001 \001(\t*\226\001\n\tRpcStatus\022\020\n\014RpcSucceed"
+    "ed\020\000\022\025\n\021RpcChannelFailure\020\001\022\024\n\020RpcUnknow"
+    "nMethod\020\002\022\024\n\020RpcProtocolError\020\003\022\027\n\023RpcUn"
+    "knownInterface\020\004\022\033\n\027RpcInvalidCallParame"
+    "ter\020\005:>\n\023expand_as_arguments\022\037.google.pr"
+    "otobuf.MessageOptions\030\221\277\005 \001(\010:7\n\014enum_wr"
+    "apper\022\037.google.protobuf.MessageOptions\030\222"
+    "\277\005 \001(\010:7\n\014event_source\022\037.google.protobuf"
+    ".ServiceOptions\030\275\301\005 \001(\010:5\n\013is_property\022\036"
+    ".google.protobuf.MethodOptions\030\241\302\005 \001(\010:/"
+    "\n\005async\022\036.google.protobuf.MethodOptions\030"
+    "\242\302\005 \001(\010b\006proto3", 895);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "rpc_proto/rpc_types.proto", &protobuf_RegisterTypes);
   RpcCall::default_instance_ = new RpcCall();
   RpcResult::default_instance_ = new RpcResult();
   RpcMessage::default_instance_ = new RpcMessage();
   RpcVoid::default_instance_ = new RpcVoid();
+  WideStringValue::default_instance_ = new WideStringValue();
   RpcObject::default_instance_ = new RpcObject();
   RpcEvent::default_instance_ = new RpcEvent();
   ::google::protobuf::internal::ExtensionSet::RegisterExtension(
     &::google::protobuf::MessageOptions::default_instance(),
-    51224, 8, false, false);
+    90001, 8, false, false);
+  ::google::protobuf::internal::ExtensionSet::RegisterExtension(
+    &::google::protobuf::MessageOptions::default_instance(),
+    90002, 8, false, false);
+  ::google::protobuf::internal::ExtensionSet::RegisterExtension(
+    &::google::protobuf::ServiceOptions::default_instance(),
+    90301, 8, false, false);
   ::google::protobuf::internal::ExtensionSet::RegisterExtension(
     &::google::protobuf::MethodOptions::default_instance(),
-    51223, 9, false, false);
+    90401, 8, false, false);
   ::google::protobuf::internal::ExtensionSet::RegisterExtension(
     &::google::protobuf::MethodOptions::default_instance(),
-    51225, 8, false, false);
+    90402, 8, false, false);
   RpcCall::default_instance_->InitAsDefaultInstance();
   RpcResult::default_instance_->InitAsDefaultInstance();
   RpcMessage::default_instance_->InitAsDefaultInstance();
   RpcVoid::default_instance_->InitAsDefaultInstance();
+  WideStringValue::default_instance_->InitAsDefaultInstance();
   RpcObject::default_instance_->InitAsDefaultInstance();
   RpcEvent::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_rpc_5fproto_2frpc_5ftypes_2eproto);
@@ -1792,6 +1826,286 @@ void RpcVoid::InternalSwap(RpcVoid* other) {
 // ===================================================================
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int WideStringValue::kValueFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+WideStringValue::WideStringValue()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:nanorpc2.WideStringValue)
+}
+
+void WideStringValue::InitAsDefaultInstance() {
+  _is_default_instance_ = true;
+}
+
+WideStringValue::WideStringValue(const WideStringValue& from)
+  : ::google::protobuf::Message(),
+    _internal_metadata_(NULL) {
+  SharedCtor();
+  MergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:nanorpc2.WideStringValue)
+}
+
+void WideStringValue::SharedCtor() {
+    _is_default_instance_ = false;
+  ::google::protobuf::internal::GetEmptyString();
+  _cached_size_ = 0;
+  value_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+WideStringValue::~WideStringValue() {
+  // @@protoc_insertion_point(destructor:nanorpc2.WideStringValue)
+  SharedDtor();
+}
+
+void WideStringValue::SharedDtor() {
+  value_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (this != default_instance_) {
+  }
+}
+
+void WideStringValue::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* WideStringValue::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return WideStringValue_descriptor_;
+}
+
+const WideStringValue& WideStringValue::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_rpc_5fproto_2frpc_5ftypes_2eproto();
+  return *default_instance_;
+}
+
+WideStringValue* WideStringValue::default_instance_ = NULL;
+
+WideStringValue* WideStringValue::New(::google::protobuf::Arena* arena) const {
+  WideStringValue* n = new WideStringValue;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void WideStringValue::Clear() {
+// @@protoc_insertion_point(message_clear_start:nanorpc2.WideStringValue)
+  value_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+bool WideStringValue::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:nanorpc2.WideStringValue)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional string value = 1;
+      case 1: {
+        if (tag == 10) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_value()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->value().data(), this->value().length(),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "nanorpc2.WideStringValue.value"));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:nanorpc2.WideStringValue)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:nanorpc2.WideStringValue)
+  return false;
+#undef DO_
+}
+
+void WideStringValue::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:nanorpc2.WideStringValue)
+  // optional string value = 1;
+  if (this->value().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->value().data(), this->value().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "nanorpc2.WideStringValue.value");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      1, this->value(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:nanorpc2.WideStringValue)
+}
+
+::google::protobuf::uint8* WideStringValue::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:nanorpc2.WideStringValue)
+  // optional string value = 1;
+  if (this->value().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->value().data(), this->value().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "nanorpc2.WideStringValue.value");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->value(), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:nanorpc2.WideStringValue)
+  return target;
+}
+
+int WideStringValue::ByteSize() const {
+// @@protoc_insertion_point(message_byte_size_start:nanorpc2.WideStringValue)
+  int total_size = 0;
+
+  // optional string value = 1;
+  if (this->value().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->value());
+  }
+
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void WideStringValue::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:nanorpc2.WideStringValue)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  const WideStringValue* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const WideStringValue>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:nanorpc2.WideStringValue)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:nanorpc2.WideStringValue)
+    MergeFrom(*source);
+  }
+}
+
+void WideStringValue::MergeFrom(const WideStringValue& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:nanorpc2.WideStringValue)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  if (from.value().size() > 0) {
+
+    value_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.value_);
+  }
+}
+
+void WideStringValue::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:nanorpc2.WideStringValue)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void WideStringValue::CopyFrom(const WideStringValue& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:nanorpc2.WideStringValue)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool WideStringValue::IsInitialized() const {
+
+  return true;
+}
+
+void WideStringValue::Swap(WideStringValue* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void WideStringValue::InternalSwap(WideStringValue* other) {
+  value_.Swap(&other->value_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata WideStringValue::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = WideStringValue_descriptor_;
+  metadata.reflection = WideStringValue_reflection_;
+  return metadata;
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// WideStringValue
+
+// optional string value = 1;
+void WideStringValue::clear_value() {
+  value_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ const ::std::string& WideStringValue::value() const {
+  // @@protoc_insertion_point(field_get:nanorpc2.WideStringValue.value)
+  return value_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void WideStringValue::set_value(const ::std::string& value) {
+  
+  value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:nanorpc2.WideStringValue.value)
+}
+ void WideStringValue::set_value(const char* value) {
+  
+  value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:nanorpc2.WideStringValue.value)
+}
+ void WideStringValue::set_value(const char* value, size_t size) {
+  
+  value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:nanorpc2.WideStringValue.value)
+}
+ ::std::string* WideStringValue::mutable_value() {
+  
+  // @@protoc_insertion_point(field_mutable:nanorpc2.WideStringValue.value)
+  return value_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ ::std::string* WideStringValue::release_value() {
+  // @@protoc_insertion_point(field_release:nanorpc2.WideStringValue.value)
+  
+  return value_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void WideStringValue::set_allocated_value(::std::string* value) {
+  if (value != NULL) {
+    
+  } else {
+    
+  }
+  value_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set_allocated:nanorpc2.WideStringValue.value)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int RpcObject::kObjectIdFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
@@ -2304,11 +2618,16 @@ void RpcEvent::clear_event_name() {
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
 ::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::MessageOptions,
     ::google::protobuf::internal::PrimitiveTypeTraits< bool >, 8, false >
+  expand_as_arguments(kExpandAsArgumentsFieldNumber, false);
+::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::MessageOptions,
+    ::google::protobuf::internal::PrimitiveTypeTraits< bool >, 8, false >
+  enum_wrapper(kEnumWrapperFieldNumber, false);
+::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::ServiceOptions,
+    ::google::protobuf::internal::PrimitiveTypeTraits< bool >, 8, false >
   event_source(kEventSourceFieldNumber, false);
-const ::std::string property_name_default("");
 ::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::MethodOptions,
-    ::google::protobuf::internal::StringTypeTraits, 9, false >
-  property_name(kPropertyNameFieldNumber, property_name_default);
+    ::google::protobuf::internal::PrimitiveTypeTraits< bool >, 8, false >
+  is_property(kIsPropertyFieldNumber, false);
 ::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::MethodOptions,
     ::google::protobuf::internal::PrimitiveTypeTraits< bool >, 8, false >
   async(kAsyncFieldNumber, false);

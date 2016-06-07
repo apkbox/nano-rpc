@@ -27,6 +27,9 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* AppEnumValue_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   AppEnumValue_reflection_ = NULL;
+const ::google::protobuf::Descriptor* MethodWithParameters_args_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  MethodWithParameters_args_reflection_ = NULL;
 const ::google::protobuf::EnumDescriptor* AppEnum_descriptor_ = NULL;
 
 }  // namespace
@@ -71,6 +74,22 @@ void protobuf_AssignDesc_app_5ftest_2eproto() {
       sizeof(AppEnumValue),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(AppEnumValue, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(AppEnumValue, _is_default_instance_));
+  MethodWithParameters_args_descriptor_ = file->message_type(2);
+  static const int MethodWithParameters_args_offsets_[2] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MethodWithParameters_args, name_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MethodWithParameters_args, index_),
+  };
+  MethodWithParameters_args_reflection_ =
+    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
+      MethodWithParameters_args_descriptor_,
+      MethodWithParameters_args::default_instance_,
+      MethodWithParameters_args_offsets_,
+      -1,
+      -1,
+      -1,
+      sizeof(MethodWithParameters_args),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MethodWithParameters_args, _internal_metadata_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MethodWithParameters_args, _is_default_instance_));
   AppEnum_descriptor_ = file->enum_type(0);
 }
 
@@ -88,6 +107,8 @@ void protobuf_RegisterTypes(const ::std::string&) {
       AppStruct_descriptor_, &AppStruct::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       AppEnumValue_descriptor_, &AppEnumValue::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+      MethodWithParameters_args_descriptor_, &MethodWithParameters_args::default_instance());
 }
 
 }  // namespace
@@ -97,6 +118,8 @@ void protobuf_ShutdownFile_app_5ftest_2eproto() {
   delete AppStruct_reflection_;
   delete AppEnumValue::default_instance_;
   delete AppEnumValue_reflection_;
+  delete MethodWithParameters_args::default_instance_;
+  delete MethodWithParameters_args_reflection_;
 }
 
 void protobuf_AddDesc_app_5ftest_2eproto() {
@@ -112,43 +135,50 @@ void protobuf_AddDesc_app_5ftest_2eproto() {
     "rappers.proto\032\031rpc_proto/rpc_types.proto"
     "\"j\n\tAppStruct\022\022\n\nbool_value\030\001 \001(\010\022\021\n\tint"
     "_value\030\002 \001(\005\022 \n\nenum_value\030\003 \001(\0162\014.app.A"
-    "ppEnum\022\024\n\014string_value\030\004 \001(\t\"+\n\014AppEnumV"
-    "alue\022\033\n\005value\030\001 \001(\0162\014.app.AppEnum*Y\n\007App"
-    "Enum\022\016\n\nEnumValue0\020\000\022\016\n\nEnumValue1\020\001\022\016\n\n"
-    "EnumValue2\020\002\022\016\n\nEnumValue3\020\003\022\016\n\nEnumValu"
-    "e4\020\0042\210\010\n\010ITestApp\022M\n\rget_BoolValue\022\021.nan"
-    "orpc2.RpcVoid\032\032.google.protobuf.BoolValu"
-    "e\"\r\272\201\031\tBoolValue\022M\n\rset_BoolValue\022\032.goog"
-    "le.protobuf.BoolValue\032\021.nanorpc2.RpcVoid"
-    "\"\r\272\201\031\tBoolValue\022L\n\014get_IntValue\022\021.nanorp"
-    "c2.RpcVoid\032\033.google.protobuf.Int32Value\""
-    "\014\272\201\031\010IntValue\022L\n\014set_IntValue\022\033.google.p"
-    "rotobuf.Int32Value\032\021.nanorpc2.RpcVoid\"\014\272"
-    "\201\031\010IntValue\022D\n\rget_EnumValue\022\021.nanorpc2."
-    "RpcVoid\032\021.app.AppEnumValue\"\r\272\201\031\tEnumValu"
-    "e\022D\n\rset_EnumValue\022\021.app.AppEnumValue\032\021."
-    "nanorpc2.RpcVoid\"\r\272\201\031\tEnumValue\022S\n\017get_S"
-    "tringValue\022\021.nanorpc2.RpcVoid\032\034.google.p"
-    "rotobuf.StringValue\"\017\272\201\031\013StringValue\022S\n\017"
-    "set_StringValue\022\034.google.protobuf.String"
-    "Value\032\021.nanorpc2.RpcVoid\"\017\272\201\031\013StringValu"
-    "e\022E\n\017get_StructValue\022\021.nanorpc2.RpcVoid\032"
-    "\016.app.AppStruct\"\017\272\201\031\013StructValue\022E\n\017set_"
-    "StructValue\022\016.app.AppStruct\032\021.nanorpc2.R"
-    "pcVoid\"\017\272\201\031\013StructValue\0226\n\016SyncVoidMetho"
-    "d\022\021.nanorpc2.RpcVoid\032\021.nanorpc2.RpcVoid\022"
-    "=\n\017AsyncVoidMethod\022\021.nanorpc2.RpcVoid\032\021."
-    "nanorpc2.RpcVoid\"\004\310\201\031\001\022G\n\030SetStructRetur"
-    "nIntMethod\022\016.app.AppStruct\032\033.google.prot"
-    "obuf.Int32Value\022>\n\017GetStructMethod\022\033.goo"
-    "gle.protobuf.Int32Value\032\016.app.AppStructb"
-    "\006proto3", 1367);
+    "ppEnum\022\024\n\014string_value\030\004 \001(\t\"1\n\014AppEnumV"
+    "alue\022\033\n\005value\030\001 \001(\0162\014.app.AppEnum:\004\220\371+\001\""
+    "y\n\031MethodWithParameters_args\022*\n\004name\030\001 \001"
+    "(\0132\034.google.protobuf.StringValue\022*\n\005inde"
+    "x\030\002 \001(\0132\033.google.protobuf.Int32Value:\004\210\371"
+    "+\001*Y\n\007AppEnum\022\016\n\nEnumValue0\020\000\022\016\n\nEnumVal"
+    "ue1\020\001\022\016\n\nEnumValue2\020\002\022\016\n\nEnumValue3\020\003\022\016\n"
+    "\nEnumValue4\020\0042\343\010\n\010ITestApp\022I\n\tBoolValue\022"
+    "\032.google.protobuf.BoolValue\032\032.google.pro"
+    "tobuf.BoolValue\"\004\210\222,\001\022J\n\010IntValue\022\033.goog"
+    "le.protobuf.Int32Value\032\033.google.protobuf"
+    ".Int32Value\"\004\210\222,\001\0227\n\tEnumValue\022\021.app.App"
+    "EnumValue\032\021.app.AppEnumValue\"\004\210\222,\001\022O\n\013St"
+    "ringValue\022\034.google.protobuf.StringValue\032"
+    "\034.google.protobuf.StringValue\"\004\210\222,\001\0223\n\013S"
+    "tructValue\022\016.app.AppStruct\032\016.app.AppStru"
+    "ct\"\004\210\222,\001\0226\n\016SyncVoidMethod\022\021.nanorpc2.Rp"
+    "cVoid\032\021.nanorpc2.RpcVoid\022=\n\017AsyncVoidMet"
+    "hod\022\021.nanorpc2.RpcVoid\032\021.nanorpc2.RpcVoi"
+    "d\"\004\220\222,\001\022G\n\030SetStructReturnIntMethod\022\016.ap"
+    "p.AppStruct\032\033.google.protobuf.Int32Value"
+    "\022>\n\017GetStructMethod\022\033.google.protobuf.In"
+    "t32Value\032\016.app.AppStruct\022@\n\030MethodWithou"
+    "tParameters0\022\021.nanorpc2.RpcVoid\032\021.nanorp"
+    "c2.RpcVoid\022I\n\030MethodWithoutParameters1\022\021"
+    ".nanorpc2.RpcVoid\032\032.google.protobuf.Bool"
+    "Value\022K\n\030MethodWithoutParameters2\022\021.nano"
+    "rpc2.RpcVoid\032\034.google.protobuf.StringVal"
+    "ue\022=\n\030MethodWithoutParameters3\022\021.nanorpc"
+    "2.RpcVoid\032\016.app.AppStruct\022J\n\025MethodWithP"
+    "arameters0\022\036.app.MethodWithParameters_ar"
+    "gs\032\021.nanorpc2.RpcVoid\022S\n\025MethodWithParam"
+    "eters1\022\036.app.MethodWithParameters_args\032\032"
+    ".google.protobuf.BoolValue\022G\n\025MethodWith"
+    "Parameters2\022\036.app.MethodWithParameters_a"
+    "rgs\032\016.app.AppStructb\006proto3", 1587);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "app_test.proto", &protobuf_RegisterTypes);
   AppStruct::default_instance_ = new AppStruct();
   AppEnumValue::default_instance_ = new AppEnumValue();
+  MethodWithParameters_args::default_instance_ = new MethodWithParameters_args();
   AppStruct::default_instance_->InitAsDefaultInstance();
   AppEnumValue::default_instance_->InitAsDefaultInstance();
+  MethodWithParameters_args::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_app_5ftest_2eproto);
 }
 
@@ -876,6 +906,359 @@ void AppEnumValue::clear_value() {
   
   value_ = value;
   // @@protoc_insertion_point(field_set:app.AppEnumValue.value)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int MethodWithParameters_args::kNameFieldNumber;
+const int MethodWithParameters_args::kIndexFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+MethodWithParameters_args::MethodWithParameters_args()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:app.MethodWithParameters_args)
+}
+
+void MethodWithParameters_args::InitAsDefaultInstance() {
+  _is_default_instance_ = true;
+  name_ = const_cast< ::google::protobuf::StringValue*>(&::google::protobuf::StringValue::default_instance());
+  index_ = const_cast< ::google::protobuf::Int32Value*>(&::google::protobuf::Int32Value::default_instance());
+}
+
+MethodWithParameters_args::MethodWithParameters_args(const MethodWithParameters_args& from)
+  : ::google::protobuf::Message(),
+    _internal_metadata_(NULL) {
+  SharedCtor();
+  MergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:app.MethodWithParameters_args)
+}
+
+void MethodWithParameters_args::SharedCtor() {
+    _is_default_instance_ = false;
+  _cached_size_ = 0;
+  name_ = NULL;
+  index_ = NULL;
+}
+
+MethodWithParameters_args::~MethodWithParameters_args() {
+  // @@protoc_insertion_point(destructor:app.MethodWithParameters_args)
+  SharedDtor();
+}
+
+void MethodWithParameters_args::SharedDtor() {
+  if (this != default_instance_) {
+    delete name_;
+    delete index_;
+  }
+}
+
+void MethodWithParameters_args::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* MethodWithParameters_args::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return MethodWithParameters_args_descriptor_;
+}
+
+const MethodWithParameters_args& MethodWithParameters_args::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_app_5ftest_2eproto();
+  return *default_instance_;
+}
+
+MethodWithParameters_args* MethodWithParameters_args::default_instance_ = NULL;
+
+MethodWithParameters_args* MethodWithParameters_args::New(::google::protobuf::Arena* arena) const {
+  MethodWithParameters_args* n = new MethodWithParameters_args;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void MethodWithParameters_args::Clear() {
+// @@protoc_insertion_point(message_clear_start:app.MethodWithParameters_args)
+  if (GetArenaNoVirtual() == NULL && name_ != NULL) delete name_;
+  name_ = NULL;
+  if (GetArenaNoVirtual() == NULL && index_ != NULL) delete index_;
+  index_ = NULL;
+}
+
+bool MethodWithParameters_args::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:app.MethodWithParameters_args)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional .google.protobuf.StringValue name = 1;
+      case 1: {
+        if (tag == 10) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_name()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(18)) goto parse_index;
+        break;
+      }
+
+      // optional .google.protobuf.Int32Value index = 2;
+      case 2: {
+        if (tag == 18) {
+         parse_index:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_index()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:app.MethodWithParameters_args)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:app.MethodWithParameters_args)
+  return false;
+#undef DO_
+}
+
+void MethodWithParameters_args::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:app.MethodWithParameters_args)
+  // optional .google.protobuf.StringValue name = 1;
+  if (this->has_name()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1, *this->name_, output);
+  }
+
+  // optional .google.protobuf.Int32Value index = 2;
+  if (this->has_index()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      2, *this->index_, output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:app.MethodWithParameters_args)
+}
+
+::google::protobuf::uint8* MethodWithParameters_args::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:app.MethodWithParameters_args)
+  // optional .google.protobuf.StringValue name = 1;
+  if (this->has_name()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        1, *this->name_, target);
+  }
+
+  // optional .google.protobuf.Int32Value index = 2;
+  if (this->has_index()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        2, *this->index_, target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:app.MethodWithParameters_args)
+  return target;
+}
+
+int MethodWithParameters_args::ByteSize() const {
+// @@protoc_insertion_point(message_byte_size_start:app.MethodWithParameters_args)
+  int total_size = 0;
+
+  // optional .google.protobuf.StringValue name = 1;
+  if (this->has_name()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        *this->name_);
+  }
+
+  // optional .google.protobuf.Int32Value index = 2;
+  if (this->has_index()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        *this->index_);
+  }
+
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void MethodWithParameters_args::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:app.MethodWithParameters_args)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  const MethodWithParameters_args* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const MethodWithParameters_args>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:app.MethodWithParameters_args)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:app.MethodWithParameters_args)
+    MergeFrom(*source);
+  }
+}
+
+void MethodWithParameters_args::MergeFrom(const MethodWithParameters_args& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:app.MethodWithParameters_args)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  if (from.has_name()) {
+    mutable_name()->::google::protobuf::StringValue::MergeFrom(from.name());
+  }
+  if (from.has_index()) {
+    mutable_index()->::google::protobuf::Int32Value::MergeFrom(from.index());
+  }
+}
+
+void MethodWithParameters_args::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:app.MethodWithParameters_args)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void MethodWithParameters_args::CopyFrom(const MethodWithParameters_args& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:app.MethodWithParameters_args)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool MethodWithParameters_args::IsInitialized() const {
+
+  return true;
+}
+
+void MethodWithParameters_args::Swap(MethodWithParameters_args* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void MethodWithParameters_args::InternalSwap(MethodWithParameters_args* other) {
+  std::swap(name_, other->name_);
+  std::swap(index_, other->index_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata MethodWithParameters_args::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = MethodWithParameters_args_descriptor_;
+  metadata.reflection = MethodWithParameters_args_reflection_;
+  return metadata;
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// MethodWithParameters_args
+
+// optional .google.protobuf.StringValue name = 1;
+bool MethodWithParameters_args::has_name() const {
+  return !_is_default_instance_ && name_ != NULL;
+}
+void MethodWithParameters_args::clear_name() {
+  if (GetArenaNoVirtual() == NULL && name_ != NULL) delete name_;
+  name_ = NULL;
+}
+const ::google::protobuf::StringValue& MethodWithParameters_args::name() const {
+  // @@protoc_insertion_point(field_get:app.MethodWithParameters_args.name)
+  return name_ != NULL ? *name_ : *default_instance_->name_;
+}
+::google::protobuf::StringValue* MethodWithParameters_args::mutable_name() {
+  
+  if (name_ == NULL) {
+    name_ = new ::google::protobuf::StringValue;
+  }
+  // @@protoc_insertion_point(field_mutable:app.MethodWithParameters_args.name)
+  return name_;
+}
+::google::protobuf::StringValue* MethodWithParameters_args::release_name() {
+  // @@protoc_insertion_point(field_release:app.MethodWithParameters_args.name)
+  
+  ::google::protobuf::StringValue* temp = name_;
+  name_ = NULL;
+  return temp;
+}
+void MethodWithParameters_args::set_allocated_name(::google::protobuf::StringValue* name) {
+  delete name_;
+  if (name != NULL && name->GetArena() != NULL) {
+    ::google::protobuf::StringValue* new_name = new ::google::protobuf::StringValue;
+    new_name->CopyFrom(*name);
+    name = new_name;
+  }
+  name_ = name;
+  if (name) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:app.MethodWithParameters_args.name)
+}
+
+// optional .google.protobuf.Int32Value index = 2;
+bool MethodWithParameters_args::has_index() const {
+  return !_is_default_instance_ && index_ != NULL;
+}
+void MethodWithParameters_args::clear_index() {
+  if (GetArenaNoVirtual() == NULL && index_ != NULL) delete index_;
+  index_ = NULL;
+}
+const ::google::protobuf::Int32Value& MethodWithParameters_args::index() const {
+  // @@protoc_insertion_point(field_get:app.MethodWithParameters_args.index)
+  return index_ != NULL ? *index_ : *default_instance_->index_;
+}
+::google::protobuf::Int32Value* MethodWithParameters_args::mutable_index() {
+  
+  if (index_ == NULL) {
+    index_ = new ::google::protobuf::Int32Value;
+  }
+  // @@protoc_insertion_point(field_mutable:app.MethodWithParameters_args.index)
+  return index_;
+}
+::google::protobuf::Int32Value* MethodWithParameters_args::release_index() {
+  // @@protoc_insertion_point(field_release:app.MethodWithParameters_args.index)
+  
+  ::google::protobuf::Int32Value* temp = index_;
+  index_ = NULL;
+  return temp;
+}
+void MethodWithParameters_args::set_allocated_index(::google::protobuf::Int32Value* index) {
+  delete index_;
+  if (index != NULL && index->GetArena() != NULL) {
+    ::google::protobuf::Int32Value* new_index = new ::google::protobuf::Int32Value;
+    new_index->CopyFrom(*index);
+    index = new_index;
+  }
+  index_ = index;
+  if (index) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:app.MethodWithParameters_args.index)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
