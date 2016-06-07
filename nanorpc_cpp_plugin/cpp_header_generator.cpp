@@ -13,6 +13,7 @@
 #include "rpc_proto/rpc_types.pb.h"
 
 #include "generator_utils.h"
+#include "code_model.h"
 
 namespace pb = google::protobuf;
 namespace pbc = google::protobuf::compiler;
@@ -254,7 +255,8 @@ std::string GetInterfaceDefinitions(const pb::FileDescriptor *file) {
       /* clang-format off */
       printer.Print(vars, "class $service_name$ {\n");
       printer.Print(vars, "public:\n");
-      printer.Print(vars, "  virtual ~$service_name$() {}\n\n");
+      printer.Indent();
+      printer.Print(vars, "virtual ~$service_name$() {}\n\n");
 
       for (int j = 0; j < service->method_count(); ++j) {
         auto method = service->method(j);
@@ -282,15 +284,16 @@ std::string GetInterfaceDefinitions(const pb::FileDescriptor *file) {
           if (!no_setter)
             vars["setter_signature"] = GetPropertySignature(method, true);
 
-          printer.Print(vars, "  virtual $getter_signature$ = 0;\n");
-          printer.Print(vars, "  virtual $setter_signature$ = 0;\n");
+          printer.Print(vars, "virtual $getter_signature$ = 0;\n");
+          printer.Print(vars, "virtual $setter_signature$ = 0;\n");
         }
         else {
           vars["method_signature"] = GetMethodSignature(method);
-          printer.Print(vars, "  virtual $method_signature$ = 0;\n");
+          printer.Print(vars, "virtual $method_signature$ = 0;\n");
         }
       }
 
+      printer.Outdent();
       printer.Print(vars, "};\n\n");
       /* clang-format on */
     }
@@ -313,13 +316,17 @@ std::string GetStubDeclarations(const pb::FileDescriptor *file) {
       // clang-format off
       printer.Print(vars, "class $service_name$_Stub : public nanorpc2::IRpcStub {\n");
       printer.Print(vars, "public:\n");
-      printer.Print(vars, "  explicit $service_name$_Stub(nanorpc2::IRpcObjectManager* object_manager, $service_name$* impl)\n");
-      printer.Print(vars, "      : object_manager_(object_manager), impl_(impl) {}\n\n");
-      printer.Print(vars, "  const char *GetInterfaceName() const;\n");
-      printer.Print(vars, "  void CallMethod(const nanorpc2::RpcCall &rpc_call, nanorpc2::RpcResult *rpc_result);\n\n");
+      printer.Indent();
+      printer.Print(vars, "explicit $service_name$_Stub(nanorpc2::IRpcObjectManager* object_manager, $service_name$* impl)\n");
+      printer.Print(vars, "    : object_manager_(object_manager), impl_(impl) {}\n\n");
+      printer.Print(vars, "const char *GetInterfaceName() const;\n");
+      printer.Print(vars, "void CallMethod(const nanorpc2::RpcCall &rpc_call, nanorpc2::RpcResult *rpc_result);\n\n");
+      printer.Outdent();
       printer.Print(vars, "private:\n");
-      printer.Print(vars, "  nanorpc2::IRpcObjectManager* object_manager_;\n");
-      printer.Print(vars, "  $service_name$* impl_;\n");
+      printer.Indent();
+      printer.Print(vars, "nanorpc2::IRpcObjectManager* object_manager_;\n");
+      printer.Print(vars, "$service_name$* impl_;\n");
+      printer.Outdent();
       printer.Print(vars, "};\n\n");
       // clang-format on
     }

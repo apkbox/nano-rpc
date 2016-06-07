@@ -11,6 +11,7 @@
 #include "google\protobuf\compiler\cpp\cpp_generator.h"
 
 #include "generator_utils.h"
+#include "code_model.h"
 
 namespace pb = google::protobuf;
 namespace pbc = google::protobuf::compiler;
@@ -35,6 +36,10 @@ bool NanoRpcCppGenerator::Generate(const pb::FileDescriptor *file,
                                    const std::string &parameter,
                                    pbc::GeneratorContext *context,
                                    std::string *error) const {
+  std::vector<code_model::ServiceModel> service_models;
+  if (!code_model::CreateCodeModel(file, &service_models))
+    return false;
+
   std::string file_name = StripProto(file->name());
 
   std::string header_code = GetHeaderPrologue(file) +

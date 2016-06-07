@@ -122,11 +122,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\NanoRpc\src\rpc_proto\rpc_types.pb.cc" />
+    <ClCompile Include="code_model.cpp" />
     <ClCompile Include="cpp_header_generator.cpp" />
     <ClCompile Include="generator_utils.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="code_model.h" />
     <ClInclude Include="generator_utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
