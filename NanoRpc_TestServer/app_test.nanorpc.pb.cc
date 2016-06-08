@@ -12,101 +12,114 @@ const char *ITestApp::GetInterfaceName() const {
 
 void ITestApp::CallMethod(const nanorpc2::RpcCall &rpc_call, nanorpc2::RpcResult *rpc_result) {
   if (rpc_call.method() == "BoolValue") {
-    bool result;
-    result = impl_->BoolValue();
-    google::protobuf::BoolValue wrapper;
-    wrapper.set_value(result);
-    wrapper.SerializeToString(rpc_result->mutable_call_result()->mutable_value()); 
+    impl_->BoolValue();
+     out_pb__;
+    out_pb__.set_value(out__);
+    out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());
   } else if (rpc_call.method() == "IntValue") {
-    bool result;
-    result = impl_->IntValue();
-    google::protobuf::BoolValue wrapper;
-    wrapper.set_value(result);
-    wrapper.SerializeToString(rpc_result->mutable_call_result()->mutable_value()); 
+    impl_->IntValue();
+     out_pb__;
+    out_pb__.set_value(out__);
+    out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());
   } else if (rpc_call.method() == "EnumValue") {
-    bool result;
-    result = impl_->EnumValue();
-    google::protobuf::BoolValue wrapper;
-    wrapper.set_value(result);
-    wrapper.SerializeToString(rpc_result->mutable_call_result()->mutable_value()); 
+    impl_->EnumValue();
+     out_pb__;
+    out_pb__.set_value(out__);
+    out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());
   } else if (rpc_call.method() == "StringValue") {
-    bool result;
-    result = impl_->StringValue();
-    google::protobuf::BoolValue wrapper;
-    wrapper.set_value(result);
-    wrapper.SerializeToString(rpc_result->mutable_call_result()->mutable_value()); 
+    impl_->StringValue();
+     out_pb__;
+    out_pb__.set_value(out__);
+    out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());
   } else if (rpc_call.method() == "StructValue") {
-    bool result;
-    result = impl_->StructValue();
-    google::protobuf::BoolValue wrapper;
-    wrapper.set_value(result);
-    wrapper.SerializeToString(rpc_result->mutable_call_result()->mutable_value()); 
+    impl_->StructValue();
+     out_pb__;
+    out_pb__.set_value(out__);
+    out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());
   } else if (rpc_call.method() == "SyncVoidMethod") {
-    bool result;
-    result = impl_->SyncVoidMethod();
-    google::protobuf::BoolValue wrapper;
-    wrapper.set_value(result);
-    wrapper.SerializeToString(rpc_result->mutable_call_result()->mutable_value()); 
+    impl_->SyncVoidMethod();
+     out_pb__;
+    out_pb__.set_value(out__);
+    out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());
   } else if (rpc_call.method() == "AsyncVoidMethod") {
-    bool result;
-    result = impl_->AsyncVoidMethod();
-    google::protobuf::BoolValue wrapper;
-    wrapper.set_value(result);
-    wrapper.SerializeToString(rpc_result->mutable_call_result()->mutable_value()); 
+    impl_->AsyncVoidMethod();
+     out_pb__;
+    out_pb__.set_value(out__);
+    out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());
   } else if (rpc_call.method() == "SetStructReturnIntMethod") {
-    bool result;
-    result = impl_->SetStructReturnIntMethod();
-    google::protobuf::BoolValue wrapper;
-    wrapper.set_value(result);
-    wrapper.SerializeToString(rpc_result->mutable_call_result()->mutable_value()); 
+    int32_t out__;
+    AppStruct value;
+    value.ParseFromString(rpc_call.call_data());
+    out__ = impl_->SetStructReturnIntMethod(value);
+    google::protbuf::Int32Value out_pb__;
+    out_pb__.set_value(out__);
+    out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());
   } else if (rpc_call.method() == "GetStructMethod") {
-    bool result;
-    result = impl_->GetStructMethod();
-    google::protobuf::BoolValue wrapper;
-    wrapper.set_value(result);
-    wrapper.SerializeToString(rpc_result->mutable_call_result()->mutable_value()); 
+    AppStruct out__;
+    int32_t value;
+    value.ParseFromString(rpc_call.call_data());
+    impl_->GetStructMethod(value, &out__);
+    AppStruct out_pb__;
+    out_pb__.set_value(out__);
+    out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());
   } else if (rpc_call.method() == "MethodWithoutParameters0") {
-    bool result;
-    result = impl_->MethodWithoutParameters0();
-    google::protobuf::BoolValue wrapper;
-    wrapper.set_value(result);
-    wrapper.SerializeToString(rpc_result->mutable_call_result()->mutable_value()); 
+    impl_->MethodWithoutParameters0();
+     out_pb__;
+    out_pb__.set_value(out__);
+    out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());
   } else if (rpc_call.method() == "MethodWithoutParameters1") {
-    bool result;
-    result = impl_->MethodWithoutParameters1();
-    google::protobuf::BoolValue wrapper;
-    wrapper.set_value(result);
-    wrapper.SerializeToString(rpc_result->mutable_call_result()->mutable_value()); 
+    bool out__;
+    out__ = impl_->MethodWithoutParameters1();
+    google::protbuf::BoolValue out_pb__;
+    out_pb__.set_value(out__);
+    out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());
   } else if (rpc_call.method() == "MethodWithoutParameters2") {
-    bool result;
-    result = impl_->MethodWithoutParameters2();
-    google::protobuf::BoolValue wrapper;
-    wrapper.set_value(result);
-    wrapper.SerializeToString(rpc_result->mutable_call_result()->mutable_value()); 
+    std::string out__;
+    impl_->MethodWithoutParameters2(, &out__);
+    google::protbuf::StringValue out_pb__;
+    out_pb__.set_value(out__);
+    out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());
   } else if (rpc_call.method() == "MethodWithoutParameters3") {
-    bool result;
-    result = impl_->MethodWithoutParameters3();
-    google::protobuf::BoolValue wrapper;
-    wrapper.set_value(result);
-    wrapper.SerializeToString(rpc_result->mutable_call_result()->mutable_value()); 
+    AppStruct out__;
+    impl_->MethodWithoutParameters3(, &out__);
+    AppStruct out_pb__;
+    out_pb__.set_value(out__);
+    out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());
   } else if (rpc_call.method() == "MethodWithParameters0") {
-    bool result;
-    result = impl_->MethodWithParameters0();
-    google::protobuf::BoolValue wrapper;
-    wrapper.set_value(result);
-    wrapper.SerializeToString(rpc_result->mutable_call_result()->mutable_value()); 
+    std::string name;
+    int32_t index;
+    MethodWithParameters_args args__;
+    args__.ParseFromString(rpc_call.call_data());
+    args__.name_value(&name);
+    index = args__.index();
+    impl_->MethodWithParameters0(name, index);
+     out_pb__;
+    out_pb__.set_value(out__);
+    out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());
   } else if (rpc_call.method() == "MethodWithParameters1") {
-    bool result;
-    result = impl_->MethodWithParameters1();
-    google::protobuf::BoolValue wrapper;
-    wrapper.set_value(result);
-    wrapper.SerializeToString(rpc_result->mutable_call_result()->mutable_value()); 
+    bool out__;
+    std::string name;
+    int32_t index;
+    MethodWithParameters_args args__;
+    args__.ParseFromString(rpc_call.call_data());
+    args__.name_value(&name);
+    index = args__.index();
+    out__ = impl_->MethodWithParameters1(name, index);
+    google::protbuf::BoolValue out_pb__;
+    out_pb__.set_value(out__);
+    out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());
   } else if (rpc_call.method() == "MethodWithParameters2") {
-    bool result;
-    result = impl_->MethodWithParameters2();
-    google::protobuf::BoolValue wrapper;
-    wrapper.set_value(result);
-    wrapper.SerializeToString(rpc_result->mutable_call_result()->mutable_value()); 
+    AppStruct out__;
+    std::string name;
+    int32_t index;
+    MethodWithParameters_args args__;
+    args__.ParseFromString(rpc_call.call_data());
+    args__.name_value(&name);
+    index = args__.index();
+    impl_->MethodWithParameters2(name, index, &out__);
+    AppStruct out_pb__;
+    out_pb__.set_value(out__);
+    out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());
   }
 
 }

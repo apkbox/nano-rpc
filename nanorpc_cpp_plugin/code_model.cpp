@@ -16,22 +16,31 @@ namespace pbc = google::protobuf::compiler;
 
 namespace code_model {
 
+// TODO: Move all these methods into respective model classes
+
 bool CreateTypeModel(const pb::Descriptor *type, TypeModel *type_model) {
+  type_model->set_void(false);
   if (type->full_name() == nanorpc2::RpcVoid::descriptor()->full_name()) {
     type_model->set_name("void");
     type_model->set_void(true);
   } else if (type->full_name() == pb::BoolValue::descriptor()->full_name()) {
     type_model->set_name("bool");
+    type_model->set_pb_name("google::protbuf::BoolValue");
   } else if (type->full_name() == pb::Int32Value::descriptor()->full_name()) {
     type_model->set_name("int32_t");
+    type_model->set_pb_name("google::protbuf::Int32Value");
   } else if (type->full_name() == pb::Int64Value::descriptor()->full_name()) {
     type_model->set_name("int64_t");
+    type_model->set_pb_name("google::protbuf::Int64Value");
   } else if (type->full_name() == pb::UInt32Value::descriptor()->full_name()) {
     type_model->set_name("uint32_t");
+    type_model->set_pb_name("google::protbuf::Uint32Value");
   } else if (type->full_name() == pb::UInt64Value::descriptor()->full_name()) {
     type_model->set_name("uint64_t");
+    type_model->set_pb_name("google::protbuf::Uint64Value");
   } else if (type->full_name() == pb::StringValue::descriptor()->full_name()) {
     type_model->set_name("std::string");
+    type_model->set_pb_name("google::protbuf::StringValue");
     type_model->set_reference_type(true);
   } else if (type->options().HasExtension(nanorpc2::enum_wrapper) &&
              type->options().GetExtension(nanorpc2::enum_wrapper)) {
@@ -40,13 +49,15 @@ bool CreateTypeModel(const pb::Descriptor *type, TypeModel *type_model) {
     assert(type->field_count() == 1);
     assert(type->field(0)->type() == pb::FieldDescriptor::TYPE_ENUM);
     if (type->field_count() != 1 ||
-        type->field(0)->type() == pb::FieldDescriptor::TYPE_ENUM) {
+        type->field(0)->type() != pb::FieldDescriptor::TYPE_ENUM) {
       return false;
     }
 
     type_model->set_name(type->field(0)->enum_type()->name());
+    type_model->set_pb_name(type->field(0)->type_name());
   } else {
     type_model->set_name(type->name());
+    type_model->set_pb_name(type->name());
     type_model->set_reference_type(true);
   }
 
@@ -83,13 +94,17 @@ bool CreateMethodModel(const pb::MethodDescriptor *method,
 
   if (input_type->options().HasExtension(nanorpc2::expand_as_arguments) &&
       input_type->options().GetExtension(nanorpc2::expand_as_arguments)) {
+    method_model->set_arglist(true);
+    method_model->set_arglist_typename(input_type->name());
     if (!MessageToArgumentList(input_type, method_model->mutable_arguments()))
       return false;
   } else {
-    ArgumentModel argument;
-    argument.set_name("value");
-    argument.set_type(input_type_model);
-    method_model->mutable_arguments()->push_back(argument);
+    if (!input_type_model.is_void()){
+      ArgumentModel argument;
+      argument.set_name("value");
+      argument.set_type(input_type_model);
+      method_model->mutable_arguments()->push_back(argument);
+    }
   }
 
   if (!CreateTypeModel(output_type, method_model->mutable_return_type()))
@@ -126,6 +141,7 @@ bool CreateCodeModel(const pb::FileDescriptor *file,
     auto service = file->service(i);
     ServiceModel service_model;
     service_model.set_name(service->name());
+    service_model.set_full_name(service->full_name());
 
     for (int j = 0; j < service->method_count(); ++j) {
       auto method = service->method(j);
@@ -151,11 +167,17 @@ bool CreateCodeModel(const pb::FileDescriptor *file,
 
         method_model.set_property(true);
 
-        if (!no_getter)
-          CreatePropertyModel(method, false, method_model.mutable_getter());
+        if (!no_getter) {
+          MethodModel property_method;
+          CreatePropertyModel(method, false, &property_method);
+          method_model.set_getter(property_method);
+        }
 
-        if (!no_setter)
-          CreatePropertyModel(method, true, method_model.mutable_setter());
+        if (!no_setter) {
+          MethodModel property_method;
+          CreatePropertyModel(method, true, &property_method);
+          method_model.set_setter(property_method);
+        }
       } else {
         if (!CreateMethodModel(method, &method_model))
           return false;

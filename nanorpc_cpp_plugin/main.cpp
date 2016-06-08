@@ -17,11 +17,12 @@ namespace pb = google::protobuf;
 namespace pbc = google::protobuf::compiler;
 
 std::string GetHeaderPrologue(const pb::FileDescriptor *file);
+std::string GetInterfaceDefinitions(const pb::FileDescriptor *file, const std::vector<code_model::ServiceModel> &models);
 std::string GetStubDeclarations(const pb::FileDescriptor *file);
-std::string GetStubDefinitions(const pb::FileDescriptor *file);
-std::string GetInterfaceDefinitions(const pb::FileDescriptor *file);
 std::string GetHeaderEpilogue(const pb::FileDescriptor *file);
+
 std::string GetSourcePrologue(const pb::FileDescriptor *file);
+std::string GetStubDefinitions(const pb::FileDescriptor *file, const std::vector<code_model::ServiceModel> &models);
 std::string GetSourceEpilogue(const pb::FileDescriptor *file);
 
 class NanoRpcCppGenerator : public pbc::CodeGenerator {
@@ -43,14 +44,14 @@ bool NanoRpcCppGenerator::Generate(const pb::FileDescriptor *file,
   std::string file_name = StripProto(file->name());
 
   std::string header_code = GetHeaderPrologue(file) +
-                            GetInterfaceDefinitions(file) +
+                            GetInterfaceDefinitions(file, service_models) +
                             GetStubDeclarations(file) + GetHeaderEpilogue(file);
   std::unique_ptr<pb::io::ZeroCopyOutputStream> header_output(
       context->Open(file_name + ".nanorpc.pb.h"));
   pb::io::CodedOutputStream header_coded_out(header_output.get());
   header_coded_out.WriteRaw(header_code.data(), header_code.size());
 
-  std::string source_code = GetSourcePrologue(file) + GetStubDefinitions(file) +
+  std::string source_code = GetSourcePrologue(file) + GetStubDefinitions(file, service_models) +
                             GetSourceEpilogue(file);
   std::unique_ptr<pb::io::ZeroCopyOutputStream> source_output(
       context->Open(file_name + ".nanorpc.pb.cc"));

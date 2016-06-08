@@ -27,14 +27,14 @@ public:
   virtual void SyncVoidMethod() = 0;
   virtual void AsyncVoidMethod() = 0;
   virtual int32_t SetStructReturnIntMethod(const AppStruct &value) = 0;
-  virtual void GetStructMethod(int32_t value, AppStruct *output_value) = 0;
+  virtual void GetStructMethod(int32_t value, AppStruct *out__) = 0;
   virtual void MethodWithoutParameters0() = 0;
   virtual bool MethodWithoutParameters1() = 0;
-  virtual void MethodWithoutParameters2(std::string *output_value) = 0;
-  virtual void MethodWithoutParameters3(AppStruct *output_value) = 0;
+  virtual void MethodWithoutParameters2(std::string *out__) = 0;
+  virtual void MethodWithoutParameters3(AppStruct *out__) = 0;
   virtual void MethodWithParameters0(const std::string &name, int32_t index) = 0;
   virtual bool MethodWithParameters1(const std::string &name, int32_t index) = 0;
-  virtual void MethodWithParameters2(const std::string &name, int32_t index, AppStruct *output_value) = 0;
+  virtual void MethodWithParameters2(const std::string &name, int32_t index, AppStruct *out__) = 0;
 };
 
 class ITestApp_Stub : public nanorpc2::IRpcStub {
