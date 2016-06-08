@@ -14,28 +14,32 @@ public:
   TypeModel(const google::protobuf::Descriptor &type) {
     ParseFromDescriptor(&type);
   }
-  TypeModel() : is_reference_type_(false), is_void_(true) {}
+  TypeModel() : is_reference_type_(false), is_struct_(false), is_void_(true) {}
 
   const std::string &name() const { return name_; }
   void set_name(const std::string &name) { name_ = name; }
 
-  const std::string &pb_name() const { return pb_name_; }
-  void set_pb_name(const std::string &name) { pb_name_ = name; }
+  const std::string &wrapper_name() const { return wrapper_name_; }
+  void set_wrapper_name(const std::string &name) { wrapper_name_ = name; }
 
   bool is_reference_type() const { return is_reference_type_; }
   void set_reference_type(bool is_reference_type) {
     is_reference_type_ = is_reference_type;
   }
 
+  bool is_struct() const { return is_struct_; }
+
   bool is_void() const { return is_void_; }
   void set_void(bool is_void) { is_void_ = is_void; }
 
   bool ParseFromDescriptor(const google::protobuf::Descriptor *type);
+  bool ParseFromFieldDescriptor(const google::protobuf::FieldDescriptor *field);
 
 private:
   std::string name_;
-  std::string pb_name_;
+  std::string wrapper_name_;
   bool is_reference_type_;
+  bool is_struct_;
   bool is_void_;
 };
 

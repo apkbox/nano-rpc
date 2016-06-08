@@ -10,6 +10,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nanorpc_cpp_plugin", "nanor
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F4554791-D1BA-447D-BA47-0634FA9DD0DB}"
 	ProjectSection(SolutionItems) = preProject
+		codegen_test.proto = codegen_test.proto
 		rpc_proto\rpc_types.proto = rpc_proto\rpc_types.proto
 	EndProjectSection
 EndProject

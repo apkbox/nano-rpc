@@ -65,6 +65,14 @@ message WideStringValue {
 	string value = 1;
 }
 
+message SInt32Value {
+	sint32 value = 1;
+}
+
+message SInt64Value {
+	sint64 value = 1;
+}
+
 message RpcObject {
 	uint32 object_id = 1;
 }

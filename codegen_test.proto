@@ -1,0 +1,134 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+import "rpc_proto/rpc_types.proto";
+
+package code_gen_test;
+
+enum EnumType {
+	EnumValue0 = 0;
+	EnumValue1 = 1;
+	EnumValue2 = 2;
+	EnumValue3 = 3;
+	EnumValue4 = 4;
+}
+
+message StructType {
+	bool bool_value = 1;
+	int32 int32_value = 2;
+	uint32 uint32_value = 3;
+	int64 int64_value = 4;
+	uint64 uint64_value = 5;
+	sint32 sint32_value = 6;
+	sint64 sint64_value = 7;
+	float float_value = 8;
+	double double_value = 9;
+	EnumType enum_value = 10;
+	string string_value = 11;
+	string wstring_value = 12;  // TODO: add option wide_string
+}
+
+message EnumType_wrapper__ {
+	option (nanorpc2.enum_wrapper) = true;
+	EnumType value = 1;
+}
+
+// Parameter type mangling
+// V   = void
+// b   = bool
+// ius = int32, uint32, sint32
+// IUS = int64, uint64, sint64
+// fd  = float, double
+// E   = enum
+// AW  = string, wide string
+// M   = struct (message)
+message Method_V_biuIUsSfdEAWM_args__ {
+	option (nanorpc2.expand_as_arguments) = true;
+
+	bool bool_value = 1;
+	int32 int32_value = 2;
+	uint32 uint32_value = 3;
+	int64 int64_value = 4;
+	uint64 uint64_value = 5;
+	sint32 sint32_value = 6;
+	sint64 sint64_value = 7;
+	float float_value = 8;
+	double double_value = 9;
+
+	// TODO: fixed32, fixed64, sfixed32, sfixed64
+
+	EnumType enum_value = 10;
+	string string_value = 11;
+	string wstring_value = 12;
+
+	StructType struct_value = 13;
+}
+
+service ITestServiceInteface {
+//	rpc BoolValue(google.protobuf.BoolValue) returns (google.protobuf.BoolValue) {
+//		option (nanorpc2.is_property) = true;
+//	}
+
+//	rpc IntValue(google.protobuf.Int32Value) returns (google.protobuf.Int32Value) {
+//		option (nanorpc2.is_property) = true;
+//	}
+
+//	rpc EnumValue(EnumType_wrapper__) returns (EnumType_wrapper__) {
+//		option (nanorpc2.is_property) = true;
+//	}
+
+//	rpc StringValue(google.protobuf.StringValue) returns (google.protobuf.StringValue)  {
+//		option (nanorpc2.is_property) = true;
+//	}
+
+//	rpc StructValue(StructType) returns (StructType) {
+//		option (nanorpc2.is_property) = true;
+//	}
+
+
+	rpc Method_V_V (nanorpc2.RpcVoid) returns (nanorpc2.RpcVoid);
+
+	rpc Method_V_b (google.protobuf.BoolValue) returns (nanorpc2.RpcVoid);
+	rpc Method_V_i (google.protobuf.Int32Value) returns (nanorpc2.RpcVoid);
+	rpc Method_V_u (google.protobuf.UInt32Value) returns (nanorpc2.RpcVoid);
+	rpc Method_V_s (nanorpc2.SInt32Value) returns (nanorpc2.RpcVoid);
+
+	rpc Method_V_I (google.protobuf.Int64Value) returns (nanorpc2.RpcVoid);
+	rpc Method_V_U (google.protobuf.UInt64Value) returns (nanorpc2.RpcVoid);
+	rpc Method_V_S (nanorpc2.SInt64Value) returns (nanorpc2.RpcVoid);
+
+	rpc Method_V_f (google.protobuf.FloatValue) returns (nanorpc2.RpcVoid);
+	rpc Method_V_d (google.protobuf.DoubleValue) returns (nanorpc2.RpcVoid);
+
+	rpc Method_V_E (EnumType_wrapper__) returns (nanorpc2.RpcVoid);
+
+	rpc Method_V_A (google.protobuf.StringValue) returns (nanorpc2.RpcVoid);
+	rpc Method_V_W (nanorpc2.WideStringValue) returns (nanorpc2.RpcVoid);
+
+	rpc Method_V_M (StructType) returns (nanorpc2.RpcVoid);
+
+	rpc Method_b_V (nanorpc2.RpcVoid) returns (google.protobuf.BoolValue);
+	rpc Method_i_V (nanorpc2.RpcVoid) returns (google.protobuf.Int32Value);
+	rpc Method_u_V (nanorpc2.RpcVoid) returns (google.protobuf.UInt32Value);
+	rpc Method_s_V (nanorpc2.RpcVoid) returns (nanorpc2.SInt32Value);
+
+	rpc Method_I_V (nanorpc2.RpcVoid) returns (google.protobuf.Int64Value);
+	rpc Method_U_V (nanorpc2.RpcVoid) returns (google.protobuf.UInt64Value);
+	rpc Method_S_V (nanorpc2.RpcVoid) returns (nanorpc2.SInt64Value);
+
+	rpc Method_f_V (nanorpc2.RpcVoid) returns (google.protobuf.FloatValue);
+	rpc Method_d_V (nanorpc2.RpcVoid) returns (google.protobuf.DoubleValue);
+
+	rpc Method_E_V (nanorpc2.RpcVoid) returns (EnumType_wrapper__);
+
+	rpc Method_A_V (nanorpc2.RpcVoid) returns (google.protobuf.StringValue);
+	rpc Method_W_V (nanorpc2.RpcVoid) returns (nanorpc2.WideStringValue);
+
+	rpc Method_M_V (nanorpc2.RpcVoid) returns (StructType);
+
+	rpc Method_V_biuIUsSfdEAWM (Method_V_biuIUsSfdEAWM_args__) returns (nanorpc2.RpcVoid);
+
+	rpc AsyncMethod_V_V (nanorpc2.RpcVoid) returns (nanorpc2.RpcVoid) {
+		option (nanorpc2.async) = true;
+	}
+}

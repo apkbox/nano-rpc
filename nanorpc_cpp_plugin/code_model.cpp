@@ -25,26 +25,38 @@ bool TypeModel::ParseFromDescriptor(const pb::Descriptor *type) {
     is_void_ = true;
   } else if (type->full_name() == pb::BoolValue::descriptor()->full_name()) {
     name_ = "bool";
-    set_pb_name("google::protbuf::BoolValue");
+    wrapper_name_ = "google::protbuf::BoolValue";
   } else if (type->full_name() == pb::Int32Value::descriptor()->full_name()) {
     name_ = "int32_t";
-    set_pb_name("google::protbuf::Int32Value");
+    wrapper_name_ = "google::protbuf::Int32Value";
   } else if (type->full_name() == pb::Int64Value::descriptor()->full_name()) {
     name_ = "int64_t";
-    set_pb_name("google::protbuf::Int64Value");
+    wrapper_name_ = "google::protbuf::Int64Value";
   } else if (type->full_name() == pb::UInt32Value::descriptor()->full_name()) {
     name_ = "uint32_t";
-    set_pb_name("google::protbuf::Uint32Value");
+    wrapper_name_ = "google::protbuf::Uint32Value";
   } else if (type->full_name() == pb::UInt64Value::descriptor()->full_name()) {
     name_ = "uint64_t";
-    set_pb_name("google::protbuf::Uint64Value");
+    wrapper_name_ = "google::protbuf::Uint64Value";
   } else if (type->full_name() == pb::StringValue::descriptor()->full_name()) {
     name_ = "std::string";
-    set_pb_name("google::protbuf::StringValue");
+    wrapper_name_ = "google::protbuf::StringValue";
     is_reference_type_ = true;
+  } else if (type->full_name() == nanorpc2::SInt32Value::descriptor()->full_name()) {
+    name_ = "int32_t";
+    wrapper_name_ = "nanorpc2::SInt32Value";
+  } else if (type->full_name() == nanorpc2::SInt64Value::descriptor()->full_name()) {
+    name_ = "int64_t";
+    wrapper_name_ = "nanorpc2::SInt64Value";
+  } else if (type->full_name() == pb::FloatValue::descriptor()->full_name()) {
+    name_ = "float";
+    wrapper_name_ = "google::protbuf::FloatValue";
+  } else if (type->full_name() == pb::DoubleValue::descriptor()->full_name()) {
+    name_ = "double";
+    wrapper_name_ = "google::protbuf::DoubleValue";
   } else if (type->full_name() == nanorpc2::WideStringValue::descriptor()->full_name()) {
     name_ = "std::wstring";
-    set_pb_name("nanorpc2::WideStringValue");
+    wrapper_name_ = "nanorpc2::WideStringValue";
     is_reference_type_ = true;
   } else if (type->options().HasExtension(nanorpc2::enum_wrapper) &&
              type->options().GetExtension(nanorpc2::enum_wrapper)) {
@@ -58,11 +70,94 @@ bool TypeModel::ParseFromDescriptor(const pb::Descriptor *type) {
     }
 
     name_ = type->field(0)->enum_type()->name();
-    pb_name_ = type->field(0)->type_name();
+    wrapper_name_ = name_ + "_wrapper__";
   } else {
     name_ = type->name();
-    pb_name_ = type->name();
+    wrapper_name_ = type->name();
     is_reference_type_ = true;
+    is_struct_ = true;
+  }
+
+  return true;
+}
+
+bool TypeModel::ParseFromFieldDescriptor(const pb::FieldDescriptor *field) {
+  is_void_ = false;  // Message cannot contain void, so it always false in this context.
+
+  switch (field->type()) {
+    case pb::FieldDescriptor::TYPE_BOOL:
+      name_ = "bool";
+      wrapper_name_ = "google::protbuf::BoolValue";
+      break;
+
+    case pb::FieldDescriptor::TYPE_INT32:
+      name_ = "int32_t";
+      wrapper_name_ = "google::protbuf::Int32Value";
+      break;
+
+    case pb::FieldDescriptor::TYPE_UINT32:
+      name_ = "uint32_t";
+      wrapper_name_ = "google::protbuf::UInt32Value";
+      break;
+
+    case pb::FieldDescriptor::TYPE_SINT32:
+      name_ = "int32_t";
+      wrapper_name_ = "nanorpc2::SInt32Value";
+      break;
+
+    case pb::FieldDescriptor::TYPE_SINT64:
+      name_ = "int64_t";
+      wrapper_name_ = "nanorpc2::SInt64Value";
+      break;
+
+    case pb::FieldDescriptor::TYPE_INT64:
+      name_ = "int64_t";
+      wrapper_name_ = "google::protbuf::Int64Value";
+      break;
+
+    case pb::FieldDescriptor::TYPE_UINT64:
+      name_ = "uint64_t";
+      wrapper_name_ = "google::protbuf::UInt64Value";
+      break;
+
+    case pb::FieldDescriptor::TYPE_DOUBLE:
+      name_ = "double";
+      wrapper_name_ = "google::protbuf::DoubleValue";
+      break;
+
+    case pb::FieldDescriptor::TYPE_FLOAT:
+      name_ = "float";
+      wrapper_name_ = "google::protbuf::FloatValue";
+      break;
+
+    case pb::FieldDescriptor::TYPE_FIXED64:
+      name_ = "uint64_t";
+      wrapper_name_ = "google::protbuf::Fixed64Value";
+      break;
+
+    case pb::FieldDescriptor::TYPE_FIXED32:
+      name_ = "uint32_t";
+      wrapper_name_ = "google::protbuf::Fixed32Value";
+      break;
+
+    case pb::FieldDescriptor::TYPE_STRING:
+      // TODO: Check wide string attribute
+      name_ = "std::string";
+      wrapper_name_ = "google::protbuf::StringValue";
+      is_reference_type_ = true;
+      break;
+
+    case pb::FieldDescriptor::TYPE_MESSAGE:
+      ParseFromDescriptor(field->message_type());
+      break;
+
+    case pb::FieldDescriptor::TYPE_ENUM:
+      name_ = field->enum_type()->name();
+      wrapper_name_ = field->enum_type()->name() + "_wrapper__";
+      break;
+
+    default:
+      return false;
   }
 
   return true;
@@ -74,7 +169,9 @@ bool MessageToArgumentList(const pb::Descriptor *message,
     ArgumentModel argument_model;
     const pb::FieldDescriptor *field = message->field(i);
     TypeModel type_model;
-    if (!type_model.ParseFromDescriptor(field->message_type()))
+
+    // the field may be a primitive type, not a wrapper or message.
+    if (!type_model.ParseFromFieldDescriptor(field))
       return false;
 
     argument_model.set_name(field->name());

@@ -1,3 +1,11 @@
+#include <io.h>
+#include <fcntl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+
+
+#include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
 
@@ -38,8 +46,10 @@ bool NanoRpcCppGenerator::Generate(const pb::FileDescriptor *file,
                                    pbc::GeneratorContext *context,
                                    std::string *error) const {
   std::vector<code_model::ServiceModel> service_models;
-  if (!code_model::CreateCodeModel(file, &service_models))
+  // __debugbreak();
+  if (!code_model::CreateCodeModel(file, &service_models)) {
     return false;
+  }
 
   std::string file_name = StripProto(file->name());
 

@@ -271,95 +271,101 @@ std::string GetSourcePrologue(const pb::FileDescriptor *file) {
   return output;
 }
 
+void GenerateStubMethodCallImplementation(pb::io::Printer &printer,
+                                          const code_model::MethodModel &method) {
+  std::map<std::string, std::string> vars;
+
+  vars["method_name"] = method.name();
+  vars["return_type"] = method.return_type().name();
+  vars["return_wrapper_name"] = method.return_type().wrapper_name();
+
+  // Deserialize input arguments
+  if (method.is_arglist()) {
+    vars["arglist_typename"] = method.arglist_typename();
+    printer.Print(vars, "$arglist_typename$ args__;\n");
+    // BUG: This is incorrect if argument is a value type.
+    // In order to parse it out one need to declare a PB wrapper first,
+    // parse and then extract the value out of the wrapper.
+    printer.Print(vars, "args__.ParseFromString(rpc_call.call_data());\n\n");
+
+    // We can avoid declaring argument variable for value
+    // types and instead pass them directly via message accessor, but
+    // declaring them makes it easier to debug and they probably will
+    // be optimized away anyways.
+    for (size_t j = 0; j < method.arguments().size(); ++j) {
+      const auto &arg = method.arguments()[j];
+      vars["arg_name"] = arg.name();
+      vars["arg_type"] = arg.type().name();
+      vars["const"] = arg.type().is_reference_type() ? "const " : "";
+      vars["ref"] = arg.type().is_reference_type() ? "&" : "";
+      printer.Print(vars, "$const$$arg_type$ $ref$$arg_name$ = args__.$arg_name$();\n");
+    }
+
+    printer.Print(vars, "\n");
+  } else if(method.arguments().size() == 1) {
+    // Declare wrapper variable for single argument calls and arglist calls.
+    vars["arg_type"] = method.arguments()[0].type().wrapper_name();
+    vars["arg_name"] = method.arguments()[0].name();
+    printer.Print(vars, "$arg_type$ in_arg__;\n\n");
+
+    vars["arg_type"] = method.arguments()[0].type().name();
+    vars["ref"] = method.arguments()[0].type().is_reference_type() ? "&" : "";
+    printer.Print(vars, "in_arg__.ParseFromString(rpc_call.call_data());\n");
+    if (method.arguments()[0].type().is_struct())
+      printer.Print(vars, "$arg_type$ &$arg_name$ = in_arg;\n");
+    else
+      printer.Print(vars, "$arg_type$ $ref$value = in_arg__.value();\n");
+  }
+
+  printer.Print(vars, "\n");
+
+  // Define return type variable
+  if (!method.return_type().is_void())
+    printer.Print(vars, "$return_type$ out__;\n");
+
+  // Return for value types
+  if (!method.return_type().is_void() && !method.return_type().is_reference_type())
+    printer.Print(vars, "out__ = ");
+
+  // Call interface method
+  printer.Print(vars, "impl_->$method_name$(");
+
+  // Specify arguments
+  for (size_t j = 0; j < method.arguments().size(); ++j) {
+    const auto &arg = method.arguments()[j];
+    vars["arg_name"] = arg.name();
+    vars["arg_type"] = arg.type().name();
+    printer.Print(vars, "$arg_name$");
+
+    if ((j + 1) < method.arguments().size())
+      printer.Print(vars, ", ");
+  }
+
+  // Specify return by pointer argument (for reference types)
+  if (!method.return_type().is_void() && method.return_type().is_reference_type())
+    printer.Print(vars, ", &out__");
+
+  printer.Print(vars, ");\n\n");
+
+  // Define result wrapper variable, wrap and serialize the result
+  if (!method.return_type().is_void()) {
+    printer.Print(vars, "out_pb__.set_value(out__);\n");
+    printer.Print(vars, "out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());\n");
+  }
+}
+
 void GenerateStubImplementation(pb::io::Printer &printer, const code_model::ServiceModel &service) {
   std::map<std::string, std::string> vars;
 
-  /* clang-format off */
   printer.Indent();
 
   for (size_t i = 0; i < service.methods().size(); ++i) {
     const auto &method = service.methods()[i];
     vars["method_name"] = method.name();
-    vars["return_type"] = method.return_type().name();
-    vars["return_pb_type"] = method.return_type().pb_name();
 
     printer.Print(vars, "if (rpc_call.method() == \"$method_name$\") {\n");
     printer.Indent();
-
-    // Define return type variable
-    if (!method.return_type().is_void())
-      printer.Print(vars, "$return_type$ out__;\n\n");
-
-    // Define argument variables
-    for (size_t j = 0; j < method.arguments().size(); ++j) {
-      const auto &arg = method.arguments()[j];
-      vars["arg_name"] = arg.name();
-      vars["arg_type"] = arg.type().name();
-      printer.Print(vars, "$arg_type$ $arg_name$;\n");
-    }
-
-    printer.Print(vars, "\n");
-
-    // TODO: Deserialize argument variables
-    if (method.arguments().size() > 0) {
-      if (method.is_arglist()) {
-        vars["arglist_typename"] = method.arglist_typename();
-        printer.Print(vars, "$arglist_typename$ args__;\n");
-        // BUG: This is incorrect if argument is a value type.
-        // In order to parse it out one need to declare a PB wrapper first,
-        // parse and then extract the value out of the wrapper.
-        printer.Print(vars, "args__.ParseFromString(rpc_call.call_data());\n\n");
-
-        // TODO: We can avoid declaring argument variable for value
-        // types and instead pass them directly via message accessor, but
-        // declaring them makes it easier to debug and they probably will
-        // be optimized away anyways.
-        for (size_t j = 0; j < method.arguments().size(); ++j) {
-          const auto &arg = method.arguments()[j];
-          vars["arg_name"] = arg.name();
-          vars["arg_type"] = arg.type().name();
-          printer.Print(vars, "$arg_name$ = args__.$arg_name$();\n");
-        }
-      }
-      else {
-        // Non-wrappers always reference types.
-        vars["arg_type"] = method.arguments().front().type().pb_name();
-        // Already declared with 'value' name (as it is a part of model).
-        // printer.Print(vars, "$arg_type$ arg__;\n");
-        printer.Print(vars, "value.ParseFromString(rpc_call.call_data());\n");
-      }
-    }
-
-    printer.Print(vars, "\n");
-
-    // Return for value types
-    if (!method.return_type().is_void() && !method.return_type().is_reference_type())
-      printer.Print(vars, "out__ = ");
-
-    // Call interface method
-    printer.Print(vars, "impl_->$method_name$(");
-
-    // Specify arguments
-    for (size_t j = 0; j < method.arguments().size(); ++j) {
-      const auto &arg = method.arguments()[j];
-      vars["arg_name"] = arg.name();
-      vars["arg_type"] = arg.type().name();
-      printer.Print(vars, "$arg_name$");
-
-      if ((j + 1) < method.arguments().size())
-        printer.Print(vars, ", ");
-    }
-
-    // Specify return by pointer argument (for reference types)
-    if (!method.return_type().is_void() && method.return_type().is_reference_type())
-      printer.Print(vars, ", &out__");
-
-    printer.Print(vars, ");\n\n");
-
-    // Define result wrapper variable, wrap and serialize the result
-    printer.Print(vars, "$return_pb_type$ out_pb__;\n");
-    printer.Print(vars, "out_pb__.set_value(out__);\n");
-    printer.Print(vars, "out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());\n");
+    GenerateStubMethodCallImplementation(printer, method);
     printer.Outdent();
     printer.Print(vars, "}");
 
@@ -367,9 +373,10 @@ void GenerateStubImplementation(pb::io::Printer &printer, const code_model::Serv
       printer.Print(vars, " else ");
   }
 
+  // TODO: Generate unknown method error, or return boolean indicating whether the call succeeded.
+
   printer.Print(vars, "\n\n");
   printer.Outdent();
-  /* clang-format on */
 }
 
 

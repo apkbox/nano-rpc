@@ -38,12 +38,16 @@ void protobuf_AddDesc_rpc_5fproto_2frpc_5ftypes_2eproto();
 void protobuf_AssignDesc_rpc_5fproto_2frpc_5ftypes_2eproto();
 void protobuf_ShutdownFile_rpc_5fproto_2frpc_5ftypes_2eproto();
 
+class DoubleValue;
+class FloatValue;
 class RpcCall;
 class RpcEvent;
 class RpcMessage;
 class RpcObject;
 class RpcResult;
 class RpcVoid;
+class SInt32Value;
+class SInt64Value;
 class WideStringValue;
 
 enum RpcStatus {
@@ -538,6 +542,318 @@ class WideStringValue : public ::google::protobuf::Message {
 
   void InitAsDefaultInstance();
   static WideStringValue* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class SInt32Value : public ::google::protobuf::Message {
+ public:
+  SInt32Value();
+  virtual ~SInt32Value();
+
+  SInt32Value(const SInt32Value& from);
+
+  inline SInt32Value& operator=(const SInt32Value& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const SInt32Value& default_instance();
+
+  void Swap(SInt32Value* other);
+
+  // implements Message ----------------------------------------------
+
+  inline SInt32Value* New() const { return New(NULL); }
+
+  SInt32Value* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const SInt32Value& from);
+  void MergeFrom(const SInt32Value& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(SInt32Value* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional sint32 value = 1;
+  void clear_value();
+  static const int kValueFieldNumber = 1;
+  ::google::protobuf::int32 value() const;
+  void set_value(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:nanorpc2.SInt32Value)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::google::protobuf::int32 value_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_rpc_5fproto_2frpc_5ftypes_2eproto();
+  friend void protobuf_AssignDesc_rpc_5fproto_2frpc_5ftypes_2eproto();
+  friend void protobuf_ShutdownFile_rpc_5fproto_2frpc_5ftypes_2eproto();
+
+  void InitAsDefaultInstance();
+  static SInt32Value* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class SInt64Value : public ::google::protobuf::Message {
+ public:
+  SInt64Value();
+  virtual ~SInt64Value();
+
+  SInt64Value(const SInt64Value& from);
+
+  inline SInt64Value& operator=(const SInt64Value& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const SInt64Value& default_instance();
+
+  void Swap(SInt64Value* other);
+
+  // implements Message ----------------------------------------------
+
+  inline SInt64Value* New() const { return New(NULL); }
+
+  SInt64Value* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const SInt64Value& from);
+  void MergeFrom(const SInt64Value& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(SInt64Value* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional sint64 value = 1;
+  void clear_value();
+  static const int kValueFieldNumber = 1;
+  ::google::protobuf::int64 value() const;
+  void set_value(::google::protobuf::int64 value);
+
+  // @@protoc_insertion_point(class_scope:nanorpc2.SInt64Value)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::google::protobuf::int64 value_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_rpc_5fproto_2frpc_5ftypes_2eproto();
+  friend void protobuf_AssignDesc_rpc_5fproto_2frpc_5ftypes_2eproto();
+  friend void protobuf_ShutdownFile_rpc_5fproto_2frpc_5ftypes_2eproto();
+
+  void InitAsDefaultInstance();
+  static SInt64Value* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class FloatValue : public ::google::protobuf::Message {
+ public:
+  FloatValue();
+  virtual ~FloatValue();
+
+  FloatValue(const FloatValue& from);
+
+  inline FloatValue& operator=(const FloatValue& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const FloatValue& default_instance();
+
+  void Swap(FloatValue* other);
+
+  // implements Message ----------------------------------------------
+
+  inline FloatValue* New() const { return New(NULL); }
+
+  FloatValue* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const FloatValue& from);
+  void MergeFrom(const FloatValue& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(FloatValue* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional float value = 1;
+  void clear_value();
+  static const int kValueFieldNumber = 1;
+  float value() const;
+  void set_value(float value);
+
+  // @@protoc_insertion_point(class_scope:nanorpc2.FloatValue)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  float value_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_rpc_5fproto_2frpc_5ftypes_2eproto();
+  friend void protobuf_AssignDesc_rpc_5fproto_2frpc_5ftypes_2eproto();
+  friend void protobuf_ShutdownFile_rpc_5fproto_2frpc_5ftypes_2eproto();
+
+  void InitAsDefaultInstance();
+  static FloatValue* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class DoubleValue : public ::google::protobuf::Message {
+ public:
+  DoubleValue();
+  virtual ~DoubleValue();
+
+  DoubleValue(const DoubleValue& from);
+
+  inline DoubleValue& operator=(const DoubleValue& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const DoubleValue& default_instance();
+
+  void Swap(DoubleValue* other);
+
+  // implements Message ----------------------------------------------
+
+  inline DoubleValue* New() const { return New(NULL); }
+
+  DoubleValue* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const DoubleValue& from);
+  void MergeFrom(const DoubleValue& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(DoubleValue* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional double value = 1;
+  void clear_value();
+  static const int kValueFieldNumber = 1;
+  double value() const;
+  void set_value(double value);
+
+  // @@protoc_insertion_point(class_scope:nanorpc2.DoubleValue)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  double value_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_rpc_5fproto_2frpc_5ftypes_2eproto();
+  friend void protobuf_AssignDesc_rpc_5fproto_2frpc_5ftypes_2eproto();
+  friend void protobuf_ShutdownFile_rpc_5fproto_2frpc_5ftypes_2eproto();
+
+  void InitAsDefaultInstance();
+  static DoubleValue* default_instance_;
 };
 // -------------------------------------------------------------------
 
@@ -1128,6 +1444,78 @@ inline void WideStringValue::set_allocated_value(::std::string* value) {
 
 // -------------------------------------------------------------------
 
+// SInt32Value
+
+// optional sint32 value = 1;
+inline void SInt32Value::clear_value() {
+  value_ = 0;
+}
+inline ::google::protobuf::int32 SInt32Value::value() const {
+  // @@protoc_insertion_point(field_get:nanorpc2.SInt32Value.value)
+  return value_;
+}
+inline void SInt32Value::set_value(::google::protobuf::int32 value) {
+  
+  value_ = value;
+  // @@protoc_insertion_point(field_set:nanorpc2.SInt32Value.value)
+}
+
+// -------------------------------------------------------------------
+
+// SInt64Value
+
+// optional sint64 value = 1;
+inline void SInt64Value::clear_value() {
+  value_ = GOOGLE_LONGLONG(0);
+}
+inline ::google::protobuf::int64 SInt64Value::value() const {
+  // @@protoc_insertion_point(field_get:nanorpc2.SInt64Value.value)
+  return value_;
+}
+inline void SInt64Value::set_value(::google::protobuf::int64 value) {
+  
+  value_ = value;
+  // @@protoc_insertion_point(field_set:nanorpc2.SInt64Value.value)
+}
+
+// -------------------------------------------------------------------
+
+// FloatValue
+
+// optional float value = 1;
+inline void FloatValue::clear_value() {
+  value_ = 0;
+}
+inline float FloatValue::value() const {
+  // @@protoc_insertion_point(field_get:nanorpc2.FloatValue.value)
+  return value_;
+}
+inline void FloatValue::set_value(float value) {
+  
+  value_ = value;
+  // @@protoc_insertion_point(field_set:nanorpc2.FloatValue.value)
+}
+
+// -------------------------------------------------------------------
+
+// DoubleValue
+
+// optional double value = 1;
+inline void DoubleValue::clear_value() {
+  value_ = 0;
+}
+inline double DoubleValue::value() const {
+  // @@protoc_insertion_point(field_get:nanorpc2.DoubleValue.value)
+  return value_;
+}
+inline void DoubleValue::set_value(double value) {
+  
+  value_ = value;
+  // @@protoc_insertion_point(field_set:nanorpc2.DoubleValue.value)
+}
+
+// -------------------------------------------------------------------
+
 // RpcObject
 
 // optional uint32 object_id = 1;
@@ -1193,6 +1581,14 @@ inline void RpcEvent::set_allocated_event_name(::std::string* event_name) {
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

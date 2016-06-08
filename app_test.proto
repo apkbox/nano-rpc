@@ -33,25 +33,25 @@ message MethodWithParameters_args {
 }
 
 service ITestApp {
-	rpc BoolValue(google.protobuf.BoolValue) returns (google.protobuf.BoolValue) {
-		option (nanorpc2.is_property) = true;
-	}
+//	rpc BoolValue(google.protobuf.BoolValue) returns (google.protobuf.BoolValue) {
+//		option (nanorpc2.is_property) = true;
+//	}
 
-	rpc IntValue(google.protobuf.Int32Value) returns (google.protobuf.Int32Value) {
-		option (nanorpc2.is_property) = true;
-	}
+//	rpc IntValue(google.protobuf.Int32Value) returns (google.protobuf.Int32Value) {
+//		option (nanorpc2.is_property) = true;
+//	}
 
-	rpc EnumValue(AppEnumValue) returns (AppEnumValue) {
-		option (nanorpc2.is_property) = true;
-	}
+//	rpc EnumValue(AppEnumValue) returns (AppEnumValue) {
+//		option (nanorpc2.is_property) = true;
+//	}
 
-	rpc StringValue(google.protobuf.StringValue) returns (google.protobuf.StringValue)  {
-		option (nanorpc2.is_property) = true;
-	}
+//	rpc StringValue(google.protobuf.StringValue) returns (google.protobuf.StringValue)  {
+//		option (nanorpc2.is_property) = true;
+//	}
 
-	rpc StructValue(AppStruct) returns (AppStruct) {
-		option (nanorpc2.is_property) = true;
-	}
+//	rpc StructValue(AppStruct) returns (AppStruct) {
+//		option (nanorpc2.is_property) = true;
+//	}
 
 	rpc SyncVoidMethod(nanorpc2.RpcVoid) returns (nanorpc2.RpcVoid);
 	rpc AsyncVoidMethod(nanorpc2.RpcVoid) returns (nanorpc2.RpcVoid) {
