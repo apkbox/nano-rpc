@@ -325,6 +325,15 @@ class MethodWithParameters_args : public ::google::protobuf::Message {
   ::google::protobuf::Int32Value* release_index();
   void set_allocated_index(::google::protobuf::Int32Value* index);
 
+  // optional .app.AppStruct complext_data = 3;
+  bool has_complext_data() const;
+  void clear_complext_data();
+  static const int kComplextDataFieldNumber = 3;
+  const ::app::AppStruct& complext_data() const;
+  ::app::AppStruct* mutable_complext_data();
+  ::app::AppStruct* release_complext_data();
+  void set_allocated_complext_data(::app::AppStruct* complext_data);
+
   // @@protoc_insertion_point(class_scope:app.MethodWithParameters_args)
  private:
 
@@ -332,6 +341,7 @@ class MethodWithParameters_args : public ::google::protobuf::Message {
   bool _is_default_instance_;
   ::google::protobuf::StringValue* name_;
   ::google::protobuf::Int32Value* index_;
+  ::app::AppStruct* complext_data_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_app_5ftest_2eproto();
   friend void protobuf_AssignDesc_app_5ftest_2eproto();
@@ -540,6 +550,44 @@ inline void MethodWithParameters_args::set_allocated_index(::google::protobuf::I
     
   }
   // @@protoc_insertion_point(field_set_allocated:app.MethodWithParameters_args.index)
+}
+
+// optional .app.AppStruct complext_data = 3;
+inline bool MethodWithParameters_args::has_complext_data() const {
+  return !_is_default_instance_ && complext_data_ != NULL;
+}
+inline void MethodWithParameters_args::clear_complext_data() {
+  if (GetArenaNoVirtual() == NULL && complext_data_ != NULL) delete complext_data_;
+  complext_data_ = NULL;
+}
+inline const ::app::AppStruct& MethodWithParameters_args::complext_data() const {
+  // @@protoc_insertion_point(field_get:app.MethodWithParameters_args.complext_data)
+  return complext_data_ != NULL ? *complext_data_ : *default_instance_->complext_data_;
+}
+inline ::app::AppStruct* MethodWithParameters_args::mutable_complext_data() {
+  
+  if (complext_data_ == NULL) {
+    complext_data_ = new ::app::AppStruct;
+  }
+  // @@protoc_insertion_point(field_mutable:app.MethodWithParameters_args.complext_data)
+  return complext_data_;
+}
+inline ::app::AppStruct* MethodWithParameters_args::release_complext_data() {
+  // @@protoc_insertion_point(field_release:app.MethodWithParameters_args.complext_data)
+  
+  ::app::AppStruct* temp = complext_data_;
+  complext_data_ = NULL;
+  return temp;
+}
+inline void MethodWithParameters_args::set_allocated_complext_data(::app::AppStruct* complext_data) {
+  delete complext_data_;
+  complext_data_ = complext_data;
+  if (complext_data) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:app.MethodWithParameters_args.complext_data)
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS

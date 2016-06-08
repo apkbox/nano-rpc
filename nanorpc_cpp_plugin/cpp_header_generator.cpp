@@ -288,7 +288,7 @@ void GenerateStubImplementation(pb::io::Printer &printer, const code_model::Serv
 
     // Define return type variable
     if (!method.return_type().is_void())
-      printer.Print(vars, "$return_type$ out__;\n");
+      printer.Print(vars, "$return_type$ out__;\n\n");
 
     // Define argument variables
     for (size_t j = 0; j < method.arguments().size(); ++j) {
@@ -298,6 +298,8 @@ void GenerateStubImplementation(pb::io::Printer &printer, const code_model::Serv
       printer.Print(vars, "$arg_type$ $arg_name$;\n");
     }
 
+    printer.Print(vars, "\n");
+
     // TODO: Deserialize argument variables
     if (method.arguments().size() > 0) {
       if (method.is_arglist()) {
@@ -306,7 +308,7 @@ void GenerateStubImplementation(pb::io::Printer &printer, const code_model::Serv
         // BUG: This is incorrect if argument is a value type.
         // In order to parse it out one need to declare a PB wrapper first,
         // parse and then extract the value out of the wrapper.
-        printer.Print(vars, "args__.ParseFromString(rpc_call.call_data());\n");
+        printer.Print(vars, "args__.ParseFromString(rpc_call.call_data());\n\n");
 
         // TODO: We can avoid declaring argument variable for value
         // types and instead pass them directly via message accessor, but
@@ -316,11 +318,7 @@ void GenerateStubImplementation(pb::io::Printer &printer, const code_model::Serv
           const auto &arg = method.arguments()[j];
           vars["arg_name"] = arg.name();
           vars["arg_type"] = arg.type().name();
-
-          if (arg.type().is_reference_type())
-            printer.Print(vars, "args__.$arg_name$_value(&$arg_name$);\n");
-          else
-            printer.Print(vars, "$arg_name$ = args__.$arg_name$();\n");
+          printer.Print(vars, "$arg_name$ = args__.$arg_name$();\n");
         }
       }
       else {
@@ -331,6 +329,8 @@ void GenerateStubImplementation(pb::io::Printer &printer, const code_model::Serv
         printer.Print(vars, "value.ParseFromString(rpc_call.call_data());\n");
       }
     }
+
+    printer.Print(vars, "\n");
 
     // Return for value types
     if (!method.return_type().is_void() && !method.return_type().is_reference_type())
@@ -354,7 +354,7 @@ void GenerateStubImplementation(pb::io::Printer &printer, const code_model::Serv
     if (!method.return_type().is_void() && method.return_type().is_reference_type())
       printer.Print(vars, ", &out__");
 
-    printer.Print(vars, ");\n");
+    printer.Print(vars, ");\n\n");
 
     // Define result wrapper variable, wrap and serialize the result
     printer.Print(vars, "$return_pb_type$ out_pb__;\n");

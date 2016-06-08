@@ -32,9 +32,9 @@ public:
   virtual bool MethodWithoutParameters1() = 0;
   virtual void MethodWithoutParameters2(std::string *out__) = 0;
   virtual void MethodWithoutParameters3(AppStruct *out__) = 0;
-  virtual void MethodWithParameters0(const std::string &name, int32_t index) = 0;
-  virtual bool MethodWithParameters1(const std::string &name, int32_t index) = 0;
-  virtual void MethodWithParameters2(const std::string &name, int32_t index, AppStruct *out__) = 0;
+  virtual void MethodWithParameters0(const std::string &name, int32_t index, const AppStruct &complext_data) = 0;
+  virtual bool MethodWithParameters1(const std::string &name, int32_t index, const AppStruct &complext_data) = 0;
+  virtual void MethodWithParameters2(const std::string &name, int32_t index, const AppStruct &complext_data, AppStruct *out__) = 0;
 };
 
 class ITestApp_Stub : public nanorpc2::IRpcStub {

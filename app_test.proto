@@ -27,8 +27,9 @@ message AppEnumValue {
 
 message MethodWithParameters_args {
 	option (nanorpc2.expand_as_arguments) = true;
-	google.protobuf.StringValue name = 1;
-	google.protobuf.Int32Value index = 2;
+	string name = 1;
+	int32 index = 2;
+	AppStruct complext_data = 3;
 }
 
 service ITestApp {

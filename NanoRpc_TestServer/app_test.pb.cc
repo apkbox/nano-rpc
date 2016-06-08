@@ -75,9 +75,10 @@ void protobuf_AssignDesc_app_5ftest_2eproto() {
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(AppEnumValue, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(AppEnumValue, _is_default_instance_));
   MethodWithParameters_args_descriptor_ = file->message_type(2);
-  static const int MethodWithParameters_args_offsets_[2] = {
+  static const int MethodWithParameters_args_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MethodWithParameters_args, name_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MethodWithParameters_args, index_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MethodWithParameters_args, complext_data_),
   };
   MethodWithParameters_args_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
@@ -137,9 +138,10 @@ void protobuf_AddDesc_app_5ftest_2eproto() {
     "_value\030\002 \001(\005\022 \n\nenum_value\030\003 \001(\0162\014.app.A"
     "ppEnum\022\024\n\014string_value\030\004 \001(\t\"1\n\014AppEnumV"
     "alue\022\033\n\005value\030\001 \001(\0162\014.app.AppEnum:\004\220\371+\001\""
-    "y\n\031MethodWithParameters_args\022*\n\004name\030\001 \001"
-    "(\0132\034.google.protobuf.StringValue\022*\n\005inde"
-    "x\030\002 \001(\0132\033.google.protobuf.Int32Value:\004\210\371"
+    "\240\001\n\031MethodWithParameters_args\022*\n\004name\030\001 "
+    "\001(\0132\034.google.protobuf.StringValue\022*\n\005ind"
+    "ex\030\002 \001(\0132\033.google.protobuf.Int32Value\022%\n"
+    "\rcomplext_data\030\003 \001(\0132\016.app.AppStruct:\004\210\371"
     "+\001*Y\n\007AppEnum\022\016\n\nEnumValue0\020\000\022\016\n\nEnumVal"
     "ue1\020\001\022\016\n\nEnumValue2\020\002\022\016\n\nEnumValue3\020\003\022\016\n"
     "\nEnumValue4\020\0042\343\010\n\010ITestApp\022I\n\tBoolValue\022"
@@ -170,7 +172,7 @@ void protobuf_AddDesc_app_5ftest_2eproto() {
     "eters1\022\036.app.MethodWithParameters_args\032\032"
     ".google.protobuf.BoolValue\022G\n\025MethodWith"
     "Parameters2\022\036.app.MethodWithParameters_a"
-    "rgs\032\016.app.AppStructb\006proto3", 1587);
+    "rgs\032\016.app.AppStructb\006proto3", 1627);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "app_test.proto", &protobuf_RegisterTypes);
   AppStruct::default_instance_ = new AppStruct();
@@ -915,6 +917,7 @@ void AppEnumValue::clear_value() {
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int MethodWithParameters_args::kNameFieldNumber;
 const int MethodWithParameters_args::kIndexFieldNumber;
+const int MethodWithParameters_args::kComplextDataFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 MethodWithParameters_args::MethodWithParameters_args()
@@ -927,6 +930,7 @@ void MethodWithParameters_args::InitAsDefaultInstance() {
   _is_default_instance_ = true;
   name_ = const_cast< ::google::protobuf::StringValue*>(&::google::protobuf::StringValue::default_instance());
   index_ = const_cast< ::google::protobuf::Int32Value*>(&::google::protobuf::Int32Value::default_instance());
+  complext_data_ = const_cast< ::app::AppStruct*>(&::app::AppStruct::default_instance());
 }
 
 MethodWithParameters_args::MethodWithParameters_args(const MethodWithParameters_args& from)
@@ -942,6 +946,7 @@ void MethodWithParameters_args::SharedCtor() {
   _cached_size_ = 0;
   name_ = NULL;
   index_ = NULL;
+  complext_data_ = NULL;
 }
 
 MethodWithParameters_args::~MethodWithParameters_args() {
@@ -953,6 +958,7 @@ void MethodWithParameters_args::SharedDtor() {
   if (this != default_instance_) {
     delete name_;
     delete index_;
+    delete complext_data_;
   }
 }
 
@@ -987,6 +993,8 @@ void MethodWithParameters_args::Clear() {
   name_ = NULL;
   if (GetArenaNoVirtual() == NULL && index_ != NULL) delete index_;
   index_ = NULL;
+  if (GetArenaNoVirtual() == NULL && complext_data_ != NULL) delete complext_data_;
+  complext_data_ = NULL;
 }
 
 bool MethodWithParameters_args::MergePartialFromCodedStream(
@@ -1017,6 +1025,19 @@ bool MethodWithParameters_args::MergePartialFromCodedStream(
          parse_index:
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_index()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(26)) goto parse_complext_data;
+        break;
+      }
+
+      // optional .app.AppStruct complext_data = 3;
+      case 3: {
+        if (tag == 26) {
+         parse_complext_data:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_complext_data()));
         } else {
           goto handle_unusual;
         }
@@ -1060,6 +1081,12 @@ void MethodWithParameters_args::SerializeWithCachedSizes(
       2, *this->index_, output);
   }
 
+  // optional .app.AppStruct complext_data = 3;
+  if (this->has_complext_data()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      3, *this->complext_data_, output);
+  }
+
   // @@protoc_insertion_point(serialize_end:app.MethodWithParameters_args)
 }
 
@@ -1078,6 +1105,13 @@ void MethodWithParameters_args::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         2, *this->index_, target);
+  }
+
+  // optional .app.AppStruct complext_data = 3;
+  if (this->has_complext_data()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        3, *this->complext_data_, target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:app.MethodWithParameters_args)
@@ -1100,6 +1134,13 @@ int MethodWithParameters_args::ByteSize() const {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
         *this->index_);
+  }
+
+  // optional .app.AppStruct complext_data = 3;
+  if (this->has_complext_data()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        *this->complext_data_);
   }
 
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
@@ -1132,6 +1173,9 @@ void MethodWithParameters_args::MergeFrom(const MethodWithParameters_args& from)
   if (from.has_index()) {
     mutable_index()->::google::protobuf::Int32Value::MergeFrom(from.index());
   }
+  if (from.has_complext_data()) {
+    mutable_complext_data()->::app::AppStruct::MergeFrom(from.complext_data());
+  }
 }
 
 void MethodWithParameters_args::CopyFrom(const ::google::protobuf::Message& from) {
@@ -1160,6 +1204,7 @@ void MethodWithParameters_args::Swap(MethodWithParameters_args* other) {
 void MethodWithParameters_args::InternalSwap(MethodWithParameters_args* other) {
   std::swap(name_, other->name_);
   std::swap(index_, other->index_);
+  std::swap(complext_data_, other->complext_data_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
@@ -1259,6 +1304,44 @@ void MethodWithParameters_args::set_allocated_index(::google::protobuf::Int32Val
     
   }
   // @@protoc_insertion_point(field_set_allocated:app.MethodWithParameters_args.index)
+}
+
+// optional .app.AppStruct complext_data = 3;
+bool MethodWithParameters_args::has_complext_data() const {
+  return !_is_default_instance_ && complext_data_ != NULL;
+}
+void MethodWithParameters_args::clear_complext_data() {
+  if (GetArenaNoVirtual() == NULL && complext_data_ != NULL) delete complext_data_;
+  complext_data_ = NULL;
+}
+const ::app::AppStruct& MethodWithParameters_args::complext_data() const {
+  // @@protoc_insertion_point(field_get:app.MethodWithParameters_args.complext_data)
+  return complext_data_ != NULL ? *complext_data_ : *default_instance_->complext_data_;
+}
+::app::AppStruct* MethodWithParameters_args::mutable_complext_data() {
+  
+  if (complext_data_ == NULL) {
+    complext_data_ = new ::app::AppStruct;
+  }
+  // @@protoc_insertion_point(field_mutable:app.MethodWithParameters_args.complext_data)
+  return complext_data_;
+}
+::app::AppStruct* MethodWithParameters_args::release_complext_data() {
+  // @@protoc_insertion_point(field_release:app.MethodWithParameters_args.complext_data)
+  
+  ::app::AppStruct* temp = complext_data_;
+  complext_data_ = NULL;
+  return temp;
+}
+void MethodWithParameters_args::set_allocated_complext_data(::app::AppStruct* complext_data) {
+  delete complext_data_;
+  complext_data_ = complext_data;
+  if (complext_data) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:app.MethodWithParameters_args.complext_data)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

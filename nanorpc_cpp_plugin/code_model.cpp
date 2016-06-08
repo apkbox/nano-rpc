@@ -18,30 +18,34 @@ namespace code_model {
 
 // TODO: Move all these methods into respective model classes
 
-bool CreateTypeModel(const pb::Descriptor *type, TypeModel *type_model) {
-  type_model->set_void(false);
+bool TypeModel::ParseFromDescriptor(const pb::Descriptor *type) {
+  is_void_ = false;
   if (type->full_name() == nanorpc2::RpcVoid::descriptor()->full_name()) {
-    type_model->set_name("void");
-    type_model->set_void(true);
+    name_ = "void";
+    is_void_ = true;
   } else if (type->full_name() == pb::BoolValue::descriptor()->full_name()) {
-    type_model->set_name("bool");
-    type_model->set_pb_name("google::protbuf::BoolValue");
+    name_ = "bool";
+    set_pb_name("google::protbuf::BoolValue");
   } else if (type->full_name() == pb::Int32Value::descriptor()->full_name()) {
-    type_model->set_name("int32_t");
-    type_model->set_pb_name("google::protbuf::Int32Value");
+    name_ = "int32_t";
+    set_pb_name("google::protbuf::Int32Value");
   } else if (type->full_name() == pb::Int64Value::descriptor()->full_name()) {
-    type_model->set_name("int64_t");
-    type_model->set_pb_name("google::protbuf::Int64Value");
+    name_ = "int64_t";
+    set_pb_name("google::protbuf::Int64Value");
   } else if (type->full_name() == pb::UInt32Value::descriptor()->full_name()) {
-    type_model->set_name("uint32_t");
-    type_model->set_pb_name("google::protbuf::Uint32Value");
+    name_ = "uint32_t";
+    set_pb_name("google::protbuf::Uint32Value");
   } else if (type->full_name() == pb::UInt64Value::descriptor()->full_name()) {
-    type_model->set_name("uint64_t");
-    type_model->set_pb_name("google::protbuf::Uint64Value");
+    name_ = "uint64_t";
+    set_pb_name("google::protbuf::Uint64Value");
   } else if (type->full_name() == pb::StringValue::descriptor()->full_name()) {
-    type_model->set_name("std::string");
-    type_model->set_pb_name("google::protbuf::StringValue");
-    type_model->set_reference_type(true);
+    name_ = "std::string";
+    set_pb_name("google::protbuf::StringValue");
+    is_reference_type_ = true;
+  } else if (type->full_name() == nanorpc2::WideStringValue::descriptor()->full_name()) {
+    name_ = "std::wstring";
+    set_pb_name("nanorpc2::WideStringValue");
+    is_reference_type_ = true;
   } else if (type->options().HasExtension(nanorpc2::enum_wrapper) &&
              type->options().GetExtension(nanorpc2::enum_wrapper)) {
     // We expect exactly one field in the enum wrapper and this should be
@@ -53,12 +57,12 @@ bool CreateTypeModel(const pb::Descriptor *type, TypeModel *type_model) {
       return false;
     }
 
-    type_model->set_name(type->field(0)->enum_type()->name());
-    type_model->set_pb_name(type->field(0)->type_name());
+    name_ = type->field(0)->enum_type()->name();
+    pb_name_ = type->field(0)->type_name();
   } else {
-    type_model->set_name(type->name());
-    type_model->set_pb_name(type->name());
-    type_model->set_reference_type(true);
+    name_ = type->name();
+    pb_name_ = type->name();
+    is_reference_type_ = true;
   }
 
   return true;
@@ -70,7 +74,7 @@ bool MessageToArgumentList(const pb::Descriptor *message,
     ArgumentModel argument_model;
     const pb::FieldDescriptor *field = message->field(i);
     TypeModel type_model;
-    if (!CreateTypeModel(field->message_type(), &type_model))
+    if (!type_model.ParseFromDescriptor(field->message_type()))
       return false;
 
     argument_model.set_name(field->name());
@@ -89,7 +93,7 @@ bool CreateMethodModel(const pb::MethodDescriptor *method,
   method_model->set_name(method->name());
 
   TypeModel input_type_model;
-  if (!CreateTypeModel(input_type, &input_type_model))
+  if (!input_type_model.ParseFromDescriptor(input_type))
     return false;
 
   if (input_type->options().HasExtension(nanorpc2::expand_as_arguments) &&
@@ -107,7 +111,7 @@ bool CreateMethodModel(const pb::MethodDescriptor *method,
     }
   }
 
-  if (!CreateTypeModel(output_type, method_model->mutable_return_type()))
+  if (!method_model->mutable_return_type()->ParseFromDescriptor(output_type))
     return false;
 
   return true;
@@ -124,11 +128,11 @@ bool CreatePropertyModel(const pb::MethodDescriptor *method,
   if (setter) {
     ArgumentModel argument;
     argument.set_name("value");
-    if (!CreateTypeModel(type, argument.mutable_type()))
+    if (!argument.mutable_type()->ParseFromDescriptor(type))
       return false;
     method_model->mutable_arguments()->push_back(argument);
   } else {
-    if (!CreateTypeModel(type, method_model->mutable_return_type()))
+    if (!method_model->mutable_return_type()->ParseFromDescriptor(type))
       return false;
   }
 

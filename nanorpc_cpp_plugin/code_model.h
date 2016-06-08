@@ -11,6 +11,9 @@ namespace code_model {
 
 class TypeModel {
 public:
+  TypeModel(const google::protobuf::Descriptor &type) {
+    ParseFromDescriptor(&type);
+  }
   TypeModel() : is_reference_type_(false), is_void_(true) {}
 
   const std::string &name() const { return name_; }
@@ -26,6 +29,8 @@ public:
 
   bool is_void() const { return is_void_; }
   void set_void(bool is_void) { is_void_ = is_void; }
+
+  bool ParseFromDescriptor(const google::protobuf::Descriptor *type);
 
 private:
   std::string name_;
