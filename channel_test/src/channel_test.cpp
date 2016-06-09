@@ -3,18 +3,20 @@
 #include <sstream>
 #include <chrono>
 #include <iostream>
-#include "nano_rpc.hpp"
-#include "named_pipe_connector.h"
-#include "named_pipe_rpc_channel.h"
+
+#include "nanorpc/nano_rpc.hpp"
+#include "nanorpc/named_pipe_connector.h"
+#include "nanorpc/named_pipe_rpc_channel.h"
 
 #include <Windows.h>
 
 bool g_server_shutdown = false;
+bool g_client_finished = false;
+bool g_server_finished = false;
 
 void server_thread_proc() {
-  nanorpc2::NamedPipeRpcChannelBuilder cb(L"test-channel");
-  cb.set_client_side(false);
-  std::unique_ptr<nanorpc2::NamedPipeRpcChannel> ch(cb.Build());
+  nanorpc::NamedPipeChannel channel(L"test-channel");
+  std::unique_ptr<nanorpc::RpcChannel> ch(channel.BuildServerChannel());
   std::cout << "SERVER: Connecting..." << std::endl;
   if (ch->Connect())
     std::cout << "SERVER: Connected." << std::endl;
@@ -27,18 +29,22 @@ void server_thread_proc() {
       std::cout << "Received: " << buffer << std::endl;
     }
   }
+
+  std::cout << "SERVER: Exiting." << std::endl;
+  g_server_finished = true;
 }
 
 void client_thread_proc() {
-  nanorpc2::NamedPipeRpcChannelBuilder cb(L"test-channel");
-  cb.set_client_side(true);
-  std::unique_ptr<nanorpc2::NamedPipeRpcChannel> ch(cb.Build());
+  nanorpc::NamedPipeChannel cb(L"test-channel");
+  std::unique_ptr<nanorpc::RpcChannel> ch(cb.BuildClientChannel());
   std::cout << "CLIENT: Connecting..." << std::endl;
   if (ch->Connect())
     std::cout << "CLIENT: Connected." << std::endl;
 
+  const int kNumberOfRequests = 10;
+
   int i = 0;
-  while (!g_server_shutdown) {
+  while (!g_server_shutdown && (i++ < kNumberOfRequests)) {
     std::ostringstream s;
     s << "Ping " << i++ << std::endl;
     auto str = s.str();
@@ -46,24 +52,24 @@ void client_thread_proc() {
     Sleep(100);
   }
 
-  ch->Close();
+  std::cout << "CLIENT: Exiting." << std::endl;
+  g_client_finished = true;
 }
 
 int wmain(int argc, wchar_t *argv[]) {
-  std::cout << "Press 'q' to exit." << std::endl;
-
   std::thread server_thread(server_thread_proc);
   std::thread client_thread(client_thread_proc);
 
-  while (!g_server_shutdown) {
-    char c;
-    std::cin >> c;
-    if (c == 'q')
-      g_server_shutdown = true;
+  while (!g_server_shutdown && !g_client_finished && !g_server_finished) {
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
   }
 
-  server_thread.join();
+  g_server_shutdown = true;
+
+  std::cout << "MASTER: Exiting." << std::endl;
+
   client_thread.join();
+  server_thread.join();
 
   return 0;
 }

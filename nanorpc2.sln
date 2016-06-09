@@ -1,10 +1,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nanorpc", "nanorpc\nanorpc.vcxproj", "{C061F250-9028-4B06-805C-BD108AC4BB1A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nanorpc", "NanoRpc\nanorpc.vcxproj", "{C061F250-9028-4B06-805C-BD108AC4BB1A}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nanorpc_cpp_plugin", "nanorpc\nanorpc_cpp_plugin.vcxproj", "{B8D567EB-469C-47A8-AE56-53F8A304F5F7}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nanorpc_cpp_plugin", "NanoRpc\nanorpc_cpp_plugin.vcxproj", "{B8D567EB-469C-47A8-AE56-53F8A304F5F7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F4554791-D1BA-447D-BA47-0634FA9DD0DB}"
 	ProjectSection(SolutionItems) = preProject
@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "codegen_test", "codegen_test\codegen_test.vcxproj", "{1CFB086F-82A0-4B3A-88EF-2C2453E7BEAC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "channel_test", "channel_test\channel_test.vcxproj", "{03DCEC33-BD06-4137-840D-3FF5E0B9834E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,6 +48,14 @@ Global
 		{1CFB086F-82A0-4B3A-88EF-2C2453E7BEAC}.Release|Win32.Build.0 = Release|Win32
 		{1CFB086F-82A0-4B3A-88EF-2C2453E7BEAC}.Release|x64.ActiveCfg = Release|x64
 		{1CFB086F-82A0-4B3A-88EF-2C2453E7BEAC}.Release|x64.Build.0 = Release|x64
+		{03DCEC33-BD06-4137-840D-3FF5E0B9834E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{03DCEC33-BD06-4137-840D-3FF5E0B9834E}.Debug|Win32.Build.0 = Debug|Win32
+		{03DCEC33-BD06-4137-840D-3FF5E0B9834E}.Debug|x64.ActiveCfg = Debug|x64
+		{03DCEC33-BD06-4137-840D-3FF5E0B9834E}.Debug|x64.Build.0 = Debug|x64
+		{03DCEC33-BD06-4137-840D-3FF5E0B9834E}.Release|Win32.ActiveCfg = Release|Win32
+		{03DCEC33-BD06-4137-840D-3FF5E0B9834E}.Release|Win32.Build.0 = Release|Win32
+		{03DCEC33-BD06-4137-840D-3FF5E0B9834E}.Release|x64.ActiveCfg = Release|x64
+		{03DCEC33-BD06-4137-840D-3FF5E0B9834E}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
