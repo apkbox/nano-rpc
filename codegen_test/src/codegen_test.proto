@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 import "google/protobuf/wrappers.proto";
-import "rpc_proto/rpc_types.proto";
+import "nanorpc/rpc_types.proto";
 
 package code_gen_test;
 

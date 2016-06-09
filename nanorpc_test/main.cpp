@@ -3,28 +3,28 @@
 #include <sstream>
 #include <chrono>
 #include <iostream>
-#include "server_builder.h"
-#include "named_pipe_connector.h"
-#include "named_pipe_rpc_channel.h"
+#include "nanorpc/server_builder.h"
+#include "nanorpc/named_pipe_connector.h"
+#include "nanorpc/named_pipe_rpc_channel.h"
 
 #include <Windows.h>
 
 bool g_server_shutdown = false;
 
-class MyService : public nanorpc2::IRpcService {
+class MyService : public nanorpc::IRpcService {
 public:
-  void CallMethod(const nanorpc2::RpcCall &rpc_call, nanorpc2::RpcResult *rpc_result) override {
+  void CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcResult *rpc_result) override {
 
   }
 };
 
 void server_thread_proc() {
-  nanorpc2::NamedPipeChannel ch(L"test-channel");
-  nanorpc2::ServerBuilder sb;
+  nanorpc::NamedPipeChannel ch(L"test-channel");
+  nanorpc::ServerBuilder sb;
   sb.set_channel_builder(&ch);
   sb.RegisterService("MyService", new MyService());
 
-  std::unique_ptr<nanorpc2::RpcServer> server(sb.Build());
+  std::unique_ptr<nanorpc::RpcServer> server(sb.Build());
   std::cout << "SERVER: Connecting..." << std::endl;
   if (server->Start())
     std::cout << "SERVER: Connected." << std::endl;
@@ -32,9 +32,9 @@ void server_thread_proc() {
 
 void client_thread_proc() {
 #if 0
-  nanorpc2::NamedPipeRpcChannelBuilder cb(L"test-channel");
+  nanorpc::NamedPipeRpcChannelBuilder cb(L"test-channel");
   cb.set_client_side(true);
-  std::unique_ptr<nanorpc2::NamedPipeRpcChannel> ch(cb.Build());
+  std::unique_ptr<nanorpc::NamedPipeRpcChannel> ch(cb.Build());
   std::cout << "CLIENT: Connecting..." << std::endl;
   if (ch->Connect())
     std::cout << "CLIENT: Connected." << std::endl;

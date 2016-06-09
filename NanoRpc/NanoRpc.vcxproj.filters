@@ -16,107 +16,108 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".clang-format" />
+    <None Include="src\nanorpc\rpc_types.proto" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\async_callback.cpp">
+    <ClCompile Include="src\nanorpc\async_callback.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\buffer_pool.cpp">
+    <ClCompile Include="src\nanorpc\buffer_pool.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\named_pipe_connector.cpp">
+    <ClCompile Include="src\nanorpc\named_pipe_connector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\named_pipe_rpc_channel.cpp">
+    <ClCompile Include="src\nanorpc\named_pipe_rpc_channel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\rpc_event_service.cpp">
+    <ClCompile Include="src\nanorpc\rpc_event_service.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\rpc_server.cpp">
+    <ClCompile Include="src\nanorpc\rpc_server.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\string_conversion.cpp">
+    <ClCompile Include="src\nanorpc\string_conversion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\synchronization_primitives.cpp">
+    <ClCompile Include="src\nanorpc\synchronization_primitives.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\rpc_object_manager.cpp">
+    <ClCompile Include="src\nanorpc\rpc_object_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\server_builder.cpp">
+    <ClCompile Include="src\nanorpc\server_builder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\rpc_proto\rpc_types.pb.cc">
+    <ClCompile Include="src\nanorpc\rpc_types.pb.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\server_call_dispatcher.cpp">
+    <ClCompile Include="src\nanorpc\server_call_dispatcher.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\async_callback.hpp">
+    <ClInclude Include="src\nanorpc\async_callback.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\basictypes.hpp">
+    <ClInclude Include="src\nanorpc\basictypes.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\buffer_pool.hpp">
+    <ClInclude Include="src\nanorpc\buffer_pool.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\nano_rpc.hpp">
+    <ClInclude Include="src\nanorpc\nano_rpc.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\object_pool.hpp">
+    <ClInclude Include="src\nanorpc\object_pool.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\rpc_client.hpp">
+    <ClInclude Include="src\nanorpc\rpc_client.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\rpc_event_service.hpp">
+    <ClInclude Include="src\nanorpc\rpc_event_service.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\rpc_message_sender.hpp">
+    <ClInclude Include="src\nanorpc\rpc_message_sender.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\rpc_service.hpp">
+    <ClInclude Include="src\nanorpc\rpc_service.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\rpc_stub.hpp">
+    <ClInclude Include="src\nanorpc\rpc_stub.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\string_conversion.hpp">
+    <ClInclude Include="src\nanorpc\string_conversion.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\synchronization_primitives.hpp">
+    <ClInclude Include="src\nanorpc\synchronization_primitives.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\rpc_channel.h">
+    <ClInclude Include="src\nanorpc\rpc_channel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\callback.h">
+    <ClInclude Include="src\nanorpc\callback.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\named_pipe_rpc_channel.h">
+    <ClInclude Include="src\nanorpc\named_pipe_rpc_channel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\named_pipe_connector.h">
+    <ClInclude Include="src\nanorpc\named_pipe_connector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\rpc_server.h">
+    <ClInclude Include="src\nanorpc\rpc_server.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\rpc_object_manager.hpp">
+    <ClInclude Include="src\nanorpc\rpc_object_manager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\server_builder.h">
+    <ClInclude Include="src\nanorpc\server_builder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\rpc_proto\rpc_types.pb.h">
+    <ClInclude Include="src\nanorpc\rpc_types.pb.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\server_call_dispatcher.h">
+    <ClInclude Include="src\nanorpc\server_call_dispatcher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
