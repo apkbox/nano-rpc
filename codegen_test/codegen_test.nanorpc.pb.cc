@@ -3,20 +3,21 @@
 // source: codegen_test.proto
 
 #include "codegen_test.nanorpc.pb.h"
+#include "google/protobuf/wrappers.pb.h"
 
 namespace code_gen_test {
 
-const char *ITestServiceInteface::GetInterfaceName() const {
+const char *ITestServiceInteface_Stub::GetInterfaceName() const {
   return "code_gen_test.ITestServiceInteface";
 }
 
-void ITestServiceInteface::CallMethod(const nanorpc2::RpcCall &rpc_call, nanorpc2::RpcResult *rpc_result) {
+void ITestServiceInteface_Stub::CallMethod(const nanorpc2::RpcCall &rpc_call, nanorpc2::RpcResult *rpc_result) {
   if (rpc_call.method() == "Method_V_V") {
 
     impl_->Method_V_V();
 
   } else if (rpc_call.method() == "Method_V_b") {
-    google::protbuf::BoolValue in_arg__;
+    google::protobuf::BoolValue in_arg__;
 
     in_arg__.ParseFromString(rpc_call.call_data());
     bool value = in_arg__.value();
@@ -24,7 +25,7 @@ void ITestServiceInteface::CallMethod(const nanorpc2::RpcCall &rpc_call, nanorpc
     impl_->Method_V_b(value);
 
   } else if (rpc_call.method() == "Method_V_i") {
-    google::protbuf::Int32Value in_arg__;
+    google::protobuf::Int32Value in_arg__;
 
     in_arg__.ParseFromString(rpc_call.call_data());
     int32_t value = in_arg__.value();
@@ -32,7 +33,7 @@ void ITestServiceInteface::CallMethod(const nanorpc2::RpcCall &rpc_call, nanorpc
     impl_->Method_V_i(value);
 
   } else if (rpc_call.method() == "Method_V_u") {
-    google::protbuf::Uint32Value in_arg__;
+    google::protobuf::UInt32Value in_arg__;
 
     in_arg__.ParseFromString(rpc_call.call_data());
     uint32_t value = in_arg__.value();
@@ -48,7 +49,7 @@ void ITestServiceInteface::CallMethod(const nanorpc2::RpcCall &rpc_call, nanorpc
     impl_->Method_V_s(value);
 
   } else if (rpc_call.method() == "Method_V_I") {
-    google::protbuf::Int64Value in_arg__;
+    google::protobuf::Int64Value in_arg__;
 
     in_arg__.ParseFromString(rpc_call.call_data());
     int64_t value = in_arg__.value();
@@ -56,7 +57,7 @@ void ITestServiceInteface::CallMethod(const nanorpc2::RpcCall &rpc_call, nanorpc
     impl_->Method_V_I(value);
 
   } else if (rpc_call.method() == "Method_V_U") {
-    google::protbuf::Uint64Value in_arg__;
+    google::protobuf::UInt64Value in_arg__;
 
     in_arg__.ParseFromString(rpc_call.call_data());
     uint64_t value = in_arg__.value();
@@ -72,7 +73,7 @@ void ITestServiceInteface::CallMethod(const nanorpc2::RpcCall &rpc_call, nanorpc
     impl_->Method_V_S(value);
 
   } else if (rpc_call.method() == "Method_V_f") {
-    google::protbuf::FloatValue in_arg__;
+    google::protobuf::FloatValue in_arg__;
 
     in_arg__.ParseFromString(rpc_call.call_data());
     float value = in_arg__.value();
@@ -80,7 +81,7 @@ void ITestServiceInteface::CallMethod(const nanorpc2::RpcCall &rpc_call, nanorpc
     impl_->Method_V_f(value);
 
   } else if (rpc_call.method() == "Method_V_d") {
-    google::protbuf::DoubleValue in_arg__;
+    google::protobuf::DoubleValue in_arg__;
 
     in_arg__.ParseFromString(rpc_call.call_data());
     double value = in_arg__.value();
@@ -96,10 +97,10 @@ void ITestServiceInteface::CallMethod(const nanorpc2::RpcCall &rpc_call, nanorpc
     impl_->Method_V_E(value);
 
   } else if (rpc_call.method() == "Method_V_A") {
-    google::protbuf::StringValue in_arg__;
+    google::protobuf::StringValue in_arg__;
 
     in_arg__.ParseFromString(rpc_call.call_data());
-    std::string &value = in_arg__.value();
+    const std::string &value = in_arg__.value();
 
     impl_->Method_V_A(value);
 
@@ -107,7 +108,7 @@ void ITestServiceInteface::CallMethod(const nanorpc2::RpcCall &rpc_call, nanorpc
     nanorpc2::WideStringValue in_arg__;
 
     in_arg__.ParseFromString(rpc_call.call_data());
-    std::wstring &value = in_arg__.value();
+    const std::string &value = in_arg__.value();
 
     impl_->Method_V_W(value);
 
@@ -115,101 +116,112 @@ void ITestServiceInteface::CallMethod(const nanorpc2::RpcCall &rpc_call, nanorpc
     StructType in_arg__;
 
     in_arg__.ParseFromString(rpc_call.call_data());
-    StructType &value = in_arg;
+    const StructType &value = in_arg__;
 
     impl_->Method_V_M(value);
 
   } else if (rpc_call.method() == "Method_b_V") {
 
     bool out__;
+    google::protobuf::BoolValue out_pb__;
     out__ = impl_->Method_b_V();
 
     out_pb__.set_value(out__);
-    out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());
+    out_pb__.SerializeToString(rpc_result->mutable_result_data());
   } else if (rpc_call.method() == "Method_i_V") {
 
     int32_t out__;
+    google::protobuf::Int32Value out_pb__;
     out__ = impl_->Method_i_V();
 
     out_pb__.set_value(out__);
-    out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());
+    out_pb__.SerializeToString(rpc_result->mutable_result_data());
   } else if (rpc_call.method() == "Method_u_V") {
 
     uint32_t out__;
+    google::protobuf::UInt32Value out_pb__;
     out__ = impl_->Method_u_V();
 
     out_pb__.set_value(out__);
-    out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());
+    out_pb__.SerializeToString(rpc_result->mutable_result_data());
   } else if (rpc_call.method() == "Method_s_V") {
 
     int32_t out__;
+    nanorpc2::SInt32Value out_pb__;
     out__ = impl_->Method_s_V();
 
     out_pb__.set_value(out__);
-    out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());
+    out_pb__.SerializeToString(rpc_result->mutable_result_data());
   } else if (rpc_call.method() == "Method_I_V") {
 
     int64_t out__;
+    google::protobuf::Int64Value out_pb__;
     out__ = impl_->Method_I_V();
 
     out_pb__.set_value(out__);
-    out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());
+    out_pb__.SerializeToString(rpc_result->mutable_result_data());
   } else if (rpc_call.method() == "Method_U_V") {
 
     uint64_t out__;
+    google::protobuf::UInt64Value out_pb__;
     out__ = impl_->Method_U_V();
 
     out_pb__.set_value(out__);
-    out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());
+    out_pb__.SerializeToString(rpc_result->mutable_result_data());
   } else if (rpc_call.method() == "Method_S_V") {
 
     int64_t out__;
+    nanorpc2::SInt64Value out_pb__;
     out__ = impl_->Method_S_V();
 
     out_pb__.set_value(out__);
-    out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());
+    out_pb__.SerializeToString(rpc_result->mutable_result_data());
   } else if (rpc_call.method() == "Method_f_V") {
 
     float out__;
+    google::protobuf::FloatValue out_pb__;
     out__ = impl_->Method_f_V();
 
     out_pb__.set_value(out__);
-    out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());
+    out_pb__.SerializeToString(rpc_result->mutable_result_data());
   } else if (rpc_call.method() == "Method_d_V") {
 
     double out__;
+    google::protobuf::DoubleValue out_pb__;
     out__ = impl_->Method_d_V();
 
     out_pb__.set_value(out__);
-    out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());
+    out_pb__.SerializeToString(rpc_result->mutable_result_data());
   } else if (rpc_call.method() == "Method_E_V") {
 
     EnumType out__;
+    EnumType_wrapper__ out_pb__;
     out__ = impl_->Method_E_V();
 
     out_pb__.set_value(out__);
-    out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());
+    out_pb__.SerializeToString(rpc_result->mutable_result_data());
   } else if (rpc_call.method() == "Method_A_V") {
 
     std::string out__;
-    impl_->Method_A_V(, &out__);
+    google::protobuf::StringValue out_pb__;
+    impl_->Method_A_V(&out__);
 
     out_pb__.set_value(out__);
-    out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());
+    out_pb__.SerializeToString(rpc_result->mutable_result_data());
   } else if (rpc_call.method() == "Method_W_V") {
 
-    std::wstring out__;
-    impl_->Method_W_V(, &out__);
+    std::string out__;
+    nanorpc2::WideStringValue out_pb__;
+    impl_->Method_W_V(&out__);
 
     out_pb__.set_value(out__);
-    out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());
+    out_pb__.SerializeToString(rpc_result->mutable_result_data());
   } else if (rpc_call.method() == "Method_M_V") {
 
     StructType out__;
-    impl_->Method_M_V(, &out__);
+    impl_->Method_M_V(&out__);
 
-    out_pb__.set_value(out__);
-    out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());
+    out__.SerializeToString(rpc_result->mutable_result_data());
   } else if (rpc_call.method() == "Method_V_biuIUsSfdEAWM") {
     Method_V_biuIUsSfdEAWM_args__ args__;
     args__.ParseFromString(rpc_call.call_data());

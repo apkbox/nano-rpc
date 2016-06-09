@@ -254,6 +254,7 @@ std::string GetSourcePrologue(const pb::FileDescriptor *file) {
     printer.Print(vars, "// source: $filename$\n");
     printer.Print(vars, "\n");
     printer.Print(vars, "#include \"$filename_base$.nanorpc.pb.h\"\n");
+    printer.Print(vars, "#include \"google/protobuf/wrappers.pb.h\"\n");
     printer.Print(vars, "\n");
     /* clang-format on */
 
@@ -309,19 +310,23 @@ void GenerateStubMethodCallImplementation(pb::io::Printer &printer,
     printer.Print(vars, "$arg_type$ in_arg__;\n\n");
 
     vars["arg_type"] = method.arguments()[0].type().name();
+    vars["const"] = method.arguments()[0].type().is_reference_type() ? "const " : "";
     vars["ref"] = method.arguments()[0].type().is_reference_type() ? "&" : "";
     printer.Print(vars, "in_arg__.ParseFromString(rpc_call.call_data());\n");
     if (method.arguments()[0].type().is_struct())
-      printer.Print(vars, "$arg_type$ &$arg_name$ = in_arg;\n");
+      printer.Print(vars, "$const$$arg_type$ &$arg_name$ = in_arg__;\n");
     else
-      printer.Print(vars, "$arg_type$ $ref$value = in_arg__.value();\n");
+      printer.Print(vars, "$const$$arg_type$ $ref$value = in_arg__.value();\n");
   }
 
   printer.Print(vars, "\n");
 
   // Define return type variable
-  if (!method.return_type().is_void())
+  if (!method.return_type().is_void()) {
     printer.Print(vars, "$return_type$ out__;\n");
+    if (!method.return_type().is_struct())
+      printer.Print(vars, "$return_wrapper_name$ out_pb__;\n");
+  }
 
   // Return for value types
   if (!method.return_type().is_void() && !method.return_type().is_reference_type())
@@ -342,15 +347,23 @@ void GenerateStubMethodCallImplementation(pb::io::Printer &printer,
   }
 
   // Specify return by pointer argument (for reference types)
-  if (!method.return_type().is_void() && method.return_type().is_reference_type())
-    printer.Print(vars, ", &out__");
+  if (!method.return_type().is_void() && method.return_type().is_reference_type()) {
+    if (method.arguments().size()> 0)
+      printer.Print(vars, ", ");
+    printer.Print(vars, "&out__");
+  }
 
   printer.Print(vars, ");\n\n");
 
   // Define result wrapper variable, wrap and serialize the result
   if (!method.return_type().is_void()) {
-    printer.Print(vars, "out_pb__.set_value(out__);\n");
-    printer.Print(vars, "out_pb__.SerializeToString(rpc_result->mutable_call_result()->mutable_value());\n");
+    if (method.return_type().is_struct()) {
+      printer.Print(vars, "out__.SerializeToString(rpc_result->mutable_result_data());\n");
+    }
+    else{
+      printer.Print(vars, "out_pb__.set_value(out__);\n");
+      printer.Print(vars, "out_pb__.SerializeToString(rpc_result->mutable_result_data());\n");
+    }
   }
 }
 
@@ -393,13 +406,13 @@ std::string GetStubDefinitions(const pb::FileDescriptor *file, const std::vector
       vars["service_full_name"] = service.full_name();
 
       // clang-format off
-      printer.Print(vars, "const char *$service_name$::GetInterfaceName() const {\n");
+      printer.Print(vars, "const char *$service_name$_Stub::GetInterfaceName() const {\n");
       printer.Indent();
       printer.Print(vars, "return \"$service_full_name$\";\n");
       printer.Outdent();
       printer.Print(vars, "}\n\n");
 
-      printer.Print(vars, "void $service_name$::CallMethod(const nanorpc2::RpcCall &rpc_call, nanorpc2::RpcResult *rpc_result) {\n");
+      printer.Print(vars, "void $service_name$_Stub::CallMethod(const nanorpc2::RpcCall &rpc_call, nanorpc2::RpcResult *rpc_result) {\n");
       GenerateStubImplementation(printer, service);
       printer.Print(vars, "}\n\n");
       // clang-format on

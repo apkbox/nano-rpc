@@ -26,7 +26,7 @@ public:
   virtual void Method_V_d(double value) = 0;
   virtual void Method_V_E(EnumType value) = 0;
   virtual void Method_V_A(const std::string &value) = 0;
-  virtual void Method_V_W(const std::wstring &value) = 0;
+  virtual void Method_V_W(const std::string &value) = 0;
   virtual void Method_V_M(const StructType &value) = 0;
   virtual bool Method_b_V() = 0;
   virtual int32_t Method_i_V() = 0;
@@ -39,7 +39,7 @@ public:
   virtual double Method_d_V() = 0;
   virtual EnumType Method_E_V() = 0;
   virtual void Method_A_V(std::string *out__) = 0;
-  virtual void Method_W_V(std::wstring *out__) = 0;
+  virtual void Method_W_V(std::string *out__) = 0;
   virtual void Method_M_V(StructType *out__) = 0;
   virtual void Method_V_biuIUsSfdEAWM(bool bool_value, int32_t int32_value, uint32_t uint32_value, int64_t int64_value, uint64_t uint64_value, int32_t sint32_value, int64_t sint64_value, float float_value, double double_value, EnumType enum_value, const std::string &string_value, const std::string &wstring_value, const StructType &struct_value) = 0;
   virtual void AsyncMethod_V_V() = 0;

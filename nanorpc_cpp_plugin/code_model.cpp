@@ -25,22 +25,22 @@ bool TypeModel::ParseFromDescriptor(const pb::Descriptor *type) {
     is_void_ = true;
   } else if (type->full_name() == pb::BoolValue::descriptor()->full_name()) {
     name_ = "bool";
-    wrapper_name_ = "google::protbuf::BoolValue";
+    wrapper_name_ = "google::protobuf::BoolValue";
   } else if (type->full_name() == pb::Int32Value::descriptor()->full_name()) {
     name_ = "int32_t";
-    wrapper_name_ = "google::protbuf::Int32Value";
+    wrapper_name_ = "google::protobuf::Int32Value";
   } else if (type->full_name() == pb::Int64Value::descriptor()->full_name()) {
     name_ = "int64_t";
-    wrapper_name_ = "google::protbuf::Int64Value";
+    wrapper_name_ = "google::protobuf::Int64Value";
   } else if (type->full_name() == pb::UInt32Value::descriptor()->full_name()) {
     name_ = "uint32_t";
-    wrapper_name_ = "google::protbuf::Uint32Value";
+    wrapper_name_ = "google::protobuf::UInt32Value";
   } else if (type->full_name() == pb::UInt64Value::descriptor()->full_name()) {
     name_ = "uint64_t";
-    wrapper_name_ = "google::protbuf::Uint64Value";
+    wrapper_name_ = "google::protobuf::UInt64Value";
   } else if (type->full_name() == pb::StringValue::descriptor()->full_name()) {
     name_ = "std::string";
-    wrapper_name_ = "google::protbuf::StringValue";
+    wrapper_name_ = "google::protobuf::StringValue";
     is_reference_type_ = true;
   } else if (type->full_name() == nanorpc2::SInt32Value::descriptor()->full_name()) {
     name_ = "int32_t";
@@ -50,12 +50,12 @@ bool TypeModel::ParseFromDescriptor(const pb::Descriptor *type) {
     wrapper_name_ = "nanorpc2::SInt64Value";
   } else if (type->full_name() == pb::FloatValue::descriptor()->full_name()) {
     name_ = "float";
-    wrapper_name_ = "google::protbuf::FloatValue";
+    wrapper_name_ = "google::protobuf::FloatValue";
   } else if (type->full_name() == pb::DoubleValue::descriptor()->full_name()) {
     name_ = "double";
-    wrapper_name_ = "google::protbuf::DoubleValue";
+    wrapper_name_ = "google::protobuf::DoubleValue";
   } else if (type->full_name() == nanorpc2::WideStringValue::descriptor()->full_name()) {
-    name_ = "std::wstring";
+    name_ = "std::string";    // TODO: Needs to be std::wstring when support is there.
     wrapper_name_ = "nanorpc2::WideStringValue";
     is_reference_type_ = true;
   } else if (type->options().HasExtension(nanorpc2::enum_wrapper) &&
@@ -87,17 +87,17 @@ bool TypeModel::ParseFromFieldDescriptor(const pb::FieldDescriptor *field) {
   switch (field->type()) {
     case pb::FieldDescriptor::TYPE_BOOL:
       name_ = "bool";
-      wrapper_name_ = "google::protbuf::BoolValue";
+      wrapper_name_ = "google::protobuf::BoolValue";
       break;
 
     case pb::FieldDescriptor::TYPE_INT32:
       name_ = "int32_t";
-      wrapper_name_ = "google::protbuf::Int32Value";
+      wrapper_name_ = "google::protobuf::Int32Value";
       break;
 
     case pb::FieldDescriptor::TYPE_UINT32:
       name_ = "uint32_t";
-      wrapper_name_ = "google::protbuf::UInt32Value";
+      wrapper_name_ = "google::protobuf::UInt32Value";
       break;
 
     case pb::FieldDescriptor::TYPE_SINT32:
@@ -112,38 +112,38 @@ bool TypeModel::ParseFromFieldDescriptor(const pb::FieldDescriptor *field) {
 
     case pb::FieldDescriptor::TYPE_INT64:
       name_ = "int64_t";
-      wrapper_name_ = "google::protbuf::Int64Value";
+      wrapper_name_ = "google::protobuf::Int64Value";
       break;
 
     case pb::FieldDescriptor::TYPE_UINT64:
       name_ = "uint64_t";
-      wrapper_name_ = "google::protbuf::UInt64Value";
+      wrapper_name_ = "google::protobuf::UInt64Value";
       break;
 
     case pb::FieldDescriptor::TYPE_DOUBLE:
       name_ = "double";
-      wrapper_name_ = "google::protbuf::DoubleValue";
+      wrapper_name_ = "google::protobuf::DoubleValue";
       break;
 
     case pb::FieldDescriptor::TYPE_FLOAT:
       name_ = "float";
-      wrapper_name_ = "google::protbuf::FloatValue";
+      wrapper_name_ = "google::protobuf::FloatValue";
       break;
 
     case pb::FieldDescriptor::TYPE_FIXED64:
       name_ = "uint64_t";
-      wrapper_name_ = "google::protbuf::Fixed64Value";
+      wrapper_name_ = "google::protobuf::Fixed64Value";
       break;
 
     case pb::FieldDescriptor::TYPE_FIXED32:
       name_ = "uint32_t";
-      wrapper_name_ = "google::protbuf::Fixed32Value";
+      wrapper_name_ = "google::protobuf::Fixed32Value";
       break;
 
     case pb::FieldDescriptor::TYPE_STRING:
       // TODO: Check wide string attribute
       name_ = "std::string";
-      wrapper_name_ = "google::protbuf::StringValue";
+      wrapper_name_ = "google::protobuf::StringValue";
       is_reference_type_ = true;
       break;
 
