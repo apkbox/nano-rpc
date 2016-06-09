@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+import "nanorpc/rpc_types.proto";
+
+package hello_world;
+
+enum DrinkType {
+	NoDrink = 0;
+	Coffee = 1;
+	Tea = 2;
+	Water = 3;
+	Juice = 4;
+}
+
+enum ReadingType {
+	NoReading = 0;
+	Newspaper = 1;
+	Magazine = 2;
+}
+
+message OrderRequest {
+	option (nanorpc.expand_as_arguments) = true;
+	DrinkType drink = 2;
+	ReadingType reading = 3;
+}
+
+message DrinkType_wrapper__ {
+	option (nanorpc.enum_wrapper) = true;
+	DrinkType value = 1;
+}
+
+message ReadingType_wrapper__ {
+	option (nanorpc.enum_wrapper) = true;
+	ReadingType value = 1;
+}
+
+service OrderDesk {
+	rpc CreateOrder (OrderRequest) returns (google.protobuf.Int32Value);
+	rpc IsOrderReady (google.protobuf.Int32Value) returns (google.protobuf.BoolValue);
+
+	rpc GetDrink (google.protobuf.Int32Value) returns (DrinkType_wrapper__);
+	rpc GetReading (google.protobuf.Int32Value) returns (ReadingType_wrapper__);
+}

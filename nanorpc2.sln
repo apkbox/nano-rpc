@@ -16,6 +16,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "codegen_test", "codegen_tes
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "channel_test", "channel_test\channel_test.vcxproj", "{03DCEC33-BD06-4137-840D-3FF5E0B9834E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hello_world", "hello_world\hello_world.vcxproj", "{C771EE50-929A-46CD-BD06-4C79556ADF3D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -56,6 +58,14 @@ Global
 		{03DCEC33-BD06-4137-840D-3FF5E0B9834E}.Release|Win32.Build.0 = Release|Win32
 		{03DCEC33-BD06-4137-840D-3FF5E0B9834E}.Release|x64.ActiveCfg = Release|x64
 		{03DCEC33-BD06-4137-840D-3FF5E0B9834E}.Release|x64.Build.0 = Release|x64
+		{C771EE50-929A-46CD-BD06-4C79556ADF3D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C771EE50-929A-46CD-BD06-4C79556ADF3D}.Debug|Win32.Build.0 = Debug|Win32
+		{C771EE50-929A-46CD-BD06-4C79556ADF3D}.Debug|x64.ActiveCfg = Debug|x64
+		{C771EE50-929A-46CD-BD06-4C79556ADF3D}.Debug|x64.Build.0 = Debug|x64
+		{C771EE50-929A-46CD-BD06-4C79556ADF3D}.Release|Win32.ActiveCfg = Release|Win32
+		{C771EE50-929A-46CD-BD06-4C79556ADF3D}.Release|Win32.Build.0 = Release|Win32
+		{C771EE50-929A-46CD-BD06-4C79556ADF3D}.Release|x64.ActiveCfg = Release|x64
+		{C771EE50-929A-46CD-BD06-4C79556ADF3D}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
