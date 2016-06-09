@@ -3,7 +3,7 @@ syntax = "proto3";
 import "google/protobuf/wrappers.proto";
 import "nanorpc/rpc_types.proto";
 
-package code_gen_test;
+package codegen_test;
 
 enum EnumType {
 	EnumValue0 = 0;
@@ -64,7 +64,7 @@ message Method_V_biuIUsSfdEAWM_args__ {
 	StructType struct_value = 13;
 }
 
-service ITestServiceInteface {
+service TestServiceInteface {
 //	rpc BoolValue(google.protobuf.BoolValue) returns (google.protobuf.BoolValue) {
 //		option (nanorpc.is_property) = true;
 //	}

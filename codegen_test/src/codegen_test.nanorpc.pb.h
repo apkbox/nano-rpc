@@ -5,14 +5,15 @@
 #define NANORPC_codegen_5ftest_2eproto__INCLUDED
 
 #include "codegen_test.pb.h"
+#include "nanorpc/rpc_client.hpp"
 #include "nanorpc/rpc_stub.hpp"
 #include "nanorpc/rpc_object_manager.hpp"
 
-namespace code_gen_test {
+namespace codegen_test {
 
-class ITestServiceInteface {
+class TestServiceInteface {
 public:
-  virtual ~ITestServiceInteface() {}
+  virtual ~TestServiceInteface() {}
 
   virtual void Method_V_V() = 0;
   virtual void Method_V_b(bool value) = 0;
@@ -45,9 +46,9 @@ public:
   virtual void AsyncMethod_V_V() = 0;
 };
 
-class ITestServiceInteface_Stub : public nanorpc::IRpcStub {
+class TestServiceInteface_Stub : public nanorpc::IRpcStub {
 public:
-  explicit ITestServiceInteface_Stub(nanorpc::IRpcObjectManager* object_manager, ITestServiceInteface* impl)
+  explicit TestServiceInteface_Stub(nanorpc::IRpcObjectManager* object_manager, TestServiceInteface* impl)
       : object_manager_(object_manager), impl_(impl) {}
 
   const char *GetInterfaceName() const;
@@ -55,10 +56,52 @@ public:
 
 private:
   nanorpc::IRpcObjectManager* object_manager_;
-  ITestServiceInteface* impl_;
+  TestServiceInteface* impl_;
 };
 
-}  // namespace code_gen_test
+class TestServiceInteface_Proxy : public TestServiceInteface {
+public:
+  explicit TestServiceInteface_Proxy(nanorpc::IRpcClient *client, nanorpc::RpcObjectId object_id = 0)
+      : client_(client), object_id_(object_id) {}
+
+  virtual ~TestServiceInteface_Proxy();
+
+  void Method_V_V() override;
+  void Method_V_b(bool value) override;
+  void Method_V_i(int32_t value) override;
+  void Method_V_u(uint32_t value) override;
+  void Method_V_s(int32_t value) override;
+  void Method_V_I(int64_t value) override;
+  void Method_V_U(uint64_t value) override;
+  void Method_V_S(int64_t value) override;
+  void Method_V_f(float value) override;
+  void Method_V_d(double value) override;
+  void Method_V_E(EnumType value) override;
+  void Method_V_A(const std::string &value) override;
+  void Method_V_W(const std::string &value) override;
+  void Method_V_M(const StructType &value) override;
+  bool Method_b_V() override;
+  int32_t Method_i_V() override;
+  uint32_t Method_u_V() override;
+  int32_t Method_s_V() override;
+  int64_t Method_I_V() override;
+  uint64_t Method_U_V() override;
+  int64_t Method_S_V() override;
+  float Method_f_V() override;
+  double Method_d_V() override;
+  EnumType Method_E_V() override;
+  void Method_A_V(std::string *out__) override;
+  void Method_W_V(std::string *out__) override;
+  void Method_M_V(StructType *out__) override;
+  void Method_V_biuIUsSfdEAWM(bool bool_value, int32_t int32_value, uint32_t uint32_value, int64_t int64_value, uint64_t uint64_value, int32_t sint32_value, int64_t sint64_value, float float_value, double double_value, EnumType enum_value, const std::string &string_value, const std::string &wstring_value, const StructType &struct_value) override;
+  void AsyncMethod_V_V() override;
+
+private:
+  nanorpc::IRpcClient *client_;
+  nanorpc::RpcObjectId object_id_;
+};
+
+}  // namespace codegen_test
 
 
 #endif  // NANORPC_codegen_5ftest_2eproto__INCLUDED

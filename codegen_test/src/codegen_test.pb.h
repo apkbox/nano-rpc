@@ -32,7 +32,7 @@
 #include "nanorpc/rpc_types.pb.h"
 // @@protoc_insertion_point(includes)
 
-namespace code_gen_test {
+namespace codegen_test {
 
 // Internal implementation detail -- do not call these.
 void protobuf_AddDesc_codegen_5ftest_2eproto();
@@ -179,11 +179,11 @@ class StructType : public ::google::protobuf::Message {
   double double_value() const;
   void set_double_value(double value);
 
-  // optional .code_gen_test.EnumType enum_value = 10;
+  // optional .codegen_test.EnumType enum_value = 10;
   void clear_enum_value();
   static const int kEnumValueFieldNumber = 10;
-  ::code_gen_test::EnumType enum_value() const;
-  void set_enum_value(::code_gen_test::EnumType value);
+  ::codegen_test::EnumType enum_value() const;
+  void set_enum_value(::codegen_test::EnumType value);
 
   // optional string string_value = 11;
   void clear_string_value();
@@ -207,7 +207,7 @@ class StructType : public ::google::protobuf::Message {
   ::std::string* release_wstring_value();
   void set_allocated_wstring_value(::std::string* wstring_value);
 
-  // @@protoc_insertion_point(class_scope:code_gen_test.StructType)
+  // @@protoc_insertion_point(class_scope:codegen_test.StructType)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
@@ -290,13 +290,13 @@ class EnumType_wrapper__ : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // optional .code_gen_test.EnumType value = 1;
+  // optional .codegen_test.EnumType value = 1;
   void clear_value();
   static const int kValueFieldNumber = 1;
-  ::code_gen_test::EnumType value() const;
-  void set_value(::code_gen_test::EnumType value);
+  ::codegen_test::EnumType value() const;
+  void set_value(::codegen_test::EnumType value);
 
-  // @@protoc_insertion_point(class_scope:code_gen_test.EnumType_wrapper__)
+  // @@protoc_insertion_point(class_scope:codegen_test.EnumType_wrapper__)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
@@ -422,11 +422,11 @@ class Method_V_biuIUsSfdEAWM_args__ : public ::google::protobuf::Message {
   double double_value() const;
   void set_double_value(double value);
 
-  // optional .code_gen_test.EnumType enum_value = 10;
+  // optional .codegen_test.EnumType enum_value = 10;
   void clear_enum_value();
   static const int kEnumValueFieldNumber = 10;
-  ::code_gen_test::EnumType enum_value() const;
-  void set_enum_value(::code_gen_test::EnumType value);
+  ::codegen_test::EnumType enum_value() const;
+  void set_enum_value(::codegen_test::EnumType value);
 
   // optional string string_value = 11;
   void clear_string_value();
@@ -450,16 +450,16 @@ class Method_V_biuIUsSfdEAWM_args__ : public ::google::protobuf::Message {
   ::std::string* release_wstring_value();
   void set_allocated_wstring_value(::std::string* wstring_value);
 
-  // optional .code_gen_test.StructType struct_value = 13;
+  // optional .codegen_test.StructType struct_value = 13;
   bool has_struct_value() const;
   void clear_struct_value();
   static const int kStructValueFieldNumber = 13;
-  const ::code_gen_test::StructType& struct_value() const;
-  ::code_gen_test::StructType* mutable_struct_value();
-  ::code_gen_test::StructType* release_struct_value();
-  void set_allocated_struct_value(::code_gen_test::StructType* struct_value);
+  const ::codegen_test::StructType& struct_value() const;
+  ::codegen_test::StructType* mutable_struct_value();
+  ::codegen_test::StructType* release_struct_value();
+  void set_allocated_struct_value(::codegen_test::StructType* struct_value);
 
-  // @@protoc_insertion_point(class_scope:code_gen_test.Method_V_biuIUsSfdEAWM_args__)
+  // @@protoc_insertion_point(class_scope:codegen_test.Method_V_biuIUsSfdEAWM_args__)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
@@ -476,7 +476,7 @@ class Method_V_biuIUsSfdEAWM_args__ : public ::google::protobuf::Message {
   int enum_value_;
   ::google::protobuf::internal::ArenaStringPtr string_value_;
   ::google::protobuf::internal::ArenaStringPtr wstring_value_;
-  ::code_gen_test::StructType* struct_value_;
+  ::codegen_test::StructType* struct_value_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_codegen_5ftest_2eproto();
   friend void protobuf_AssignDesc_codegen_5ftest_2eproto();
@@ -498,13 +498,13 @@ inline void StructType::clear_bool_value() {
   bool_value_ = false;
 }
 inline bool StructType::bool_value() const {
-  // @@protoc_insertion_point(field_get:code_gen_test.StructType.bool_value)
+  // @@protoc_insertion_point(field_get:codegen_test.StructType.bool_value)
   return bool_value_;
 }
 inline void StructType::set_bool_value(bool value) {
   
   bool_value_ = value;
-  // @@protoc_insertion_point(field_set:code_gen_test.StructType.bool_value)
+  // @@protoc_insertion_point(field_set:codegen_test.StructType.bool_value)
 }
 
 // optional int32 int32_value = 2;
@@ -512,13 +512,13 @@ inline void StructType::clear_int32_value() {
   int32_value_ = 0;
 }
 inline ::google::protobuf::int32 StructType::int32_value() const {
-  // @@protoc_insertion_point(field_get:code_gen_test.StructType.int32_value)
+  // @@protoc_insertion_point(field_get:codegen_test.StructType.int32_value)
   return int32_value_;
 }
 inline void StructType::set_int32_value(::google::protobuf::int32 value) {
   
   int32_value_ = value;
-  // @@protoc_insertion_point(field_set:code_gen_test.StructType.int32_value)
+  // @@protoc_insertion_point(field_set:codegen_test.StructType.int32_value)
 }
 
 // optional uint32 uint32_value = 3;
@@ -526,13 +526,13 @@ inline void StructType::clear_uint32_value() {
   uint32_value_ = 0u;
 }
 inline ::google::protobuf::uint32 StructType::uint32_value() const {
-  // @@protoc_insertion_point(field_get:code_gen_test.StructType.uint32_value)
+  // @@protoc_insertion_point(field_get:codegen_test.StructType.uint32_value)
   return uint32_value_;
 }
 inline void StructType::set_uint32_value(::google::protobuf::uint32 value) {
   
   uint32_value_ = value;
-  // @@protoc_insertion_point(field_set:code_gen_test.StructType.uint32_value)
+  // @@protoc_insertion_point(field_set:codegen_test.StructType.uint32_value)
 }
 
 // optional int64 int64_value = 4;
@@ -540,13 +540,13 @@ inline void StructType::clear_int64_value() {
   int64_value_ = GOOGLE_LONGLONG(0);
 }
 inline ::google::protobuf::int64 StructType::int64_value() const {
-  // @@protoc_insertion_point(field_get:code_gen_test.StructType.int64_value)
+  // @@protoc_insertion_point(field_get:codegen_test.StructType.int64_value)
   return int64_value_;
 }
 inline void StructType::set_int64_value(::google::protobuf::int64 value) {
   
   int64_value_ = value;
-  // @@protoc_insertion_point(field_set:code_gen_test.StructType.int64_value)
+  // @@protoc_insertion_point(field_set:codegen_test.StructType.int64_value)
 }
 
 // optional uint64 uint64_value = 5;
@@ -554,13 +554,13 @@ inline void StructType::clear_uint64_value() {
   uint64_value_ = GOOGLE_ULONGLONG(0);
 }
 inline ::google::protobuf::uint64 StructType::uint64_value() const {
-  // @@protoc_insertion_point(field_get:code_gen_test.StructType.uint64_value)
+  // @@protoc_insertion_point(field_get:codegen_test.StructType.uint64_value)
   return uint64_value_;
 }
 inline void StructType::set_uint64_value(::google::protobuf::uint64 value) {
   
   uint64_value_ = value;
-  // @@protoc_insertion_point(field_set:code_gen_test.StructType.uint64_value)
+  // @@protoc_insertion_point(field_set:codegen_test.StructType.uint64_value)
 }
 
 // optional sint32 sint32_value = 6;
@@ -568,13 +568,13 @@ inline void StructType::clear_sint32_value() {
   sint32_value_ = 0;
 }
 inline ::google::protobuf::int32 StructType::sint32_value() const {
-  // @@protoc_insertion_point(field_get:code_gen_test.StructType.sint32_value)
+  // @@protoc_insertion_point(field_get:codegen_test.StructType.sint32_value)
   return sint32_value_;
 }
 inline void StructType::set_sint32_value(::google::protobuf::int32 value) {
   
   sint32_value_ = value;
-  // @@protoc_insertion_point(field_set:code_gen_test.StructType.sint32_value)
+  // @@protoc_insertion_point(field_set:codegen_test.StructType.sint32_value)
 }
 
 // optional sint64 sint64_value = 7;
@@ -582,13 +582,13 @@ inline void StructType::clear_sint64_value() {
   sint64_value_ = GOOGLE_LONGLONG(0);
 }
 inline ::google::protobuf::int64 StructType::sint64_value() const {
-  // @@protoc_insertion_point(field_get:code_gen_test.StructType.sint64_value)
+  // @@protoc_insertion_point(field_get:codegen_test.StructType.sint64_value)
   return sint64_value_;
 }
 inline void StructType::set_sint64_value(::google::protobuf::int64 value) {
   
   sint64_value_ = value;
-  // @@protoc_insertion_point(field_set:code_gen_test.StructType.sint64_value)
+  // @@protoc_insertion_point(field_set:codegen_test.StructType.sint64_value)
 }
 
 // optional float float_value = 8;
@@ -596,13 +596,13 @@ inline void StructType::clear_float_value() {
   float_value_ = 0;
 }
 inline float StructType::float_value() const {
-  // @@protoc_insertion_point(field_get:code_gen_test.StructType.float_value)
+  // @@protoc_insertion_point(field_get:codegen_test.StructType.float_value)
   return float_value_;
 }
 inline void StructType::set_float_value(float value) {
   
   float_value_ = value;
-  // @@protoc_insertion_point(field_set:code_gen_test.StructType.float_value)
+  // @@protoc_insertion_point(field_set:codegen_test.StructType.float_value)
 }
 
 // optional double double_value = 9;
@@ -610,27 +610,27 @@ inline void StructType::clear_double_value() {
   double_value_ = 0;
 }
 inline double StructType::double_value() const {
-  // @@protoc_insertion_point(field_get:code_gen_test.StructType.double_value)
+  // @@protoc_insertion_point(field_get:codegen_test.StructType.double_value)
   return double_value_;
 }
 inline void StructType::set_double_value(double value) {
   
   double_value_ = value;
-  // @@protoc_insertion_point(field_set:code_gen_test.StructType.double_value)
+  // @@protoc_insertion_point(field_set:codegen_test.StructType.double_value)
 }
 
-// optional .code_gen_test.EnumType enum_value = 10;
+// optional .codegen_test.EnumType enum_value = 10;
 inline void StructType::clear_enum_value() {
   enum_value_ = 0;
 }
-inline ::code_gen_test::EnumType StructType::enum_value() const {
-  // @@protoc_insertion_point(field_get:code_gen_test.StructType.enum_value)
-  return static_cast< ::code_gen_test::EnumType >(enum_value_);
+inline ::codegen_test::EnumType StructType::enum_value() const {
+  // @@protoc_insertion_point(field_get:codegen_test.StructType.enum_value)
+  return static_cast< ::codegen_test::EnumType >(enum_value_);
 }
-inline void StructType::set_enum_value(::code_gen_test::EnumType value) {
+inline void StructType::set_enum_value(::codegen_test::EnumType value) {
   
   enum_value_ = value;
-  // @@protoc_insertion_point(field_set:code_gen_test.StructType.enum_value)
+  // @@protoc_insertion_point(field_set:codegen_test.StructType.enum_value)
 }
 
 // optional string string_value = 11;
@@ -638,32 +638,32 @@ inline void StructType::clear_string_value() {
   string_value_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline const ::std::string& StructType::string_value() const {
-  // @@protoc_insertion_point(field_get:code_gen_test.StructType.string_value)
+  // @@protoc_insertion_point(field_get:codegen_test.StructType.string_value)
   return string_value_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void StructType::set_string_value(const ::std::string& value) {
   
   string_value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:code_gen_test.StructType.string_value)
+  // @@protoc_insertion_point(field_set:codegen_test.StructType.string_value)
 }
 inline void StructType::set_string_value(const char* value) {
   
   string_value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:code_gen_test.StructType.string_value)
+  // @@protoc_insertion_point(field_set_char:codegen_test.StructType.string_value)
 }
 inline void StructType::set_string_value(const char* value, size_t size) {
   
   string_value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:code_gen_test.StructType.string_value)
+  // @@protoc_insertion_point(field_set_pointer:codegen_test.StructType.string_value)
 }
 inline ::std::string* StructType::mutable_string_value() {
   
-  // @@protoc_insertion_point(field_mutable:code_gen_test.StructType.string_value)
+  // @@protoc_insertion_point(field_mutable:codegen_test.StructType.string_value)
   return string_value_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* StructType::release_string_value() {
-  // @@protoc_insertion_point(field_release:code_gen_test.StructType.string_value)
+  // @@protoc_insertion_point(field_release:codegen_test.StructType.string_value)
   
   return string_value_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -674,7 +674,7 @@ inline void StructType::set_allocated_string_value(::std::string* string_value) 
     
   }
   string_value_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), string_value);
-  // @@protoc_insertion_point(field_set_allocated:code_gen_test.StructType.string_value)
+  // @@protoc_insertion_point(field_set_allocated:codegen_test.StructType.string_value)
 }
 
 // optional string wstring_value = 12;
@@ -682,32 +682,32 @@ inline void StructType::clear_wstring_value() {
   wstring_value_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline const ::std::string& StructType::wstring_value() const {
-  // @@protoc_insertion_point(field_get:code_gen_test.StructType.wstring_value)
+  // @@protoc_insertion_point(field_get:codegen_test.StructType.wstring_value)
   return wstring_value_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void StructType::set_wstring_value(const ::std::string& value) {
   
   wstring_value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:code_gen_test.StructType.wstring_value)
+  // @@protoc_insertion_point(field_set:codegen_test.StructType.wstring_value)
 }
 inline void StructType::set_wstring_value(const char* value) {
   
   wstring_value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:code_gen_test.StructType.wstring_value)
+  // @@protoc_insertion_point(field_set_char:codegen_test.StructType.wstring_value)
 }
 inline void StructType::set_wstring_value(const char* value, size_t size) {
   
   wstring_value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:code_gen_test.StructType.wstring_value)
+  // @@protoc_insertion_point(field_set_pointer:codegen_test.StructType.wstring_value)
 }
 inline ::std::string* StructType::mutable_wstring_value() {
   
-  // @@protoc_insertion_point(field_mutable:code_gen_test.StructType.wstring_value)
+  // @@protoc_insertion_point(field_mutable:codegen_test.StructType.wstring_value)
   return wstring_value_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* StructType::release_wstring_value() {
-  // @@protoc_insertion_point(field_release:code_gen_test.StructType.wstring_value)
+  // @@protoc_insertion_point(field_release:codegen_test.StructType.wstring_value)
   
   return wstring_value_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -718,25 +718,25 @@ inline void StructType::set_allocated_wstring_value(::std::string* wstring_value
     
   }
   wstring_value_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), wstring_value);
-  // @@protoc_insertion_point(field_set_allocated:code_gen_test.StructType.wstring_value)
+  // @@protoc_insertion_point(field_set_allocated:codegen_test.StructType.wstring_value)
 }
 
 // -------------------------------------------------------------------
 
 // EnumType_wrapper__
 
-// optional .code_gen_test.EnumType value = 1;
+// optional .codegen_test.EnumType value = 1;
 inline void EnumType_wrapper__::clear_value() {
   value_ = 0;
 }
-inline ::code_gen_test::EnumType EnumType_wrapper__::value() const {
-  // @@protoc_insertion_point(field_get:code_gen_test.EnumType_wrapper__.value)
-  return static_cast< ::code_gen_test::EnumType >(value_);
+inline ::codegen_test::EnumType EnumType_wrapper__::value() const {
+  // @@protoc_insertion_point(field_get:codegen_test.EnumType_wrapper__.value)
+  return static_cast< ::codegen_test::EnumType >(value_);
 }
-inline void EnumType_wrapper__::set_value(::code_gen_test::EnumType value) {
+inline void EnumType_wrapper__::set_value(::codegen_test::EnumType value) {
   
   value_ = value;
-  // @@protoc_insertion_point(field_set:code_gen_test.EnumType_wrapper__.value)
+  // @@protoc_insertion_point(field_set:codegen_test.EnumType_wrapper__.value)
 }
 
 // -------------------------------------------------------------------
@@ -748,13 +748,13 @@ inline void Method_V_biuIUsSfdEAWM_args__::clear_bool_value() {
   bool_value_ = false;
 }
 inline bool Method_V_biuIUsSfdEAWM_args__::bool_value() const {
-  // @@protoc_insertion_point(field_get:code_gen_test.Method_V_biuIUsSfdEAWM_args__.bool_value)
+  // @@protoc_insertion_point(field_get:codegen_test.Method_V_biuIUsSfdEAWM_args__.bool_value)
   return bool_value_;
 }
 inline void Method_V_biuIUsSfdEAWM_args__::set_bool_value(bool value) {
   
   bool_value_ = value;
-  // @@protoc_insertion_point(field_set:code_gen_test.Method_V_biuIUsSfdEAWM_args__.bool_value)
+  // @@protoc_insertion_point(field_set:codegen_test.Method_V_biuIUsSfdEAWM_args__.bool_value)
 }
 
 // optional int32 int32_value = 2;
@@ -762,13 +762,13 @@ inline void Method_V_biuIUsSfdEAWM_args__::clear_int32_value() {
   int32_value_ = 0;
 }
 inline ::google::protobuf::int32 Method_V_biuIUsSfdEAWM_args__::int32_value() const {
-  // @@protoc_insertion_point(field_get:code_gen_test.Method_V_biuIUsSfdEAWM_args__.int32_value)
+  // @@protoc_insertion_point(field_get:codegen_test.Method_V_biuIUsSfdEAWM_args__.int32_value)
   return int32_value_;
 }
 inline void Method_V_biuIUsSfdEAWM_args__::set_int32_value(::google::protobuf::int32 value) {
   
   int32_value_ = value;
-  // @@protoc_insertion_point(field_set:code_gen_test.Method_V_biuIUsSfdEAWM_args__.int32_value)
+  // @@protoc_insertion_point(field_set:codegen_test.Method_V_biuIUsSfdEAWM_args__.int32_value)
 }
 
 // optional uint32 uint32_value = 3;
@@ -776,13 +776,13 @@ inline void Method_V_biuIUsSfdEAWM_args__::clear_uint32_value() {
   uint32_value_ = 0u;
 }
 inline ::google::protobuf::uint32 Method_V_biuIUsSfdEAWM_args__::uint32_value() const {
-  // @@protoc_insertion_point(field_get:code_gen_test.Method_V_biuIUsSfdEAWM_args__.uint32_value)
+  // @@protoc_insertion_point(field_get:codegen_test.Method_V_biuIUsSfdEAWM_args__.uint32_value)
   return uint32_value_;
 }
 inline void Method_V_biuIUsSfdEAWM_args__::set_uint32_value(::google::protobuf::uint32 value) {
   
   uint32_value_ = value;
-  // @@protoc_insertion_point(field_set:code_gen_test.Method_V_biuIUsSfdEAWM_args__.uint32_value)
+  // @@protoc_insertion_point(field_set:codegen_test.Method_V_biuIUsSfdEAWM_args__.uint32_value)
 }
 
 // optional int64 int64_value = 4;
@@ -790,13 +790,13 @@ inline void Method_V_biuIUsSfdEAWM_args__::clear_int64_value() {
   int64_value_ = GOOGLE_LONGLONG(0);
 }
 inline ::google::protobuf::int64 Method_V_biuIUsSfdEAWM_args__::int64_value() const {
-  // @@protoc_insertion_point(field_get:code_gen_test.Method_V_biuIUsSfdEAWM_args__.int64_value)
+  // @@protoc_insertion_point(field_get:codegen_test.Method_V_biuIUsSfdEAWM_args__.int64_value)
   return int64_value_;
 }
 inline void Method_V_biuIUsSfdEAWM_args__::set_int64_value(::google::protobuf::int64 value) {
   
   int64_value_ = value;
-  // @@protoc_insertion_point(field_set:code_gen_test.Method_V_biuIUsSfdEAWM_args__.int64_value)
+  // @@protoc_insertion_point(field_set:codegen_test.Method_V_biuIUsSfdEAWM_args__.int64_value)
 }
 
 // optional uint64 uint64_value = 5;
@@ -804,13 +804,13 @@ inline void Method_V_biuIUsSfdEAWM_args__::clear_uint64_value() {
   uint64_value_ = GOOGLE_ULONGLONG(0);
 }
 inline ::google::protobuf::uint64 Method_V_biuIUsSfdEAWM_args__::uint64_value() const {
-  // @@protoc_insertion_point(field_get:code_gen_test.Method_V_biuIUsSfdEAWM_args__.uint64_value)
+  // @@protoc_insertion_point(field_get:codegen_test.Method_V_biuIUsSfdEAWM_args__.uint64_value)
   return uint64_value_;
 }
 inline void Method_V_biuIUsSfdEAWM_args__::set_uint64_value(::google::protobuf::uint64 value) {
   
   uint64_value_ = value;
-  // @@protoc_insertion_point(field_set:code_gen_test.Method_V_biuIUsSfdEAWM_args__.uint64_value)
+  // @@protoc_insertion_point(field_set:codegen_test.Method_V_biuIUsSfdEAWM_args__.uint64_value)
 }
 
 // optional sint32 sint32_value = 6;
@@ -818,13 +818,13 @@ inline void Method_V_biuIUsSfdEAWM_args__::clear_sint32_value() {
   sint32_value_ = 0;
 }
 inline ::google::protobuf::int32 Method_V_biuIUsSfdEAWM_args__::sint32_value() const {
-  // @@protoc_insertion_point(field_get:code_gen_test.Method_V_biuIUsSfdEAWM_args__.sint32_value)
+  // @@protoc_insertion_point(field_get:codegen_test.Method_V_biuIUsSfdEAWM_args__.sint32_value)
   return sint32_value_;
 }
 inline void Method_V_biuIUsSfdEAWM_args__::set_sint32_value(::google::protobuf::int32 value) {
   
   sint32_value_ = value;
-  // @@protoc_insertion_point(field_set:code_gen_test.Method_V_biuIUsSfdEAWM_args__.sint32_value)
+  // @@protoc_insertion_point(field_set:codegen_test.Method_V_biuIUsSfdEAWM_args__.sint32_value)
 }
 
 // optional sint64 sint64_value = 7;
@@ -832,13 +832,13 @@ inline void Method_V_biuIUsSfdEAWM_args__::clear_sint64_value() {
   sint64_value_ = GOOGLE_LONGLONG(0);
 }
 inline ::google::protobuf::int64 Method_V_biuIUsSfdEAWM_args__::sint64_value() const {
-  // @@protoc_insertion_point(field_get:code_gen_test.Method_V_biuIUsSfdEAWM_args__.sint64_value)
+  // @@protoc_insertion_point(field_get:codegen_test.Method_V_biuIUsSfdEAWM_args__.sint64_value)
   return sint64_value_;
 }
 inline void Method_V_biuIUsSfdEAWM_args__::set_sint64_value(::google::protobuf::int64 value) {
   
   sint64_value_ = value;
-  // @@protoc_insertion_point(field_set:code_gen_test.Method_V_biuIUsSfdEAWM_args__.sint64_value)
+  // @@protoc_insertion_point(field_set:codegen_test.Method_V_biuIUsSfdEAWM_args__.sint64_value)
 }
 
 // optional float float_value = 8;
@@ -846,13 +846,13 @@ inline void Method_V_biuIUsSfdEAWM_args__::clear_float_value() {
   float_value_ = 0;
 }
 inline float Method_V_biuIUsSfdEAWM_args__::float_value() const {
-  // @@protoc_insertion_point(field_get:code_gen_test.Method_V_biuIUsSfdEAWM_args__.float_value)
+  // @@protoc_insertion_point(field_get:codegen_test.Method_V_biuIUsSfdEAWM_args__.float_value)
   return float_value_;
 }
 inline void Method_V_biuIUsSfdEAWM_args__::set_float_value(float value) {
   
   float_value_ = value;
-  // @@protoc_insertion_point(field_set:code_gen_test.Method_V_biuIUsSfdEAWM_args__.float_value)
+  // @@protoc_insertion_point(field_set:codegen_test.Method_V_biuIUsSfdEAWM_args__.float_value)
 }
 
 // optional double double_value = 9;
@@ -860,27 +860,27 @@ inline void Method_V_biuIUsSfdEAWM_args__::clear_double_value() {
   double_value_ = 0;
 }
 inline double Method_V_biuIUsSfdEAWM_args__::double_value() const {
-  // @@protoc_insertion_point(field_get:code_gen_test.Method_V_biuIUsSfdEAWM_args__.double_value)
+  // @@protoc_insertion_point(field_get:codegen_test.Method_V_biuIUsSfdEAWM_args__.double_value)
   return double_value_;
 }
 inline void Method_V_biuIUsSfdEAWM_args__::set_double_value(double value) {
   
   double_value_ = value;
-  // @@protoc_insertion_point(field_set:code_gen_test.Method_V_biuIUsSfdEAWM_args__.double_value)
+  // @@protoc_insertion_point(field_set:codegen_test.Method_V_biuIUsSfdEAWM_args__.double_value)
 }
 
-// optional .code_gen_test.EnumType enum_value = 10;
+// optional .codegen_test.EnumType enum_value = 10;
 inline void Method_V_biuIUsSfdEAWM_args__::clear_enum_value() {
   enum_value_ = 0;
 }
-inline ::code_gen_test::EnumType Method_V_biuIUsSfdEAWM_args__::enum_value() const {
-  // @@protoc_insertion_point(field_get:code_gen_test.Method_V_biuIUsSfdEAWM_args__.enum_value)
-  return static_cast< ::code_gen_test::EnumType >(enum_value_);
+inline ::codegen_test::EnumType Method_V_biuIUsSfdEAWM_args__::enum_value() const {
+  // @@protoc_insertion_point(field_get:codegen_test.Method_V_biuIUsSfdEAWM_args__.enum_value)
+  return static_cast< ::codegen_test::EnumType >(enum_value_);
 }
-inline void Method_V_biuIUsSfdEAWM_args__::set_enum_value(::code_gen_test::EnumType value) {
+inline void Method_V_biuIUsSfdEAWM_args__::set_enum_value(::codegen_test::EnumType value) {
   
   enum_value_ = value;
-  // @@protoc_insertion_point(field_set:code_gen_test.Method_V_biuIUsSfdEAWM_args__.enum_value)
+  // @@protoc_insertion_point(field_set:codegen_test.Method_V_biuIUsSfdEAWM_args__.enum_value)
 }
 
 // optional string string_value = 11;
@@ -888,32 +888,32 @@ inline void Method_V_biuIUsSfdEAWM_args__::clear_string_value() {
   string_value_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline const ::std::string& Method_V_biuIUsSfdEAWM_args__::string_value() const {
-  // @@protoc_insertion_point(field_get:code_gen_test.Method_V_biuIUsSfdEAWM_args__.string_value)
+  // @@protoc_insertion_point(field_get:codegen_test.Method_V_biuIUsSfdEAWM_args__.string_value)
   return string_value_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void Method_V_biuIUsSfdEAWM_args__::set_string_value(const ::std::string& value) {
   
   string_value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:code_gen_test.Method_V_biuIUsSfdEAWM_args__.string_value)
+  // @@protoc_insertion_point(field_set:codegen_test.Method_V_biuIUsSfdEAWM_args__.string_value)
 }
 inline void Method_V_biuIUsSfdEAWM_args__::set_string_value(const char* value) {
   
   string_value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:code_gen_test.Method_V_biuIUsSfdEAWM_args__.string_value)
+  // @@protoc_insertion_point(field_set_char:codegen_test.Method_V_biuIUsSfdEAWM_args__.string_value)
 }
 inline void Method_V_biuIUsSfdEAWM_args__::set_string_value(const char* value, size_t size) {
   
   string_value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:code_gen_test.Method_V_biuIUsSfdEAWM_args__.string_value)
+  // @@protoc_insertion_point(field_set_pointer:codegen_test.Method_V_biuIUsSfdEAWM_args__.string_value)
 }
 inline ::std::string* Method_V_biuIUsSfdEAWM_args__::mutable_string_value() {
   
-  // @@protoc_insertion_point(field_mutable:code_gen_test.Method_V_biuIUsSfdEAWM_args__.string_value)
+  // @@protoc_insertion_point(field_mutable:codegen_test.Method_V_biuIUsSfdEAWM_args__.string_value)
   return string_value_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* Method_V_biuIUsSfdEAWM_args__::release_string_value() {
-  // @@protoc_insertion_point(field_release:code_gen_test.Method_V_biuIUsSfdEAWM_args__.string_value)
+  // @@protoc_insertion_point(field_release:codegen_test.Method_V_biuIUsSfdEAWM_args__.string_value)
   
   return string_value_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -924,7 +924,7 @@ inline void Method_V_biuIUsSfdEAWM_args__::set_allocated_string_value(::std::str
     
   }
   string_value_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), string_value);
-  // @@protoc_insertion_point(field_set_allocated:code_gen_test.Method_V_biuIUsSfdEAWM_args__.string_value)
+  // @@protoc_insertion_point(field_set_allocated:codegen_test.Method_V_biuIUsSfdEAWM_args__.string_value)
 }
 
 // optional string wstring_value = 12;
@@ -932,32 +932,32 @@ inline void Method_V_biuIUsSfdEAWM_args__::clear_wstring_value() {
   wstring_value_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline const ::std::string& Method_V_biuIUsSfdEAWM_args__::wstring_value() const {
-  // @@protoc_insertion_point(field_get:code_gen_test.Method_V_biuIUsSfdEAWM_args__.wstring_value)
+  // @@protoc_insertion_point(field_get:codegen_test.Method_V_biuIUsSfdEAWM_args__.wstring_value)
   return wstring_value_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void Method_V_biuIUsSfdEAWM_args__::set_wstring_value(const ::std::string& value) {
   
   wstring_value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:code_gen_test.Method_V_biuIUsSfdEAWM_args__.wstring_value)
+  // @@protoc_insertion_point(field_set:codegen_test.Method_V_biuIUsSfdEAWM_args__.wstring_value)
 }
 inline void Method_V_biuIUsSfdEAWM_args__::set_wstring_value(const char* value) {
   
   wstring_value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:code_gen_test.Method_V_biuIUsSfdEAWM_args__.wstring_value)
+  // @@protoc_insertion_point(field_set_char:codegen_test.Method_V_biuIUsSfdEAWM_args__.wstring_value)
 }
 inline void Method_V_biuIUsSfdEAWM_args__::set_wstring_value(const char* value, size_t size) {
   
   wstring_value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:code_gen_test.Method_V_biuIUsSfdEAWM_args__.wstring_value)
+  // @@protoc_insertion_point(field_set_pointer:codegen_test.Method_V_biuIUsSfdEAWM_args__.wstring_value)
 }
 inline ::std::string* Method_V_biuIUsSfdEAWM_args__::mutable_wstring_value() {
   
-  // @@protoc_insertion_point(field_mutable:code_gen_test.Method_V_biuIUsSfdEAWM_args__.wstring_value)
+  // @@protoc_insertion_point(field_mutable:codegen_test.Method_V_biuIUsSfdEAWM_args__.wstring_value)
   return wstring_value_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* Method_V_biuIUsSfdEAWM_args__::release_wstring_value() {
-  // @@protoc_insertion_point(field_release:code_gen_test.Method_V_biuIUsSfdEAWM_args__.wstring_value)
+  // @@protoc_insertion_point(field_release:codegen_test.Method_V_biuIUsSfdEAWM_args__.wstring_value)
   
   return wstring_value_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -968,10 +968,10 @@ inline void Method_V_biuIUsSfdEAWM_args__::set_allocated_wstring_value(::std::st
     
   }
   wstring_value_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), wstring_value);
-  // @@protoc_insertion_point(field_set_allocated:code_gen_test.Method_V_biuIUsSfdEAWM_args__.wstring_value)
+  // @@protoc_insertion_point(field_set_allocated:codegen_test.Method_V_biuIUsSfdEAWM_args__.wstring_value)
 }
 
-// optional .code_gen_test.StructType struct_value = 13;
+// optional .codegen_test.StructType struct_value = 13;
 inline bool Method_V_biuIUsSfdEAWM_args__::has_struct_value() const {
   return !_is_default_instance_ && struct_value_ != NULL;
 }
@@ -979,26 +979,26 @@ inline void Method_V_biuIUsSfdEAWM_args__::clear_struct_value() {
   if (GetArenaNoVirtual() == NULL && struct_value_ != NULL) delete struct_value_;
   struct_value_ = NULL;
 }
-inline const ::code_gen_test::StructType& Method_V_biuIUsSfdEAWM_args__::struct_value() const {
-  // @@protoc_insertion_point(field_get:code_gen_test.Method_V_biuIUsSfdEAWM_args__.struct_value)
+inline const ::codegen_test::StructType& Method_V_biuIUsSfdEAWM_args__::struct_value() const {
+  // @@protoc_insertion_point(field_get:codegen_test.Method_V_biuIUsSfdEAWM_args__.struct_value)
   return struct_value_ != NULL ? *struct_value_ : *default_instance_->struct_value_;
 }
-inline ::code_gen_test::StructType* Method_V_biuIUsSfdEAWM_args__::mutable_struct_value() {
+inline ::codegen_test::StructType* Method_V_biuIUsSfdEAWM_args__::mutable_struct_value() {
   
   if (struct_value_ == NULL) {
-    struct_value_ = new ::code_gen_test::StructType;
+    struct_value_ = new ::codegen_test::StructType;
   }
-  // @@protoc_insertion_point(field_mutable:code_gen_test.Method_V_biuIUsSfdEAWM_args__.struct_value)
+  // @@protoc_insertion_point(field_mutable:codegen_test.Method_V_biuIUsSfdEAWM_args__.struct_value)
   return struct_value_;
 }
-inline ::code_gen_test::StructType* Method_V_biuIUsSfdEAWM_args__::release_struct_value() {
-  // @@protoc_insertion_point(field_release:code_gen_test.Method_V_biuIUsSfdEAWM_args__.struct_value)
+inline ::codegen_test::StructType* Method_V_biuIUsSfdEAWM_args__::release_struct_value() {
+  // @@protoc_insertion_point(field_release:codegen_test.Method_V_biuIUsSfdEAWM_args__.struct_value)
   
-  ::code_gen_test::StructType* temp = struct_value_;
+  ::codegen_test::StructType* temp = struct_value_;
   struct_value_ = NULL;
   return temp;
 }
-inline void Method_V_biuIUsSfdEAWM_args__::set_allocated_struct_value(::code_gen_test::StructType* struct_value) {
+inline void Method_V_biuIUsSfdEAWM_args__::set_allocated_struct_value(::codegen_test::StructType* struct_value) {
   delete struct_value_;
   struct_value_ = struct_value;
   if (struct_value) {
@@ -1006,7 +1006,7 @@ inline void Method_V_biuIUsSfdEAWM_args__::set_allocated_struct_value(::code_gen
   } else {
     
   }
-  // @@protoc_insertion_point(field_set_allocated:code_gen_test.Method_V_biuIUsSfdEAWM_args__.struct_value)
+  // @@protoc_insertion_point(field_set_allocated:codegen_test.Method_V_biuIUsSfdEAWM_args__.struct_value)
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -1017,16 +1017,16 @@ inline void Method_V_biuIUsSfdEAWM_args__::set_allocated_struct_value(::code_gen
 
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace code_gen_test
+}  // namespace codegen_test
 
 #ifndef SWIG
 namespace google {
 namespace protobuf {
 
-template <> struct is_proto_enum< ::code_gen_test::EnumType> : ::google::protobuf::internal::true_type {};
+template <> struct is_proto_enum< ::codegen_test::EnumType> : ::google::protobuf::internal::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::code_gen_test::EnumType>() {
-  return ::code_gen_test::EnumType_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::codegen_test::EnumType>() {
+  return ::codegen_test::EnumType_descriptor();
 }
 
 }  // namespace protobuf

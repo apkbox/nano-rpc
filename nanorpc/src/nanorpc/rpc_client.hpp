@@ -1,6 +1,8 @@
 #if !defined(NANO_RPC_RPC_CLIENT_HPP__)
 #define NANO_RPC_RPC_CLIENT_HPP__
 
+#include "nanorpc/rpc_message_sender.hpp"
+
 namespace nanorpc {
 
 class IRpcClient : public IRpcMessageSender {

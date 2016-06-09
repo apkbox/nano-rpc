@@ -24,10 +24,10 @@ namespace pb = google::protobuf;
 namespace pbc = google::protobuf::compiler;
 
 std::string GetHeaderPrologue(const pb::FileDescriptor *file);
-std::string GetInterfaceDefinitions(
-    const pb::FileDescriptor *file,
-    const std::vector<code_model::ServiceModel> &models);
+std::string GetInterfaceDefinitions(const std::vector<code_model::ServiceModel> &models);
 std::string GetStubDeclarations(const pb::FileDescriptor *file);
+std::string GetProxyDeclarations(const std::vector<code_model::ServiceModel> &models);
+std::string GetProxyDefinitions(const std::vector<code_model::ServiceModel> &models);
 std::string GetHeaderEpilogue(const pb::FileDescriptor *file);
 
 std::string GetSourcePrologue(const pb::FileDescriptor *file);
@@ -58,8 +58,9 @@ bool NanoRpcCppGenerator::Generate(const pb::FileDescriptor *file,
 
   /* clang-format off */
   std::string header_code = GetHeaderPrologue(file) +
-                            GetInterfaceDefinitions(file, service_models) +
+                            GetInterfaceDefinitions(service_models) +
                             GetStubDeclarations(file) +
+                            GetProxyDeclarations(service_models) +
                             GetHeaderEpilogue(file);
   /* clang-format on */
 
@@ -71,6 +72,7 @@ bool NanoRpcCppGenerator::Generate(const pb::FileDescriptor *file,
   /* clang-format off */
   std::string source_code = GetSourcePrologue(file) +
                             GetStubDefinitions(file, service_models) +
+                            GetProxyDefinitions(service_models) +
                             GetSourceEpilogue(file);
   /* clang-format on */
 

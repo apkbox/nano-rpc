@@ -5,17 +5,15 @@
 #include "codegen_test.nanorpc.pb.h"
 #include "google/protobuf/wrappers.pb.h"
 
-namespace code_gen_test {
+namespace codegen_test {
 
-const char *ITestServiceInteface_Stub::GetInterfaceName() const {
-  return "code_gen_test.ITestServiceInteface";
+const char *TestServiceInteface_Stub::GetInterfaceName() const {
+  return "codegen_test.TestServiceInteface";
 }
 
-void ITestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcResult *rpc_result) {
+void TestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcResult *rpc_result) {
   if (rpc_call.method() == "Method_V_V") {
-
     impl_->Method_V_V();
-
   } else if (rpc_call.method() == "Method_V_b") {
     google::protobuf::BoolValue in_arg__;
 
@@ -23,7 +21,6 @@ void ITestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nan
     bool value = in_arg__.value();
 
     impl_->Method_V_b(value);
-
   } else if (rpc_call.method() == "Method_V_i") {
     google::protobuf::Int32Value in_arg__;
 
@@ -31,7 +28,6 @@ void ITestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nan
     int32_t value = in_arg__.value();
 
     impl_->Method_V_i(value);
-
   } else if (rpc_call.method() == "Method_V_u") {
     google::protobuf::UInt32Value in_arg__;
 
@@ -39,7 +35,6 @@ void ITestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nan
     uint32_t value = in_arg__.value();
 
     impl_->Method_V_u(value);
-
   } else if (rpc_call.method() == "Method_V_s") {
     nanorpc::SInt32Value in_arg__;
 
@@ -47,7 +42,6 @@ void ITestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nan
     int32_t value = in_arg__.value();
 
     impl_->Method_V_s(value);
-
   } else if (rpc_call.method() == "Method_V_I") {
     google::protobuf::Int64Value in_arg__;
 
@@ -55,7 +49,6 @@ void ITestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nan
     int64_t value = in_arg__.value();
 
     impl_->Method_V_I(value);
-
   } else if (rpc_call.method() == "Method_V_U") {
     google::protobuf::UInt64Value in_arg__;
 
@@ -63,7 +56,6 @@ void ITestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nan
     uint64_t value = in_arg__.value();
 
     impl_->Method_V_U(value);
-
   } else if (rpc_call.method() == "Method_V_S") {
     nanorpc::SInt64Value in_arg__;
 
@@ -71,7 +63,6 @@ void ITestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nan
     int64_t value = in_arg__.value();
 
     impl_->Method_V_S(value);
-
   } else if (rpc_call.method() == "Method_V_f") {
     google::protobuf::FloatValue in_arg__;
 
@@ -79,7 +70,6 @@ void ITestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nan
     float value = in_arg__.value();
 
     impl_->Method_V_f(value);
-
   } else if (rpc_call.method() == "Method_V_d") {
     google::protobuf::DoubleValue in_arg__;
 
@@ -87,7 +77,6 @@ void ITestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nan
     double value = in_arg__.value();
 
     impl_->Method_V_d(value);
-
   } else if (rpc_call.method() == "Method_V_E") {
     EnumType_wrapper__ in_arg__;
 
@@ -95,7 +84,6 @@ void ITestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nan
     EnumType value = in_arg__.value();
 
     impl_->Method_V_E(value);
-
   } else if (rpc_call.method() == "Method_V_A") {
     google::protobuf::StringValue in_arg__;
 
@@ -103,7 +91,6 @@ void ITestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nan
     const std::string &value = in_arg__.value();
 
     impl_->Method_V_A(value);
-
   } else if (rpc_call.method() == "Method_V_W") {
     nanorpc::WideStringValue in_arg__;
 
@@ -111,7 +98,6 @@ void ITestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nan
     const std::string &value = in_arg__.value();
 
     impl_->Method_V_W(value);
-
   } else if (rpc_call.method() == "Method_V_M") {
     StructType in_arg__;
 
@@ -119,9 +105,7 @@ void ITestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nan
     const StructType &value = in_arg__;
 
     impl_->Method_V_M(value);
-
   } else if (rpc_call.method() == "Method_b_V") {
-
     bool out__;
     google::protobuf::BoolValue out_pb__;
     out__ = impl_->Method_b_V();
@@ -129,7 +113,6 @@ void ITestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nan
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
   } else if (rpc_call.method() == "Method_i_V") {
-
     int32_t out__;
     google::protobuf::Int32Value out_pb__;
     out__ = impl_->Method_i_V();
@@ -137,7 +120,6 @@ void ITestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nan
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
   } else if (rpc_call.method() == "Method_u_V") {
-
     uint32_t out__;
     google::protobuf::UInt32Value out_pb__;
     out__ = impl_->Method_u_V();
@@ -145,7 +127,6 @@ void ITestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nan
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
   } else if (rpc_call.method() == "Method_s_V") {
-
     int32_t out__;
     nanorpc::SInt32Value out_pb__;
     out__ = impl_->Method_s_V();
@@ -153,7 +134,6 @@ void ITestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nan
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
   } else if (rpc_call.method() == "Method_I_V") {
-
     int64_t out__;
     google::protobuf::Int64Value out_pb__;
     out__ = impl_->Method_I_V();
@@ -161,7 +141,6 @@ void ITestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nan
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
   } else if (rpc_call.method() == "Method_U_V") {
-
     uint64_t out__;
     google::protobuf::UInt64Value out_pb__;
     out__ = impl_->Method_U_V();
@@ -169,7 +148,6 @@ void ITestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nan
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
   } else if (rpc_call.method() == "Method_S_V") {
-
     int64_t out__;
     nanorpc::SInt64Value out_pb__;
     out__ = impl_->Method_S_V();
@@ -177,7 +155,6 @@ void ITestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nan
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
   } else if (rpc_call.method() == "Method_f_V") {
-
     float out__;
     google::protobuf::FloatValue out_pb__;
     out__ = impl_->Method_f_V();
@@ -185,7 +162,6 @@ void ITestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nan
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
   } else if (rpc_call.method() == "Method_d_V") {
-
     double out__;
     google::protobuf::DoubleValue out_pb__;
     out__ = impl_->Method_d_V();
@@ -193,7 +169,6 @@ void ITestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nan
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
   } else if (rpc_call.method() == "Method_E_V") {
-
     EnumType out__;
     EnumType_wrapper__ out_pb__;
     out__ = impl_->Method_E_V();
@@ -201,7 +176,6 @@ void ITestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nan
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
   } else if (rpc_call.method() == "Method_A_V") {
-
     std::string out__;
     google::protobuf::StringValue out_pb__;
     impl_->Method_A_V(&out__);
@@ -209,7 +183,6 @@ void ITestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nan
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
   } else if (rpc_call.method() == "Method_W_V") {
-
     std::string out__;
     nanorpc::WideStringValue out_pb__;
     impl_->Method_W_V(&out__);
@@ -217,7 +190,6 @@ void ITestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nan
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
   } else if (rpc_call.method() == "Method_M_V") {
-
     StructType out__;
     impl_->Method_M_V(&out__);
 
@@ -240,17 +212,528 @@ void ITestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nan
     const std::string &wstring_value = args__.wstring_value();
     const StructType &struct_value = args__.struct_value();
 
-
     impl_->Method_V_biuIUsSfdEAWM(bool_value, int32_value, uint32_value, int64_value, uint64_value, sint32_value, sint64_value, float_value, double_value, enum_value, string_value, wstring_value, struct_value);
-
   } else if (rpc_call.method() == "AsyncMethod_V_V") {
-
     impl_->AsyncMethod_V_V();
-
   }
 
 }
 
-}  // namespace code_gen_test
+TestServiceInteface_Proxy::~TestServiceInteface_Proxy() {
+  if (object_id_ != 0) {
+    try {
+      nanorpc::RpcMessage rpc_message;
+      rpc_message.mutable_call()->set_service("NanoRpc.ObjectManagerService");
+      rpc_message.mutable_call()->set_method("Delete");
+      nanorpc::RpcObject rpc_object;
+      rpc_object.set_object_id(object_id_);
+      rpc_object.SerializeToString(rpc_message.mutable_call()->mutable_call_data());
+      client_->Send(rpc_message);
+    }
+    catch (...) {
+      // not yet supported
+    }
+  }
+}
+
+void TestServiceInteface_Proxy::Method_V_V() {
+  nanorpc::RpcMessage rpc_message__;
+  if (object_id_ != 0) {
+    rpc_message__.mutable_call()->set_object_id(object_id_);
+  } else {
+    rpc_message__.mutable_call()->set_service("codegen_test.TestServiceInteface");
+  }
+
+  rpc_message__.mutable_call()->set_method("Method_V_V");
+  nanorpc::RpcResult rpc_result__;
+  client_->SendWithReply(rpc_message__, &rpc_result__);
+}
+
+void TestServiceInteface_Proxy::Method_V_b(bool value) {
+  nanorpc::RpcMessage rpc_message__;
+  if (object_id_ != 0) {
+    rpc_message__.mutable_call()->set_object_id(object_id_);
+  } else {
+    rpc_message__.mutable_call()->set_service("codegen_test.TestServiceInteface");
+  }
+
+  rpc_message__.mutable_call()->set_method("Method_V_b");
+  google::protobuf::BoolValue in_arg__;
+
+  in_arg__.set_value(value);
+
+  in_arg__.SerializeToString(rpc_message__.mutable_call()->mutable_call_data());
+  nanorpc::RpcResult rpc_result__;
+  client_->SendWithReply(rpc_message__, &rpc_result__);
+}
+
+void TestServiceInteface_Proxy::Method_V_i(int32_t value) {
+  nanorpc::RpcMessage rpc_message__;
+  if (object_id_ != 0) {
+    rpc_message__.mutable_call()->set_object_id(object_id_);
+  } else {
+    rpc_message__.mutable_call()->set_service("codegen_test.TestServiceInteface");
+  }
+
+  rpc_message__.mutable_call()->set_method("Method_V_i");
+  google::protobuf::Int32Value in_arg__;
+
+  in_arg__.set_value(value);
+
+  in_arg__.SerializeToString(rpc_message__.mutable_call()->mutable_call_data());
+  nanorpc::RpcResult rpc_result__;
+  client_->SendWithReply(rpc_message__, &rpc_result__);
+}
+
+void TestServiceInteface_Proxy::Method_V_u(uint32_t value) {
+  nanorpc::RpcMessage rpc_message__;
+  if (object_id_ != 0) {
+    rpc_message__.mutable_call()->set_object_id(object_id_);
+  } else {
+    rpc_message__.mutable_call()->set_service("codegen_test.TestServiceInteface");
+  }
+
+  rpc_message__.mutable_call()->set_method("Method_V_u");
+  google::protobuf::UInt32Value in_arg__;
+
+  in_arg__.set_value(value);
+
+  in_arg__.SerializeToString(rpc_message__.mutable_call()->mutable_call_data());
+  nanorpc::RpcResult rpc_result__;
+  client_->SendWithReply(rpc_message__, &rpc_result__);
+}
+
+void TestServiceInteface_Proxy::Method_V_s(int32_t value) {
+  nanorpc::RpcMessage rpc_message__;
+  if (object_id_ != 0) {
+    rpc_message__.mutable_call()->set_object_id(object_id_);
+  } else {
+    rpc_message__.mutable_call()->set_service("codegen_test.TestServiceInteface");
+  }
+
+  rpc_message__.mutable_call()->set_method("Method_V_s");
+  nanorpc::SInt32Value in_arg__;
+
+  in_arg__.set_value(value);
+
+  in_arg__.SerializeToString(rpc_message__.mutable_call()->mutable_call_data());
+  nanorpc::RpcResult rpc_result__;
+  client_->SendWithReply(rpc_message__, &rpc_result__);
+}
+
+void TestServiceInteface_Proxy::Method_V_I(int64_t value) {
+  nanorpc::RpcMessage rpc_message__;
+  if (object_id_ != 0) {
+    rpc_message__.mutable_call()->set_object_id(object_id_);
+  } else {
+    rpc_message__.mutable_call()->set_service("codegen_test.TestServiceInteface");
+  }
+
+  rpc_message__.mutable_call()->set_method("Method_V_I");
+  google::protobuf::Int64Value in_arg__;
+
+  in_arg__.set_value(value);
+
+  in_arg__.SerializeToString(rpc_message__.mutable_call()->mutable_call_data());
+  nanorpc::RpcResult rpc_result__;
+  client_->SendWithReply(rpc_message__, &rpc_result__);
+}
+
+void TestServiceInteface_Proxy::Method_V_U(uint64_t value) {
+  nanorpc::RpcMessage rpc_message__;
+  if (object_id_ != 0) {
+    rpc_message__.mutable_call()->set_object_id(object_id_);
+  } else {
+    rpc_message__.mutable_call()->set_service("codegen_test.TestServiceInteface");
+  }
+
+  rpc_message__.mutable_call()->set_method("Method_V_U");
+  google::protobuf::UInt64Value in_arg__;
+
+  in_arg__.set_value(value);
+
+  in_arg__.SerializeToString(rpc_message__.mutable_call()->mutable_call_data());
+  nanorpc::RpcResult rpc_result__;
+  client_->SendWithReply(rpc_message__, &rpc_result__);
+}
+
+void TestServiceInteface_Proxy::Method_V_S(int64_t value) {
+  nanorpc::RpcMessage rpc_message__;
+  if (object_id_ != 0) {
+    rpc_message__.mutable_call()->set_object_id(object_id_);
+  } else {
+    rpc_message__.mutable_call()->set_service("codegen_test.TestServiceInteface");
+  }
+
+  rpc_message__.mutable_call()->set_method("Method_V_S");
+  nanorpc::SInt64Value in_arg__;
+
+  in_arg__.set_value(value);
+
+  in_arg__.SerializeToString(rpc_message__.mutable_call()->mutable_call_data());
+  nanorpc::RpcResult rpc_result__;
+  client_->SendWithReply(rpc_message__, &rpc_result__);
+}
+
+void TestServiceInteface_Proxy::Method_V_f(float value) {
+  nanorpc::RpcMessage rpc_message__;
+  if (object_id_ != 0) {
+    rpc_message__.mutable_call()->set_object_id(object_id_);
+  } else {
+    rpc_message__.mutable_call()->set_service("codegen_test.TestServiceInteface");
+  }
+
+  rpc_message__.mutable_call()->set_method("Method_V_f");
+  google::protobuf::FloatValue in_arg__;
+
+  in_arg__.set_value(value);
+
+  in_arg__.SerializeToString(rpc_message__.mutable_call()->mutable_call_data());
+  nanorpc::RpcResult rpc_result__;
+  client_->SendWithReply(rpc_message__, &rpc_result__);
+}
+
+void TestServiceInteface_Proxy::Method_V_d(double value) {
+  nanorpc::RpcMessage rpc_message__;
+  if (object_id_ != 0) {
+    rpc_message__.mutable_call()->set_object_id(object_id_);
+  } else {
+    rpc_message__.mutable_call()->set_service("codegen_test.TestServiceInteface");
+  }
+
+  rpc_message__.mutable_call()->set_method("Method_V_d");
+  google::protobuf::DoubleValue in_arg__;
+
+  in_arg__.set_value(value);
+
+  in_arg__.SerializeToString(rpc_message__.mutable_call()->mutable_call_data());
+  nanorpc::RpcResult rpc_result__;
+  client_->SendWithReply(rpc_message__, &rpc_result__);
+}
+
+void TestServiceInteface_Proxy::Method_V_E(EnumType value) {
+  nanorpc::RpcMessage rpc_message__;
+  if (object_id_ != 0) {
+    rpc_message__.mutable_call()->set_object_id(object_id_);
+  } else {
+    rpc_message__.mutable_call()->set_service("codegen_test.TestServiceInteface");
+  }
+
+  rpc_message__.mutable_call()->set_method("Method_V_E");
+  EnumType_wrapper__ in_arg__;
+
+  in_arg__.set_value(value);
+
+  in_arg__.SerializeToString(rpc_message__.mutable_call()->mutable_call_data());
+  nanorpc::RpcResult rpc_result__;
+  client_->SendWithReply(rpc_message__, &rpc_result__);
+}
+
+void TestServiceInteface_Proxy::Method_V_A(const std::string &value) {
+  nanorpc::RpcMessage rpc_message__;
+  if (object_id_ != 0) {
+    rpc_message__.mutable_call()->set_object_id(object_id_);
+  } else {
+    rpc_message__.mutable_call()->set_service("codegen_test.TestServiceInteface");
+  }
+
+  rpc_message__.mutable_call()->set_method("Method_V_A");
+  google::protobuf::StringValue in_arg__;
+
+  in_arg__.set_value(value);
+
+  in_arg__.SerializeToString(rpc_message__.mutable_call()->mutable_call_data());
+  nanorpc::RpcResult rpc_result__;
+  client_->SendWithReply(rpc_message__, &rpc_result__);
+}
+
+void TestServiceInteface_Proxy::Method_V_W(const std::string &value) {
+  nanorpc::RpcMessage rpc_message__;
+  if (object_id_ != 0) {
+    rpc_message__.mutable_call()->set_object_id(object_id_);
+  } else {
+    rpc_message__.mutable_call()->set_service("codegen_test.TestServiceInteface");
+  }
+
+  rpc_message__.mutable_call()->set_method("Method_V_W");
+  nanorpc::WideStringValue in_arg__;
+
+  in_arg__.set_value(value);
+
+  in_arg__.SerializeToString(rpc_message__.mutable_call()->mutable_call_data());
+  nanorpc::RpcResult rpc_result__;
+  client_->SendWithReply(rpc_message__, &rpc_result__);
+}
+
+void TestServiceInteface_Proxy::Method_V_M(const StructType &value) {
+  nanorpc::RpcMessage rpc_message__;
+  if (object_id_ != 0) {
+    rpc_message__.mutable_call()->set_object_id(object_id_);
+  } else {
+    rpc_message__.mutable_call()->set_service("codegen_test.TestServiceInteface");
+  }
+
+  rpc_message__.mutable_call()->set_method("Method_V_M");
+  const StructType &in_arg__ = value;
+
+  in_arg__.SerializeToString(rpc_message__.mutable_call()->mutable_call_data());
+  nanorpc::RpcResult rpc_result__;
+  client_->SendWithReply(rpc_message__, &rpc_result__);
+}
+
+bool TestServiceInteface_Proxy::Method_b_V() {
+  nanorpc::RpcMessage rpc_message__;
+  if (object_id_ != 0) {
+    rpc_message__.mutable_call()->set_object_id(object_id_);
+  } else {
+    rpc_message__.mutable_call()->set_service("codegen_test.TestServiceInteface");
+  }
+
+  rpc_message__.mutable_call()->set_method("Method_b_V");
+  nanorpc::RpcResult rpc_result__;
+  client_->SendWithReply(rpc_message__, &rpc_result__);
+  google::protobuf::BoolValue out_pb__;
+  out_pb__.ParseFromString(rpc_result__.result_data());
+  return out_pb__.value();
+}
+
+int32_t TestServiceInteface_Proxy::Method_i_V() {
+  nanorpc::RpcMessage rpc_message__;
+  if (object_id_ != 0) {
+    rpc_message__.mutable_call()->set_object_id(object_id_);
+  } else {
+    rpc_message__.mutable_call()->set_service("codegen_test.TestServiceInteface");
+  }
+
+  rpc_message__.mutable_call()->set_method("Method_i_V");
+  nanorpc::RpcResult rpc_result__;
+  client_->SendWithReply(rpc_message__, &rpc_result__);
+  google::protobuf::Int32Value out_pb__;
+  out_pb__.ParseFromString(rpc_result__.result_data());
+  return out_pb__.value();
+}
+
+uint32_t TestServiceInteface_Proxy::Method_u_V() {
+  nanorpc::RpcMessage rpc_message__;
+  if (object_id_ != 0) {
+    rpc_message__.mutable_call()->set_object_id(object_id_);
+  } else {
+    rpc_message__.mutable_call()->set_service("codegen_test.TestServiceInteface");
+  }
+
+  rpc_message__.mutable_call()->set_method("Method_u_V");
+  nanorpc::RpcResult rpc_result__;
+  client_->SendWithReply(rpc_message__, &rpc_result__);
+  google::protobuf::UInt32Value out_pb__;
+  out_pb__.ParseFromString(rpc_result__.result_data());
+  return out_pb__.value();
+}
+
+int32_t TestServiceInteface_Proxy::Method_s_V() {
+  nanorpc::RpcMessage rpc_message__;
+  if (object_id_ != 0) {
+    rpc_message__.mutable_call()->set_object_id(object_id_);
+  } else {
+    rpc_message__.mutable_call()->set_service("codegen_test.TestServiceInteface");
+  }
+
+  rpc_message__.mutable_call()->set_method("Method_s_V");
+  nanorpc::RpcResult rpc_result__;
+  client_->SendWithReply(rpc_message__, &rpc_result__);
+  nanorpc::SInt32Value out_pb__;
+  out_pb__.ParseFromString(rpc_result__.result_data());
+  return out_pb__.value();
+}
+
+int64_t TestServiceInteface_Proxy::Method_I_V() {
+  nanorpc::RpcMessage rpc_message__;
+  if (object_id_ != 0) {
+    rpc_message__.mutable_call()->set_object_id(object_id_);
+  } else {
+    rpc_message__.mutable_call()->set_service("codegen_test.TestServiceInteface");
+  }
+
+  rpc_message__.mutable_call()->set_method("Method_I_V");
+  nanorpc::RpcResult rpc_result__;
+  client_->SendWithReply(rpc_message__, &rpc_result__);
+  google::protobuf::Int64Value out_pb__;
+  out_pb__.ParseFromString(rpc_result__.result_data());
+  return out_pb__.value();
+}
+
+uint64_t TestServiceInteface_Proxy::Method_U_V() {
+  nanorpc::RpcMessage rpc_message__;
+  if (object_id_ != 0) {
+    rpc_message__.mutable_call()->set_object_id(object_id_);
+  } else {
+    rpc_message__.mutable_call()->set_service("codegen_test.TestServiceInteface");
+  }
+
+  rpc_message__.mutable_call()->set_method("Method_U_V");
+  nanorpc::RpcResult rpc_result__;
+  client_->SendWithReply(rpc_message__, &rpc_result__);
+  google::protobuf::UInt64Value out_pb__;
+  out_pb__.ParseFromString(rpc_result__.result_data());
+  return out_pb__.value();
+}
+
+int64_t TestServiceInteface_Proxy::Method_S_V() {
+  nanorpc::RpcMessage rpc_message__;
+  if (object_id_ != 0) {
+    rpc_message__.mutable_call()->set_object_id(object_id_);
+  } else {
+    rpc_message__.mutable_call()->set_service("codegen_test.TestServiceInteface");
+  }
+
+  rpc_message__.mutable_call()->set_method("Method_S_V");
+  nanorpc::RpcResult rpc_result__;
+  client_->SendWithReply(rpc_message__, &rpc_result__);
+  nanorpc::SInt64Value out_pb__;
+  out_pb__.ParseFromString(rpc_result__.result_data());
+  return out_pb__.value();
+}
+
+float TestServiceInteface_Proxy::Method_f_V() {
+  nanorpc::RpcMessage rpc_message__;
+  if (object_id_ != 0) {
+    rpc_message__.mutable_call()->set_object_id(object_id_);
+  } else {
+    rpc_message__.mutable_call()->set_service("codegen_test.TestServiceInteface");
+  }
+
+  rpc_message__.mutable_call()->set_method("Method_f_V");
+  nanorpc::RpcResult rpc_result__;
+  client_->SendWithReply(rpc_message__, &rpc_result__);
+  google::protobuf::FloatValue out_pb__;
+  out_pb__.ParseFromString(rpc_result__.result_data());
+  return out_pb__.value();
+}
+
+double TestServiceInteface_Proxy::Method_d_V() {
+  nanorpc::RpcMessage rpc_message__;
+  if (object_id_ != 0) {
+    rpc_message__.mutable_call()->set_object_id(object_id_);
+  } else {
+    rpc_message__.mutable_call()->set_service("codegen_test.TestServiceInteface");
+  }
+
+  rpc_message__.mutable_call()->set_method("Method_d_V");
+  nanorpc::RpcResult rpc_result__;
+  client_->SendWithReply(rpc_message__, &rpc_result__);
+  google::protobuf::DoubleValue out_pb__;
+  out_pb__.ParseFromString(rpc_result__.result_data());
+  return out_pb__.value();
+}
+
+EnumType TestServiceInteface_Proxy::Method_E_V() {
+  nanorpc::RpcMessage rpc_message__;
+  if (object_id_ != 0) {
+    rpc_message__.mutable_call()->set_object_id(object_id_);
+  } else {
+    rpc_message__.mutable_call()->set_service("codegen_test.TestServiceInteface");
+  }
+
+  rpc_message__.mutable_call()->set_method("Method_E_V");
+  nanorpc::RpcResult rpc_result__;
+  client_->SendWithReply(rpc_message__, &rpc_result__);
+  EnumType_wrapper__ out_pb__;
+  out_pb__.ParseFromString(rpc_result__.result_data());
+  return out_pb__.value();
+}
+
+void TestServiceInteface_Proxy::Method_A_V(std::string *out__) {
+  nanorpc::RpcMessage rpc_message__;
+  if (object_id_ != 0) {
+    rpc_message__.mutable_call()->set_object_id(object_id_);
+  } else {
+    rpc_message__.mutable_call()->set_service("codegen_test.TestServiceInteface");
+  }
+
+  rpc_message__.mutable_call()->set_method("Method_A_V");
+  nanorpc::RpcResult rpc_result__;
+  client_->SendWithReply(rpc_message__, &rpc_result__);
+  if (out__ != nullptr) {
+    google::protobuf::StringValue out_pb__;
+    out_pb__.ParseFromString(rpc_result__.result_data());
+    *out__ = out_pb__.value();
+  }
+}
+
+void TestServiceInteface_Proxy::Method_W_V(std::string *out__) {
+  nanorpc::RpcMessage rpc_message__;
+  if (object_id_ != 0) {
+    rpc_message__.mutable_call()->set_object_id(object_id_);
+  } else {
+    rpc_message__.mutable_call()->set_service("codegen_test.TestServiceInteface");
+  }
+
+  rpc_message__.mutable_call()->set_method("Method_W_V");
+  nanorpc::RpcResult rpc_result__;
+  client_->SendWithReply(rpc_message__, &rpc_result__);
+  if (out__ != nullptr) {
+    nanorpc::WideStringValue out_pb__;
+    out_pb__.ParseFromString(rpc_result__.result_data());
+    *out__ = out_pb__.value();
+  }
+}
+
+void TestServiceInteface_Proxy::Method_M_V(StructType *out__) {
+  nanorpc::RpcMessage rpc_message__;
+  if (object_id_ != 0) {
+    rpc_message__.mutable_call()->set_object_id(object_id_);
+  } else {
+    rpc_message__.mutable_call()->set_service("codegen_test.TestServiceInteface");
+  }
+
+  rpc_message__.mutable_call()->set_method("Method_M_V");
+  nanorpc::RpcResult rpc_result__;
+  client_->SendWithReply(rpc_message__, &rpc_result__);
+  if (out__ != nullptr)
+    out__->ParseFromString(rpc_result__.result_data());
+}
+
+void TestServiceInteface_Proxy::Method_V_biuIUsSfdEAWM(bool bool_value, int32_t int32_value, uint32_t uint32_value, int64_t int64_value, uint64_t uint64_value, int32_t sint32_value, int64_t sint64_value, float float_value, double double_value, EnumType enum_value, const std::string &string_value, const std::string &wstring_value, const StructType &struct_value) {
+  nanorpc::RpcMessage rpc_message__;
+  if (object_id_ != 0) {
+    rpc_message__.mutable_call()->set_object_id(object_id_);
+  } else {
+    rpc_message__.mutable_call()->set_service("codegen_test.TestServiceInteface");
+  }
+
+  rpc_message__.mutable_call()->set_method("Method_V_biuIUsSfdEAWM");
+  Method_V_biuIUsSfdEAWM_args__ args__;
+  args__.set_bool_value(bool_value);
+  args__.set_int32_value(int32_value);
+  args__.set_uint32_value(uint32_value);
+  args__.set_int64_value(int64_value);
+  args__.set_uint64_value(uint64_value);
+  args__.set_sint32_value(sint32_value);
+  args__.set_sint64_value(sint64_value);
+  args__.set_float_value(float_value);
+  args__.set_double_value(double_value);
+  args__.set_enum_value(enum_value);
+  args__.set_string_value(string_value);
+  args__.set_wstring_value(wstring_value);
+  *args__.mutable_struct_value() = struct_value;
+  args__.SerializeToString(rpc_message__.mutable_call()->mutable_call_data());
+
+  nanorpc::RpcResult rpc_result__;
+  client_->SendWithReply(rpc_message__, &rpc_result__);
+}
+
+void TestServiceInteface_Proxy::AsyncMethod_V_V() {
+  nanorpc::RpcMessage rpc_message__;
+  if (object_id_ != 0) {
+    rpc_message__.mutable_call()->set_object_id(object_id_);
+  } else {
+    rpc_message__.mutable_call()->set_service("codegen_test.TestServiceInteface");
+  }
+
+  rpc_message__.mutable_call()->set_method("AsyncMethod_V_V");
+  nanorpc::RpcResult rpc_result__;
+  client_->SendWithReply(rpc_message__, &rpc_result__);
+}
+
+}  // namespace codegen_test
 
 
