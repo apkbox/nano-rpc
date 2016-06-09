@@ -171,7 +171,6 @@ bool TypeModel::ParseFromFieldDescriptor(const pb::FieldDescriptor *field) {
 bool MessageToArgumentList(const pb::Descriptor *message,
                            std::vector<ArgumentModel> *arguments) {
   for (int i = 0; i < message->field_count(); ++i) {
-    ArgumentModel argument_model;
     const pb::FieldDescriptor *field = message->field(i);
     TypeModel type_model;
 
@@ -179,6 +178,7 @@ bool MessageToArgumentList(const pb::Descriptor *message,
     if (!type_model.ParseFromFieldDescriptor(field))
       return false;
 
+    ArgumentModel argument_model;
     argument_model.set_name(field->name());
     argument_model.set_type(type_model);
     arguments->push_back(argument_model);
@@ -187,12 +187,12 @@ bool MessageToArgumentList(const pb::Descriptor *message,
   return true;
 }
 
-bool CreateMethodModel(const pb::MethodDescriptor *method,
-                       MethodModel *method_model) {
+bool MethodModel::ParseFromMethodDescriptor(
+    const pb::MethodDescriptor *method) {
   const pb::Descriptor *input_type = method->input_type();
   const pb::Descriptor *output_type = method->output_type();
 
-  method_model->set_name(method->name());
+  name_ = method->name();
 
   TypeModel input_type_model;
   if (!input_type_model.ParseFromDescriptor(input_type))
@@ -200,41 +200,40 @@ bool CreateMethodModel(const pb::MethodDescriptor *method,
 
   if (input_type->options().HasExtension(nanorpc::expand_as_arguments) &&
       input_type->options().GetExtension(nanorpc::expand_as_arguments)) {
-    method_model->set_arglist(true);
-    method_model->set_arglist_typename(input_type->name());
-    if (!MessageToArgumentList(input_type, method_model->mutable_arguments()))
+    is_arglist_ = true;
+    arglist_typename_ = input_type->name();
+    if (!MessageToArgumentList(input_type, &arguments_))
       return false;
   } else {
     if (!input_type_model.is_void()) {
       ArgumentModel argument;
       argument.set_name("value");
       argument.set_type(input_type_model);
-      method_model->mutable_arguments()->push_back(argument);
+      arguments_.push_back(argument);
     }
   }
 
-  if (!method_model->mutable_return_type()->ParseFromDescriptor(output_type))
+  if (!return_type_.ParseFromDescriptor(output_type))
     return false;
 
   return true;
 }
 
-bool CreatePropertyModel(const pb::MethodDescriptor *method,
-                         bool setter,
-                         MethodModel *method_model) {
+bool MethodModel::CreateProperty(const pb::MethodDescriptor *method,
+                                 bool setter) {
   const pb::Descriptor *type =
       setter ? method->input_type() : method->output_type();
 
-  method_model->set_name(method->name());
+  name_ = method->name();
 
   if (setter) {
     ArgumentModel argument;
     argument.set_name("value");
     if (!argument.mutable_type()->ParseFromDescriptor(type))
       return false;
-    method_model->mutable_arguments()->push_back(argument);
+    arguments_.push_back(argument);
   } else {
-    if (!method_model->mutable_return_type()->ParseFromDescriptor(type))
+    if (!return_type_.ParseFromDescriptor(type))
       return false;
   }
 
@@ -275,17 +274,17 @@ bool CreateCodeModel(const pb::FileDescriptor *file,
 
         if (!no_getter) {
           MethodModel property_method;
-          CreatePropertyModel(method, false, &property_method);
+          property_method.CreateProperty(method, false);
           method_model.set_getter(property_method);
         }
 
         if (!no_setter) {
           MethodModel property_method;
-          CreatePropertyModel(method, true, &property_method);
+          property_method.CreateProperty(method, true);
           method_model.set_setter(property_method);
         }
       } else {
-        if (!CreateMethodModel(method, &method_model))
+        if (!method_model.ParseFromMethodDescriptor(method))
           return false;
       }
 

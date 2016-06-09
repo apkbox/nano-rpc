@@ -106,6 +106,9 @@ public:
     setter_.reset(new MethodModel(method));
   }
 
+  bool ParseFromMethodDescriptor(const google::protobuf::MethodDescriptor *method);
+  bool CreateProperty(const google::protobuf::MethodDescriptor *method, bool setter);
+
 private:
   std::string name_;
   bool is_property_;

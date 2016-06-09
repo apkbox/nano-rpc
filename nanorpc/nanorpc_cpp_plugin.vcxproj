@@ -138,7 +138,7 @@
   <ItemGroup>
     <ClCompile Include="src\nanorpc\rpc_types.pb.cc" />
     <ClCompile Include="src\nanorpc\compiler\cpp\code_model.cpp" />
-    <ClCompile Include="src\nanorpc\compiler\cpp\cpp_header_generator.cpp" />
+    <ClCompile Include="src\nanorpc\compiler\cpp\cpp_generator.cpp" />
     <ClCompile Include="src\nanorpc\compiler\cpp\generator_utils.cpp" />
     <ClCompile Include="src\nanorpc\compiler\cpp\main.cpp" />
   </ItemGroup>

@@ -21,13 +21,13 @@
     <ClCompile Include="src\nanorpc\compiler\cpp\code_model.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\nanorpc\compiler\cpp\cpp_header_generator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\nanorpc\compiler\cpp\generator_utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\nanorpc\compiler\cpp\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nanorpc\compiler\cpp\cpp_generator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
