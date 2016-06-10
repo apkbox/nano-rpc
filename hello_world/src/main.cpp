@@ -108,9 +108,9 @@ static void server_thread(nanorpc2::WinsockServerChannel *channel) {
 
 
 int main() {
-  nanorpc2::WinsockServerChannel ch;
+  nanorpc2::WinsockServerChannel ch("50372");
   std::thread thread(server_thread, &ch);
-  ch.Connect("99344");
+  ch.Connect();
   std::this_thread::sleep_for(std::chrono::seconds(3));
   thread.join();
 

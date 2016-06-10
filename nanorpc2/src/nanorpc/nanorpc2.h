@@ -7,27 +7,32 @@
 
 #include "nanorpc/rpc_types.pb.h"
 
+#define NANORPC_DISALLOW_COPY_AND_ASSIGN(TypeName) \
+  TypeName(const TypeName &) = delete;             \
+  void operator=(const TypeName &) = delete
+
+#define NANORPC_DISALLOW_IMPLICIT_CONSTRUCTORS(TypeName) \
+  TypeName() = delete;                                   \
+  NANORPC_DISALLOW_COPY_AND_ASSIGN(TypeName)
+
 namespace nanorpc2 {
 
 using namespace nanorpc;
 
-enum class ChannelStatus {
-  NotConnected,
-  Connecting,
-  Established
-};
+enum class ChannelStatus { NotConnected, Connecting, Established };
 
 class StreamInterface {
 public:
   virtual ~StreamInterface() {}
 
   // Reads data from stream. The function blocks until data is available.
-  // If buffer is nullptr, returns true and number of available bytes 
-  // in byte_read. Returns false if channel is disconnected. buffer_size parameter
+  // If buffer is nullptr, returns true and number of available bytes
+  // in byte_read. Returns false if channel is disconnected. buffer_size
+  // parameter
   // is ignored in this case.
-  // If buffer is not nullptr, then fills the buffer, number 
+  // If buffer is not nullptr, then fills the buffer, number
   // of bytes read in bytes_read and returns true.
-  // Returns false if buffer too small, channel disconnected 
+  // Returns false if buffer too small, channel disconnected
   // or connection terminated. If buffer too small, no data is read.
   // Note that the buffer must be sufficiently big to fill the whole message.
   virtual bool Read(void *buffer, size_t buffer_size, size_t *bytes_read) = 0;
@@ -40,9 +45,11 @@ public:
 
   virtual ChannelStatus GetStatus() const = 0;
 
+  virtual bool Connect() = 0;
+  virtual void Disconnect() = 0;
+
   virtual bool WaitForClient() = 0;
   virtual bool WaitForClientAsync() = 0;
-  virtual void Disconnect() = 0;
 };
 
 class ClientChannelInterface : public StreamInterface {
@@ -99,7 +106,6 @@ private:
   std::map<RpcObjectId, std::unique_ptr<ServiceInterface>> objects_;
 };
 
-
 class Server {
 public:
   Server(std::unique_ptr<ServerChannelInterface> channel);
@@ -129,7 +135,9 @@ public:
   void Shutdown();
 
 private:
-  void ProcessRequest(const RpcMessage &request, RpcMessage *response, bool *is_async);
+  void ProcessRequest(const RpcMessage &request,
+                      RpcMessage *response,
+                      bool *is_async);
 
   std::unique_ptr<ServerChannelInterface> channel_;
   ObjectManager object_manager_;
