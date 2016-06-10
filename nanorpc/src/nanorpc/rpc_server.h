@@ -16,7 +16,7 @@
 
 namespace nanorpc {
 
-class RpcServerBuilder;
+class ServerBuilder;
 
 class RpcServer {
 public:

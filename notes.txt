@@ -1,6 +1,21 @@
-* done * Channel must operate with buffers instead of messages. The message should
-  already be serialized by the server before passing it to the channel.
+TODO:
+* Generate base class for service implementation that derive from both
+  the service interface and the stub. This base class should have
+  protected constructor. This will help to avoid creating stub unnceessarily
+  as the base class implementation is derived from stub.
 
+* Channel must operate with buffers instead of messages. The message should
+  already be serialized by the server before passing it to the channel. So,
+  the channel is a transport only.
+
+* The service implementation may not be thread safe by default, provide
+  and easy way to serialize calls to the service if needed, probably using
+  a stub wrapper. The default server behavior is that all incoming calls 
+  processed asynchronously and a call may be received and handled while
+  another call is in progress. One should be able to specify behavior
+  on per service basis rather than per server.
+
+OTHER THOUGHTS:
 * object_id_value and event_name fields included into RpcParameter apparently
   to make object manager and event service looks as any other service and yet
   have strongly typed and expected parameters.
@@ -9,3 +24,4 @@
 * Not sure why is_null was needed. Does not seem used anywhere.
 
 * With proto3 Any type is better suited to store a parameter.
+

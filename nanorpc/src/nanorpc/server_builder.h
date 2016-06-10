@@ -19,6 +19,7 @@ public:
   }
 
   void RegisterService(const std::string &name, IRpcService *service);
+  void RegisterService(IRpcStub *stub);
 
   RpcServer *Build();
 

@@ -15,7 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include=".clang-format" />
     <None Include="src\nanorpc\rpc_types.proto" />
   </ItemGroup>
   <ItemGroup>
@@ -64,9 +63,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\nanorpc\buffer_pool.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\nanorpc\nano_rpc.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\nanorpc\object_pool.hpp">
@@ -118,6 +114,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\nanorpc\server_call_dispatcher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\nanorpc\nano_rpc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

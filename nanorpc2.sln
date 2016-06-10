@@ -9,6 +9,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F4554791-D1BA-447D-BA47-0634FA9DD0DB}"
 	ProjectSection(SolutionItems) = preProject
 		codegen_test.proto = codegen_test.proto
+		notes.txt = notes.txt
 		nanorpc\src\nanorpc\rpc_types.proto = nanorpc\src\nanorpc\rpc_types.proto
 	EndProjectSection
 EndProject
@@ -17,6 +18,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "channel_test", "channel_test\channel_test.vcxproj", "{03DCEC33-BD06-4137-840D-3FF5E0B9834E}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hello_world", "hello_world\hello_world.vcxproj", "{C771EE50-929A-46CD-BD06-4C79556ADF3D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nanorpc2", "nanorpc2\nanorpc2.vcxproj", "{4306510F-B17B-4AC0-A62C-FCE027BBC0CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,6 +69,14 @@ Global
 		{C771EE50-929A-46CD-BD06-4C79556ADF3D}.Release|Win32.Build.0 = Release|Win32
 		{C771EE50-929A-46CD-BD06-4C79556ADF3D}.Release|x64.ActiveCfg = Release|x64
 		{C771EE50-929A-46CD-BD06-4C79556ADF3D}.Release|x64.Build.0 = Release|x64
+		{4306510F-B17B-4AC0-A62C-FCE027BBC0CC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4306510F-B17B-4AC0-A62C-FCE027BBC0CC}.Debug|Win32.Build.0 = Debug|Win32
+		{4306510F-B17B-4AC0-A62C-FCE027BBC0CC}.Debug|x64.ActiveCfg = Debug|x64
+		{4306510F-B17B-4AC0-A62C-FCE027BBC0CC}.Debug|x64.Build.0 = Debug|x64
+		{4306510F-B17B-4AC0-A62C-FCE027BBC0CC}.Release|Win32.ActiveCfg = Release|Win32
+		{4306510F-B17B-4AC0-A62C-FCE027BBC0CC}.Release|Win32.Build.0 = Release|Win32
+		{4306510F-B17B-4AC0-A62C-FCE027BBC0CC}.Release|x64.ActiveCfg = Release|x64
+		{4306510F-B17B-4AC0-A62C-FCE027BBC0CC}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

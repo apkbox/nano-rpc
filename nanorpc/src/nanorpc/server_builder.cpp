@@ -10,6 +10,10 @@ void ServerBuilder::RegisterService(const std::string &name, IRpcService *servic
   services_.emplace_back(name, service);
 }
 
+void ServerBuilder::RegisterService(IRpcStub *stub) {
+  services_.emplace_back(stub->GetInterfaceName(), stub);
+}
+
 RpcServer *ServerBuilder::Build() {
   RpcServer *server = new RpcServer();
   server->set_channel(channel_builder_->BuildServerChannel());

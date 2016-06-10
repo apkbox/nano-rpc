@@ -4,7 +4,7 @@
 #include <chrono>
 #include <iostream>
 
-#include "nanorpc/nano_rpc.hpp"
+#include "nanorpc/nano_rpc.h"
 #include "nanorpc/named_pipe_connector.h"
 #include "nanorpc/named_pipe_rpc_channel.h"
 

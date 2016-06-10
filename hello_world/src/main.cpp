@@ -1,12 +1,22 @@
-#include <queue>
+#define _WINSOCKAPI_
+#include <process.h>
+
 #include <map>
+#include <queue>
+#include <chrono>
+#include <thread>
 
 #include "nanorpc\rpc_client.hpp"
 #include "nanorpc\rpc_stub.hpp"
 #include "nanorpc\rpc_server.h"
+#include "nanorpc\server_builder.h"
 #include "nanorpc\rpc_client.hpp"
 #include "nanorpc\rpc_object_manager.hpp"
+#include "nanorpc\named_pipe_rpc_channel.h"
 #include "hello_world.nanorpc.pb.h"
+
+#include "nanorpc/nanorpc2.h"
+#include "nanorpc/winsock_channel.h"
 
 struct Order {
   Order()
@@ -76,7 +86,34 @@ private:
   std::map<int, Order> completed_orders_;
 };
 
+
+static void server_thread(nanorpc2::WinsockServerChannel *channel) {
+  std::this_thread::sleep_for(std::chrono::seconds(3));
+  channel->Disconnect();
+
+  /*
+  OrderDeskImpl order_desk_service;
+  std::vector<std::unique_ptr<nanorpc::RpcServer>> servers;
+
+  while (true) {
+    nanorpc::NamedPipeChannel ch(L"hello_world");
+    nanorpc::ServerBuilder server_builder;
+    server_builder.set_channel_builder(&ch);
+    server_builder.RegisterService(hello_world::OrderDesk_Stub(&order_desk_service));
+    std::unique_ptr<nanorpc::RpcServer> server(server_builder.Build());
+    servers.emplace_back(server);
+  }
+  */
+}
+
+
 int main() {
+  nanorpc2::WinsockServerChannel ch;
+  std::thread thread(server_thread, &ch);
+  ch.Connect("99344");
+  std::this_thread::sleep_for(std::chrono::seconds(3));
+  thread.join();
 
   return 0;
 }
+
