@@ -39,27 +39,24 @@ public:
   virtual bool Write(void *buffer, size_t buffer_size) = 0;
 };
 
-class ServerChannelInterface : public StreamInterface {
+class ChannelInterface : public StreamInterface {
 public:
-  virtual ~ServerChannelInterface() {}
+  virtual ~ChannelInterface() {}
 
   virtual ChannelStatus GetStatus() const = 0;
 
   virtual bool Connect() = 0;
   virtual void Disconnect() = 0;
-
-  virtual bool WaitForClient() = 0;
-  virtual bool WaitForClientAsync() = 0;
 };
 
-class ClientChannelInterface : public StreamInterface {
+class ServerChannelInterface : public ChannelInterface {
+public:
+  virtual ~ServerChannelInterface() {}
+};
+
+class ClientChannelInterface : public ChannelInterface {
 public:
   virtual ~ClientChannelInterface() {}
-
-  virtual ChannelStatus GetStatus() const = 0;
-
-  virtual bool Connect() = 0;
-  virtual void Disconnect() = 0;
 };
 
 class ServiceInterface {

@@ -5,7 +5,7 @@
 namespace nanorpc2 {
 
 WinsockServerChannel::WinsockServerChannel(const std::string &port)
-    : impl_{ new WinsockServerChannel::Impl{ port } } {}
+    : impl_{ new WinsockChannelImpl{ port } } {}
 
 WinsockServerChannel::~WinsockServerChannel() {}
 
@@ -35,6 +35,41 @@ bool WinsockServerChannel::Write(void *buffer, size_t buffer_size) {
 }
 
 ChannelStatus WinsockServerChannel::GetStatus() const {
+  return impl_->GetStatus();
+}
+
+WinsockClientChannel::WinsockClientChannel(const std::string &address,
+                                           const std::string &port)
+    : impl_{ new WinsockChannelImpl{ address, port } } {}
+
+WinsockClientChannel::~WinsockClientChannel() {}
+
+bool WinsockClientChannel::WaitForClient() {
+  return false;
+}
+
+bool WinsockClientChannel::WaitForClientAsync() {
+  return false;
+}
+
+bool WinsockClientChannel::Connect() {
+  return impl_->Connect();
+}
+void WinsockClientChannel::Disconnect() {
+  impl_->Disconnect();
+}
+
+bool WinsockClientChannel::Read(void *buffer,
+                                size_t buffer_size,
+                                size_t *bytes_read) {
+  return false;
+}
+
+bool WinsockClientChannel::Write(void *buffer, size_t buffer_size) {
+  return false;
+}
+
+ChannelStatus WinsockClientChannel::GetStatus() const {
   return impl_->GetStatus();
 }
 

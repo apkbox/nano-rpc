@@ -11,25 +11,39 @@
 
 namespace nanorpc2 {
 
-class WinsockServerChannel::Impl {
+class WinsockChannelImpl {
 public:
-  Impl() {}
-  explicit Impl(const std::string &port);
-  ~Impl();
+  explicit WinsockChannelImpl(const std::string &port);
+  explicit WinsockChannelImpl(const std::string &address, const std::string &port);
+  ~WinsockChannelImpl();
 
   ChannelStatus GetStatus() const;
 
   bool Connect();
   void Disconnect();
 
+  bool Read(void *buffer, size_t buffer_size, size_t *bytes_read);
+  bool Write(void *buffer, size_t buffer_size);
+
 private:
+  bool ConnectServer();
+  bool ConnectClient();
+
+  void Cleanup();
+
+  std::string address_;
   std::string port_;
+  int connect_timeout_;
+  const bool is_client;
   std::atomic<ChannelStatus> status_;
+
+  struct addrinfo *addrinfo_;
   HANDLE shutdown_event_;
   WSAEVENT socket_event_;
+  SOCKET listening_socket_;
   SOCKET socket_;
 
-  NANORPC_DISALLOW_COPY_AND_ASSIGN(WinsockServerChannel::Impl);
+  NANORPC_DISALLOW_COPY_AND_ASSIGN(WinsockChannelImpl);
 };
 
 }  // namespace nanorpc2
