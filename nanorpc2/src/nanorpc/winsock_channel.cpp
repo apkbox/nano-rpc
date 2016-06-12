@@ -9,14 +9,6 @@ WinsockServerChannel::WinsockServerChannel(const std::string &port)
 
 WinsockServerChannel::~WinsockServerChannel() {}
 
-bool WinsockServerChannel::WaitForClient() {
-  return false;
-}
-
-bool WinsockServerChannel::WaitForClientAsync() {
-  return false;
-}
-
 bool WinsockServerChannel::Connect() {
   return impl_->Connect();
 }
@@ -43,14 +35,6 @@ WinsockClientChannel::WinsockClientChannel(const std::string &address,
     : impl_{ new WinsockChannelImpl{ address, port } } {}
 
 WinsockClientChannel::~WinsockClientChannel() {}
-
-bool WinsockClientChannel::WaitForClient() {
-  return false;
-}
-
-bool WinsockClientChannel::WaitForClientAsync() {
-  return false;
-}
 
 bool WinsockClientChannel::Connect() {
   return impl_->Connect();

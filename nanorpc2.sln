@@ -1,10 +1,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nanorpc", "NanoRpc\nanorpc.vcxproj", "{C061F250-9028-4B06-805C-BD108AC4BB1A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nanorpc", "nanorpc\nanorpc.vcxproj", "{C061F250-9028-4B06-805C-BD108AC4BB1A}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nanorpc_cpp_plugin", "NanoRpc\nanorpc_cpp_plugin.vcxproj", "{B8D567EB-469C-47A8-AE56-53F8A304F5F7}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nanorpc_cpp_plugin", "nanorpc\nanorpc_cpp_plugin.vcxproj", "{B8D567EB-469C-47A8-AE56-53F8A304F5F7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F4554791-D1BA-447D-BA47-0634FA9DD0DB}"
 	ProjectSection(SolutionItems) = preProject
@@ -20,6 +20,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hello_world", "hello_world\hello_world.vcxproj", "{C771EE50-929A-46CD-BD06-4C79556ADF3D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nanorpc2", "nanorpc2\nanorpc2.vcxproj", "{4306510F-B17B-4AC0-A62C-FCE027BBC0CC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "winsock_test", "winsock_test\winsock_test.vcxproj", "{44529669-C537-459A-89D5-BD407668CD94}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +79,14 @@ Global
 		{4306510F-B17B-4AC0-A62C-FCE027BBC0CC}.Release|Win32.Build.0 = Release|Win32
 		{4306510F-B17B-4AC0-A62C-FCE027BBC0CC}.Release|x64.ActiveCfg = Release|x64
 		{4306510F-B17B-4AC0-A62C-FCE027BBC0CC}.Release|x64.Build.0 = Release|x64
+		{44529669-C537-459A-89D5-BD407668CD94}.Debug|Win32.ActiveCfg = Debug|Win32
+		{44529669-C537-459A-89D5-BD407668CD94}.Debug|Win32.Build.0 = Debug|Win32
+		{44529669-C537-459A-89D5-BD407668CD94}.Debug|x64.ActiveCfg = Debug|x64
+		{44529669-C537-459A-89D5-BD407668CD94}.Debug|x64.Build.0 = Debug|x64
+		{44529669-C537-459A-89D5-BD407668CD94}.Release|Win32.ActiveCfg = Release|Win32
+		{44529669-C537-459A-89D5-BD407668CD94}.Release|Win32.Build.0 = Release|Win32
+		{44529669-C537-459A-89D5-BD407668CD94}.Release|x64.ActiveCfg = Release|x64
+		{44529669-C537-459A-89D5-BD407668CD94}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

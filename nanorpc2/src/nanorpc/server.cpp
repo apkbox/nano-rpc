@@ -29,7 +29,7 @@ void Server::RegisterService(const std::string &name,
 
 bool Server::WaitForSingleRequest() {
   if (channel_->GetStatus() != ChannelStatus::Established) {
-    if (!channel_->WaitForClient())
+    if (!channel_->Connect())
       return false;
   }
 

@@ -22,7 +22,6 @@ WinsockChannelImpl::WinsockChannelImpl(const std::string &port)
       is_client(false),
       status_(ChannelStatus::NotConnected),
       addrinfo_(nullptr),
-      shutdown_event_(nullptr),
       socket_event_(nullptr),
       listening_socket_(INVALID_SOCKET),
       socket_(INVALID_SOCKET) {}
@@ -34,7 +33,6 @@ WinsockChannelImpl::WinsockChannelImpl(const std::string &address,
       is_client(true),
       status_(ChannelStatus::NotConnected),
       addrinfo_(nullptr),
-      shutdown_event_(nullptr),
       socket_event_(nullptr),
       listening_socket_(INVALID_SOCKET),
       socket_(INVALID_SOCKET) {}
@@ -75,19 +73,15 @@ void WinsockChannelImpl::Cleanup() {
     socket_event_ = WSA_INVALID_EVENT;
   }
 
-  if (shutdown_event_ != nullptr) {
-    CloseHandle(shutdown_event_);
-    shutdown_event_ = nullptr;
-  }
-
   WSACleanup();
-  status_.store(ChannelStatus::NotConnected);
+  status_ = ChannelStatus::NotConnected;
 }
 
 bool WinsockChannelImpl::ConnectClient() {
-  auto exp = ChannelStatus::NotConnected;
-  if (!status_.compare_exchange_strong(exp, ChannelStatus::Connecting))
+  if (status_ != ChannelStatus::NotConnected)
     return false;
+
+  status_ = ChannelStatus::Connecting;
 
   bool result = false;
 
@@ -124,23 +118,26 @@ bool WinsockChannelImpl::ConnectClient() {
     }
 
     if (WSAGetLastError() == WSAEWOULDBLOCK) {
-      std::array<HANDLE, 2> wait_handles = { socket_event_, shutdown_event_ };
+      std::array<HANDLE, 1> wait_handles = { socket_event_ };
       DWORD wait_result = WSAWaitForMultipleEvents(
           wait_handles.size(), &wait_handles.front(), false, INFINITE, true);
-      if (wait_result == WAIT_OBJECT_0) {
+      if (wait_result == WAIT_FAILED || wait_result == WAIT_TIMEOUT ||
+          (wait_result >= STATUS_ABANDONED_WAIT_0 &&
+           wait_result < (STATUS_ABANDONED_WAIT_0 + wait_handles.size()))) {
+        break;
+      } else if (wait_result == WAIT_OBJECT_0) {
         WSANETWORKEVENTS events;
         if (WSAEnumNetworkEvents(socket_, socket_event_, &events) == 0) {
-          if (events.lNetworkEvents & FD_CLOSE_BIT) {
-            closesocket(socket_);
-            socket_ = INVALID_SOCKET;
-            continue;
-          } else if (events.lNetworkEvents & FD_CONNECT_BIT) {
-            connected = true;
+          if (events.lNetworkEvents & FD_CLOSE) {
             break;
+          } else if (events.lNetworkEvents & FD_CONNECT) {
+            if (events.iErrorCode[FD_CONNECT_BIT] == 0) {
+              connected = true;
+              break;
+            }
           }
         }
-      }
-      if (wait_result == (WAIT_OBJECT_0 + 1)) {
+      } else if (wait_result == (WAIT_OBJECT_0 + 1)) {
         // Shutdown called.
         break;
       }
@@ -152,7 +149,7 @@ bool WinsockChannelImpl::ConnectClient() {
 
   if (connected) {
     result = true;
-    status_.store(ChannelStatus::Established);
+    status_ = ChannelStatus::Established;
   }
 
 exit:
@@ -163,9 +160,10 @@ exit:
 }
 
 bool WinsockChannelImpl::ConnectServer() {
-  auto exp = ChannelStatus::NotConnected;
-  if (!status_.compare_exchange_strong(exp, ChannelStatus::Connecting))
+  if (status_ != ChannelStatus::NotConnected)
     return false;
+
+  status_ = ChannelStatus::Connecting;
 
   bool result = false;
 
@@ -198,10 +196,6 @@ bool WinsockChannelImpl::ConnectServer() {
   if (socket_event_ == WSA_INVALID_EVENT)
     goto exit;
 
-  shutdown_event_ = CreateEvent(nullptr, false, false, nullptr);
-  if (shutdown_event_ == nullptr)
-    goto exit;
-
   if (WSAEventSelect(listening_socket_, socket_event_,
                      FD_ACCEPT | FD_READ | FD_WRITE | FD_CLOSE) == SOCKET_ERROR)
     goto exit;
@@ -216,7 +210,7 @@ bool WinsockChannelImpl::ConnectServer() {
   }
 
   {
-    std::array<HANDLE, 2> wait_handles = { socket_event_, shutdown_event_ };
+    std::array<HANDLE, 1> wait_handles = { socket_event_ };
     DWORD wait_result = WaitForMultipleObjects(
         wait_handles.size(), &wait_handles.front(), false, INFINITE);
     if (wait_result == (WAIT_OBJECT_0 + 1) || wait_result >= WAIT_ABANDONED ||
@@ -231,7 +225,7 @@ bool WinsockChannelImpl::ConnectServer() {
   }
 
   result = true;
-  status_.store(ChannelStatus::Established);
+  status_ = ChannelStatus::Established;
 
 exit:
   if (!result)
@@ -250,9 +244,13 @@ void WinsockChannelImpl::Disconnect() {
     socket_ = INVALID_SOCKET;
   }
 
-  SetEvent(shutdown_event_);
-
   status_ = ChannelStatus::NotConnected;
+}
+
+std::shared_ptr<IoRequest> WinsockChannelImpl::CreateIoRequest() {
+  std::shared_ptr<IoRequest> request(new IoRequest());
+  io_requests_.push_back(request);
+  return request;
 }
 
 bool WinsockChannelImpl::Read(void *buffer,
@@ -267,7 +265,13 @@ bool WinsockChannelImpl::Read(void *buffer,
   return false;
 }
 
-bool WinsockChannelImpl::Write(void *buffer, size_t buffer_size) {
+bool WinsockChannelImpl::Write(const void *buffer, size_t buffer_size) {
+  auto request = CreateIoRequest();
+  auto buf = request->AllocateBuffer(buffer_size);
+  memcpy(buf, buffer, buffer_size);
+  request->set_pending(true);
+  WSASend(socket_, request->GetWSABUFPointer(), request->GetWSABUFCount(),
+          nullptr, 0, request.get(), nullptr);
   return false;
 }
 
