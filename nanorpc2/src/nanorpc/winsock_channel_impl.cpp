@@ -1,5 +1,6 @@
 #include "nanorpc/winsock_channel_impl.h"
 
+#include <algorithm>
 #include <atomic>
 #include <array>
 #include <string>
@@ -22,7 +23,6 @@ WinsockChannelImpl::WinsockChannelImpl(const std::string &port)
       is_client(false),
       status_(ChannelStatus::NotConnected),
       addrinfo_(nullptr),
-      socket_event_(nullptr),
       listening_socket_(INVALID_SOCKET),
       socket_(INVALID_SOCKET) {}
 
@@ -33,7 +33,6 @@ WinsockChannelImpl::WinsockChannelImpl(const std::string &address,
       is_client(true),
       status_(ChannelStatus::NotConnected),
       addrinfo_(nullptr),
-      socket_event_(nullptr),
       listening_socket_(INVALID_SOCKET),
       socket_(INVALID_SOCKET) {}
 
@@ -68,11 +67,6 @@ void WinsockChannelImpl::Cleanup() {
     socket_ = INVALID_SOCKET;
   }
 
-  if (socket_event_ != WSA_INVALID_EVENT) {
-    WSACloseEvent(socket_event_);
-    socket_event_ = WSA_INVALID_EVENT;
-  }
-
   WSACleanup();
   status_ = ChannelStatus::NotConnected;
 }
@@ -83,7 +77,7 @@ bool WinsockChannelImpl::ConnectClient() {
 
   status_ = ChannelStatus::Connecting;
 
-  bool result = false;
+  bool failure = true;  // It is failure unless we explicitly said otherwise.
 
   struct addrinfo hints = {};
   hints.ai_family = AF_INET;
@@ -98,49 +92,15 @@ bool WinsockChannelImpl::ConnectClient() {
   if (getaddrinfo(address_.c_str(), port_.c_str(), &hints, &addrinfo_) != 0)
     goto exit;
 
-  socket_event_ = WSACreateEvent();
-  if (socket_event_ == WSA_INVALID_EVENT)
-    goto exit;
-
   bool connected = false;
   for (auto p = addrinfo_; p != nullptr; p = p->ai_next) {
-    // Create client socket
     socket_ = socket(p->ai_family, p->ai_socktype, p->ai_protocol);
     if (socket_ == INVALID_SOCKET)
       continue;
 
-    if (WSAEventSelect(socket_, socket_event_, FD_CONNECT | FD_CLOSE) != 0)
-      goto exit;
-
     if (connect(socket_, p->ai_addr, static_cast<int>(p->ai_addrlen)) == 0) {
       connected = true;
       break;
-    }
-
-    if (WSAGetLastError() == WSAEWOULDBLOCK) {
-      std::array<HANDLE, 1> wait_handles = { socket_event_ };
-      DWORD wait_result = WSAWaitForMultipleEvents(
-          wait_handles.size(), &wait_handles.front(), false, INFINITE, true);
-      if (wait_result == WAIT_FAILED || wait_result == WAIT_TIMEOUT ||
-          (wait_result >= STATUS_ABANDONED_WAIT_0 &&
-           wait_result < (STATUS_ABANDONED_WAIT_0 + wait_handles.size()))) {
-        break;
-      } else if (wait_result == WAIT_OBJECT_0) {
-        WSANETWORKEVENTS events;
-        if (WSAEnumNetworkEvents(socket_, socket_event_, &events) == 0) {
-          if (events.lNetworkEvents & FD_CLOSE) {
-            break;
-          } else if (events.lNetworkEvents & FD_CONNECT) {
-            if (events.iErrorCode[FD_CONNECT_BIT] == 0) {
-              connected = true;
-              break;
-            }
-          }
-        }
-      } else if (wait_result == (WAIT_OBJECT_0 + 1)) {
-        // Shutdown called.
-        break;
-      }
     }
 
     closesocket(socket_);
@@ -148,15 +108,18 @@ bool WinsockChannelImpl::ConnectClient() {
   }
 
   if (connected) {
-    result = true;
+    completion_port_ = CreateIoCompletionPort(reinterpret_cast<HANDLE>(socket_), NULL, socket_, 0);
+    io_thread_.reset(new std::thread(&WinsockChannelImpl::IoCompletionRoutine, this));
+
+    failure = false;
     status_ = ChannelStatus::Established;
   }
 
 exit:
-  if (!result)
+  if (failure)
     Cleanup();
 
-  return result;
+  return !failure;
 }
 
 bool WinsockChannelImpl::ConnectServer() {
@@ -192,14 +155,6 @@ bool WinsockChannelImpl::ConnectServer() {
            static_cast<int>(addrinfo_->ai_addrlen)) == SOCKET_ERROR)
     goto exit;
 
-  socket_event_ = WSACreateEvent();
-  if (socket_event_ == WSA_INVALID_EVENT)
-    goto exit;
-
-  if (WSAEventSelect(listening_socket_, socket_event_,
-                     FD_ACCEPT | FD_READ | FD_WRITE | FD_CLOSE) == SOCKET_ERROR)
-    goto exit;
-
   if (listen(listening_socket_, SOMAXCONN) == SOCKET_ERROR)
     goto exit;
 
@@ -207,16 +162,6 @@ bool WinsockChannelImpl::ConnectServer() {
   if (socket_ == INVALID_SOCKET) {
     if (WSAGetLastError() != WSAEWOULDBLOCK)
       goto exit;
-  }
-
-  {
-    std::array<HANDLE, 1> wait_handles = { socket_event_ };
-    DWORD wait_result = WaitForMultipleObjects(
-        wait_handles.size(), &wait_handles.front(), false, INFINITE);
-    if (wait_result == (WAIT_OBJECT_0 + 1) || wait_result >= WAIT_ABANDONED ||
-        wait_result == WAIT_TIMEOUT || wait_result == WAIT_FAILED) {
-      goto exit;
-    }
   }
 
   socket_ = accept(socket_, nullptr, nullptr);
@@ -244,18 +189,65 @@ void WinsockChannelImpl::Disconnect() {
     socket_ = INVALID_SOCKET;
   }
 
+  PostQueuedCompletionStatus(completion_port_, 0, 0, nullptr);
+  if (io_thread_ != nullptr) {
+    io_thread_->join();
+    io_thread_.release();
+  }
+
+  completion_port_.Close();
+
   status_ = ChannelStatus::NotConnected;
 }
 
 std::shared_ptr<IoRequest> WinsockChannelImpl::CreateIoRequest() {
   std::shared_ptr<IoRequest> request(new IoRequest());
+  std::lock_guard<std::mutex> lock(io_requests_lock_);
   io_requests_.push_back(request);
   return request;
+}
+
+void WinsockChannelImpl::DeleteIoRequest(IoRequest *request) {
+  std::lock_guard<std::mutex> lock(io_requests_lock_);
+  const auto iter = std::find_if(io_requests_.begin(), io_requests_.end(),
+                           [request](const std::shared_ptr<IoRequest> &t) {
+                             return request == t.get();
+                           });
+  if (iter == io_requests_.end())
+    return;
+  io_requests_.erase(iter);
+}
+
+void WinsockChannelImpl::IoCompletionRoutine() {
+  bool wait_pending_io = false;
+
+  while (true) {
+    // For graceful shutdown we wait until all pending I/O completes.
+    if (wait_pending_io) {
+      std::lock_guard<std::mutex> lock(io_requests_lock_);
+      if (io_requests_.size() == 0)
+        break;
+    }
+
+    DWORD bytes_transferred;
+    ULONG_PTR key;
+    LPOVERLAPPED povl;
+    if (GetQueuedCompletionStatus(completion_port_, &bytes_transferred, &key,
+                                  &povl, INFINITE)) {
+      if (key == 0 && povl == nullptr)
+        wait_pending_io = true;
+
+       auto io_request = reinterpret_cast<IoRequest *>(povl);
+       DeleteIoRequest(io_request);
+    }
+  }
 }
 
 bool WinsockChannelImpl::Read(void *buffer,
                               size_t buffer_size,
                               size_t *bytes_read) {
+  std::lock_guard<std::mutex> lock(read_lock_);
+
   // if (buffer == nullptr)
   //  *bytes_read = recv(socket_, buffer, buffer_size, 0);
 
@@ -266,13 +258,19 @@ bool WinsockChannelImpl::Read(void *buffer,
 }
 
 bool WinsockChannelImpl::Write(const void *buffer, size_t buffer_size) {
+  std::lock_guard<std::mutex> lock(write_lock_);
+
   auto request = CreateIoRequest();
   auto buf = request->AllocateBuffer(buffer_size);
   memcpy(buf, buffer, buffer_size);
   request->set_pending(true);
-  WSASend(socket_, request->GetWSABUFPointer(), request->GetWSABUFCount(),
-          nullptr, 0, request.get(), nullptr);
-  return false;
+  int result =
+      WSASend(socket_, request->GetWSABUFPointer(), request->GetWSABUFCount(),
+              nullptr, 0, request.get(), nullptr);
+  if (result == SOCKET_ERROR)
+    return WSAGetLastError() == WSA_IO_PENDING;
+
+  return true;
 }
 
 }  // namespace nanorpc2

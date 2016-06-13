@@ -5,6 +5,7 @@
 #include <memory>
 #include <mutex>
 #include <string>
+#include <thread>
 
 #include <winsock2.h>
 
@@ -48,6 +49,11 @@ class IoRequest final : public OVERLAPPED {
 public:
   IoRequest() : pending_(false) {
     *static_cast<OVERLAPPED *>(this) = {};
+  }
+
+  ~IoRequest() {
+    for (const auto buf : buffers_)
+      delete buf.buf;
   }
 
   void set_pending(bool pending) { pending_ = pending; }
@@ -101,24 +107,26 @@ private:
 
   void Cleanup();
   std::shared_ptr<IoRequest> CreateIoRequest();
+  void DeleteIoRequest(IoRequest *io_request);
+
+  void IoCompletionRoutine();
 
   std::string address_;
   std::string port_;
   int connect_timeout_;
   const bool is_client;
+
   ChannelStatus status_;
 
   struct addrinfo *addrinfo_;
-  WSAEVENT socket_event_;
   SOCKET listening_socket_;
   SOCKET socket_;
-  
-  ScopedHandle io_event_;
-  ScopedHandle completion_event_;
 
   std::mutex read_lock_;
   std::mutex write_lock_;
-
+  ScopedHandle completion_port_;
+  std::unique_ptr<std::thread> io_thread_;
+  std::mutex io_requests_lock_;
   std::vector<std::shared_ptr<IoRequest>> io_requests_;
 
   NANORPC_DISALLOW_COPY_AND_ASSIGN(WinsockChannelImpl);

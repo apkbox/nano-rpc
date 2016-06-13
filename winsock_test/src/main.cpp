@@ -26,6 +26,11 @@ int wmain(int argc, wchar_t *argv[]) {
   //auto buffer = request.AllocateBuffer(kTestString.size() + 1);
   //strcpy(buffer, kTestString.c_str());
   channel.Write(kTestString.c_str(), kTestString.size() + 1);
+  channel.Write(kTestString.c_str(), kTestString.size() + 1);
+  channel.Write(kTestString.c_str(), kTestString.size() + 1);
+  channel.Write(kTestString.c_str(), kTestString.size() + 1);
+  channel.Write(kTestString.c_str(), kTestString.size() + 1);
+  channel.Write(kTestString.c_str(), kTestString.size() + 1);
 
   std::cout << "CLIENT: Exiting." << std::endl;
   channel.Disconnect();
