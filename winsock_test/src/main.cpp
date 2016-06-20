@@ -27,9 +27,13 @@ Operator OperatorFromInt(int value) {
 
 struct RequestMessage {
   int call_id;
+  int a;
+  int n_seq;
+};
+
+struct CalcSequence {
   Operator op;
-  int operand1;
-  int operand2;
+  int b;
 };
 
 struct ResponseMessage {
@@ -53,24 +57,32 @@ void ServerThreadProc() {
     if (bytes_read == 0)
       break;
 
-    RequestMessage request;
-    if (!channel.Read(&request, request_size, &bytes_read))
+    std::vector<uint8_t> buffer(request_size);
+    if (!channel.Read(&buffer[0], buffer.size(), &bytes_read))
       break;
     if (bytes_read == 0)
       break;
 
-    std::cout << "SERVER: [" << request.call_id << "]: Op=" << (int)request.op
-              << ", a=" << request.operand1 << ", b=" << request.operand2
-              << std::endl;
+    RequestMessage request;
+    memcpy(&request, &buffer[0], sizeof(RequestMessage));
+
+    std::cout << "SERVER: [" << request.call_id
+              << "]: Request with a=" << request.a
+              << ", n_seq=" << request.n_seq << std::endl;
 
     ResponseMessage response;
     response.call_id = request.call_id;
-    if (request.op == Operator::Add) {
-      response.result = request.operand1 + request.operand2;
-    } else if (request.op == Operator::Subtract) {
-      response.result = request.operand1 - request.operand2;
-    } else { 
-      response.result = -1;
+    response.result = request.a;
+
+    const CalcSequence *calc =
+        reinterpret_cast<CalcSequence *>(&buffer[0] + sizeof(RequestMessage));
+    for (int n = 0; n < request.n_seq; ++n) {
+      if (calc[n].op == Operator::Add) {
+        response.result += calc[n].b;
+      }
+      else if (calc[n].op == Operator::Subtract) {
+        response.result -= calc[n].b;
+      }
     }
 
     std::cout << "SERVER: [" << request.call_id
@@ -106,29 +118,39 @@ void ClientThreadProc() {
 
   std::random_device rd;
   std::mt19937 rnd_generator{ rd() };
+  std::uniform_int_distribution<> seq_gen{ 1, 5 };
   std::uniform_int_distribution<> ab_gen{ 0, 200 };
   std::uniform_int_distribution<> op_gen{ 1, 2 };
 
   for (int call_id = 0; call_id < 10; ++call_id) {
     auto a = ab_gen(rnd_generator);
-    auto b = ab_gen(rnd_generator);
-    auto op = op_gen(rnd_generator);
+    auto n_seq = seq_gen(rnd_generator);
+
     RequestMessage request;
     request.call_id = call_id;
-    request.op = OperatorFromInt(op);
-    request.operand1 = a;
-    request.operand2 = b;
+    request.a = a;
+    request.n_seq = n_seq;
 
-    std::cout << "CLIENT: [" << request.call_id << "]: Op=" << (int)request.op
-              << ", a=" << request.operand1 << ", b=" << request.operand2
-              << std::endl;
+    std::cout << "CLIENT: [" << request.call_id
+              << "]: Request with a=" << request.a
+              << ", n_seq=" << request.n_seq << std::endl;
 
-    int message_size = sizeof(RequestMessage);
+    int message_size = sizeof(RequestMessage) + sizeof(CalcSequence) * n_seq;
     if (!channel.Write(&message_size, sizeof(int)))
       break;
-
-    if (!channel.Write(&request, message_size))
+    if (!channel.Write(&request, sizeof(RequestMessage)))
       break;
+
+    for (int n = 0; n < n_seq; ++n) {
+      auto b = ab_gen(rnd_generator);
+      auto op = op_gen(rnd_generator);
+
+      CalcSequence seq;
+      seq.op = OperatorFromInt(op);
+      seq.b = b;
+      if (!channel.Write(&seq, sizeof(CalcSequence)))
+        break;
+    }
 
     int response_size;
     size_t bytes_read;
