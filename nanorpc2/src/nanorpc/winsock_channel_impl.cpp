@@ -169,11 +169,6 @@ bool WinsockChannelImpl::ConnectServer() {
       goto exit;
   }
 
-  socket_ = accept(socket_, nullptr, nullptr);
-  if (socket_ == INVALID_SOCKET) {
-    goto exit;
-  }
-
   result = true;
   status_ = ChannelStatus::Established;
 
