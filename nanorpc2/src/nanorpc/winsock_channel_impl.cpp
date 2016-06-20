@@ -13,6 +13,14 @@
 #include <ws2tcpip.h>
 #include <iphlpapi.h>
 
+#if defined(min)
+#undef min
+#endif
+
+#if defined(max)
+#undef max
+#endif
+
 #pragma comment(lib, "Ws2_32.lib")
 
 namespace nanorpc2 {
@@ -201,21 +209,15 @@ void WinsockChannelImpl::Disconnect() {
 }
 
 std::shared_ptr<IoRequest> WinsockChannelImpl::CreateIoRequest() {
-  std::shared_ptr<IoRequest> request(new IoRequest());
+  std::shared_ptr<IoRequest> request(std::make_shared<IoRequest>());
   std::lock_guard<std::mutex> lock(io_requests_lock_);
-  io_requests_.push_back(request);
+  io_requests_.emplace(request.get(), request);
   return request;
 }
 
 void WinsockChannelImpl::DeleteIoRequest(IoRequest *request) {
   std::lock_guard<std::mutex> lock(io_requests_lock_);
-  const auto iter = std::find_if(io_requests_.begin(), io_requests_.end(),
-                           [request](const std::shared_ptr<IoRequest> &t) {
-                             return request == t.get();
-                           });
-  if (iter == io_requests_.end())
-    return;
-  io_requests_.erase(iter);
+  io_requests_.erase(request);
 }
 
 void WinsockChannelImpl::IoCompletionRoutine() {
@@ -238,7 +240,17 @@ void WinsockChannelImpl::IoCompletionRoutine() {
         wait_pending_io = true;
 
        auto io_request = reinterpret_cast<IoRequest *>(povl);
-       DeleteIoRequest(io_request);
+       if (io_request->get_iotype() == IoType::Read) {
+         io_request->GetWSABUFPointer()->len = bytes_transferred;
+         io_request->OffsetHigh = 0;
+         io_request->Offset = 0;
+         read_queue_.push(io_request);
+         read_complete_cv_.notify_all();
+       } else {
+         DeleteIoRequest(io_request);
+       }
+    } else {
+      OutputDebugString(L"GetQueueCompletionStatus: failed");
     }
   }
 }
@@ -248,12 +260,48 @@ bool WinsockChannelImpl::Read(void *buffer,
                               size_t *bytes_read) {
   std::lock_guard<std::mutex> lock(read_lock_);
 
-  // if (buffer == nullptr)
-  //  *bytes_read = recv(socket_, buffer, buffer_size, 0);
+  // TODO: Algorithm
+  //  - Check if there is already received data, if so, fill the buffer
+  //  - Check if there is an outstanding read request, if not - issue one
+  //  - Block if there was no received data
 
-  // WaitForMultipleObjects()
+  // TODO: Do this in the loop and read data into the buffer until all data
+  // read or buffer filled.
+  // Then check if there are at least two outstanding read requests.
+  if (!read_queue_.empty()) {
+    const auto &iop = read_queue_.front();
+    uint8_t *ptr = (uint8_t *)iop->GetWSABUFPointer()->buf;
+    if (buffer == nullptr) {
+      if (bytes_read == nullptr)
+        return false;
+      *bytes_read = iop->GetWSABUFPointer()->len - iop->Offset;
+      return true;
+    } else {
+      size_t max_copy = std::min(buffer_size, (size_t)iop->GetWSABUFPointer()->len);
+      memcpy(buffer, iop->GetWSABUFPointer()->buf, max_copy);
+      iop->GetWSABUFPointer()->len -= max_copy;
+      buffer_size -= max_copy;
+      if (iop->GetWSABUFPointer()->len == 0)
+        DeleteIoRequest(iop);
 
-  //*bytes_read = recv(socket_, buffer, buffer_size, 0);
+      if (bytes_read != nullptr)
+        *bytes_read = max_copy;
+      return true;
+    }
+  }
+
+  auto request = CreateIoRequest();
+  auto buf = request->AllocateBuffer(1000);
+  request->set_iotype(IoType::Read);
+  int result =
+    WSARecv(socket_, request->GetWSABUFPointer(), request->GetWSABUFCount(),
+    nullptr, 0, request.get(), nullptr);
+  if (result == SOCKET_ERROR)
+    return WSAGetLastError() == WSA_IO_PENDING;
+
+  std::unique_lock<std::mutex> lk(read_complete_mtx_);
+  read_complete_cv_.wait(lk, [this] { return !read_queue_.empty(); });
+
   return false;
 }
 
@@ -263,7 +311,7 @@ bool WinsockChannelImpl::Write(const void *buffer, size_t buffer_size) {
   auto request = CreateIoRequest();
   auto buf = request->AllocateBuffer(buffer_size);
   memcpy(buf, buffer, buffer_size);
-  request->set_pending(true);
+  request->set_iotype(IoType::Write);
   int result =
       WSASend(socket_, request->GetWSABUFPointer(), request->GetWSABUFCount(),
               nullptr, 0, request.get(), nullptr);

@@ -2,10 +2,14 @@
 #define NANORPC_WINSOCK_CHANNEL_IMPL_H__
 
 #include <atomic>
+#include <condition_variable>
 #include <memory>
 #include <mutex>
+#include <unordered_map>
+#include <queue>
 #include <string>
 #include <thread>
+#include <vector>
 
 #include <winsock2.h>
 
@@ -45,9 +49,15 @@ private:
   HANDLE handle_;
 };
 
+enum class IoType {
+  None,
+  Read,
+  Write
+};
+
 class IoRequest final : public OVERLAPPED {
 public:
-  IoRequest() : pending_(false) {
+  IoRequest() : io_type_(IoType::None) {
     *static_cast<OVERLAPPED *>(this) = {};
   }
 
@@ -56,8 +66,8 @@ public:
       delete buf.buf;
   }
 
-  void set_pending(bool pending) { pending_ = pending; }
-  bool get_pending() const { return pending_; }
+  void set_iotype(IoType io_type) { io_type_ = io_type; }
+  IoType get_iotype() const { return io_type_; }
 
   void *AllocateBuffer(size_t size) {
     WSABUF buf;
@@ -77,10 +87,15 @@ public:
 
 private:
   std::vector<WSABUF> buffers_;
-  bool pending_;  // Inidcates that I/O is in progress, so GetBuffer and other
-                  // ops will fail.
+  IoType io_type_;  // If other than None - inidcates that I/O is in progress,
+                    // so GetBuffer and other ops will fail.
 
   NANORPC_DISALLOW_COPY_AND_ASSIGN(IoRequest);
+};
+
+class IoPacket final {
+public:
+private:
 };
 
 class WinsockChannelImpl {
@@ -126,8 +141,13 @@ private:
   std::mutex write_lock_;
   ScopedHandle completion_port_;
   std::unique_ptr<std::thread> io_thread_;
+
   std::mutex io_requests_lock_;
-  std::vector<std::shared_ptr<IoRequest>> io_requests_;
+  std::unordered_map<IoRequest *, std::shared_ptr<IoRequest>> io_requests_;
+
+  std::condition_variable read_complete_cv_;
+  std::mutex read_complete_mtx_;
+  std::queue<IoRequest *> read_queue_;
 
   NANORPC_DISALLOW_COPY_AND_ASSIGN(WinsockChannelImpl);
 };
