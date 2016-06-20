@@ -107,6 +107,7 @@ public:
   ChannelStatus GetStatus() const;
 
   bool Connect();
+  void Shutdown();
   void Disconnect();
 
   IoRequest AllocateRequest();
@@ -124,8 +125,6 @@ private:
   std::shared_ptr<IoRequest> CreateIoRequest();
   void DeleteIoRequest(IoRequest *io_request);
 
-  void IoCompletionRoutine();
-
   std::string address_;
   std::string port_;
   int connect_timeout_;
@@ -139,15 +138,9 @@ private:
 
   std::mutex read_lock_;
   std::mutex write_lock_;
-  ScopedHandle completion_port_;
-  std::unique_ptr<std::thread> io_thread_;
 
   std::mutex io_requests_lock_;
   std::unordered_map<IoRequest *, std::shared_ptr<IoRequest>> io_requests_;
-
-  std::condition_variable read_complete_cv_;
-  std::mutex read_complete_mtx_;
-  std::queue<IoRequest *> read_queue_;
 
   NANORPC_DISALLOW_COPY_AND_ASSIGN(WinsockChannelImpl);
 };

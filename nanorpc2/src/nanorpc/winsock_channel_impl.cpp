@@ -116,9 +116,6 @@ bool WinsockChannelImpl::ConnectClient() {
   }
 
   if (connected) {
-    completion_port_ = CreateIoCompletionPort(reinterpret_cast<HANDLE>(socket_), NULL, socket_, 0);
-    io_thread_.reset(new std::thread(&WinsockChannelImpl::IoCompletionRoutine, this));
-
     failure = false;
     status_ = ChannelStatus::Established;
   }
@@ -187,23 +184,26 @@ exit:
   return result;
 }
 
+void WinsockChannelImpl::Shutdown() {
+  if (status_ == ChannelStatus::NotConnected)
+    return;
+
+  if (socket_ != INVALID_SOCKET) {
+    int result = shutdown(socket_, SD_SEND);
+    if (result == SOCKET_ERROR)
+      Disconnect();
+  }
+}
+
 void WinsockChannelImpl::Disconnect() {
   if (status_ == ChannelStatus::NotConnected)
     return;
 
   if (socket_ != INVALID_SOCKET) {
-    shutdown(socket_, SD_BOTH);
+    shutdown(socket_, SD_SEND);
     closesocket(socket_);
     socket_ = INVALID_SOCKET;
   }
-
-  PostQueuedCompletionStatus(completion_port_, 0, 0, nullptr);
-  if (io_thread_ != nullptr) {
-    io_thread_->join();
-    io_thread_.release();
-  }
-
-  completion_port_.Close();
 
   status_ = ChannelStatus::NotConnected;
 }
@@ -220,89 +220,32 @@ void WinsockChannelImpl::DeleteIoRequest(IoRequest *request) {
   io_requests_.erase(request);
 }
 
-void WinsockChannelImpl::IoCompletionRoutine() {
-  bool wait_pending_io = false;
-
-  while (true) {
-    // For graceful shutdown we wait until all pending I/O completes.
-    if (wait_pending_io) {
-      std::lock_guard<std::mutex> lock(io_requests_lock_);
-      if (io_requests_.size() == 0)
-        break;
-    }
-
-    DWORD bytes_transferred;
-    ULONG_PTR key;
-    LPOVERLAPPED povl;
-    if (GetQueuedCompletionStatus(completion_port_, &bytes_transferred, &key,
-                                  &povl, INFINITE)) {
-      if (key == 0 && povl == nullptr)
-        wait_pending_io = true;
-
-       auto io_request = reinterpret_cast<IoRequest *>(povl);
-       if (io_request->get_iotype() == IoType::Read) {
-         io_request->GetWSABUFPointer()->len = bytes_transferred;
-         io_request->OffsetHigh = 0;
-         io_request->Offset = 0;
-         read_queue_.push(io_request);
-         read_complete_cv_.notify_all();
-       } else {
-         DeleteIoRequest(io_request);
-       }
-    } else {
-      OutputDebugString(L"GetQueueCompletionStatus: failed");
-    }
-  }
-}
-
 bool WinsockChannelImpl::Read(void *buffer,
                               size_t buffer_size,
                               size_t *bytes_read) {
   std::lock_guard<std::mutex> lock(read_lock_);
 
-  // TODO: Algorithm
-  //  - Check if there is already received data, if so, fill the buffer
-  //  - Check if there is an outstanding read request, if not - issue one
-  //  - Block if there was no received data
+  *bytes_read = 0;
 
-  // TODO: Do this in the loop and read data into the buffer until all data
-  // read or buffer filled.
-  // Then check if there are at least two outstanding read requests.
-  if (!read_queue_.empty()) {
-    const auto &iop = read_queue_.front();
-    uint8_t *ptr = (uint8_t *)iop->GetWSABUFPointer()->buf;
-    if (buffer == nullptr) {
-      if (bytes_read == nullptr)
-        return false;
-      *bytes_read = iop->GetWSABUFPointer()->len - iop->Offset;
-      return true;
-    } else {
-      size_t max_copy = std::min(buffer_size, (size_t)iop->GetWSABUFPointer()->len);
-      memcpy(buffer, iop->GetWSABUFPointer()->buf, max_copy);
-      iop->GetWSABUFPointer()->len -= max_copy;
-      buffer_size -= max_copy;
-      if (iop->GetWSABUFPointer()->len == 0)
-        DeleteIoRequest(iop);
+  char *ptr = reinterpret_cast<char *>(buffer);
+  while (buffer_size > 0) {
+    int result = recv(socket_, ptr, buffer_size, 0);
+    if (result == SOCKET_ERROR)
+      return WSAGetLastError() == WSA_IO_PENDING;
 
-      if (bytes_read != nullptr)
-        *bytes_read = max_copy;
+    if (result == 0) {
+      *bytes_read = 0;
       return true;
+    }
+
+    if (result <= buffer_size) {
+      ptr += result;
+      buffer_size -= result;
+      *bytes_read += result;
     }
   }
 
-  auto request = CreateIoRequest();
-  auto buf = request->AllocateBuffer(1000);
-  request->set_iotype(IoType::Read);
-  int result =
-    WSARecv(socket_, request->GetWSABUFPointer(), request->GetWSABUFCount(),
-    nullptr, 0, request.get(), nullptr);
-  if (result == SOCKET_ERROR)
-    return WSAGetLastError() == WSA_IO_PENDING;
-
-  std::unique_lock<std::mutex> lk(read_complete_mtx_);
-  read_complete_cv_.wait(lk, [this] { return !read_queue_.empty(); });
-
-  return false;
+  return true;
 }
 
 bool WinsockChannelImpl::Write(const void *buffer, size_t buffer_size) {
@@ -312,9 +255,10 @@ bool WinsockChannelImpl::Write(const void *buffer, size_t buffer_size) {
   auto buf = request->AllocateBuffer(buffer_size);
   memcpy(buf, buffer, buffer_size);
   request->set_iotype(IoType::Write);
-  int result =
-      WSASend(socket_, request->GetWSABUFPointer(), request->GetWSABUFCount(),
-              nullptr, 0, request.get(), nullptr);
+  DWORD bytes_sent;
+  int result = WSASend(socket_, request->GetWSABUFPointer(),
+                       request->GetWSABUFCount(), &bytes_sent,
+                       0, nullptr, nullptr);
   if (result == SOCKET_ERROR)
     return WSAGetLastError() == WSA_IO_PENDING;
 
