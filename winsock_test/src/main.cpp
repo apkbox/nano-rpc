@@ -10,11 +10,9 @@
 
 #include <Windows.h>
 
-enum class Operator {
-  Nop = 0,
-  Add = 1,
-  Subtract = 2
-};
+#define SHOW_PROGRESS
+
+enum class Operator { Nop = 0, Add = 1, Subtract = 2 };
 
 Operator OperatorFromInt(int value) {
   if (value < 1)
@@ -60,11 +58,14 @@ void ServerThreadProc() {
 
     const RequestMessage *request = request_message->ReadAs<RequestMessage>();
 
+#if defined(SHOW_PROGRESS)
     std::cout << "SERVER: [" << request->call_id
               << "]: Request with a=" << request->a
               << ", n_seq=" << request->n_seq << std::endl;
+#endif
 
-    std::unique_ptr<nanorpc2::WriteBuffer> response_message = channel.CreateWriteBuffer();
+    std::unique_ptr<nanorpc2::WriteBuffer> response_message =
+        channel.CreateWriteBuffer();
     int *response_size = response_message->WriteAs<int>();
     ResponseMessage *response = response_message->WriteAs<ResponseMessage>();
     response->call_id = request->call_id;
@@ -78,15 +79,19 @@ void ServerThreadProc() {
         response->result -= calc->b;
     }
 
+#if defined(SHOW_PROGRESS)
     std::cout << "SERVER: [" << request->call_id
               << "]: Result=" << response->result << std::endl;
+#endif
 
     *response_size = response_message->size() - sizeof(int);
     channel.Write(std::move(response_message));
 
+#if defined(SHOW_PROGRESS)
     std::cout << "SERVER: [" << request->call_id << "]: Done." << std::endl;
+#endif
   }
-  
+
   channel.Disconnect();
 
   std::cout << "SERVER: Exiting." << std::endl;
@@ -112,7 +117,11 @@ void ClientThreadProc() {
   std::uniform_int_distribution<> ab_gen{ 0, 200 };
   std::uniform_int_distribution<> op_gen{ 1, 2 };
 
-  for (int call_id = 0; call_id < 10; ++call_id) {
+  using clk = std::chrono::high_resolution_clock;
+  auto start = clk::now();
+
+  const auto kCallsN = 500;
+  for (int call_id = 0; call_id < kCallsN; ++call_id) {
     auto a = ab_gen(rnd_generator);
     auto n_seq = seq_gen(rnd_generator);
 
@@ -121,15 +130,17 @@ void ClientThreadProc() {
     request.a = a;
     request.n_seq = n_seq;
 
+#if defined(SHOW_PROGRESS)
     std::cout << "CLIENT: [" << request.call_id
               << "]: Request with a=" << request.a
               << ", n_seq=" << request.n_seq << std::endl;
+#endif
+
+    auto request_message = channel.CreateWriteBuffer();
 
     int message_size = sizeof(RequestMessage) + sizeof(CalcSequence) * n_seq;
-    if (!channel.Write(&message_size, sizeof(int)))
-      break;
-    if (!channel.Write(&request, sizeof(RequestMessage)))
-      break;
+    *request_message->WriteAs<int>() = message_size;
+    *request_message->WriteAs<RequestMessage>() = request;
 
     for (int n = 0; n < n_seq; ++n) {
       auto b = ab_gen(rnd_generator);
@@ -138,34 +149,33 @@ void ClientThreadProc() {
       CalcSequence seq;
       seq.op = OperatorFromInt(op);
       seq.b = b;
-      if (!channel.Write(&seq, sizeof(CalcSequence)))
-        break;
+      *request_message->WriteAs<CalcSequence>() = seq;
     }
 
-    int response_size;
-    size_t bytes_read;
-    if (!channel.Read(&response_size, sizeof(int), &bytes_read))
+    channel.Write(std::move(request_message));
+
+    auto response_size = channel.Read(sizeof(int));
+    if (response_size == nullptr)
       break;
-    if (bytes_read == 0)
+    auto response_message = channel.Read(*response_size->ReadAs<int>());
+    if (response_message == nullptr)
       break;
 
-    std::vector<uint8_t> buffer(response_size);
-    if (!channel.Read(&buffer[0], buffer.size(), &bytes_read))
-      break;
-    if (bytes_read == 0)
+    const auto response = response_message->ReadAs<ResponseMessage>();
+    if (response->call_id != call_id)
       break;
 
-    if (bytes_read < sizeof(ResponseMessage))
-      break;
-
-    ResponseMessage response;
-    memcpy(&response, &buffer[0], sizeof(ResponseMessage));
-    if (response.call_id != call_id)
-      break;
-
-    std::cout << "CLIENT: [" << call_id << "]: Result=" << response.result
+#if defined(SHOW_PROGRESS)
+    std::cout << "CLIENT: [" << call_id << "]: Result=" << response->result
               << std::endl;
+#endif
   }
+
+  auto stop = clk::now();
+  auto sdur = std::chrono::duration_cast<std::chrono::duration<double>>(stop - start);
+  auto usdur = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+  std::cout << (kCallsN / sdur.count()) << " calls/second" << std::endl;
+  std::cout << (usdur.count() / kCallsN) << " us/call" << std::endl;
 
   channel.Shutdown();
 
