@@ -50,51 +50,41 @@ void ServerThreadProc() {
   }
 
   while (true) {
-    int request_size;
-    size_t bytes_read;
-    if (!channel.Read(&request_size, sizeof(int), &bytes_read))
-      break;
-    if (bytes_read == 0)
+    auto request_size = channel.Read(sizeof(int));
+    if (request_size == nullptr)
       break;
 
-    std::vector<uint8_t> buffer(request_size);
-    if (!channel.Read(&buffer[0], buffer.size(), &bytes_read))
-      break;
-    if (bytes_read == 0)
+    auto request_message = channel.Read(*request_size->ReadAs<int>());
+    if (request_message == nullptr)
       break;
 
-    RequestMessage request;
-    memcpy(&request, &buffer[0], sizeof(RequestMessage));
+    const RequestMessage *request = request_message->ReadAs<RequestMessage>();
 
-    std::cout << "SERVER: [" << request.call_id
-              << "]: Request with a=" << request.a
-              << ", n_seq=" << request.n_seq << std::endl;
+    std::cout << "SERVER: [" << request->call_id
+              << "]: Request with a=" << request->a
+              << ", n_seq=" << request->n_seq << std::endl;
 
-    ResponseMessage response;
-    response.call_id = request.call_id;
-    response.result = request.a;
+    std::unique_ptr<nanorpc2::WriteBuffer> response_message = channel.CreateWriteBuffer();
+    int *response_size = response_message->WriteAs<int>();
+    ResponseMessage *response = response_message->WriteAs<ResponseMessage>();
+    response->call_id = request->call_id;
+    response->result = request->a;
 
-    const CalcSequence *calc =
-        reinterpret_cast<CalcSequence *>(&buffer[0] + sizeof(RequestMessage));
-    for (int n = 0; n < request.n_seq; ++n) {
-      if (calc[n].op == Operator::Add) {
-        response.result += calc[n].b;
-      }
-      else if (calc[n].op == Operator::Subtract) {
-        response.result -= calc[n].b;
-      }
+    for (int n = 0; n < request->n_seq; ++n) {
+      const CalcSequence *calc = request_message->ReadAs<CalcSequence>();
+      if (calc->op == Operator::Add)
+        response->result += calc->b;
+      else if (calc->op == Operator::Subtract)
+        response->result -= calc->b;
     }
 
-    std::cout << "SERVER: [" << request.call_id
-              << "]: Result=" << response.result << std::endl;
+    std::cout << "SERVER: [" << request->call_id
+              << "]: Result=" << response->result << std::endl;
 
-    int response_size = sizeof(ResponseMessage);
-    if (!channel.Write(&response_size, sizeof(int)))
-      break;
-    if (!channel.Write(&response, sizeof(ResponseMessage)))
-      break;
+    *response_size = response_message->size() - sizeof(int);
+    channel.Write(std::move(response_message));
 
-    std::cout << "SERVER: [" << request.call_id << "]: Done." << std::endl;
+    std::cout << "SERVER: [" << request->call_id << "]: Done." << std::endl;
   }
   
   channel.Disconnect();

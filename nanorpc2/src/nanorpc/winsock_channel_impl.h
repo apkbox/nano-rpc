@@ -93,12 +93,91 @@ private:
   NANORPC_DISALLOW_COPY_AND_ASSIGN(IoRequest);
 };
 
-class IoPacket final {
+class WinsockChannelImpl;
+
+class ReadBuffer final {
+  friend class WinsockChannelImpl;
 public:
+  size_t size() const { return buffer_.size(); }
+  size_t remaining() const { return ptr_ - &buffer_[0]; }
+
+  const unsigned char *Take(size_t bytes) const {
+    if (bytes > buffer_.size())
+      return nullptr;
+    return ptr_;
+  }
+
+  const unsigned char *Read(size_t bytes) {
+    if (((ptr_ - &buffer_[0]) + bytes) > buffer_.size())
+      return nullptr;
+    auto p = ptr_;
+    ptr_ += bytes;
+    return p;
+  }
+
+  void Reset() { ptr_ = &buffer_[0]; }
+
+  template <class T>
+  const T *TakeAs() const {
+    return reinterpret_cast<const T *>(Take(sizeof(T)));
+  }
+
+  template <class T>
+  const T *ReadAs() {
+    return reinterpret_cast<const T *>(Read(sizeof(T)));
+  }
+
 private:
+  explicit ReadBuffer(size_t buffer_size)
+      : buffer_(buffer_size), ptr_(&buffer_[0]) {}
+
+  std::vector<unsigned char> buffer_;
+  unsigned char *ptr_;
+};
+
+class WriteBuffer final {
+  friend class WinsockChannelImpl;
+public:
+  ~WriteBuffer();
+
+  size_t size() const {
+    if (current_->buffer == nullptr)
+      return committed_;
+    return committed_ + (ptr_ - current_->buffer);
+  }
+
+  unsigned char *Write(size_t bytes);
+
+  template <class T>
+  T *WriteAs() { return reinterpret_cast<T *>(Write(sizeof(T))); }
+
+private:
+  struct Chunk {
+    unsigned char *buffer;
+    size_t size;
+    Chunk *next;
+  };
+
+  static const size_t kDefaultChunkSize = 512;
+
+  explicit WriteBuffer() : current_(&head_), ptr_(nullptr), committed_(0) {
+    head_.buffer = nullptr;
+    head_.size = 0;
+    head_.next = nullptr;
+  }
+
+  void AllocBufferIfNeeded(size_t bytes);
+
+  void Flush();
+
+  Chunk head_;
+  Chunk *current_;
+  unsigned char *ptr_;
+  size_t committed_;
 };
 
 class WinsockChannelImpl {
+  friend class IoRequest;
 public:
   explicit WinsockChannelImpl(const std::string &port);
   explicit WinsockChannelImpl(const std::string &address, const std::string &port);
@@ -112,12 +191,14 @@ public:
 
   IoRequest AllocateRequest();
 
+  std::unique_ptr<ReadBuffer> Read(size_t bytes);
+  std::unique_ptr<WriteBuffer> CreateWriteBuffer();
+  void Write(std::unique_ptr<WriteBuffer> buffer);
+
   bool Read(void *buffer, size_t buffer_size, size_t *bytes_read);
   bool Write(const void *buffer, size_t buffer_size);
 
 private:
-  friend class IoRequest;
-
   bool ConnectServer();
   bool ConnectClient();
 

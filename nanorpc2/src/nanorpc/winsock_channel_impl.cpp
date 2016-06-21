@@ -25,6 +25,49 @@
 
 namespace nanorpc2 {
 
+WriteBuffer::~WriteBuffer() {
+  auto p = &head_;
+  do {
+    delete[] p->buffer;
+    p = p->next;
+  } while (p != nullptr);
+}
+
+unsigned char *WriteBuffer::Write(size_t bytes) {
+  AllocBufferIfNeeded(bytes);
+
+  auto avail = current_->size - (ptr_ - current_->buffer);
+  if (avail < bytes) {
+    // Store the amount of buffer used
+    current_->size = ptr_ - current_->buffer;
+    committed_ += current_->size;
+
+    // Create new chunk
+    current_->next = new Chunk{};
+    current_ = current_->next;
+    AllocBufferIfNeeded(bytes);
+  }
+
+  auto p = ptr_;
+  ptr_ += bytes;
+  return p;
+}
+
+void WriteBuffer::AllocBufferIfNeeded(size_t bytes) {
+  if (current_->buffer == nullptr) {
+    current_->size = std::max(bytes, kDefaultChunkSize);
+    current_->buffer = new unsigned char[current_->size];
+    ptr_ = current_->buffer;
+  }
+}
+
+void WriteBuffer::Flush() {
+  if (current_->buffer == nullptr)
+    return;
+
+  current_->size = ptr_ - current_->buffer;
+}
+
 WinsockChannelImpl::WinsockChannelImpl(const std::string &port)
     : address_(),
       port_(port),
@@ -213,6 +256,33 @@ std::shared_ptr<IoRequest> WinsockChannelImpl::CreateIoRequest() {
 void WinsockChannelImpl::DeleteIoRequest(IoRequest *request) {
   std::lock_guard<std::mutex> lock(io_requests_lock_);
   io_requests_.erase(request);
+}
+
+std::unique_ptr<ReadBuffer> WinsockChannelImpl::Read(size_t bytes) {
+  std::unique_ptr<ReadBuffer> buffer{ new ReadBuffer(bytes) };
+  size_t bytes_read;
+  auto &buf = buffer.get()->buffer_;
+  if (!Read(&buf[0], buf.size(), &bytes_read) || bytes_read == 0)
+    return nullptr;
+  return buffer;
+}
+
+std::unique_ptr<WriteBuffer> WinsockChannelImpl::CreateWriteBuffer() {
+  return std::unique_ptr<WriteBuffer>{new WriteBuffer()};
+}
+
+void WinsockChannelImpl::Write(std::unique_ptr<WriteBuffer> buffer) {
+  buffer->Flush();
+
+  auto p = &buffer.get()->head_;
+  if (p->buffer == nullptr)
+    return;
+  do {
+    Write(p->buffer, p->size);
+    p = p->next;
+  } while (p != nullptr);
+  
+  buffer.release();
 }
 
 bool WinsockChannelImpl::Read(void *buffer,
