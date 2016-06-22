@@ -18,6 +18,7 @@ public:
   ChannelStatus GetStatus() const override;
 
   bool Connect() override;
+  void Shutdown() override;
   void Disconnect() override;
 
   std::unique_ptr<ReadBuffer> Read(size_t bytes) override;
@@ -41,6 +42,7 @@ public:
   ChannelStatus GetStatus() const override;
 
   bool Connect() override;
+  void Shutdown() override;
   void Disconnect() override;
 
   std::unique_ptr<ReadBuffer> Read(size_t bytes) override;

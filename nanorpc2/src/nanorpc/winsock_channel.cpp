@@ -16,6 +16,11 @@ ChannelStatus WinsockServerChannel::GetStatus() const {
 bool WinsockServerChannel::Connect() {
   return impl_->Connect();
 }
+
+void WinsockServerChannel::Shutdown() {
+  impl_->Shutdown();
+}
+
 void WinsockServerChannel::Disconnect() {
   impl_->Disconnect();
 }
@@ -45,6 +50,11 @@ ChannelStatus WinsockClientChannel::GetStatus() const {
 bool WinsockClientChannel::Connect() {
   return impl_->Connect();
 }
+
+void WinsockClientChannel::Shutdown() {
+  impl_->Shutdown();
+}
+
 void WinsockClientChannel::Disconnect() {
   impl_->Disconnect();
 }

@@ -6,7 +6,7 @@
 #include <sstream>
 #include <thread>
 
-#include "nanorpc/winsock_channel_impl.h"
+#include "nanorpc/winsock_channel.h"
 
 #include <Windows.h>
 
@@ -41,7 +41,7 @@ struct ResponseMessage {
 
 void ServerThreadProc() {
   std::cout << "SERVER: Starting... " << std::endl;
-  nanorpc2::WinsockChannelImpl channel("2345");
+  nanorpc2::WinsockServerChannel channel("2345");
   if (!channel.Connect()) {
     std::cout << "SERVER: Connection failed." << std::endl;
     return;
@@ -99,7 +99,7 @@ void ServerThreadProc() {
 
 void ClientThreadProc() {
   std::cout << "CLIENT: Starting... " << std::endl;
-  nanorpc2::WinsockChannelImpl channel("localhost", "2345");
+  nanorpc2::WinsockClientChannel channel("localhost", "2345");
 
   for (int i = 0; i < 10; ++i) {
     std::cout << "CLIENT: Connecting... " << i << std::endl;

@@ -141,6 +141,7 @@ public:
   virtual ChannelStatus GetStatus() const = 0;
 
   virtual bool Connect() = 0;
+  virtual void Shutdown() = 0;
   virtual void Disconnect() = 0;
 };
 
