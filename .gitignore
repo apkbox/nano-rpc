@@ -13,3 +13,5 @@ channel_test/Debug/
 cpp/Debug/
 cpp/x64/
 Debug/
+bin/
+obj/

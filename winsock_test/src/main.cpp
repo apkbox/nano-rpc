@@ -10,7 +10,7 @@
 
 #include <Windows.h>
 
-#define SHOW_PROGRESS
+//#define SHOW_PROGRESS
 
 enum class Operator { Nop = 0, Add = 1, Subtract = 2 };
 
@@ -84,7 +84,7 @@ void ServerThreadProc() {
               << "]: Result=" << response->result << std::endl;
 #endif
 
-    *response_size = response_message->size() - sizeof(int);
+    *response_size = response_message->GetSize() - sizeof(int);
     channel.Write(std::move(response_message));
 
 #if defined(SHOW_PROGRESS)

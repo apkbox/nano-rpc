@@ -9,6 +9,10 @@ WinsockServerChannel::WinsockServerChannel(const std::string &port)
 
 WinsockServerChannel::~WinsockServerChannel() {}
 
+ChannelStatus WinsockServerChannel::GetStatus() const {
+  return impl_->GetStatus();
+}
+
 bool WinsockServerChannel::Connect() {
   return impl_->Connect();
 }
@@ -16,18 +20,16 @@ void WinsockServerChannel::Disconnect() {
   impl_->Disconnect();
 }
 
-bool WinsockServerChannel::Read(void *buffer,
-                                size_t buffer_size,
-                                size_t *bytes_read) {
-  return false;
+std::unique_ptr<ReadBuffer> WinsockServerChannel::Read(size_t bytes) {
+  return impl_->Read(bytes);
 }
 
-bool WinsockServerChannel::Write(void *buffer, size_t buffer_size) {
-  return false;
+std::unique_ptr<WriteBuffer> WinsockServerChannel::CreateWriteBuffer() {
+  return impl_->CreateWriteBuffer();
 }
 
-ChannelStatus WinsockServerChannel::GetStatus() const {
-  return impl_->GetStatus();
+void WinsockServerChannel::Write(std::unique_ptr<WriteBuffer> buffer) {
+  impl_->Write(std::move(buffer));
 }
 
 WinsockClientChannel::WinsockClientChannel(const std::string &address,
@@ -36,6 +38,10 @@ WinsockClientChannel::WinsockClientChannel(const std::string &address,
 
 WinsockClientChannel::~WinsockClientChannel() {}
 
+ChannelStatus WinsockClientChannel::GetStatus() const {
+  return impl_->GetStatus();
+}
+
 bool WinsockClientChannel::Connect() {
   return impl_->Connect();
 }
@@ -43,18 +49,16 @@ void WinsockClientChannel::Disconnect() {
   impl_->Disconnect();
 }
 
-bool WinsockClientChannel::Read(void *buffer,
-                                size_t buffer_size,
-                                size_t *bytes_read) {
-  return false;
+std::unique_ptr<ReadBuffer> WinsockClientChannel::Read(size_t bytes) {
+  return impl_->Read(bytes);
 }
 
-bool WinsockClientChannel::Write(void *buffer, size_t buffer_size) {
-  return false;
+std::unique_ptr<WriteBuffer> WinsockClientChannel::CreateWriteBuffer() {
+  return impl_->CreateWriteBuffer();
 }
 
-ChannelStatus WinsockClientChannel::GetStatus() const {
-  return impl_->GetStatus();
+void WinsockClientChannel::Write(std::unique_ptr<WriteBuffer> buffer) {
+  impl_->Write(std::move(buffer));
 }
 
 }  // namespace nanorpc2

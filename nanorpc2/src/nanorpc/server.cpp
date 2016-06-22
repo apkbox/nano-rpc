@@ -33,30 +33,32 @@ bool Server::WaitForSingleRequest() {
       return false;
   }
 
-  size_t buffer_size;
-  if (!channel_->Read(nullptr, 0, &buffer_size))
+  auto rdbuf = channel_->Read(sizeof(uint32_t));
+  if (rdbuf == nullptr)
     return false;
 
-  std::unique_ptr<char> buffer(new char[buffer_size]);
-  if (!channel_->Read(buffer.get(), buffer_size, nullptr))
+  uint32_t message_size;
+  if (!rdbuf->ReadAs(&message_size))
     return false;
 
-  assert(buffer_size < INT_MAX);
-  // TODO: Fail in a meaningful way in release.
+  rdbuf = channel_->Read(message_size);
+  if (rdbuf == nullptr)
+    return false;
 
   RpcMessage request;
 #pragma warning(suppress : 4267)
-  request.ParseFromArray(buffer.get(), buffer_size);
-  buffer.reset(nullptr);
+  request.ParseFromArray(rdbuf->Read(message_size), message_size);
 
   RpcMessage response;
   bool is_async = false;
   ProcessRequest(request, &response, &is_async);
 
   if (!is_async) {
-    std::unique_ptr<char> buffer(new char[response.ByteSize()]);
-    if (!channel_->Write(buffer.get(), response.ByteSize()))
-      return false;
+    auto wrbuf = channel_->CreateWriteBuffer();
+    auto response_size = response.ByteSize();
+    wrbuf->WriteAs<uint32_t>(response_size);
+    response.SerializeToArray(wrbuf->Write(response_size), response_size);
+    channel_->Write(std::move(wrbuf));
   }
 
   return true;

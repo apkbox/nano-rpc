@@ -95,19 +95,19 @@ private:
 
 class WinsockChannelImpl;
 
-class ReadBuffer final {
+class ReadBufferImpl final : public ReadBuffer {
   friend class WinsockChannelImpl;
 public:
-  size_t size() const { return buffer_.size(); }
-  size_t remaining() const { return ptr_ - &buffer_[0]; }
+  size_t GetSize() const override { return buffer_.size(); }
+  size_t GetRemaining() const override { return ptr_ - &buffer_[0]; }
 
-  const unsigned char *Take(size_t bytes) const {
+  const void *Peek(size_t bytes) const override {
     if (bytes > buffer_.size())
       return nullptr;
     return ptr_;
   }
 
-  const unsigned char *Read(size_t bytes) {
+  const void *Read(size_t bytes) override {
     if (((ptr_ - &buffer_[0]) + bytes) > buffer_.size())
       return nullptr;
     auto p = ptr_;
@@ -115,41 +115,30 @@ public:
     return p;
   }
 
-  void Reset() { ptr_ = &buffer_[0]; }
+  virtual bool Skip(size_t bytes) override { return Read(bytes) != nullptr; }
 
-  template <class T>
-  const T *TakeAs() const {
-    return reinterpret_cast<const T *>(Take(sizeof(T)));
-  }
-
-  template <class T>
-  const T *ReadAs() {
-    return reinterpret_cast<const T *>(Read(sizeof(T)));
-  }
+  void Reset() override { ptr_ = &buffer_[0]; }
 
 private:
-  explicit ReadBuffer(size_t buffer_size)
+  explicit ReadBufferImpl(size_t buffer_size)
       : buffer_(buffer_size), ptr_(&buffer_[0]) {}
 
   std::vector<unsigned char> buffer_;
   unsigned char *ptr_;
 };
 
-class WriteBuffer final {
+class WriteBufferImpl final : public WriteBuffer {
   friend class WinsockChannelImpl;
 public:
-  ~WriteBuffer();
+  ~WriteBufferImpl();
 
-  size_t size() const {
+  size_t GetSize() const override {
     if (current_->buffer == nullptr)
       return committed_;
     return committed_ + (ptr_ - current_->buffer);
   }
 
-  unsigned char *Write(size_t bytes);
-
-  template <class T>
-  T *WriteAs() { return reinterpret_cast<T *>(Write(sizeof(T))); }
+  void *Write(size_t bytes) override;
 
 private:
   struct Chunk {
@@ -160,7 +149,7 @@ private:
 
   static const size_t kDefaultChunkSize = 512;
 
-  explicit WriteBuffer() : current_(&head_), ptr_(nullptr), committed_(0) {
+  explicit WriteBufferImpl() : current_(&head_), ptr_(nullptr), committed_(0) {
     head_.buffer = nullptr;
     head_.size = 0;
     head_.next = nullptr;
@@ -177,7 +166,6 @@ private:
 };
 
 class WinsockChannelImpl {
-  friend class IoRequest;
 public:
   explicit WinsockChannelImpl(const std::string &port);
   explicit WinsockChannelImpl(const std::string &address, const std::string &port);
