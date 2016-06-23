@@ -49,50 +49,6 @@ private:
   HANDLE handle_;
 };
 
-enum class IoType {
-  None,
-  Read,
-  Write
-};
-
-class IoRequest final : public OVERLAPPED {
-public:
-  IoRequest() : io_type_(IoType::None) {
-    *static_cast<OVERLAPPED *>(this) = {};
-  }
-
-  ~IoRequest() {
-    for (const auto buf : buffers_)
-      delete buf.buf;
-  }
-
-  void set_iotype(IoType io_type) { io_type_ = io_type; }
-  IoType get_iotype() const { return io_type_; }
-
-  void *AllocateBuffer(size_t size) {
-    WSABUF buf;
-    buf.buf = new CHAR[size];
-    buf.len = size;
-    buffers_.push_back(buf);
-    return reinterpret_cast<void *>(buf.buf);
-  }
-
-  LPWSABUF GetWSABUFPointer() {
-    return &buffers_[0];
-  }
-
-  size_t GetWSABUFCount() const {
-    return buffers_.size();
-  }
-
-private:
-  std::vector<WSABUF> buffers_;
-  IoType io_type_;  // If other than None - inidcates that I/O is in progress,
-                    // so GetBuffer and other ops will fail.
-
-  NANORPC_DISALLOW_COPY_AND_ASSIGN(IoRequest);
-};
-
 class WinsockChannelImpl;
 
 class ReadBufferImpl final : public ReadBuffer {
@@ -177,8 +133,6 @@ public:
   void Shutdown();
   void Disconnect();
 
-  IoRequest AllocateRequest();
-
   std::unique_ptr<ReadBuffer> Read(size_t bytes);
   std::unique_ptr<WriteBuffer> CreateWriteBuffer();
   void Write(std::unique_ptr<WriteBuffer> buffer);
@@ -191,8 +145,6 @@ private:
   bool ConnectClient();
 
   void Cleanup();
-  std::shared_ptr<IoRequest> CreateIoRequest();
-  void DeleteIoRequest(IoRequest *io_request);
 
   std::string address_;
   std::string port_;
@@ -207,9 +159,6 @@ private:
 
   std::mutex read_lock_;
   std::mutex write_lock_;
-
-  std::mutex io_requests_lock_;
-  std::unordered_map<IoRequest *, std::shared_ptr<IoRequest>> io_requests_;
 
   NANORPC_DISALLOW_COPY_AND_ASSIGN(WinsockChannelImpl);
 };

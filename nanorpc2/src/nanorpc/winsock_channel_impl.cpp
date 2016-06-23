@@ -246,17 +246,6 @@ void WinsockChannelImpl::Disconnect() {
   status_ = ChannelStatus::NotConnected;
 }
 
-std::shared_ptr<IoRequest> WinsockChannelImpl::CreateIoRequest() {
-  std::shared_ptr<IoRequest> request(std::make_shared<IoRequest>());
-  std::lock_guard<std::mutex> lock(io_requests_lock_);
-  io_requests_.emplace(request.get(), request);
-  return request;
-}
-
-void WinsockChannelImpl::DeleteIoRequest(IoRequest *request) {
-  std::lock_guard<std::mutex> lock(io_requests_lock_);
-  io_requests_.erase(request);
-}
 
 std::unique_ptr<ReadBuffer> WinsockChannelImpl::Read(size_t bytes) {
   std::unique_ptr<ReadBufferImpl> buffer{ new ReadBufferImpl(bytes) };
@@ -316,14 +305,8 @@ bool WinsockChannelImpl::Read(void *buffer,
 bool WinsockChannelImpl::Write(const void *buffer, size_t buffer_size) {
   std::lock_guard<std::mutex> lock(write_lock_);
 
-  auto request = CreateIoRequest();
-  auto buf = request->AllocateBuffer(buffer_size);
-  memcpy(buf, buffer, buffer_size);
-  request->set_iotype(IoType::Write);
-  DWORD bytes_sent;
-  int result = WSASend(socket_, request->GetWSABUFPointer(),
-                       request->GetWSABUFCount(), &bytes_sent,
-                       0, nullptr, nullptr);
+  int result =
+      send(socket_, reinterpret_cast<const char *>(buffer), buffer_size, 0);
   if (result == SOCKET_ERROR)
     return WSAGetLastError() == WSA_IO_PENDING;
 
