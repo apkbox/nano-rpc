@@ -32,6 +32,9 @@
     <ClInclude Include="src\hello_world.pb.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\service.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\hello_world.proto" />

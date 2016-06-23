@@ -59,9 +59,10 @@ private:
 
 class MethodModel {
 public:
-  MethodModel() : is_property_(false), is_arglist_(false) {}
+  MethodModel() : is_async_(false), is_property_(false), is_arglist_(false) {}
   MethodModel(const MethodModel &other)
       : name_(other.name_),
+        is_async_(other.is_async_),
         is_property_(other.is_property_),
         is_arglist_(other.is_arglist_),
         arglist_typename_(other.arglist_typename_),
@@ -75,6 +76,9 @@ public:
 
   const std::string &name() const { return name_; }
   void set_name(const std::string &name) { name_ = name; }
+
+  bool is_async() const { return is_async_; }
+  void set_async(bool is_async) { is_async_ = is_async; }
 
   bool is_property() const { return is_property_; }
   void set_property(bool is_property) { is_property_ = is_property; }
@@ -111,6 +115,7 @@ public:
 
 private:
   std::string name_;
+  bool is_async_;
   bool is_property_;
   bool is_arglist_;
   std::string arglist_typename_;

@@ -7,6 +7,7 @@
 #include "hello_world.pb.h"
 #include "nanorpc/rpc_client.hpp"
 #include "nanorpc/rpc_stub.hpp"
+#include "nanorpc/nanorpc2.h"
 #include "nanorpc/rpc_object_manager.hpp"
 
 namespace hello_world {
@@ -21,15 +22,17 @@ public:
   virtual ReadingType GetReading(int32_t value) = 0;
 };
 
-class OrderDesk_Stub : public nanorpc::IRpcStub {
+class OrderDesk_Stub : public nanorpc2::ServiceInterface {
 public:
   explicit OrderDesk_Stub(nanorpc::IRpcObjectManager* object_manager, OrderDesk* impl)
       : object_manager_(object_manager), impl_(impl) {}
 
-  const char *GetInterfaceName() const;
-  void CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcResult *rpc_result);
+  const std::string &GetInterfaceName() const override;
+  bool CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcResult *rpc_result) override;
 
 private:
+  static const std::string kServiceName;
+
   nanorpc::IRpcObjectManager* object_manager_;
   OrderDesk* impl_;
 };

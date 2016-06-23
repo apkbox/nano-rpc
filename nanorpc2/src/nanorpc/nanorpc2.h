@@ -18,6 +18,7 @@
 namespace nanorpc2 {
 
 using namespace nanorpc;
+namespace pb = ::google::protobuf;
 
 enum class ChannelStatus { NotConnected, Connecting, Established };
 
@@ -212,11 +213,13 @@ public:
   // Calling from multiple threads results in waiting for request in
   // each thread. It is undetermined in which order calls will be satisfied.
   // The wait may be terminated by calling Shutdown.
+  // If connection is not established, this method will call Connect on the
+  // channel.
   // Returns true if request was satisfied, false if connection terminated or
-  // Shutdown is called.
+  // Shutdown was called.
   bool WaitForSingleRequest();
 
-  // Connects and waits for requests until connection is terminated
+  // Connects and waits for requests until connection is terminated or
   // Shutdown is called.
   // Attempt to call from another thread, while call in progress, will fail.
   // Returns true if connection terminated or Shutdown is called.
@@ -238,6 +241,30 @@ private:
 
 class Client {
 public:
+  Client(std::unique_ptr<ClientChannelInterface> channel);
+
+  // Connects and waits until connection is terminated, Shutdown or Disconnect
+  // are called. Events will be serviced on the same thread that called
+  // ConnectAndWait. Additional options can change the behavior to service
+  // events with thread pool instead.
+  // Attempt to call from another thread, while call in progress, will fail.
+  // Returns true if connection terminated, Shutdown or Disconnect are called.
+  // Returns false if method is called concurrently.
+  bool ConnectAndWait();
+
+  void Send(const RpcMessage &request);
+  bool SendWithResult(const RpcMessage &request, RpcMessage *result);
+  void Receive(RpcMessage *result);
+
+  // Disconnects the client and closes the channel.
+  // This method can be called from any thread.
+  // All pending calls will fail.
+  void Disconnect();
+
+private:
+  struct PendingCall {};
+
+  std::map<pb::int32, PendingCall> pending_calls_;
 };
 
 }  // namespace nanorpc2

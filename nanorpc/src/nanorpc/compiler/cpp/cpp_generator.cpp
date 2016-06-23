@@ -115,6 +115,7 @@ std::string GetHeaderPrologue(const pb::FileDescriptor *file) {
     printer.Print(vars, "#include \"$filename_base$.pb.h\"\n");
     printer.Print(vars, "#include \"nanorpc/rpc_client.hpp\"\n");
     printer.Print(vars, "#include \"nanorpc/rpc_stub.hpp\"\n");
+    printer.Print(vars, "#include \"nanorpc/nanorpc2.h\"\n");
     printer.Print(vars, "#include \"nanorpc/rpc_object_manager.hpp\"\n");
     printer.Print(vars, "\n");
     /* clang-format on */
@@ -188,16 +189,17 @@ std::string GetStubDeclarations(const pb::FileDescriptor *file) {
       vars["service_name"] = service->name();
 
       /* clang-format off */
-      printer.Print(vars, "class $service_name$_Stub : public nanorpc::IRpcStub {\n");
+      printer.Print(vars, "class $service_name$_Stub : public nanorpc2::ServiceInterface {\n");
       printer.Print(vars, "public:\n");
       printer.Indent();
       printer.Print(vars, "explicit $service_name$_Stub(nanorpc::IRpcObjectManager* object_manager, $service_name$* impl)\n");
       printer.Print(vars, "    : object_manager_(object_manager), impl_(impl) {}\n\n");
-      printer.Print(vars, "const char *GetInterfaceName() const;\n");
-      printer.Print(vars, "void CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcResult *rpc_result);\n\n");
+      printer.Print(vars, "const std::string &GetInterfaceName() const override;\n");
+      printer.Print(vars, "bool CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcResult *rpc_result) override;\n\n");
       printer.Outdent();
       printer.Print(vars, "private:\n");
       printer.Indent();
+      printer.Print(vars, "static const std::string kServiceName;\n\n");
       printer.Print(vars, "nanorpc::IRpcObjectManager* object_manager_;\n");
       printer.Print(vars, "$service_name$* impl_;\n");
       printer.Outdent();
@@ -434,6 +436,11 @@ void GenerateStubMethodCallImplementation(
       /* clang-format on */
     }
   }
+
+  if (method.is_async())
+    printer.Print(vars, "return false;\n");
+  else
+    printer.Print(vars, "return true;\n");
 }
 
 void GenerateStubImplementation(pb::io::Printer &printer,
@@ -456,10 +463,15 @@ void GenerateStubImplementation(pb::io::Printer &printer,
       printer.Print(vars, " else ");
   }
 
-  // TODO: Generate unknown method error, or return boolean indicating whether
-  // the call succeeded.
-
   printer.Print(vars, "\n\n");
+
+  // TODO: Generate unknown method error into result
+  // TODO: Generate exception handler
+  printer.Print(vars, "// TODO: Here should be unknown method error stored into rpc_result.\n");
+  printer.Print(vars, "// TODO: Also an exception (code above must be guarded) result.\n\n");
+
+  // Indicate the method is synchronous (if we reach here - no method error or exception).
+  printer.Print(vars, "return true;\n");
   printer.Outdent();
 }
 
@@ -478,13 +490,15 @@ std::string GetStubDefinitions(
       vars["service_full_name"] = service.full_name();
 
       // clang-format off
-      printer.Print(vars, "const char *$service_name$_Stub::GetInterfaceName() const {\n");
+      printer.Print(vars, "const std::string $service_name$_Stub::kServiceName(\"$service_full_name$\");\n\n");
+
+      printer.Print(vars, "const std::string &$service_name$_Stub::GetInterfaceName() const {\n");
       printer.Indent();
-      printer.Print(vars, "return \"$service_full_name$\";\n");
+      printer.Print(vars, "return kServiceName;\n");
       printer.Outdent();
       printer.Print(vars, "}\n\n");
 
-      printer.Print(vars, "void $service_name$_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcResult *rpc_result) {\n");
+      printer.Print(vars, "bool $service_name$_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcResult *rpc_result) {\n");
       GenerateStubImplementation(printer, service);
       printer.Print(vars, "}\n\n");
       // clang-format on

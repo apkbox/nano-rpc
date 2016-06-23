@@ -65,10 +65,16 @@ bool Server::WaitForSingleRequest() {
 }
 
 bool Server::ConnectAndWait() {
-  return false;
+  while (WaitForSingleRequest()) {
+    /* EMPTY */;
+  }
+  return true;
 }
 
-void Server::Shutdown() {}
+void Server::Shutdown() {
+  channel_->Shutdown();
+  channel_->Disconnect();
+}
 
 void Server::ProcessRequest(const RpcMessage &request,
                             RpcMessage *response,

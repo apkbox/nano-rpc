@@ -24,6 +24,7 @@
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\service.h" />
     <ClInclude Include="src\hello_world.nanorpc.pb.h" />
     <ClInclude Include="src\hello_world.pb.h" />
   </ItemGroup>

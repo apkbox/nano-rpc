@@ -6,114 +6,55 @@
 #include <chrono>
 #include <thread>
 
-#include "nanorpc\rpc_client.hpp"
-#include "nanorpc\rpc_stub.hpp"
-#include "nanorpc\rpc_server.h"
-#include "nanorpc\server_builder.h"
-#include "nanorpc\rpc_client.hpp"
-#include "nanorpc\rpc_object_manager.hpp"
-#include "nanorpc\named_pipe_rpc_channel.h"
-#include "hello_world.nanorpc.pb.h"
-
 #include "nanorpc/nanorpc2.h"
 #include "nanorpc/winsock_channel.h"
 
-struct Order {
-  Order()
-      : drink_(hello_world::NoDrink),
-        reading_(hello_world::NoReading),
-        drink_taken_(false),
-        reading_taken_(false),
-  time_to_complete_(-1) {}
+#include "service.h"
 
-  Order(hello_world::DrinkType drink, hello_world::ReadingType reading)
-      : drink_(drink), reading_(reading), time_to_complete_(-1) {}
+namespace hw = ::hello_world;
 
-  hello_world::DrinkType drink_;
-  hello_world::ReadingType reading_;
-  bool drink_taken_;
-  bool reading_taken_;
-  int time_to_complete_;
-  int waiting_number_;
-};
+void ClientThread() {
+  auto channel = std::make_unique<nanorpc2::WinsockClientChannel>("localhost", "50372");
+  nanorpc2::Client client(std::move(channel));
+  
+  // TODO: Patch proxy generator to take nanorpc2::Client instead of IRpcClient
+  // TODO: Should it accept client at all? Should that be a shared pointer?
+  // TODO: What happens if multiple threads call on the same proxy/client?
+  // We definitely do not want to create a separate client for each thread,
+  // because this would require new connection for each thread and the server
+  // should be able to handle it.
+  // The problems are as following:
+  //    - There may be a policy to restrict a server to accept a single connection.
+  //    - It is more complicate to handle on the server. In a simple application
+  //      there is not reason for the server to handle more than one connection.
+  //      This also makes it easier such that service does not have to be
+  //      thread safe, even when not using call serializer.
+  hw::OrderDesk_Proxy order_desk(&client);
+  int32_t order_id = order_desk.CreateOrder(hw::DrinkType::Coffee, hw::ReadingType::Newspaper);
 
-class OrderDeskImpl : public hello_world::OrderDesk {
-public:
-  OrderDeskImpl() : last_waiting_number_(0) {}
-
-  int32_t CreateOrder(hello_world::DrinkType drink, hello_world::ReadingType reading) override {
-    Order order(drink, reading);
-    order.waiting_number_ = ++last_waiting_number_;
-    pending_orders_.push(order);
+  while (!order_desk.IsOrderReady(order_id)) {
+    Sleep(1000);
   }
 
-  bool IsOrderReady(int order_number) override {
-    return completed_orders_.find(order_number) != completed_orders_.end();
-  }
+  order_desk.GetDrink(order_id);
+  order_desk.GetReading(order_id);
 
-  hello_world::DrinkType GetDrink(int order_number) override {
-    auto &order = completed_orders_.find(order_number);
-    if (order != completed_orders_.end() && !order->second.drink_taken_) {
-      order->second.drink_taken_ = true;
-      hello_world::DrinkType d = order->second.drink_;
-      RemoveIfFilled(order);
-      return d;
-    }
-
-    return hello_world::NoDrink;
-  }
-
-  hello_world::ReadingType GetReading(int order_number) override {
-    auto &order = completed_orders_.find(order_number);
-    if (order != completed_orders_.end() && !order->second.reading_taken_) {
-      order->second.reading_taken_ = true;
-      hello_world::ReadingType r = order->second.reading_;
-      RemoveIfFilled(order);
-      return r;
-    }
-
-    return hello_world::NoReading;
-  }
-
-private:
-  void RemoveIfFilled(const std::map<int, Order>::iterator &iter) {
-    if (iter->second.drink_taken_ && iter->second.reading_taken_)
-      completed_orders_.erase(iter->first);
-  }
-
-  int last_waiting_number_;
-  std::queue<Order> pending_orders_;
-  std::map<int, Order> completed_orders_;
-};
-
-
-static void server_thread(nanorpc2::WinsockServerChannel *channel) {
-  std::this_thread::sleep_for(std::chrono::seconds(3));
-  channel->Disconnect();
-
-  /*
-  OrderDeskImpl order_desk_service;
-  std::vector<std::unique_ptr<nanorpc::RpcServer>> servers;
-
-  while (true) {
-    nanorpc::NamedPipeChannel ch(L"hello_world");
-    nanorpc::ServerBuilder server_builder;
-    server_builder.set_channel_builder(&ch);
-    server_builder.RegisterService(hello_world::OrderDesk_Stub(&order_desk_service));
-    std::unique_ptr<nanorpc::RpcServer> server(server_builder.Build());
-    servers.emplace_back(server);
-  }
-  */
+  client.Disconnect();
 }
 
+void ServerThread() {
+  auto channel = std::make_unique<nanorpc2::WinsockServerChannel>("50372");
+  nanorpc2::Server server(std::move(channel));
+
+  OrderDeskImpl order_desk_service;
+  hw::OrderDesk_Stub order_desk_service_stub(nullptr, &order_desk_service);
+  server.RegisterService(&order_desk_service_stub);
+
+  server.ConnectAndWait();
+}
 
 int main() {
-  nanorpc2::WinsockServerChannel ch("50372");
-  std::thread thread(server_thread, &ch);
-  ch.Connect();
-  std::this_thread::sleep_for(std::chrono::seconds(3));
-  thread.join();
-
+  std::thread server_thread(ServerThread);
+  server_thread.join();
   return 0;
 }
-

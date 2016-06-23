@@ -7,11 +7,13 @@
 
 namespace hello_world {
 
-const char *OrderDesk_Stub::GetInterfaceName() const {
-  return "hello_world.OrderDesk";
+const std::string OrderDesk_Stub::kServiceName("hello_world.OrderDesk");
+
+const std::string &OrderDesk_Stub::GetInterfaceName() const {
+  return kServiceName;
 }
 
-void OrderDesk_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcResult *rpc_result) {
+bool OrderDesk_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcResult *rpc_result) {
   if (rpc_call.method() == "CreateOrder") {
     OrderRequest args__;
     args__.ParseFromString(rpc_call.call_data());
@@ -25,6 +27,7 @@ void OrderDesk_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcRe
 
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
+    return true;
   } else if (rpc_call.method() == "IsOrderReady") {
     google::protobuf::Int32Value in_arg__;
 
@@ -37,6 +40,7 @@ void OrderDesk_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcRe
 
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
+    return true;
   } else if (rpc_call.method() == "GetDrink") {
     google::protobuf::Int32Value in_arg__;
 
@@ -49,6 +53,7 @@ void OrderDesk_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcRe
 
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
+    return true;
   } else if (rpc_call.method() == "GetReading") {
     google::protobuf::Int32Value in_arg__;
 
@@ -61,8 +66,13 @@ void OrderDesk_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcRe
 
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
+    return true;
   }
 
+  // TODO: Here should be unknown method error stored into rpc_result.
+  // TODO: Also an exception (code above must be guarded) result.
+
+  return true;
 }
 
 OrderDesk_Proxy::~OrderDesk_Proxy() {

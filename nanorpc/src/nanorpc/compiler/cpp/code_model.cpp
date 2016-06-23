@@ -253,6 +253,9 @@ bool CreateCodeModel(const pb::FileDescriptor *file,
       MethodModel method_model;
       method_model.set_name(method->name());
 
+      if (method->options().HasExtension(nanorpc::async))
+        method_model.set_async(true);
+
       if (method->options().HasExtension(nanorpc::is_property) &&
           method->options().GetExtension(nanorpc::is_property)) {
         bool no_setter = false;
