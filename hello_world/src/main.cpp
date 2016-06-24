@@ -33,7 +33,7 @@ void ClientThread() {
   int32_t order_id = order_desk.CreateOrder(hw::DrinkType::Coffee, hw::ReadingType::Newspaper);
 
   while (!order_desk.IsOrderReady(order_id)) {
-    Sleep(1000);
+    std::this_thread::sleep_for(std::chrono::seconds(1));
   }
 
   order_desk.GetDrink(order_id);

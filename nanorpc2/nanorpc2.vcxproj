@@ -134,7 +134,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\nanorpc\nanorpc2.cpp" />
+    <ClCompile Include="src\nanorpc\client.cpp" />
     <ClCompile Include="src\nanorpc\object_manager.cpp" />
     <ClCompile Include="src\nanorpc\server.cpp" />
     <ClCompile Include="src\nanorpc\winsock_channel.cpp" />

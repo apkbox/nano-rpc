@@ -166,6 +166,13 @@ public:
   virtual bool CallMethod(const RpcCall &rpc_call, RpcResult *rpc_result) = 0;
 };
 
+class ServiceProxyInterface {
+public:
+  virtual ~ServiceProxyInterface() {}
+
+  virtual bool CallMethod(const RpcCall &rpc_call, RpcResult *rpc_result) = 0;
+};
+
 typedef uint64_t RpcObjectId;
 
 // TODO: This will only be needed when dealing with transient objects.
@@ -239,7 +246,7 @@ private:
   ObjectManager object_manager_;
 };
 
-class Client {
+class Client : public ServiceProxyInterface {
 public:
   Client(std::unique_ptr<ClientChannelInterface> channel);
 
@@ -252,19 +259,20 @@ public:
   // Returns false if method is called concurrently.
   bool ConnectAndWait();
 
-  void Send(const RpcMessage &request);
-  bool SendWithResult(const RpcMessage &request, RpcMessage *result);
-  void Receive(RpcMessage *result);
-
   // Disconnects the client and closes the channel.
   // This method can be called from any thread.
   // All pending calls will fail.
   void Disconnect();
 
+  bool CallMethod(const RpcCall &rpc_call, RpcResult *rpc_result) override;
+
 private:
   struct PendingCall {};
 
-  std::map<pb::int32, PendingCall> pending_calls_;
+  std::unique_ptr<ClientChannelInterface> channel_;
+
+  uint32_t last_message_id_;
+  std::map<pb::uint32, PendingCall> pending_calls_;
 };
 
 }  // namespace nanorpc2

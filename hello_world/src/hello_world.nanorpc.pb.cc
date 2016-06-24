@@ -78,13 +78,13 @@ bool OrderDesk_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcRe
 OrderDesk_Proxy::~OrderDesk_Proxy() {
   if (object_id_ != 0) {
     try {
-      nanorpc::RpcMessage rpc_message;
-      rpc_message.mutable_call()->set_service("NanoRpc.ObjectManagerService");
-      rpc_message.mutable_call()->set_method("Delete");
+      nanorpc::RpcCall rpc_call;
+      rpc_call.set_service("NanoRpc.ObjectManagerService");
+      rpc_call.set_method("Delete");
       nanorpc::RpcObject rpc_object;
       rpc_object.set_object_id(object_id_);
-      rpc_object.SerializeToString(rpc_message.mutable_call()->mutable_call_data());
-      client_->Send(rpc_message);
+      rpc_object.SerializeToString(rpc_call.mutable_call_data());
+      client_->CallMethod(rpc_call, nullptr);
     }
     catch (...) {
       // not yet supported
@@ -93,84 +93,84 @@ OrderDesk_Proxy::~OrderDesk_Proxy() {
 }
 
 int32_t OrderDesk_Proxy::CreateOrder(DrinkType drink, ReadingType reading) {
-  nanorpc::RpcMessage rpc_message__;
+  nanorpc::RpcCall rpc_call__;
   if (object_id_ != 0) {
-    rpc_message__.mutable_call()->set_object_id(object_id_);
+    rpc_call__.set_object_id(object_id_);
   } else {
-    rpc_message__.mutable_call()->set_service("hello_world.OrderDesk");
+    rpc_call__.set_service("hello_world.OrderDesk");
   }
 
-  rpc_message__.mutable_call()->set_method("CreateOrder");
+  rpc_call__.set_method("CreateOrder");
   OrderRequest args__;
   args__.set_drink(drink);
   args__.set_reading(reading);
-  args__.SerializeToString(rpc_message__.mutable_call()->mutable_call_data());
+  args__.SerializeToString(rpc_call__.mutable_call_data());
 
   nanorpc::RpcResult rpc_result__;
-  client_->SendWithReply(rpc_message__, &rpc_result__);
+  client_->CallMethod(rpc_call__, &rpc_result__);
   google::protobuf::Int32Value out_pb__;
   out_pb__.ParseFromString(rpc_result__.result_data());
   return out_pb__.value();
 }
 
 bool OrderDesk_Proxy::IsOrderReady(int32_t value) {
-  nanorpc::RpcMessage rpc_message__;
+  nanorpc::RpcCall rpc_call__;
   if (object_id_ != 0) {
-    rpc_message__.mutable_call()->set_object_id(object_id_);
+    rpc_call__.set_object_id(object_id_);
   } else {
-    rpc_message__.mutable_call()->set_service("hello_world.OrderDesk");
+    rpc_call__.set_service("hello_world.OrderDesk");
   }
 
-  rpc_message__.mutable_call()->set_method("IsOrderReady");
+  rpc_call__.set_method("IsOrderReady");
   google::protobuf::Int32Value in_arg__;
 
   in_arg__.set_value(value);
 
-  in_arg__.SerializeToString(rpc_message__.mutable_call()->mutable_call_data());
+  in_arg__.SerializeToString(rpc_call__.mutable_call_data());
   nanorpc::RpcResult rpc_result__;
-  client_->SendWithReply(rpc_message__, &rpc_result__);
+  client_->CallMethod(rpc_call__, &rpc_result__);
   google::protobuf::BoolValue out_pb__;
   out_pb__.ParseFromString(rpc_result__.result_data());
   return out_pb__.value();
 }
 
 DrinkType OrderDesk_Proxy::GetDrink(int32_t value) {
-  nanorpc::RpcMessage rpc_message__;
+  nanorpc::RpcCall rpc_call__;
   if (object_id_ != 0) {
-    rpc_message__.mutable_call()->set_object_id(object_id_);
+    rpc_call__.set_object_id(object_id_);
   } else {
-    rpc_message__.mutable_call()->set_service("hello_world.OrderDesk");
+    rpc_call__.set_service("hello_world.OrderDesk");
   }
 
-  rpc_message__.mutable_call()->set_method("GetDrink");
+  rpc_call__.set_method("GetDrink");
   google::protobuf::Int32Value in_arg__;
 
   in_arg__.set_value(value);
 
-  in_arg__.SerializeToString(rpc_message__.mutable_call()->mutable_call_data());
+  in_arg__.SerializeToString(rpc_call__.mutable_call_data());
   nanorpc::RpcResult rpc_result__;
-  client_->SendWithReply(rpc_message__, &rpc_result__);
+  client_->CallMethod(rpc_call__, &rpc_result__);
   DrinkType_wrapper__ out_pb__;
   out_pb__.ParseFromString(rpc_result__.result_data());
   return out_pb__.value();
 }
 
 ReadingType OrderDesk_Proxy::GetReading(int32_t value) {
-  nanorpc::RpcMessage rpc_message__;
+  nanorpc::RpcCall rpc_call__;
   if (object_id_ != 0) {
-    rpc_message__.mutable_call()->set_object_id(object_id_);
+    rpc_call__.set_object_id(object_id_);
   } else {
-    rpc_message__.mutable_call()->set_service("hello_world.OrderDesk");
+    rpc_call__.set_service("hello_world.OrderDesk");
   }
 
-  rpc_message__.mutable_call()->set_method("GetReading");
+  rpc_call__.set_method("GetReading");
   google::protobuf::Int32Value in_arg__;
 
   in_arg__.set_value(value);
 
-  in_arg__.SerializeToString(rpc_message__.mutable_call()->mutable_call_data());
+  in_arg__.SerializeToString(rpc_call__.mutable_call_data());
   nanorpc::RpcResult rpc_result__;
-  client_->SendWithReply(rpc_message__, &rpc_result__);
+  client_->CallMethod(rpc_call__, &rpc_result__);
   ReadingType_wrapper__ out_pb__;
   out_pb__.ParseFromString(rpc_result__.result_data());
   return out_pb__.value();

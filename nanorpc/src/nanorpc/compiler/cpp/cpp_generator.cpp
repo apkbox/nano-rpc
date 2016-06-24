@@ -230,7 +230,7 @@ std::string GetProxyDeclarations(const std::vector<code_model::ServiceModel> &mo
       printer.Print(vars, "class $service_name$_Proxy : public $service_name$ {\n");
       printer.Print(vars, "public:\n");
       printer.Indent();
-      printer.Print(vars, "explicit $service_name$_Proxy(nanorpc::IRpcClient *client, nanorpc::RpcObjectId object_id = 0)\n");
+      printer.Print(vars, "explicit $service_name$_Proxy(nanorpc2::ServiceProxyInterface *client, nanorpc::RpcObjectId object_id = 0)\n");
       printer.Print(vars, "    : client_(client), object_id_(object_id) {}\n\n");
       
       printer.Print(vars, "virtual ~$service_name$_Proxy();\n\n");
@@ -259,7 +259,7 @@ std::string GetProxyDeclarations(const std::vector<code_model::ServiceModel> &mo
       printer.Outdent();
       printer.Print(vars, "private:\n");
       printer.Indent();
-      printer.Print(vars, "nanorpc::IRpcClient *client_;\n");
+      printer.Print(vars, "nanorpc2::ServiceProxyInterface *client_;\n");
       printer.Print(vars, "nanorpc::RpcObjectId object_id_;\n");
       printer.Outdent();
       printer.Print(vars, "};\n\n");
@@ -517,18 +517,18 @@ void GenerateProxyMethodImplementation(pb::io::Printer &printer,
   vars["return_wrapper_name"] = method.return_type().wrapper_name();
 
   /* clang-format off */
-  printer.Print(vars, "nanorpc::RpcMessage rpc_message__;\n");
+  printer.Print(vars, "nanorpc::RpcCall rpc_call__;\n");
   printer.Print(vars, "if (object_id_ != 0) {\n");
   printer.Indent();
-  printer.Print(vars, "rpc_message__.mutable_call()->set_object_id(object_id_);\n");
+  printer.Print(vars, "rpc_call__.set_object_id(object_id_);\n");
   printer.Outdent();
   printer.Print(vars, "} else {\n");
   printer.Indent();
-  printer.Print(vars, "rpc_message__.mutable_call()->set_service(\"$full_service_name$\");\n");
+  printer.Print(vars, "rpc_call__.set_service(\"$full_service_name$\");\n");
   printer.Outdent();
   printer.Print(vars, "}\n\n");
 
-  printer.Print(vars, "rpc_message__.mutable_call()->set_method(\"$method_name$\");\n");
+  printer.Print(vars, "rpc_call__.set_method(\"$method_name$\");\n");
   /* clang-format on */
 
   // Serialize input arguments
@@ -548,7 +548,7 @@ void GenerateProxyMethodImplementation(pb::io::Printer &printer,
     }
 
     /* clang-format off */
-    printer.Print(vars, "args__.SerializeToString(rpc_message__.mutable_call()->mutable_call_data());\n");
+    printer.Print(vars, "args__.SerializeToString(rpc_call__.mutable_call_data());\n");
     printer.Print(vars, "\n");
     /* clang-format on */
   }
@@ -565,12 +565,12 @@ void GenerateProxyMethodImplementation(pb::io::Printer &printer,
       printer.Print(vars, "in_arg__.set_$arg_name$(value);\n\n");
     }
     /* clang-format off */
-    printer.Print(vars, "in_arg__.SerializeToString(rpc_message__.mutable_call()->mutable_call_data());\n");
+    printer.Print(vars, "in_arg__.SerializeToString(rpc_call__.mutable_call_data());\n");
     /* clang-format on */
   }
 
   printer.Print(vars, "nanorpc::RpcResult rpc_result__;\n");
-  printer.Print(vars, "client_->SendWithReply(rpc_message__, &rpc_result__);\n");
+  printer.Print(vars, "client_->CallMethod(rpc_call__, &rpc_result__);\n");
 
   // Deserialize the result
   if (!method.return_type().is_void()) {
@@ -637,13 +637,13 @@ std::string GetProxyDefinitions(const std::vector<code_model::ServiceModel> &mod
       printer.Indent();
       printer.Print(vars, "try {\n");
       printer.Indent();
-      printer.Print(vars, "nanorpc::RpcMessage rpc_message;\n");
-      printer.Print(vars, "rpc_message.mutable_call()->set_service(\"NanoRpc.ObjectManagerService\");\n");
-      printer.Print(vars, "rpc_message.mutable_call()->set_method(\"Delete\");\n");
+      printer.Print(vars, "nanorpc::RpcCall rpc_call;\n");
+      printer.Print(vars, "rpc_call.set_service(\"NanoRpc.ObjectManagerService\");\n");
+      printer.Print(vars, "rpc_call.set_method(\"Delete\");\n");
       printer.Print(vars, "nanorpc::RpcObject rpc_object;\n");
       printer.Print(vars, "rpc_object.set_object_id(object_id_);\n");
-      printer.Print(vars, "rpc_object.SerializeToString(rpc_message.mutable_call()->mutable_call_data());\n");
-      printer.Print(vars, "client_->Send(rpc_message);\n");
+      printer.Print(vars, "rpc_object.SerializeToString(rpc_call.mutable_call_data());\n");
+      printer.Print(vars, "client_->CallMethod(rpc_call, nullptr);\n");
       printer.Outdent();
       printer.Print(vars, "}\n");
       printer.Print(vars, "catch (...) {\n");

@@ -53,7 +53,7 @@ message RpcResult {
 }
 
 message RpcMessage {
-	int32 id = 1;
+	uint32 id = 1;
 	RpcCall call = 2;
 	RpcResult result = 3;
 }

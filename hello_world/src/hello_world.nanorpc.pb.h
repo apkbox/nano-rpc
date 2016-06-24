@@ -39,7 +39,7 @@ private:
 
 class OrderDesk_Proxy : public OrderDesk {
 public:
-  explicit OrderDesk_Proxy(nanorpc::IRpcClient *client, nanorpc::RpcObjectId object_id = 0)
+  explicit OrderDesk_Proxy(nanorpc2::ServiceProxyInterface *client, nanorpc::RpcObjectId object_id = 0)
       : client_(client), object_id_(object_id) {}
 
   virtual ~OrderDesk_Proxy();
@@ -50,7 +50,7 @@ public:
   ReadingType GetReading(int32_t value) override;
 
 private:
-  nanorpc::IRpcClient *client_;
+  nanorpc2::ServiceProxyInterface *client_;
   nanorpc::RpcObjectId object_id_;
 };
 

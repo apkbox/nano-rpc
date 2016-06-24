@@ -15,6 +15,13 @@ TODO:
   another call is in progress. One should be able to specify behavior
   on per service basis rather than per server.
 
+* Whenever Message::ByteSize is called the next call of Message::GetCachedSize 
+  can save time. This is often the case when writing into WriteBuffer - note
+  that size is used twice:
+    auto size = msg.ByteSize();
+    msg.SerializePartialToArray(message->Write(size), size);
+
+
 OTHER THOUGHTS:
 * object_id_value and event_name fields included into RpcParameter apparently
   to make object manager and event service looks as any other service and yet
