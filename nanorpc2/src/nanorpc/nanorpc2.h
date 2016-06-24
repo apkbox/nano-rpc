@@ -1,9 +1,13 @@
 #if !defined(NANORPC_NANORPC2_H__)
 #define NANORPC_NANORPC2_H__
 
+#include <condition_variable>
 #include <map>
 #include <memory>
+#include <mutex>
 #include <string>
+#include <thread>
+#include <unordered_map>
 
 #include "nanorpc/rpc_types.pb.h"
 
@@ -267,12 +271,18 @@ public:
   bool CallMethod(const RpcCall &rpc_call, RpcResult *rpc_result) override;
 
 private:
-  struct PendingCall {};
+  void WaitForResult(uint32_t call_id, RpcMessage *result);
+  void LazyCreateReceiveThread();
+  void ReceiveThreadProc();
 
   std::unique_ptr<ClientChannelInterface> channel_;
 
   uint32_t last_message_id_;
-  std::map<pb::uint32, PendingCall> pending_calls_;
+  std::mutex pending_calls_mtx_;
+  std::condition_variable result_pending_cv_;
+  std::unordered_map<pb::uint32, std::unique_ptr<RpcMessage>> pending_calls_;
+
+  std::unique_ptr<std::thread> receive_thread_;
 };
 
 }  // namespace nanorpc2

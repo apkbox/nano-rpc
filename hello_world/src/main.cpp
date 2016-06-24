@@ -55,6 +55,8 @@ void ServerThread() {
 
 int main() {
   std::thread server_thread(ServerThread);
+  std::thread client_thread(ClientThread);
+  client_thread.join();
   server_thread.join();
   return 0;
 }
