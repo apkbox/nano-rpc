@@ -238,7 +238,6 @@ void WinsockChannelImpl::Disconnect() {
     return;
 
   if (socket_ != INVALID_SOCKET) {
-    shutdown(socket_, SD_SEND);
     closesocket(socket_);
     socket_ = INVALID_SOCKET;
   }

@@ -9,9 +9,14 @@ Client::Client(std::unique_ptr<ClientChannelInterface> channel)
     : channel_(std::move(channel)) {}
 
 Client::~Client() {
-  Disconnect();
-  if (receive_thread_ != nullptr)
-    receive_thread_->join();
+  try {
+    is_disposing = true;
+    Disconnect();
+    if (receive_thread_ != nullptr)
+      receive_thread_->join();
+  }
+  catch(...) {
+  }
 }
 
 bool Client::StartListening(ServiceInterface *event_interface) {
@@ -40,11 +45,18 @@ bool Client::ConnectAndWait() {
 }
 
 void Client::Shutdown() {
+  is_shutting_down = true;
+  channel_->Shutdown();
+  FlushPendingCalls();
   channel_->Disconnect();
+  is_shutting_down = false;
 }
 
 void Client::Disconnect() {
+  is_shutting_down = true;
   channel_->Disconnect();
+  AbortPendingCalls();
+  is_shutting_down = false;
 }
 
 bool Client::CallMethod(const RpcCall &rpc_call, RpcResult *rpc_result) {
@@ -88,6 +100,7 @@ void Client::WaitForResult(uint32_t call_id, RpcMessage *result) {
     auto pending_call = pending_calls_.find(call_id);
     if (pending_call->first == call_id && pending_call->second != nullptr) {
       *result = *pending_call->second.get();
+      pending_calls_.erase(call_id);
       break;
     }
 
@@ -96,37 +109,19 @@ void Client::WaitForResult(uint32_t call_id, RpcMessage *result) {
 }
 
 void Client::ReceiveThreadProc() {
-  while (channel_->GetStatus() != ChannelStatus::NotConnected) {
-    auto rdbuf = channel_->Read(sizeof(uint32_t));
-    if (rdbuf == nullptr)
-      continue;
+  while (!is_disposing) {
+    while (channel_->GetStatus() == ChannelStatus::Established)
+      HandleIncomingMessage();
 
-    uint32_t message_size;
-    if (!rdbuf->ReadAs(&message_size))
-      continue;
-
-    rdbuf = channel_->Read(message_size);
-    if (rdbuf == nullptr)
-      continue;
-
-    std::unique_ptr<RpcMessage> response{ std::make_unique<RpcMessage>() };
-    response->ParseFromArray(rdbuf->Read(message_size), message_size);
-
-    {
-      std::lock_guard<std::mutex> lock(pending_calls_mtx_);
-
-      auto pending_call = pending_calls_.find(response->id());
-      if (pending_call == pending_calls_.end())
-        continue;
-
-      pending_call->second = std::move(response);
-    }
-
-    result_pending_cv_.notify_all();
+    while (channel_->GetStatus() != ChannelStatus::Established && !is_disposing)
+      std::this_thread::sleep_for(std::chrono::milliseconds(300));
   }
 }
 
 void Client::LazyCreateReceiveThread() {
+  if (is_shutting_down)
+    return;
+
   if (receive_thread_ == nullptr) {
     receive_thread_ =
         std::make_unique<std::thread>(&Client::ReceiveThreadProc, this);
@@ -134,12 +129,65 @@ void Client::LazyCreateReceiveThread() {
 }
 
 bool Client::EnsureConnection() {
-  // TODO: Check if we are disconnecting and do not proceed if we do.
+  if (is_shutting_down)
+    return false;
   // TODO: Ensure channel is able to handle calling Connect concurrently.
   if (channel_->GetStatus() != ChannelStatus::Established) {
     if (!channel_->Connect())
       return false;
   }
+
+  return true;
+}
+
+void Client::FlushPendingCalls() {
+  while (true) {
+    {
+      std::lock_guard<std::mutex> lock(pending_calls_mtx_);
+      if (pending_calls_.size() == 0)
+        break;
+    }
+    std::this_thread::sleep_for(std::chrono::milliseconds(300));
+  }
+}
+
+void Client::AbortPendingCalls() {
+  std::unique_lock<std::mutex> lock(pending_calls_mtx_);
+  pending_calls_.clear();
+  result_pending_cv_.notify_all();
+}
+
+// Read the message from channel and post either to event queue or
+// pending calls.
+bool Client::HandleIncomingMessage() {
+  auto rdbuf = channel_->Read(sizeof(uint32_t));
+  if (rdbuf == nullptr)
+    return false;
+
+  uint32_t message_size;
+  if (!rdbuf->ReadAs(&message_size))
+    return false;
+
+  rdbuf = channel_->Read(message_size);
+  if (rdbuf == nullptr)
+    return false;
+
+  std::unique_ptr<RpcMessage> response{ std::make_unique<RpcMessage>() };
+  response->ParseFromArray(rdbuf->Read(message_size), message_size);
+
+  // TODO: Determine here whether the message is an event or reply.
+  // Post events into event queue.
+  {
+    std::lock_guard<std::mutex> lock(pending_calls_mtx_);
+
+    auto pending_call = pending_calls_.find(response->id());
+    if (pending_call == pending_calls_.end())
+      return false;
+
+    pending_call->second = std::move(response);
+  }
+
+  result_pending_cv_.notify_all();
 
   return true;
 }

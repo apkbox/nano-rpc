@@ -324,9 +324,13 @@ private:
   void ReceiveThreadProc();
   void LazyCreateReceiveThread();
   bool EnsureConnection();
+  void FlushPendingCalls();
+  void AbortPendingCalls();
+  bool HandleIncomingMessage();
 
   std::unique_ptr<ClientChannelInterface> channel_;
   bool is_shutting_down = false;
+  bool is_disposing = false;
 
   uint32_t last_message_id_ = 0;
   std::mutex pending_calls_mtx_;
