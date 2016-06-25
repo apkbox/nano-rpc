@@ -55,6 +55,7 @@ void ServerThread() {
 
 int main() {
   std::thread server_thread(ServerThread);
+  std::this_thread::sleep_for(std::chrono::seconds(1));
   std::thread client_thread(ClientThread);
   client_thread.join();
   server_thread.join();

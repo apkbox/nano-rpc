@@ -30,6 +30,7 @@ bool Client::CallMethod(const RpcCall &rpc_call, RpcResult *rpc_result) {
   call_message.set_id(++last_message_id_);
 
   auto message_size = call_message.ByteSize();
+  *message->WriteAs<uint32_t>() = message_size;
   call_message.SerializeWithCachedSizesToArray(
       reinterpret_cast<pb::uint8 *>(message->Write(message_size)));
   channel_->Write(std::move(message));

@@ -31,6 +31,11 @@ public:
     Order order(drink, reading);
     order.waiting_number_ = ++last_waiting_number_;
     pending_orders_.push(order);
+
+    Order next = pending_orders_.front();
+    completed_orders_[order.waiting_number_] = next;
+    pending_orders_.pop();
+
     return order.waiting_number_;
   }
 
