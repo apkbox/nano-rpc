@@ -1,22 +1,55 @@
 #include "nanorpc/nanorpc2.h"
 
+#include <memory>
 #include <mutex>
 
 namespace nanorpc2 {
 
 Client::Client(std::unique_ptr<ClientChannelInterface> channel)
-    : channel_(std::move(channel)), last_message_id_(0) {}
+    : channel_(std::move(channel)) {}
 
-void Client::Disconnect()
-{
+Client::~Client() {
+  Disconnect();
+  if (receive_thread_ != nullptr)
+    receive_thread_->join();
+}
+
+bool Client::StartListening(ServiceInterface *event_interface) {
+  return false;
+}
+
+bool Client::StartListening(const std::string &name,
+                            ServiceInterface *event_interface) {
+  return false;
+}
+
+void Client::StopListening(const std::string &name) {}
+
+void Client::CreateEventThread(int concurrency) {}
+
+bool Client::PumpEvents(bool *dropped) {
+  return false;
+}
+
+bool Client::WaitForEvents() {
+  return false;
+}
+
+bool Client::ConnectAndWait() {
+  return false;
+}
+
+void Client::Shutdown() {
+  channel_->Disconnect();
+}
+
+void Client::Disconnect() {
   channel_->Disconnect();
 }
 
 bool Client::CallMethod(const RpcCall &rpc_call, RpcResult *rpc_result) {
-  if (channel_->GetStatus() != ChannelStatus::Established) {
-    if (!channel_->Connect())
-      return false;
-  }
+  if (!EnsureConnection())
+    return false;
 
   auto message = channel_->CreateWriteBuffer();
 
@@ -45,7 +78,8 @@ bool Client::CallMethod(const RpcCall &rpc_call, RpcResult *rpc_result) {
 }
 
 void Client::WaitForResult(uint32_t call_id, RpcMessage *result) {
-  LazyCreateReceiveThread();
+  std::call_once(receive_thread_started_, &Client::LazyCreateReceiveThread,
+                 this);
 
   pending_calls_[call_id] = nullptr;
 
@@ -58,13 +92,6 @@ void Client::WaitForResult(uint32_t call_id, RpcMessage *result) {
     }
 
     result_pending_cv_.wait(lock);
-  }
-}
-
-void Client::LazyCreateReceiveThread() {
-  if (receive_thread_ == nullptr) {
-    receive_thread_ =
-        std::make_unique<std::thread>(&Client::ReceiveThreadProc, this);
   }
 }
 
@@ -97,6 +124,24 @@ void Client::ReceiveThreadProc() {
 
     result_pending_cv_.notify_all();
   }
+}
+
+void Client::LazyCreateReceiveThread() {
+  if (receive_thread_ == nullptr) {
+    receive_thread_ =
+        std::make_unique<std::thread>(&Client::ReceiveThreadProc, this);
+  }
+}
+
+bool Client::EnsureConnection() {
+  // TODO: Check if we are disconnecting and do not proceed if we do.
+  // TODO: Ensure channel is able to handle calling Connect concurrently.
+  if (channel_->GetStatus() != ChannelStatus::Established) {
+    if (!channel_->Connect())
+      return false;
+  }
+
+  return true;
 }
 
 }  // namespace nanorpc2

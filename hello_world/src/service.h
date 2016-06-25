@@ -31,7 +31,9 @@ public:
     Order order(drink, reading);
     order.waiting_number_ = ++last_waiting_number_;
     pending_orders_.push(order);
+    std::cout << "OrderDeskImpl: Creating order " << order.waiting_number_ << "." << std::endl;
 
+    std::cout << "OrderDeskImpl: ...and serving." << std::endl;
     Order next = pending_orders_.front();
     completed_orders_[order.waiting_number_] = next;
     pending_orders_.pop();
@@ -40,10 +42,12 @@ public:
   }
 
   bool IsOrderReady(int order_number) override {
+    std::cout << "OrderDeskImpl: Asked 'is order ready?'." << std::endl;
     return completed_orders_.find(order_number) != completed_orders_.end();
   }
 
   hello_world::DrinkType GetDrink(int order_number) override {
+    std::cout << "OrderDeskImpl: Getting drink." << std::endl;
     auto &order = completed_orders_.find(order_number);
     if (order != completed_orders_.end() && !order->second.drink_taken_) {
       order->second.drink_taken_ = true;
@@ -56,6 +60,7 @@ public:
   }
 
   hello_world::ReadingType GetReading(int order_number) override {
+    std::cout << "OrderDeskImpl: Getting reading." << std::endl;
     auto &order = completed_orders_.find(order_number);
     if (order != completed_orders_.end() && !order->second.reading_taken_) {
       order->second.reading_taken_ = true;
