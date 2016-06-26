@@ -26,11 +26,11 @@ void ClientThread() {
   // TODO: Should it accept client at all? Should that be a shared pointer?
   // TODO: What happens if multiple threads call on the same proxy/client?
   // We definitely do not want to create a separate client for each thread,
-  // because this would require new connection for each thread and the server
+  // because this requires a new connection for each thread and the server
   // should be able to handle it.
   // The problems are as following:
   //    - There may be a policy to restrict a server to accept a single connection.
-  //    - It is more complicate to handle on the server. In a simple application
+  //    - It is more complex to handle on the server. In a simple application
   //      there is not reason for the server to handle more than one connection.
   //      This also makes it easier such that service does not have to be
   //      thread safe, even when not using call serializer.
@@ -49,7 +49,7 @@ void ClientThread() {
   order_desk.GetReading(order_id);
 
   std::cout << "Client disconnecting." << std::endl;
-  client.Disconnect();
+  client.Shutdown();
   std::cout << "Client exiting." << std::endl;
 }
 

@@ -1,8 +1,8 @@
 #if !defined(NANORPC_NANORPC2_H__)
 #define NANORPC_NANORPC2_H__
 
+#include <atomic>
 #include <condition_variable>
-#include <map>
 #include <memory>
 #include <mutex>
 #include <string>
@@ -112,6 +112,11 @@ public:
   }
 
   template <class T>
+  T *WriteAsArray(size_t ncount) {
+    return reinterpret_cast<T *>(Write(sizeof(T) * ncount));
+  }
+
+  template <class T>
   void WriteAs(const T &t) {
     *reinterpret_cast<T *>(Write(sizeof(T))) = t;
   }
@@ -124,19 +129,6 @@ public:
   virtual std::unique_ptr<ReadBuffer> Read(size_t bytes) = 0;
   virtual std::unique_ptr<WriteBuffer> CreateWriteBuffer() = 0;
   virtual void Write(std::unique_ptr<WriteBuffer> buffer) = 0;
-
-  // Reads data from stream. The function blocks until data is available.
-  // If buffer is nullptr, returns true and number of available bytes
-  // in byte_read. Returns false if channel is disconnected. buffer_size
-  // parameter
-  // is ignored in this case.
-  // If buffer is not nullptr, then fills the buffer, number
-  // of bytes read in bytes_read and returns true.
-  // Returns false if buffer too small, channel disconnected
-  // or connection terminated. If buffer too small, no data is read.
-  // Note that the buffer must be sufficiently big to fill the whole message.
-  //virtual bool Read(void *buffer, size_t buffer_size, size_t *bytes_read) = 0;
-  //virtual bool Write(void *buffer, size_t buffer_size) = 0;
 };
 
 class ChannelInterface : public StreamInterface {
@@ -320,7 +312,15 @@ public:
   bool CallMethod(const RpcCall &rpc_call, RpcResult *rpc_result) override;
 
 private:
-  void WaitForResult(uint32_t call_id, RpcMessage *result);
+  enum class PendingCallStatus { WaitingResult, Received, Cancelled };
+
+  struct PendingCall {
+    PendingCallStatus status;
+    std::unique_ptr<RpcMessage> result;
+  };
+
+  void SendCallRequest(uint32_t call_id, const RpcCall &rpc_call);
+  bool WaitForResult(uint32_t call_id, RpcMessage *result);
   void ReceiveThreadProc();
   void LazyCreateReceiveThread();
   bool EnsureConnection();
@@ -329,15 +329,14 @@ private:
   bool HandleIncomingMessage();
 
   std::unique_ptr<ClientChannelInterface> channel_;
-  bool is_shutting_down = false;
   bool is_disposing = false;
 
-  uint32_t last_message_id_ = 0;
+  std::atomic<uint32_t> last_message_id_ = 0;
   std::mutex pending_calls_mtx_;
   std::condition_variable result_pending_cv_;
-  std::unordered_map<pb::uint32, std::unique_ptr<RpcMessage>> pending_calls_;
+  std::unordered_map<pb::uint32, PendingCall> pending_calls_;
 
-  std::once_flag  receive_thread_started_;
+  std::once_flag receive_thread_started_;
   std::unique_ptr<std::thread> receive_thread_;
 };
 
