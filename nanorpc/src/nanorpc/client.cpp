@@ -4,7 +4,7 @@
 #include <memory>
 #include <mutex>
 
-namespace nanorpc2 {
+namespace nanorpc {
 
 Client::Client(std::unique_ptr<ClientChannelInterface> channel)
     : channel_(std::move(channel)) {}
@@ -211,4 +211,4 @@ bool Client::HandleIncomingMessage() {
   return true;
 }
 
-}  // namespace nanorpc2
+}  // namespace nanorpc

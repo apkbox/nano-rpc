@@ -14,10 +14,9 @@ bool min_value_predicate(const std::pair<int, int> &a,
 BufferPool::BufferPool(unsigned int pool_size) : pool_size_(pool_size) {}
 
 BufferPool::~BufferPool() {
-  ScopedLock lock(lock_);
-  for (PointerToDescriptorMap::iterator iter = all_buffers_.begin();
-       iter != all_buffers_.end(); iter++) {
-    DestroyBufferInternal(iter->second);
+  std::lock_guard<std::mutex> lock(mtx_);
+  for (auto iter : all_buffers_) {
+    DestroyBufferInternal(iter.second);
   }
 }
 
@@ -26,9 +25,9 @@ char *BufferPool::Allocate(int min_size) {
 
   Descriptor *descriptor = NULL;
 
-  ScopedLock lock(lock_);
+  std::lock_guard<std::mutex> lock(mtx_);
 
-  SizeToDescriptorMap::iterator iter = free_buffers_.lower_bound(min_size);
+  auto iter = free_buffers_.lower_bound(min_size);
   if (iter == free_buffers_.end()) {
     descriptor = CreateBuffer(min_size);
   } else {
@@ -50,7 +49,7 @@ char *BufferPool::Allocate(int min_size) {
 void BufferPool::Deallocate(const char *buffer) {
   assert(buffer != NULL);
 
-  ScopedLock lock(lock_);
+  std::lock_guard<std::mutex> lock(mtx_);
 
   // Check that the buffer belongs to the pool.
   PointerToDescriptorMap::const_iterator iter = all_buffers_.find(buffer);
@@ -67,9 +66,8 @@ void BufferPool::Deallocate(const char *buffer) {
 #if !defined(NDEBUG)
   // This is failproof way to check if the buffer is already in the pool, but it
   // is slow.
-  for (SizeToDescriptorMap::const_iterator iter = free_buffers_.begin();
-       iter != free_buffers_.end(); iter++) {
-    assert(iter->second != buffer_descriptor);
+  for (const auto iter : free_buffers_) {
+    assert(iter.second != buffer_descriptor);
   }
 #endif
 
@@ -82,10 +80,9 @@ void BufferPool::Deallocate(const char *buffer) {
   // We keep usage statistics which buffer sizes are used the most and those
   // which are kept in the pool.
   if (free_buffers_.size() >= pool_size_) {
-    SizeToUsageMap::iterator iter = std::min_element(
-        use_statistics_.begin(), use_statistics_.end(), min_value_predicate);
+    auto iter = std::min_element(use_statistics_.begin(), use_statistics_.end(),
+                                 min_value_predicate);
     assert(iter != use_statistics_.end());
-
     int buffer_size_to_erase = iter->first;
     if (buffer_descriptor->size == buffer_size_to_erase) {
       DestroyBuffer(buffer_descriptor);
@@ -96,9 +93,8 @@ void BufferPool::Deallocate(const char *buffer) {
     use_statistics_.erase(buffer_size_to_erase);
 
     // destroy all matching buffers
-    for (SizeToDescriptorMap::iterator iter =
-             free_buffers_.find(buffer_size_to_erase);
-         iter != free_buffers_.end(); iter++) {
+    for (auto iter = free_buffers_.find(buffer_size_to_erase);
+         iter != free_buffers_.end(); ++iter) {
       if (iter->first != buffer_size_to_erase)
         break;
       DestroyBuffer(iter->second);
@@ -116,7 +112,7 @@ void BufferPool::Deallocate(const char *buffer) {
 int BufferPool::GetBufferSize(const char *buffer) const {
   assert(buffer != NULL);
 
-  ScopedLock lock(lock_);
+  std::lock_guard<std::mutex> lock(mtx_);
 
   // Check that buffer belongs to the pool
   PointerToDescriptorMap::const_iterator iter = all_buffers_.find(buffer);

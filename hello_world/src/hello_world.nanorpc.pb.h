@@ -5,10 +5,7 @@
 #define NANORPC_hello_5fworld_2eproto__INCLUDED
 
 #include "hello_world.pb.h"
-#include "nanorpc/rpc_client.hpp"
-#include "nanorpc/rpc_stub.hpp"
 #include "nanorpc/nanorpc2.h"
-#include "nanorpc/rpc_object_manager.hpp"
 
 namespace hello_world {
 
@@ -22,9 +19,9 @@ public:
   virtual ReadingType GetReading(int32_t value) = 0;
 };
 
-class OrderDesk_Stub : public nanorpc2::ServiceInterface {
+class OrderDesk_Stub : public nanorpc::ServiceInterface {
 public:
-  explicit OrderDesk_Stub(nanorpc::IRpcObjectManager* object_manager, OrderDesk* impl)
+  explicit OrderDesk_Stub(nanorpc::ObjectManagerInterface* object_manager, OrderDesk* impl)
       : object_manager_(object_manager), impl_(impl) {}
 
   const std::string &GetInterfaceName() const override;
@@ -33,13 +30,13 @@ public:
 private:
   static const std::string kServiceName;
 
-  nanorpc::IRpcObjectManager* object_manager_;
+  nanorpc::ObjectManagerInterface* object_manager_;
   OrderDesk* impl_;
 };
 
 class OrderDesk_Proxy : public OrderDesk {
 public:
-  explicit OrderDesk_Proxy(nanorpc2::ServiceProxyInterface *client, nanorpc::RpcObjectId object_id = 0)
+  explicit OrderDesk_Proxy(nanorpc::ServiceProxyInterface *client, nanorpc::RpcObjectId object_id = 0)
       : client_(client), object_id_(object_id) {}
 
   virtual ~OrderDesk_Proxy();
@@ -50,7 +47,7 @@ public:
   ReadingType GetReading(int32_t value) override;
 
 private:
-  nanorpc2::ServiceProxyInterface *client_;
+  nanorpc::ServiceProxyInterface *client_;
   nanorpc::RpcObjectId object_id_;
 };
 

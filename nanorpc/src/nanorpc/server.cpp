@@ -5,7 +5,7 @@
 #include <memory>
 #include <string>
 
-namespace nanorpc2 {
+namespace nanorpc {
 
 Server::Server(std::unique_ptr<ServerChannelInterface> channel)
     : channel_(std::move(channel)) {}
@@ -126,4 +126,4 @@ void Server::ProcessRequest(const RpcMessage &request,
   }
 }
 
-}  // namespace nanorpc2
+}  // namespace nanorpc

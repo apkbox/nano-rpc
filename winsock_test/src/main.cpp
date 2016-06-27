@@ -41,7 +41,7 @@ struct ResponseMessage {
 
 void ServerThreadProc() {
   std::cout << "SERVER: Starting... " << std::endl;
-  nanorpc2::WinsockServerChannel channel("2345");
+  nanorpc::WinsockServerChannel channel("2345");
   if (!channel.Connect()) {
     std::cout << "SERVER: Connection failed." << std::endl;
     return;
@@ -64,7 +64,7 @@ void ServerThreadProc() {
               << ", n_seq=" << request->n_seq << std::endl;
 #endif
 
-    std::unique_ptr<nanorpc2::WriteBuffer> response_message =
+    std::unique_ptr<nanorpc::WriteBuffer> response_message =
         channel.CreateWriteBuffer();
     int *response_size = response_message->WriteAs<int>();
     ResponseMessage *response = response_message->WriteAs<ResponseMessage>();
@@ -99,7 +99,7 @@ void ServerThreadProc() {
 
 void ClientThreadProc() {
   std::cout << "CLIENT: Starting... " << std::endl;
-  nanorpc2::WinsockClientChannel channel("localhost", "2345");
+  nanorpc::WinsockClientChannel channel("localhost", "2345");
 
   for (int i = 0; i < 10; ++i) {
     std::cout << "CLIENT: Connecting... " << i << std::endl;

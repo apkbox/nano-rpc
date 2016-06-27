@@ -1,29 +1,23 @@
-#include "nanorpc\rpc_client.hpp"
-#include "nanorpc\rpc_stub.hpp"
-#include "nanorpc\rpc_object_manager.hpp"
 #include "codegen_test.nanorpc.pb.h"
 
-class RpcObjectManager : public nanorpc::IRpcObjectManager {
+class RpcObjectManager : public nanorpc::ObjectManagerInterface {
 public:
-  nanorpc::RpcObjectId RegisterInstance(nanorpc::IRpcService *instance) override {
+  nanorpc::RpcObjectId AddObject(nanorpc::ServiceInterface *instance) {
     return 1;
   }
+  void DeleteObject(nanorpc::RpcObjectId object_id) {}
 };
 
-class RpcClient : public nanorpc::IRpcClient {
+class RpcClient : public nanorpc::ServiceProxyInterface {
 public:
-  RpcClient(nanorpc::IRpcStub *stub) : stub_(stub) { }
+  RpcClient(nanorpc::ServiceInterface *stub) : stub_(stub) { }
 
-  void Send(nanorpc::RpcMessage &rpcMessage) override {
-
-  }
-
-  void SendWithReply(nanorpc::RpcMessage &rpcMessage, nanorpc::RpcResult *result) override {
-    stub_->CallMethod(rpcMessage.call(), result);
+  bool CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcResult *rpc_result) override {
+    return stub_->CallMethod(rpc_call, rpc_result);
   }
 
 private:
-  nanorpc::IRpcStub *stub_;
+  nanorpc::ServiceInterface *stub_;
 };
 
 class TestServiceIntefaceImpl : public codegen_test::TestServiceInteface {

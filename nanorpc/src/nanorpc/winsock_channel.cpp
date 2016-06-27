@@ -2,7 +2,7 @@
 
 #include "nanorpc/winsock_channel_impl.h"
 
-namespace nanorpc2 {
+namespace nanorpc {
 
 WinsockServerChannel::WinsockServerChannel(const std::string &port)
     : impl_{ new WinsockChannelImpl{ port } } {}
@@ -71,4 +71,4 @@ void WinsockClientChannel::Write(std::unique_ptr<WriteBuffer> buffer) {
   impl_->Write(std::move(buffer));
 }
 
-}  // namespace nanorpc2
+}  // namespace nanorpc

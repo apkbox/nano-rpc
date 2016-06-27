@@ -347,11 +347,11 @@ class RpcMessage : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // optional int32 id = 1;
+  // optional uint32 id = 1;
   void clear_id();
   static const int kIdFieldNumber = 1;
-  ::google::protobuf::int32 id() const;
-  void set_id(::google::protobuf::int32 value);
+  ::google::protobuf::uint32 id() const;
+  void set_id(::google::protobuf::uint32 value);
 
   // optional .nanorpc.RpcCall call = 2;
   bool has_call() const;
@@ -378,7 +378,7 @@ class RpcMessage : public ::google::protobuf::Message {
   bool _is_default_instance_;
   ::nanorpc::RpcCall* call_;
   ::nanorpc::RpcResult* result_;
-  ::google::protobuf::int32 id_;
+  ::google::protobuf::uint32 id_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_nanorpc_2frpc_5ftypes_2eproto();
   friend void protobuf_AssignDesc_nanorpc_2frpc_5ftypes_2eproto();
@@ -1142,15 +1142,15 @@ inline void RpcResult::set_allocated_result_data(::std::string* result_data) {
 
 // RpcMessage
 
-// optional int32 id = 1;
+// optional uint32 id = 1;
 inline void RpcMessage::clear_id() {
-  id_ = 0;
+  id_ = 0u;
 }
-inline ::google::protobuf::int32 RpcMessage::id() const {
+inline ::google::protobuf::uint32 RpcMessage::id() const {
   // @@protoc_insertion_point(field_get:nanorpc.RpcMessage.id)
   return id_;
 }
-inline void RpcMessage::set_id(::google::protobuf::int32 value) {
+inline void RpcMessage::set_id(::google::protobuf::uint32 value) {
   
   id_ = value;
   // @@protoc_insertion_point(field_set:nanorpc.RpcMessage.id)

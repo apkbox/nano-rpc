@@ -16,7 +16,7 @@
 #include "nanorpc/nanorpc2.h"
 #include "nanorpc/winsock_channel.h"
 
-namespace nanorpc2 {
+namespace nanorpc {
 
 class ScopedHandle {
 public:
@@ -163,6 +163,6 @@ private:
   NANORPC_DISALLOW_COPY_AND_ASSIGN(WinsockChannelImpl);
 };
 
-}  // namespace nanorpc2
+}  // namespace nanorpc
 
 #endif  // NANORPC_WINSOCK_CHANNEL_IMPL_H__

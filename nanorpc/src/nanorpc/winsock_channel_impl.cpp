@@ -23,7 +23,7 @@
 
 #pragma comment(lib, "Ws2_32.lib")
 
-namespace nanorpc2 {
+namespace nanorpc {
 
 WriteBufferImpl::~WriteBufferImpl() {
   auto p = &head_;
@@ -312,4 +312,4 @@ bool WinsockChannelImpl::Write(const void *buffer, size_t buffer_size) {
   return true;
 }
 
-}  // namespace nanorpc2
+}  // namespace nanorpc

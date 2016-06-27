@@ -17,8 +17,8 @@ namespace hw = ::hello_world;
 void ClientThread() {
   std::cout << "Client thread started." << std::endl;
 
-  auto channel = std::make_unique<nanorpc2::WinsockClientChannel>("localhost", "50372");
-  nanorpc2::Client client(std::move(channel));
+  auto channel = std::make_unique<nanorpc::WinsockClientChannel>("localhost", "50372");
+  nanorpc::Client client(std::move(channel));
 
   std::cout << "Client ready." << std::endl;
 
@@ -55,8 +55,8 @@ void ClientThread() {
 
 void ServerThread() {
   std::cout << "Server thread started." << std::endl;
-  auto channel = std::make_unique<nanorpc2::WinsockServerChannel>("50372");
-  nanorpc2::Server server(std::move(channel));
+  auto channel = std::make_unique<nanorpc::WinsockServerChannel>("50372");
+  nanorpc::Server server(std::move(channel));
   std::cout << "Server created." << std::endl;
 
   OrderDeskImpl order_desk_service;

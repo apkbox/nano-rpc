@@ -6,7 +6,7 @@
 
 #include "nanorpc/nanorpc2.h"
 
-namespace nanorpc2 {
+namespace nanorpc {
 
 class WinsockChannelImpl;
 
@@ -58,6 +58,6 @@ private:
   NANORPC_DISALLOW_COPY_AND_ASSIGN(WinsockClientChannel);
 };
 
-}  // namespace nanorpc2
+}  // namespace nanorpc
 
 #endif  // NANORPC_WINSOCK_CHANNEL_H__

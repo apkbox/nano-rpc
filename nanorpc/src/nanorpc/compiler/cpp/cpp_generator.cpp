@@ -113,10 +113,7 @@ std::string GetHeaderPrologue(const pb::FileDescriptor *file) {
     printer.Print(vars, "#define NANORPC_$filename_identifier$__INCLUDED\n");
     printer.Print(vars, "\n");
     printer.Print(vars, "#include \"$filename_base$.pb.h\"\n");
-    printer.Print(vars, "#include \"nanorpc/rpc_client.hpp\"\n");
-    printer.Print(vars, "#include \"nanorpc/rpc_stub.hpp\"\n");
     printer.Print(vars, "#include \"nanorpc/nanorpc2.h\"\n");
-    printer.Print(vars, "#include \"nanorpc/rpc_object_manager.hpp\"\n");
     printer.Print(vars, "\n");
     /* clang-format on */
 
@@ -189,10 +186,10 @@ std::string GetStubDeclarations(const pb::FileDescriptor *file) {
       vars["service_name"] = service->name();
 
       /* clang-format off */
-      printer.Print(vars, "class $service_name$_Stub : public nanorpc2::ServiceInterface {\n");
+      printer.Print(vars, "class $service_name$_Stub : public nanorpc::ServiceInterface {\n");
       printer.Print(vars, "public:\n");
       printer.Indent();
-      printer.Print(vars, "explicit $service_name$_Stub(nanorpc::IRpcObjectManager* object_manager, $service_name$* impl)\n");
+      printer.Print(vars, "explicit $service_name$_Stub(nanorpc::ObjectManagerInterface* object_manager, $service_name$* impl)\n");
       printer.Print(vars, "    : object_manager_(object_manager), impl_(impl) {}\n\n");
       printer.Print(vars, "const std::string &GetInterfaceName() const override;\n");
       printer.Print(vars, "bool CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcResult *rpc_result) override;\n\n");
@@ -200,7 +197,7 @@ std::string GetStubDeclarations(const pb::FileDescriptor *file) {
       printer.Print(vars, "private:\n");
       printer.Indent();
       printer.Print(vars, "static const std::string kServiceName;\n\n");
-      printer.Print(vars, "nanorpc::IRpcObjectManager* object_manager_;\n");
+      printer.Print(vars, "nanorpc::ObjectManagerInterface* object_manager_;\n");
       printer.Print(vars, "$service_name$* impl_;\n");
       printer.Outdent();
       printer.Print(vars, "};\n\n");
@@ -230,7 +227,7 @@ std::string GetProxyDeclarations(const std::vector<code_model::ServiceModel> &mo
       printer.Print(vars, "class $service_name$_Proxy : public $service_name$ {\n");
       printer.Print(vars, "public:\n");
       printer.Indent();
-      printer.Print(vars, "explicit $service_name$_Proxy(nanorpc2::ServiceProxyInterface *client, nanorpc::RpcObjectId object_id = 0)\n");
+      printer.Print(vars, "explicit $service_name$_Proxy(nanorpc::ServiceProxyInterface *client, nanorpc::RpcObjectId object_id = 0)\n");
       printer.Print(vars, "    : client_(client), object_id_(object_id) {}\n\n");
       
       printer.Print(vars, "virtual ~$service_name$_Proxy();\n\n");
@@ -259,7 +256,7 @@ std::string GetProxyDeclarations(const std::vector<code_model::ServiceModel> &mo
       printer.Outdent();
       printer.Print(vars, "private:\n");
       printer.Indent();
-      printer.Print(vars, "nanorpc2::ServiceProxyInterface *client_;\n");
+      printer.Print(vars, "nanorpc::ServiceProxyInterface *client_;\n");
       printer.Print(vars, "nanorpc::RpcObjectId object_id_;\n");
       printer.Outdent();
       printer.Print(vars, "};\n\n");

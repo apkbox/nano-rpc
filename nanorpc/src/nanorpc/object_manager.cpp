@@ -1,6 +1,6 @@
 #include "nanorpc/nanorpc2.h"
 
-namespace nanorpc2 {
+namespace nanorpc {
 
 ObjectManager::ObjectManager() : last_object_id_(0) {}
 
@@ -52,4 +52,4 @@ ServiceInterface *ObjectManager::GetObject(RpcObjectId object_id) {
   return iter->second.get();
 }
 
-}  // namespace nanorpc2
+}  // namespace nanorpc

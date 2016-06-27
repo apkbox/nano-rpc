@@ -5,9 +5,7 @@
 #define NANORPC_codegen_5ftest_2eproto__INCLUDED
 
 #include "codegen_test.pb.h"
-#include "nanorpc/rpc_client.hpp"
-#include "nanorpc/rpc_stub.hpp"
-#include "nanorpc/rpc_object_manager.hpp"
+#include "nanorpc/nanorpc2.h"
 
 namespace codegen_test {
 
@@ -46,22 +44,24 @@ public:
   virtual void AsyncMethod_V_V() = 0;
 };
 
-class TestServiceInteface_Stub : public nanorpc::IRpcStub {
+class TestServiceInteface_Stub : public nanorpc::ServiceInterface {
 public:
-  explicit TestServiceInteface_Stub(nanorpc::IRpcObjectManager* object_manager, TestServiceInteface* impl)
+  explicit TestServiceInteface_Stub(nanorpc::ObjectManagerInterface* object_manager, TestServiceInteface* impl)
       : object_manager_(object_manager), impl_(impl) {}
 
-  const char *GetInterfaceName() const;
-  void CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcResult *rpc_result);
+  const std::string &GetInterfaceName() const override;
+  bool CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcResult *rpc_result) override;
 
 private:
-  nanorpc::IRpcObjectManager* object_manager_;
+  static const std::string kServiceName;
+
+  nanorpc::ObjectManagerInterface* object_manager_;
   TestServiceInteface* impl_;
 };
 
 class TestServiceInteface_Proxy : public TestServiceInteface {
 public:
-  explicit TestServiceInteface_Proxy(nanorpc::IRpcClient *client, nanorpc::RpcObjectId object_id = 0)
+  explicit TestServiceInteface_Proxy(nanorpc::ServiceProxyInterface *client, nanorpc::RpcObjectId object_id = 0)
       : client_(client), object_id_(object_id) {}
 
   virtual ~TestServiceInteface_Proxy();
@@ -97,7 +97,7 @@ public:
   void AsyncMethod_V_V() override;
 
 private:
-  nanorpc::IRpcClient *client_;
+  nanorpc::ServiceProxyInterface *client_;
   nanorpc::RpcObjectId object_id_;
 };
 

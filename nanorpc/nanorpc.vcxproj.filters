@@ -24,34 +24,28 @@
     <ClCompile Include="src\nanorpc\buffer_pool.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\nanorpc\named_pipe_connector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\nanorpc\named_pipe_rpc_channel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\nanorpc\rpc_event_service.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\nanorpc\rpc_server.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\nanorpc\string_conversion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\nanorpc\synchronization_primitives.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\nanorpc\rpc_object_manager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\nanorpc\server_builder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\nanorpc\rpc_types.pb.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\nanorpc\server_call_dispatcher.cpp">
+    <ClCompile Include="src\nanorpc\client.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nanorpc\object_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nanorpc\server.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nanorpc\winsock_channel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nanorpc\winsock_channel_impl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,55 +62,25 @@
     <ClInclude Include="src\nanorpc\object_pool.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\nanorpc\rpc_client.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\nanorpc\rpc_event_service.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\nanorpc\rpc_message_sender.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\nanorpc\rpc_service.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\nanorpc\rpc_stub.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\nanorpc\string_conversion.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\nanorpc\synchronization_primitives.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\nanorpc\rpc_channel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\nanorpc\callback.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\nanorpc\named_pipe_rpc_channel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\nanorpc\named_pipe_connector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\nanorpc\rpc_server.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\nanorpc\rpc_object_manager.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\nanorpc\server_builder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\nanorpc\rpc_types.pb.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\nanorpc\server_call_dispatcher.h">
+    <ClInclude Include="src\nanorpc\nanorpc2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\nanorpc\nano_rpc.h">
+    <ClInclude Include="src\nanorpc\winsock_channel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\nanorpc\winsock_channel_impl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

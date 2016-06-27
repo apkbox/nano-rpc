@@ -134,9 +134,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ProjectReference Include="..\nanorpc2\nanorpc2.vcxproj">
-      <Project>{4306510f-b17b-4ac0-a62c-fce027bbc0cc}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\nanorpc\nanorpc.vcxproj">
       <Project>{c061f250-9028-4b06-805c-bd108ac4bb1a}</Project>
     </ProjectReference>

@@ -19,7 +19,7 @@
   TypeName() = delete;                                   \
   NANORPC_DISALLOW_COPY_AND_ASSIGN(TypeName)
 
-namespace nanorpc2 {
+namespace nanorpc {
 
 using namespace nanorpc;
 namespace pb = ::google::protobuf;
@@ -340,6 +340,6 @@ private:
   std::unique_ptr<std::thread> receive_thread_;
 };
 
-}  // namespace nanorpc2
+}  // namespace nanorpc
 
 #endif  // NANORPC_NANORPC2_H__

@@ -270,7 +270,7 @@ void protobuf_AddDesc_nanorpc_2frpc_5ftypes_2eproto() {
     "ct_id\030\003 \001(\r\022\021\n\tcall_data\030\004 \001(\014\"[\n\tRpcRes"
     "ult\022\"\n\006status\030\001 \001(\0162\022.nanorpc.RpcStatus\022"
     "\025\n\rerror_message\030\002 \001(\t\022\023\n\013result_data\030\003 "
-    "\001(\014\"\\\n\nRpcMessage\022\n\n\002id\030\001 \001(\005\022\036\n\004call\030\002 "
+    "\001(\014\"\\\n\nRpcMessage\022\n\n\002id\030\001 \001(\r\022\036\n\004call\030\002 "
     "\001(\0132\020.nanorpc.RpcCall\022\"\n\006result\030\003 \001(\0132\022."
     "nanorpc.RpcResult\"\t\n\007RpcVoid\" \n\017WideStri"
     "ngValue\022\r\n\005value\030\001 \001(\t\"\034\n\013SInt32Value\022\r\n"
@@ -1330,7 +1330,7 @@ RpcMessage::RpcMessage(const RpcMessage& from)
 void RpcMessage::SharedCtor() {
     _is_default_instance_ = false;
   _cached_size_ = 0;
-  id_ = 0;
+  id_ = 0u;
   call_ = NULL;
   result_ = NULL;
 }
@@ -1374,7 +1374,7 @@ RpcMessage* RpcMessage::New(::google::protobuf::Arena* arena) const {
 
 void RpcMessage::Clear() {
 // @@protoc_insertion_point(message_clear_start:nanorpc.RpcMessage)
-  id_ = 0;
+  id_ = 0u;
   if (GetArenaNoVirtual() == NULL && call_ != NULL) delete call_;
   call_ = NULL;
   if (GetArenaNoVirtual() == NULL && result_ != NULL) delete result_;
@@ -1391,11 +1391,11 @@ bool RpcMessage::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional int32 id = 1;
+      // optional uint32 id = 1;
       case 1: {
         if (tag == 8) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
                  input, &id_)));
 
         } else {
@@ -1455,9 +1455,9 @@ failure:
 void RpcMessage::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:nanorpc.RpcMessage)
-  // optional int32 id = 1;
+  // optional uint32 id = 1;
   if (this->id() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->id(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->id(), output);
   }
 
   // optional .nanorpc.RpcCall call = 2;
@@ -1478,9 +1478,9 @@ void RpcMessage::SerializeWithCachedSizes(
 ::google::protobuf::uint8* RpcMessage::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:nanorpc.RpcMessage)
-  // optional int32 id = 1;
+  // optional uint32 id = 1;
   if (this->id() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->id(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->id(), target);
   }
 
   // optional .nanorpc.RpcCall call = 2;
@@ -1505,10 +1505,10 @@ int RpcMessage::ByteSize() const {
 // @@protoc_insertion_point(message_byte_size_start:nanorpc.RpcMessage)
   int total_size = 0;
 
-  // optional int32 id = 1;
+  // optional uint32 id = 1;
   if (this->id() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->id());
   }
 
@@ -1603,15 +1603,15 @@ void RpcMessage::InternalSwap(RpcMessage* other) {
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // RpcMessage
 
-// optional int32 id = 1;
+// optional uint32 id = 1;
 void RpcMessage::clear_id() {
-  id_ = 0;
+  id_ = 0u;
 }
- ::google::protobuf::int32 RpcMessage::id() const {
+ ::google::protobuf::uint32 RpcMessage::id() const {
   // @@protoc_insertion_point(field_get:nanorpc.RpcMessage.id)
   return id_;
 }
- void RpcMessage::set_id(::google::protobuf::int32 value) {
+ void RpcMessage::set_id(::google::protobuf::uint32 value) {
   
   id_ = value;
   // @@protoc_insertion_point(field_set:nanorpc.RpcMessage.id)
