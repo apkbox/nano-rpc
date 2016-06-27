@@ -21,8 +21,8 @@ public:
 
 class OrderDesk_Stub : public nanorpc::ServiceInterface {
 public:
-  explicit OrderDesk_Stub(nanorpc::ObjectManagerInterface* object_manager, OrderDesk* impl)
-      : object_manager_(object_manager), impl_(impl) {}
+  explicit OrderDesk_Stub(OrderDesk* impl, nanorpc::ObjectManagerInterface* object_manager)
+      : impl_(impl), object_manager_(object_manager) {}
 
   const std::string &GetInterfaceName() const override;
   bool CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcResult *rpc_result) override;
@@ -30,8 +30,8 @@ public:
 private:
   static const std::string kServiceName;
 
-  nanorpc::ObjectManagerInterface* object_manager_;
   OrderDesk* impl_;
+  nanorpc::ObjectManagerInterface* object_manager_;
 };
 
 class OrderDesk_Proxy : public OrderDesk {

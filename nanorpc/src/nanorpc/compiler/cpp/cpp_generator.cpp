@@ -189,16 +189,16 @@ std::string GetStubDeclarations(const pb::FileDescriptor *file) {
       printer.Print(vars, "class $service_name$_Stub : public nanorpc::ServiceInterface {\n");
       printer.Print(vars, "public:\n");
       printer.Indent();
-      printer.Print(vars, "explicit $service_name$_Stub(nanorpc::ObjectManagerInterface* object_manager, $service_name$* impl)\n");
-      printer.Print(vars, "    : object_manager_(object_manager), impl_(impl) {}\n\n");
+      printer.Print(vars, "explicit $service_name$_Stub($service_name$* impl, nanorpc::ObjectManagerInterface* object_manager)\n");
+      printer.Print(vars, "    : impl_(impl), object_manager_(object_manager) {}\n\n");
       printer.Print(vars, "const std::string &GetInterfaceName() const override;\n");
       printer.Print(vars, "bool CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcResult *rpc_result) override;\n\n");
       printer.Outdent();
       printer.Print(vars, "private:\n");
       printer.Indent();
       printer.Print(vars, "static const std::string kServiceName;\n\n");
-      printer.Print(vars, "nanorpc::ObjectManagerInterface* object_manager_;\n");
       printer.Print(vars, "$service_name$* impl_;\n");
+      printer.Print(vars, "nanorpc::ObjectManagerInterface* object_manager_;\n");
       printer.Outdent();
       printer.Print(vars, "};\n\n");
       /* clang-format on */

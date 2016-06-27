@@ -12,7 +12,7 @@ namespace nanorpc {
 // This service keeps track of event subscriptions.
 // When client interested in receiving events through specific
 // event interface it should send subscription message the the server.
-class RpcEventService : public ServiceInterface {
+class EventService : public ServiceInterface {
 public:
   static const std::string kServiceName;
 

@@ -1,18 +1,16 @@
-#include "nanorpc/rpc_event_service.hpp"
-#include "nanorpc/string_conversion.hpp"
+#include "nanorpc/event_service.h"
 
 namespace nanorpc {
 
-const std::string RpcEventService::kServiceName{"NanoRpc.RpcEventService"};
+const std::string EventService::kServiceName{"NanoRpc.RpcEventService"};
 
-const std::string &RpcEventService::GetInterfaceName() const {
+const std::string &EventService::GetInterfaceName() const {
   return kServiceName;
 }
 
 // Because the implementation is very simple, the stub and object are
 // implemented in a single class.
-bool RpcEventService::CallMethod(const RpcCall &rpc_call,
-                                 RpcResult *rpc_result) {
+bool EventService::CallMethod(const RpcCall &rpc_call, RpcResult *rpc_result) {
   RpcEvent rpc_event;
   bool parsed_ok = rpc_event.ParseFromString(rpc_call.call_data());
   if (!parsed_ok || rpc_event.event_name().empty()) {
@@ -30,17 +28,17 @@ bool RpcEventService::CallMethod(const RpcCall &rpc_call,
   return true;
 }
 
-void RpcEventService::Add(const std::string &event_interface_name) {
+void EventService::Add(const std::string &event_interface_name) {
   event_interfaces_.insert(event_interface_name);
 }
 
-void RpcEventService::Remove(const std::string &event_interface_name) {
+void EventService::Remove(const std::string &event_interface_name) {
   event_interfaces_.erase(event_interface_name);
 }
 
-bool RpcEventService::HasInterface(const std::string &event_interface_name) {
+bool EventService::HasInterface(const std::string &event_interface_name) {
   return event_interfaces_.find(event_interface_name) !=
          event_interfaces_.end();
 }
 
-} // namespace
+}  // namespace nanorpc

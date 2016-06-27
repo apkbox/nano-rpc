@@ -1,4 +1,10 @@
-#include "nanorpc/nanorpc2.h"
+#include "nanorpc/object_manager.h"
+
+#include <cassert>
+#include <map>
+#include <memory>
+#include <string>
+#include <unordered_map>
 
 namespace nanorpc {
 

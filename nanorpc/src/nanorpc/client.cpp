@@ -1,4 +1,4 @@
-#include "nanorpc/nanorpc2.h"
+#include "nanorpc/client.h"
 
 #include <atomic>
 #include <memory>

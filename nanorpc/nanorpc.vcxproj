@@ -167,13 +167,16 @@
     <ClCompile Include="src\nanorpc\rpc_types.pb.cc" />
     <ClCompile Include="src\nanorpc\async_callback.cpp" />
     <ClCompile Include="src\nanorpc\buffer_pool.cpp" />
-    <ClCompile Include="src\nanorpc\rpc_event_service.cpp" />
+    <ClCompile Include="src\nanorpc\event_service.cpp" />
     <ClCompile Include="src\nanorpc\server.cpp" />
     <ClCompile Include="src\nanorpc\string_conversion.cpp" />
     <ClCompile Include="src\nanorpc\winsock_channel.cpp" />
     <ClCompile Include="src\nanorpc\winsock_channel_impl.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\nanorpc\client.h" />
+    <ClInclude Include="src\nanorpc\object_manager.h" />
+    <ClInclude Include="src\nanorpc\server.h" />
     <ClInclude Include="src\nanorpc\nanorpc2.h" />
     <ClInclude Include="src\nanorpc\rpc_types.pb.h" />
     <ClInclude Include="src\nanorpc\async_callback.hpp" />
@@ -181,7 +184,7 @@
     <ClInclude Include="src\nanorpc\buffer_pool.hpp" />
     <ClInclude Include="src\nanorpc\callback.h" />
     <ClInclude Include="src\nanorpc\object_pool.hpp" />
-    <ClInclude Include="src\nanorpc\rpc_event_service.hpp" />
+    <ClInclude Include="src\nanorpc\event_service.h" />
     <ClInclude Include="src\nanorpc\string_conversion.hpp" />
     <ClInclude Include="src\nanorpc\winsock_channel.h" />
     <ClInclude Include="src\nanorpc\winsock_channel_impl.h" />

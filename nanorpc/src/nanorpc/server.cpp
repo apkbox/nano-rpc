@@ -1,4 +1,4 @@
-#include "nanorpc/nanorpc2.h"
+#include "nanorpc/server.h"
 
 #include <cassert>
 #include <climits>
@@ -8,7 +8,16 @@
 namespace nanorpc {
 
 Server::Server(std::unique_ptr<ServerChannelInterface> channel)
-    : channel_(std::move(channel)) {}
+    : channel_(std::move(channel)) {
+  RegisterService(&event_service_);
+}
+
+Server::~Server() {
+  try {
+    Shutdown();
+  } catch (...) {
+  }
+}
 
 void Server::RegisterService(ServiceInterface *service) {
   assert(service != nullptr);
@@ -74,6 +83,29 @@ bool Server::ConnectAndWait() {
 void Server::Shutdown() {
   channel_->Shutdown();
   channel_->Disconnect();
+}
+
+bool Server::SendEvent(const RpcCall &call) {
+  // Do not attempt to connect here because if client not connected
+  // it had no chance registering for events.
+  // If client was disconnected previously, we do not care until there
+  // is an explicit attempt to reconnect.
+
+  // Do not send event if client never asked for it.
+  if (!event_service_.HasInterface(call.service()))
+    return false;
+
+  RpcMessage event_message;
+  event_message.set_id(0);
+  *event_message.mutable_call() = call;
+
+  auto wrbuf = channel_->CreateWriteBuffer();
+  auto message_size = event_message.ByteSize();
+  wrbuf->WriteAs<uint32_t>(message_size);
+  event_message.SerializeToArray(wrbuf->Write(message_size), message_size);
+  channel_->Write(std::move(wrbuf));
+
+  return true;
 }
 
 void Server::ProcessRequest(const RpcMessage &request,

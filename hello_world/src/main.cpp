@@ -8,6 +8,8 @@
 #include <thread>
 
 #include "nanorpc/nanorpc2.h"
+#include "nanorpc/client.h"
+#include "nanorpc/server.h"
 #include "nanorpc/winsock_channel.h"
 
 #include "service.h"
@@ -60,7 +62,7 @@ void ServerThread() {
   std::cout << "Server created." << std::endl;
 
   OrderDeskImpl order_desk_service;
-  hw::OrderDesk_Stub order_desk_service_stub(nullptr, &order_desk_service);
+  hw::OrderDesk_Stub order_desk_service_stub(&order_desk_service, nullptr);
   server.RegisterService(&order_desk_service_stub);
 
   std::cout << "Server connecting..." << std::endl;

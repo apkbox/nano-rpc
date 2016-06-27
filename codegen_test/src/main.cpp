@@ -1,13 +1,5 @@
 #include "codegen_test.nanorpc.pb.h"
 
-class RpcObjectManager : public nanorpc::ObjectManagerInterface {
-public:
-  nanorpc::RpcObjectId AddObject(nanorpc::ServiceInterface *instance) {
-    return 1;
-  }
-  void DeleteObject(nanorpc::RpcObjectId object_id) {}
-};
-
 class RpcClient : public nanorpc::ServiceProxyInterface {
 public:
   RpcClient(nanorpc::ServiceInterface *stub) : stub_(stub) { }
@@ -86,9 +78,8 @@ private:
 
 int main() {
   TestServiceIntefaceImpl impl;
-  RpcObjectManager object_manager;
 
-  codegen_test::TestServiceInteface_Stub stub(&object_manager, &impl);
+  codegen_test::TestServiceInteface_Stub stub(&impl, nullptr);
   RpcClient client(&stub);
   codegen_test::TestServiceInteface_Proxy proxy(&client);
 

@@ -46,8 +46,8 @@ public:
 
 class TestServiceInteface_Stub : public nanorpc::ServiceInterface {
 public:
-  explicit TestServiceInteface_Stub(nanorpc::ObjectManagerInterface* object_manager, TestServiceInteface* impl)
-      : object_manager_(object_manager), impl_(impl) {}
+  explicit TestServiceInteface_Stub(TestServiceInteface* impl, nanorpc::ObjectManagerInterface* object_manager)
+      : impl_(impl), object_manager_(object_manager) {}
 
   const std::string &GetInterfaceName() const override;
   bool CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcResult *rpc_result) override;
@@ -55,8 +55,8 @@ public:
 private:
   static const std::string kServiceName;
 
-  nanorpc::ObjectManagerInterface* object_manager_;
   TestServiceInteface* impl_;
+  nanorpc::ObjectManagerInterface* object_manager_;
 };
 
 class TestServiceInteface_Proxy : public TestServiceInteface {
