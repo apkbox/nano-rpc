@@ -25,9 +25,6 @@ public:
   std::unique_ptr<WriteBuffer> CreateWriteBuffer() override;
   void Write(std::unique_ptr<WriteBuffer> buffer) override;
 
-  //bool Read(void *buffer, size_t buffer_size, size_t *bytes_read) override;
-  //bool Write(void *buffer, size_t buffer_size) override;
-
 private:
   std::unique_ptr<WinsockChannelImpl> impl_;
 
@@ -48,9 +45,6 @@ public:
   std::unique_ptr<ReadBuffer> Read(size_t bytes) override;
   std::unique_ptr<WriteBuffer> CreateWriteBuffer() override;
   void Write(std::unique_ptr<WriteBuffer> buffer) override;
-
-  //bool Read(void *buffer, size_t buffer_size, size_t *bytes_read) override;
-  //bool Write(void *buffer, size_t buffer_size) override;
 
 private:
   std::unique_ptr<WinsockChannelImpl> impl_;

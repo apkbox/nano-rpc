@@ -40,6 +40,7 @@ void protobuf_AssignDesc_hello_5fworld_2eproto();
 void protobuf_ShutdownFile_hello_5fworld_2eproto();
 
 class DrinkType_wrapper__;
+class OrderDeskEvents_OrderStatusChanged_args__;
 class OrderRequest;
 class ReadingType_wrapper__;
 
@@ -330,6 +331,105 @@ class ReadingType_wrapper__ : public ::google::protobuf::Message {
   void InitAsDefaultInstance();
   static ReadingType_wrapper__* default_instance_;
 };
+// -------------------------------------------------------------------
+
+class OrderDeskEvents_OrderStatusChanged_args__ : public ::google::protobuf::Message {
+ public:
+  OrderDeskEvents_OrderStatusChanged_args__();
+  virtual ~OrderDeskEvents_OrderStatusChanged_args__();
+
+  OrderDeskEvents_OrderStatusChanged_args__(const OrderDeskEvents_OrderStatusChanged_args__& from);
+
+  inline OrderDeskEvents_OrderStatusChanged_args__& operator=(const OrderDeskEvents_OrderStatusChanged_args__& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const OrderDeskEvents_OrderStatusChanged_args__& default_instance();
+
+  void Swap(OrderDeskEvents_OrderStatusChanged_args__* other);
+
+  // implements Message ----------------------------------------------
+
+  inline OrderDeskEvents_OrderStatusChanged_args__* New() const { return New(NULL); }
+
+  OrderDeskEvents_OrderStatusChanged_args__* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const OrderDeskEvents_OrderStatusChanged_args__& from);
+  void MergeFrom(const OrderDeskEvents_OrderStatusChanged_args__& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(OrderDeskEvents_OrderStatusChanged_args__* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional uint32 order = 1;
+  void clear_order();
+  static const int kOrderFieldNumber = 1;
+  ::google::protobuf::uint32 order() const;
+  void set_order(::google::protobuf::uint32 value);
+
+  // optional bool is_ready = 2;
+  void clear_is_ready();
+  static const int kIsReadyFieldNumber = 2;
+  bool is_ready() const;
+  void set_is_ready(bool value);
+
+  // optional bool reading_taken = 3;
+  void clear_reading_taken();
+  static const int kReadingTakenFieldNumber = 3;
+  bool reading_taken() const;
+  void set_reading_taken(bool value);
+
+  // optional bool drink_taken = 4;
+  void clear_drink_taken();
+  static const int kDrinkTakenFieldNumber = 4;
+  bool drink_taken() const;
+  void set_drink_taken(bool value);
+
+  // @@protoc_insertion_point(class_scope:hello_world.OrderDeskEvents_OrderStatusChanged_args__)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::google::protobuf::uint32 order_;
+  bool is_ready_;
+  bool reading_taken_;
+  bool drink_taken_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_hello_5fworld_2eproto();
+  friend void protobuf_AssignDesc_hello_5fworld_2eproto();
+  friend void protobuf_ShutdownFile_hello_5fworld_2eproto();
+
+  void InitAsDefaultInstance();
+  static OrderDeskEvents_OrderStatusChanged_args__* default_instance_;
+};
 // ===================================================================
 
 
@@ -402,7 +502,69 @@ inline void ReadingType_wrapper__::set_value(::hello_world::ReadingType value) {
   // @@protoc_insertion_point(field_set:hello_world.ReadingType_wrapper__.value)
 }
 
+// -------------------------------------------------------------------
+
+// OrderDeskEvents_OrderStatusChanged_args__
+
+// optional uint32 order = 1;
+inline void OrderDeskEvents_OrderStatusChanged_args__::clear_order() {
+  order_ = 0u;
+}
+inline ::google::protobuf::uint32 OrderDeskEvents_OrderStatusChanged_args__::order() const {
+  // @@protoc_insertion_point(field_get:hello_world.OrderDeskEvents_OrderStatusChanged_args__.order)
+  return order_;
+}
+inline void OrderDeskEvents_OrderStatusChanged_args__::set_order(::google::protobuf::uint32 value) {
+  
+  order_ = value;
+  // @@protoc_insertion_point(field_set:hello_world.OrderDeskEvents_OrderStatusChanged_args__.order)
+}
+
+// optional bool is_ready = 2;
+inline void OrderDeskEvents_OrderStatusChanged_args__::clear_is_ready() {
+  is_ready_ = false;
+}
+inline bool OrderDeskEvents_OrderStatusChanged_args__::is_ready() const {
+  // @@protoc_insertion_point(field_get:hello_world.OrderDeskEvents_OrderStatusChanged_args__.is_ready)
+  return is_ready_;
+}
+inline void OrderDeskEvents_OrderStatusChanged_args__::set_is_ready(bool value) {
+  
+  is_ready_ = value;
+  // @@protoc_insertion_point(field_set:hello_world.OrderDeskEvents_OrderStatusChanged_args__.is_ready)
+}
+
+// optional bool reading_taken = 3;
+inline void OrderDeskEvents_OrderStatusChanged_args__::clear_reading_taken() {
+  reading_taken_ = false;
+}
+inline bool OrderDeskEvents_OrderStatusChanged_args__::reading_taken() const {
+  // @@protoc_insertion_point(field_get:hello_world.OrderDeskEvents_OrderStatusChanged_args__.reading_taken)
+  return reading_taken_;
+}
+inline void OrderDeskEvents_OrderStatusChanged_args__::set_reading_taken(bool value) {
+  
+  reading_taken_ = value;
+  // @@protoc_insertion_point(field_set:hello_world.OrderDeskEvents_OrderStatusChanged_args__.reading_taken)
+}
+
+// optional bool drink_taken = 4;
+inline void OrderDeskEvents_OrderStatusChanged_args__::clear_drink_taken() {
+  drink_taken_ = false;
+}
+inline bool OrderDeskEvents_OrderStatusChanged_args__::drink_taken() const {
+  // @@protoc_insertion_point(field_get:hello_world.OrderDeskEvents_OrderStatusChanged_args__.drink_taken)
+  return drink_taken_;
+}
+inline void OrderDeskEvents_OrderStatusChanged_args__::set_drink_taken(bool value) {
+  
+  drink_taken_ = value;
+  // @@protoc_insertion_point(field_set:hello_world.OrderDeskEvents_OrderStatusChanged_args__.drink_taken)
+}
+
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

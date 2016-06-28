@@ -35,6 +35,19 @@ message ReadingType_wrapper__ {
 	ReadingType value = 1;
 }
 
+message OrderDeskEvents_OrderStatusChanged_args__ {
+	option (nanorpc.expand_as_arguments) = true;
+	uint32 order = 1;
+	bool is_ready = 2;
+	bool reading_taken = 3;
+	bool drink_taken = 4;
+}
+
+service OrderDeskEvents {
+	option(nanorpc.event_source) = true;
+	rpc OrderStatusChanged (OrderDeskEvents_OrderStatusChanged_args__) returns (nanorpc.RpcVoid);
+}
+
 service OrderDesk {
 	rpc CreateOrder (OrderRequest) returns (google.protobuf.Int32Value);
 	rpc IsOrderReady (google.protobuf.Int32Value) returns (google.protobuf.BoolValue);

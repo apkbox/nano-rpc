@@ -136,6 +136,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\nanorpc\compiler\cpp\cpp_interface_generator.cpp" />
+    <ClCompile Include="src\nanorpc\compiler\cpp\cpp_proxy_generator.cpp" />
+    <ClCompile Include="src\nanorpc\compiler\cpp\cpp_stub_generator.cpp" />
     <ClCompile Include="src\nanorpc\rpc_types.pb.cc" />
     <ClCompile Include="src\nanorpc\compiler\cpp\code_model.cpp" />
     <ClCompile Include="src\nanorpc\compiler\cpp\cpp_generator.cpp" />
@@ -144,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\nanorpc\compiler\cpp\code_model.h" />
+    <ClInclude Include="src\nanorpc\compiler\cpp\cpp_generator.h" />
     <ClInclude Include="src\nanorpc\compiler\cpp\generator_utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

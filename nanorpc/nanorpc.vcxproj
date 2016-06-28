@@ -164,7 +164,12 @@
   <ItemGroup>
     <ClCompile Include="src\nanorpc\client.cpp" />
     <ClCompile Include="src\nanorpc\object_manager.cpp" />
-    <ClCompile Include="src\nanorpc\rpc_types.pb.cc" />
+    <ClCompile Include="src\nanorpc\rpc_types.pb.cc">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">_SCL_SECURE_NO_WARNINGS;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">_SCL_SECURE_NO_WARNINGS;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">_SCL_SECURE_NO_WARNINGS;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">_SCL_SECURE_NO_WARNINGS;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
     <ClCompile Include="src\nanorpc\async_callback.cpp" />
     <ClCompile Include="src\nanorpc\buffer_pool.cpp" />
     <ClCompile Include="src\nanorpc\event_service.cpp" />

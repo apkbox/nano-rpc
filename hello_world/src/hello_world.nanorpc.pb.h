@@ -9,6 +9,13 @@
 
 namespace hello_world {
 
+class OrderDeskEvents {
+public:
+  virtual ~OrderDeskEvents() {}
+
+  virtual void OrderStatusChanged(uint32_t order, bool is_ready, bool reading_taken, bool drink_taken) = 0;
+};
+
 class OrderDesk {
 public:
   virtual ~OrderDesk() {}
@@ -17,6 +24,21 @@ public:
   virtual bool IsOrderReady(int32_t value) = 0;
   virtual DrinkType GetDrink(int32_t value) = 0;
   virtual ReadingType GetReading(int32_t value) = 0;
+};
+
+class OrderDeskEvents_Stub : public nanorpc::ServiceInterface {
+public:
+  explicit OrderDeskEvents_Stub(OrderDeskEvents* impl, nanorpc::ObjectManagerInterface* object_manager)
+      : impl_(impl), object_manager_(object_manager) {}
+
+  const std::string &GetInterfaceName() const override;
+  bool CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcResult *rpc_result) override;
+
+private:
+  static const std::string kServiceName;
+
+  OrderDeskEvents* impl_;
+  nanorpc::ObjectManagerInterface* object_manager_;
 };
 
 class OrderDesk_Stub : public nanorpc::ServiceInterface {
@@ -32,6 +54,19 @@ private:
 
   OrderDesk* impl_;
   nanorpc::ObjectManagerInterface* object_manager_;
+};
+
+class OrderDeskEvents_EventProxy : public OrderDeskEvents {
+public:
+  explicit OrderDeskEvents_EventProxy(nanorpc::EventSourceInterface *event_source)
+      : event_source_(event_source) {}
+
+  virtual ~OrderDeskEvents_EventProxy() {}
+
+  void OrderStatusChanged(uint32_t order, bool is_ready, bool reading_taken, bool drink_taken) override;
+
+private:
+  nanorpc::EventSourceInterface *event_source_;
 };
 
 class OrderDesk_Proxy : public OrderDesk {

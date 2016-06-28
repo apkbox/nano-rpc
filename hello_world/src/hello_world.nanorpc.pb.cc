@@ -7,6 +7,32 @@
 
 namespace hello_world {
 
+const std::string OrderDeskEvents_Stub::kServiceName("hello_world.OrderDeskEvents");
+
+const std::string &OrderDeskEvents_Stub::GetInterfaceName() const {
+  return kServiceName;
+}
+
+bool OrderDeskEvents_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcResult *rpc_result) {
+  if (rpc_call.method() == "OrderStatusChanged") {
+    OrderDeskEvents_OrderStatusChanged_args__ args__;
+    args__.ParseFromString(rpc_call.call_data());
+
+    uint32_t order = args__.order();
+    bool is_ready = args__.is_ready();
+    bool reading_taken = args__.reading_taken();
+    bool drink_taken = args__.drink_taken();
+
+    impl_->OrderStatusChanged(order, is_ready, reading_taken, drink_taken);
+    return true;
+  }
+
+  // TODO: Here should be unknown method error stored into rpc_result.
+  // TODO: Also an exception (code above must be guarded) result.
+
+  return true;
+}
+
 const std::string OrderDesk_Stub::kServiceName("hello_world.OrderDesk");
 
 const std::string &OrderDesk_Stub::GetInterfaceName() const {
@@ -73,6 +99,20 @@ bool OrderDesk_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcRe
   // TODO: Also an exception (code above must be guarded) result.
 
   return true;
+}
+
+void OrderDeskEvents_EventProxy::OrderStatusChanged(uint32_t order, bool is_ready, bool reading_taken, bool drink_taken) {
+  nanorpc::RpcCall rpc_call__;
+  rpc_call__.set_service("hello_world.OrderDeskEvents");
+  rpc_call__.set_method("OrderStatusChanged");
+  OrderDeskEvents_OrderStatusChanged_args__ args__;
+  args__.set_order(order);
+  args__.set_is_ready(is_ready);
+  args__.set_reading_taken(reading_taken);
+  args__.set_drink_taken(drink_taken);
+  args__.SerializeToString(rpc_call__.mutable_call_data());
+
+  event_source_->SendEvent(rpc_call__);
 }
 
 OrderDesk_Proxy::~OrderDesk_Proxy() {

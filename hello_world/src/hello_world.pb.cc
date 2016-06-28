@@ -30,6 +30,9 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* ReadingType_wrapper___descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   ReadingType_wrapper___reflection_ = NULL;
+const ::google::protobuf::Descriptor* OrderDeskEvents_OrderStatusChanged_args___descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  OrderDeskEvents_OrderStatusChanged_args___reflection_ = NULL;
 const ::google::protobuf::EnumDescriptor* DrinkType_descriptor_ = NULL;
 const ::google::protobuf::EnumDescriptor* ReadingType_descriptor_ = NULL;
 
@@ -88,6 +91,24 @@ void protobuf_AssignDesc_hello_5fworld_2eproto() {
       sizeof(ReadingType_wrapper__),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ReadingType_wrapper__, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ReadingType_wrapper__, _is_default_instance_));
+  OrderDeskEvents_OrderStatusChanged_args___descriptor_ = file->message_type(3);
+  static const int OrderDeskEvents_OrderStatusChanged_args___offsets_[4] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(OrderDeskEvents_OrderStatusChanged_args__, order_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(OrderDeskEvents_OrderStatusChanged_args__, is_ready_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(OrderDeskEvents_OrderStatusChanged_args__, reading_taken_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(OrderDeskEvents_OrderStatusChanged_args__, drink_taken_),
+  };
+  OrderDeskEvents_OrderStatusChanged_args___reflection_ =
+    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
+      OrderDeskEvents_OrderStatusChanged_args___descriptor_,
+      OrderDeskEvents_OrderStatusChanged_args__::default_instance_,
+      OrderDeskEvents_OrderStatusChanged_args___offsets_,
+      -1,
+      -1,
+      -1,
+      sizeof(OrderDeskEvents_OrderStatusChanged_args__),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(OrderDeskEvents_OrderStatusChanged_args__, _internal_metadata_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(OrderDeskEvents_OrderStatusChanged_args__, _is_default_instance_));
   DrinkType_descriptor_ = file->enum_type(0);
   ReadingType_descriptor_ = file->enum_type(1);
 }
@@ -108,6 +129,8 @@ void protobuf_RegisterTypes(const ::std::string&) {
       DrinkType_wrapper___descriptor_, &DrinkType_wrapper__::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       ReadingType_wrapper___descriptor_, &ReadingType_wrapper__::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+      OrderDeskEvents_OrderStatusChanged_args___descriptor_, &OrderDeskEvents_OrderStatusChanged_args__::default_instance());
 }
 
 }  // namespace
@@ -119,6 +142,8 @@ void protobuf_ShutdownFile_hello_5fworld_2eproto() {
   delete DrinkType_wrapper___reflection_;
   delete ReadingType_wrapper__::default_instance_;
   delete ReadingType_wrapper___reflection_;
+  delete OrderDeskEvents_OrderStatusChanged_args__::default_instance_;
+  delete OrderDeskEvents_OrderStatusChanged_args___reflection_;
 }
 
 void protobuf_AddDesc_hello_5fworld_2eproto() {
@@ -138,26 +163,34 @@ void protobuf_AddDesc_hello_5fworld_2eproto() {
     "nkType_wrapper__\022%\n\005value\030\001 \001(\0162\026.hello_"
     "world.DrinkType:\004\220\371+\001\"F\n\025ReadingType_wra"
     "pper__\022\'\n\005value\030\001 \001(\0162\030.hello_world.Read"
-    "ingType:\004\220\371+\001*C\n\tDrinkType\022\013\n\007NoDrink\020\000\022"
-    "\n\n\006Coffee\020\001\022\007\n\003Tea\020\002\022\t\n\005Water\020\003\022\t\n\005Juice"
-    "\020\004*9\n\013ReadingType\022\r\n\tNoReading\020\000\022\r\n\tNews"
-    "paper\020\001\022\014\n\010Magazine\020\0022\265\002\n\tOrderDesk\022E\n\013C"
-    "reateOrder\022\031.hello_world.OrderRequest\032\033."
-    "google.protobuf.Int32Value\022G\n\014IsOrderRea"
-    "dy\022\033.google.protobuf.Int32Value\032\032.google"
-    ".protobuf.BoolValue\022I\n\010GetDrink\022\033.google"
-    ".protobuf.Int32Value\032 .hello_world.Drink"
-    "Type_wrapper__\022M\n\nGetReading\022\033.google.pr"
-    "otobuf.Int32Value\032\".hello_world.ReadingT"
-    "ype_wrapper__b\006proto3", 781);
+    "ingType:\004\220\371+\001\"~\n)OrderDeskEvents_OrderSt"
+    "atusChanged_args__\022\r\n\005order\030\001 \001(\r\022\020\n\010is_"
+    "ready\030\002 \001(\010\022\025\n\rreading_taken\030\003 \001(\010\022\023\n\013dr"
+    "ink_taken\030\004 \001(\010:\004\210\371+\001*C\n\tDrinkType\022\013\n\007No"
+    "Drink\020\000\022\n\n\006Coffee\020\001\022\007\n\003Tea\020\002\022\t\n\005Water\020\003\022"
+    "\t\n\005Juice\020\004*9\n\013ReadingType\022\r\n\tNoReading\020\000"
+    "\022\r\n\tNewspaper\020\001\022\014\n\010Magazine\020\0022w\n\017OrderDe"
+    "skEvents\022^\n\022OrderStatusChanged\0226.hello_w"
+    "orld.OrderDeskEvents_OrderStatusChanged_"
+    "args__\032\020.nanorpc.RpcVoid\032\004\350\213,\0012\265\002\n\tOrder"
+    "Desk\022E\n\013CreateOrder\022\031.hello_world.OrderR"
+    "equest\032\033.google.protobuf.Int32Value\022G\n\014I"
+    "sOrderReady\022\033.google.protobuf.Int32Value"
+    "\032\032.google.protobuf.BoolValue\022I\n\010GetDrink"
+    "\022\033.google.protobuf.Int32Value\032 .hello_wo"
+    "rld.DrinkType_wrapper__\022M\n\nGetReading\022\033."
+    "google.protobuf.Int32Value\032\".hello_world"
+    ".ReadingType_wrapper__b\006proto3", 1030);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "hello_world.proto", &protobuf_RegisterTypes);
   OrderRequest::default_instance_ = new OrderRequest();
   DrinkType_wrapper__::default_instance_ = new DrinkType_wrapper__();
   ReadingType_wrapper__::default_instance_ = new ReadingType_wrapper__();
+  OrderDeskEvents_OrderStatusChanged_args__::default_instance_ = new OrderDeskEvents_OrderStatusChanged_args__();
   OrderRequest::default_instance_->InitAsDefaultInstance();
   DrinkType_wrapper__::default_instance_->InitAsDefaultInstance();
   ReadingType_wrapper__::default_instance_->InitAsDefaultInstance();
+  OrderDeskEvents_OrderStatusChanged_args__::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_hello_5fworld_2eproto);
 }
 
@@ -988,6 +1021,410 @@ void ReadingType_wrapper__::clear_value() {
   
   value_ = value;
   // @@protoc_insertion_point(field_set:hello_world.ReadingType_wrapper__.value)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int OrderDeskEvents_OrderStatusChanged_args__::kOrderFieldNumber;
+const int OrderDeskEvents_OrderStatusChanged_args__::kIsReadyFieldNumber;
+const int OrderDeskEvents_OrderStatusChanged_args__::kReadingTakenFieldNumber;
+const int OrderDeskEvents_OrderStatusChanged_args__::kDrinkTakenFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+OrderDeskEvents_OrderStatusChanged_args__::OrderDeskEvents_OrderStatusChanged_args__()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:hello_world.OrderDeskEvents_OrderStatusChanged_args__)
+}
+
+void OrderDeskEvents_OrderStatusChanged_args__::InitAsDefaultInstance() {
+  _is_default_instance_ = true;
+}
+
+OrderDeskEvents_OrderStatusChanged_args__::OrderDeskEvents_OrderStatusChanged_args__(const OrderDeskEvents_OrderStatusChanged_args__& from)
+  : ::google::protobuf::Message(),
+    _internal_metadata_(NULL) {
+  SharedCtor();
+  MergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:hello_world.OrderDeskEvents_OrderStatusChanged_args__)
+}
+
+void OrderDeskEvents_OrderStatusChanged_args__::SharedCtor() {
+    _is_default_instance_ = false;
+  _cached_size_ = 0;
+  order_ = 0u;
+  is_ready_ = false;
+  reading_taken_ = false;
+  drink_taken_ = false;
+}
+
+OrderDeskEvents_OrderStatusChanged_args__::~OrderDeskEvents_OrderStatusChanged_args__() {
+  // @@protoc_insertion_point(destructor:hello_world.OrderDeskEvents_OrderStatusChanged_args__)
+  SharedDtor();
+}
+
+void OrderDeskEvents_OrderStatusChanged_args__::SharedDtor() {
+  if (this != default_instance_) {
+  }
+}
+
+void OrderDeskEvents_OrderStatusChanged_args__::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* OrderDeskEvents_OrderStatusChanged_args__::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return OrderDeskEvents_OrderStatusChanged_args___descriptor_;
+}
+
+const OrderDeskEvents_OrderStatusChanged_args__& OrderDeskEvents_OrderStatusChanged_args__::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_hello_5fworld_2eproto();
+  return *default_instance_;
+}
+
+OrderDeskEvents_OrderStatusChanged_args__* OrderDeskEvents_OrderStatusChanged_args__::default_instance_ = NULL;
+
+OrderDeskEvents_OrderStatusChanged_args__* OrderDeskEvents_OrderStatusChanged_args__::New(::google::protobuf::Arena* arena) const {
+  OrderDeskEvents_OrderStatusChanged_args__* n = new OrderDeskEvents_OrderStatusChanged_args__;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void OrderDeskEvents_OrderStatusChanged_args__::Clear() {
+// @@protoc_insertion_point(message_clear_start:hello_world.OrderDeskEvents_OrderStatusChanged_args__)
+#if defined(__clang__)
+#define ZR_HELPER_(f) \
+  _Pragma("clang diagnostic push") \
+  _Pragma("clang diagnostic ignored \"-Winvalid-offsetof\"") \
+  __builtin_offsetof(OrderDeskEvents_OrderStatusChanged_args__, f) \
+  _Pragma("clang diagnostic pop")
+#else
+#define ZR_HELPER_(f) reinterpret_cast<char*>(\
+  &reinterpret_cast<OrderDeskEvents_OrderStatusChanged_args__*>(16)->f)
+#endif
+
+#define ZR_(first, last) do {\
+  ::memset(&first, 0,\
+           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
+} while (0)
+
+  ZR_(order_, drink_taken_);
+
+#undef ZR_HELPER_
+#undef ZR_
+
+}
+
+bool OrderDeskEvents_OrderStatusChanged_args__::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:hello_world.OrderDeskEvents_OrderStatusChanged_args__)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional uint32 order = 1;
+      case 1: {
+        if (tag == 8) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &order_)));
+
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(16)) goto parse_is_ready;
+        break;
+      }
+
+      // optional bool is_ready = 2;
+      case 2: {
+        if (tag == 16) {
+         parse_is_ready:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &is_ready_)));
+
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(24)) goto parse_reading_taken;
+        break;
+      }
+
+      // optional bool reading_taken = 3;
+      case 3: {
+        if (tag == 24) {
+         parse_reading_taken:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &reading_taken_)));
+
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(32)) goto parse_drink_taken;
+        break;
+      }
+
+      // optional bool drink_taken = 4;
+      case 4: {
+        if (tag == 32) {
+         parse_drink_taken:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &drink_taken_)));
+
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:hello_world.OrderDeskEvents_OrderStatusChanged_args__)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:hello_world.OrderDeskEvents_OrderStatusChanged_args__)
+  return false;
+#undef DO_
+}
+
+void OrderDeskEvents_OrderStatusChanged_args__::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:hello_world.OrderDeskEvents_OrderStatusChanged_args__)
+  // optional uint32 order = 1;
+  if (this->order() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->order(), output);
+  }
+
+  // optional bool is_ready = 2;
+  if (this->is_ready() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(2, this->is_ready(), output);
+  }
+
+  // optional bool reading_taken = 3;
+  if (this->reading_taken() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(3, this->reading_taken(), output);
+  }
+
+  // optional bool drink_taken = 4;
+  if (this->drink_taken() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(4, this->drink_taken(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:hello_world.OrderDeskEvents_OrderStatusChanged_args__)
+}
+
+::google::protobuf::uint8* OrderDeskEvents_OrderStatusChanged_args__::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:hello_world.OrderDeskEvents_OrderStatusChanged_args__)
+  // optional uint32 order = 1;
+  if (this->order() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->order(), target);
+  }
+
+  // optional bool is_ready = 2;
+  if (this->is_ready() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(2, this->is_ready(), target);
+  }
+
+  // optional bool reading_taken = 3;
+  if (this->reading_taken() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(3, this->reading_taken(), target);
+  }
+
+  // optional bool drink_taken = 4;
+  if (this->drink_taken() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(4, this->drink_taken(), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:hello_world.OrderDeskEvents_OrderStatusChanged_args__)
+  return target;
+}
+
+int OrderDeskEvents_OrderStatusChanged_args__::ByteSize() const {
+// @@protoc_insertion_point(message_byte_size_start:hello_world.OrderDeskEvents_OrderStatusChanged_args__)
+  int total_size = 0;
+
+  // optional uint32 order = 1;
+  if (this->order() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->order());
+  }
+
+  // optional bool is_ready = 2;
+  if (this->is_ready() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // optional bool reading_taken = 3;
+  if (this->reading_taken() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // optional bool drink_taken = 4;
+  if (this->drink_taken() != 0) {
+    total_size += 1 + 1;
+  }
+
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void OrderDeskEvents_OrderStatusChanged_args__::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:hello_world.OrderDeskEvents_OrderStatusChanged_args__)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  const OrderDeskEvents_OrderStatusChanged_args__* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const OrderDeskEvents_OrderStatusChanged_args__>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:hello_world.OrderDeskEvents_OrderStatusChanged_args__)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:hello_world.OrderDeskEvents_OrderStatusChanged_args__)
+    MergeFrom(*source);
+  }
+}
+
+void OrderDeskEvents_OrderStatusChanged_args__::MergeFrom(const OrderDeskEvents_OrderStatusChanged_args__& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:hello_world.OrderDeskEvents_OrderStatusChanged_args__)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  if (from.order() != 0) {
+    set_order(from.order());
+  }
+  if (from.is_ready() != 0) {
+    set_is_ready(from.is_ready());
+  }
+  if (from.reading_taken() != 0) {
+    set_reading_taken(from.reading_taken());
+  }
+  if (from.drink_taken() != 0) {
+    set_drink_taken(from.drink_taken());
+  }
+}
+
+void OrderDeskEvents_OrderStatusChanged_args__::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:hello_world.OrderDeskEvents_OrderStatusChanged_args__)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void OrderDeskEvents_OrderStatusChanged_args__::CopyFrom(const OrderDeskEvents_OrderStatusChanged_args__& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:hello_world.OrderDeskEvents_OrderStatusChanged_args__)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool OrderDeskEvents_OrderStatusChanged_args__::IsInitialized() const {
+
+  return true;
+}
+
+void OrderDeskEvents_OrderStatusChanged_args__::Swap(OrderDeskEvents_OrderStatusChanged_args__* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void OrderDeskEvents_OrderStatusChanged_args__::InternalSwap(OrderDeskEvents_OrderStatusChanged_args__* other) {
+  std::swap(order_, other->order_);
+  std::swap(is_ready_, other->is_ready_);
+  std::swap(reading_taken_, other->reading_taken_);
+  std::swap(drink_taken_, other->drink_taken_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata OrderDeskEvents_OrderStatusChanged_args__::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = OrderDeskEvents_OrderStatusChanged_args___descriptor_;
+  metadata.reflection = OrderDeskEvents_OrderStatusChanged_args___reflection_;
+  return metadata;
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// OrderDeskEvents_OrderStatusChanged_args__
+
+// optional uint32 order = 1;
+void OrderDeskEvents_OrderStatusChanged_args__::clear_order() {
+  order_ = 0u;
+}
+ ::google::protobuf::uint32 OrderDeskEvents_OrderStatusChanged_args__::order() const {
+  // @@protoc_insertion_point(field_get:hello_world.OrderDeskEvents_OrderStatusChanged_args__.order)
+  return order_;
+}
+ void OrderDeskEvents_OrderStatusChanged_args__::set_order(::google::protobuf::uint32 value) {
+  
+  order_ = value;
+  // @@protoc_insertion_point(field_set:hello_world.OrderDeskEvents_OrderStatusChanged_args__.order)
+}
+
+// optional bool is_ready = 2;
+void OrderDeskEvents_OrderStatusChanged_args__::clear_is_ready() {
+  is_ready_ = false;
+}
+ bool OrderDeskEvents_OrderStatusChanged_args__::is_ready() const {
+  // @@protoc_insertion_point(field_get:hello_world.OrderDeskEvents_OrderStatusChanged_args__.is_ready)
+  return is_ready_;
+}
+ void OrderDeskEvents_OrderStatusChanged_args__::set_is_ready(bool value) {
+  
+  is_ready_ = value;
+  // @@protoc_insertion_point(field_set:hello_world.OrderDeskEvents_OrderStatusChanged_args__.is_ready)
+}
+
+// optional bool reading_taken = 3;
+void OrderDeskEvents_OrderStatusChanged_args__::clear_reading_taken() {
+  reading_taken_ = false;
+}
+ bool OrderDeskEvents_OrderStatusChanged_args__::reading_taken() const {
+  // @@protoc_insertion_point(field_get:hello_world.OrderDeskEvents_OrderStatusChanged_args__.reading_taken)
+  return reading_taken_;
+}
+ void OrderDeskEvents_OrderStatusChanged_args__::set_reading_taken(bool value) {
+  
+  reading_taken_ = value;
+  // @@protoc_insertion_point(field_set:hello_world.OrderDeskEvents_OrderStatusChanged_args__.reading_taken)
+}
+
+// optional bool drink_taken = 4;
+void OrderDeskEvents_OrderStatusChanged_args__::clear_drink_taken() {
+  drink_taken_ = false;
+}
+ bool OrderDeskEvents_OrderStatusChanged_args__::drink_taken() const {
+  // @@protoc_insertion_point(field_get:hello_world.OrderDeskEvents_OrderStatusChanged_args__.drink_taken)
+  return drink_taken_;
+}
+ void OrderDeskEvents_OrderStatusChanged_args__::set_drink_taken(bool value) {
+  
+  drink_taken_ = value;
+  // @@protoc_insertion_point(field_set:hello_world.OrderDeskEvents_OrderStatusChanged_args__.drink_taken)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

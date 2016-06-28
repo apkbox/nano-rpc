@@ -1,3 +1,5 @@
+#include "nanorpc\compiler\cpp\cpp_generator.h"
+
 #include <io.h>
 #include <fcntl.h>
 #include <sys/types.h>
@@ -8,33 +10,17 @@
 #include <string>
 #include <vector>
 
-#include "google\protobuf\io\coded_stream.h"
-#include "google\protobuf\io\zero_copy_stream.h"
-#include "google\protobuf\io\zero_copy_stream_impl_lite.h"
-#include "google\protobuf\io\printer.h"
-#include "google\protobuf\compiler\plugin.h"
-#include "google\protobuf\compiler\plugin.pb.h"
-#include "google\protobuf\compiler\code_generator.h"
-#include "google\protobuf\compiler\cpp\cpp_generator.h"
+#include "google/protobuf/compiler/plugin.h"
+#include "google/protobuf/compiler/plugin.pb.h"
+#include "google/protobuf/compiler/cpp/cpp_generator.h"
+#include "google/protobuf/io/coded_stream.h"
+#include "google/protobuf/io/zero_copy_stream.h"
 
-#include "nanorpc/compiler/cpp/generator_utils.h"
 #include "nanorpc/compiler/cpp/code_model.h"
+#include "nanorpc/compiler/cpp/generator_utils.h"
 
 namespace pb = google::protobuf;
 namespace pbc = google::protobuf::compiler;
-
-std::string GetHeaderPrologue(const pb::FileDescriptor *file);
-std::string GetInterfaceDefinitions(const std::vector<code_model::ServiceModel> &models);
-std::string GetStubDeclarations(const pb::FileDescriptor *file);
-std::string GetProxyDeclarations(const std::vector<code_model::ServiceModel> &models);
-std::string GetProxyDefinitions(const std::vector<code_model::ServiceModel> &models);
-std::string GetHeaderEpilogue(const pb::FileDescriptor *file);
-
-std::string GetSourcePrologue(const pb::FileDescriptor *file);
-std::string GetStubDefinitions(
-    const pb::FileDescriptor *file,
-    const std::vector<code_model::ServiceModel> &models);
-std::string GetSourceEpilogue(const pb::FileDescriptor *file);
 
 class NanoRpcCppGenerator : public pbc::CodeGenerator {
 public:

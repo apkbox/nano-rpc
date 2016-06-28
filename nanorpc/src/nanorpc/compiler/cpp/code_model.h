@@ -133,12 +133,16 @@ public:
   const std::string &full_name() const { return full_name_; }
   void set_full_name(const std::string &name) { full_name_ = name; }
 
+  bool is_event_source() const { return is_event_source_; }
+  void set_event_source(bool is_event_source) { is_event_source_ = is_event_source; }
+
   const std::vector<MethodModel> &methods() const { return methods_; }
   std::vector<MethodModel> *mutable_methods() { return &methods_; }
 
 private:
   std::string name_;
   std::string full_name_;
+  bool is_event_source_ = false;
   std::vector<MethodModel> methods_;
 };
 

@@ -247,6 +247,8 @@ bool CreateCodeModel(const pb::FileDescriptor *file,
     ServiceModel service_model;
     service_model.set_name(service->name());
     service_model.set_full_name(service->full_name());
+    if (service->options().HasExtension(nanorpc::event_source))
+      service_model.set_event_source(true);
 
     for (int j = 0; j < service->method_count(); ++j) {
       auto method = service->method(j);

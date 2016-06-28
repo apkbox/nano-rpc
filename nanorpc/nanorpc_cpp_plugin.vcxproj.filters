@@ -30,12 +30,24 @@
     <ClCompile Include="src\nanorpc\compiler\cpp\cpp_generator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\nanorpc\compiler\cpp\cpp_stub_generator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nanorpc\compiler\cpp\cpp_proxy_generator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nanorpc\compiler\cpp\cpp_interface_generator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\nanorpc\compiler\cpp\code_model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\nanorpc\compiler\cpp\generator_utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\nanorpc\compiler\cpp\cpp_generator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
