@@ -16,11 +16,25 @@
 
 namespace hw = ::hello_world;
 
+class OrderDeskEventsListener : public hw::OrderDeskEvents {
+public:
+  void OrderStatusChanged(uint32_t order,
+                          bool is_ready,
+                          bool reading_taken,
+                          bool drink_taken) override {
+    std::cout << "Order status changed event for order " << order << "." << std::endl;
+  }
+};
+
 void ClientThread() {
   std::cout << "Client thread started." << std::endl;
 
   auto channel = std::make_unique<nanorpc::WinsockClientChannel>("localhost", "50372");
   nanorpc::Client client(std::move(channel));
+
+  OrderDeskEventsListener event_listener;
+  hw::OrderDeskEvents_Stub event_listener_stub(&event_listener, nullptr);
+  client.StartListening(&event_listener_stub);
 
   std::cout << "Client ready." << std::endl;
 
@@ -41,6 +55,7 @@ void ClientThread() {
   int32_t order_id = order_desk.CreateOrder(hw::DrinkType::Coffee, hw::ReadingType::Newspaper);
 
   while (!order_desk.IsOrderReady(order_id)) {
+    client.PumpEvents(nullptr);
     std::cout << "Waiting for the order " << order_id << "." << std::endl;
     std::this_thread::sleep_for(std::chrono::seconds(1));
   }
@@ -49,6 +64,8 @@ void ClientThread() {
   order_desk.GetDrink(order_id);
   std::cout << "Getting reading..." << std::endl;
   order_desk.GetReading(order_id);
+
+  client.StopListening(event_listener_stub.GetInterfaceName());
 
   std::cout << "Client disconnecting." << std::endl;
   client.Shutdown();

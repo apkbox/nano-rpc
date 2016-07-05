@@ -21,6 +21,12 @@ TODO:
     auto size = msg.ByteSize();
     msg.SerializePartialToArray(message->Write(size), size);
 
+* Add client token that allows to uniquely identify client connection
+  on the server. This will allow to restore server side client state, for
+  example event subscriptions, cache etc. This though will require some sort
+  of timeout after which server can discard the context. This will also require
+  the client to be able to handle reconnection for the case when server already
+  dumped the client context due to timeout or some other reasons.
 
 OTHER THOUGHTS:
 * object_id_value and event_name fields included into RpcParameter apparently

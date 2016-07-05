@@ -77,7 +77,6 @@ public:
     return hello_world::NoReading;
   }
 
-
 private:
   void RemoveIfFilled(const std::map<int, Order>::iterator &iter) {
     std::lock_guard<std::mutex> lock(mtx_);

@@ -174,6 +174,7 @@
     <ClCompile Include="src\nanorpc\buffer_pool.cpp" />
     <ClCompile Include="src\nanorpc\event_service.cpp" />
     <ClCompile Include="src\nanorpc\server.cpp" />
+    <ClCompile Include="src\nanorpc\service_manager.cpp" />
     <ClCompile Include="src\nanorpc\string_conversion.cpp" />
     <ClCompile Include="src\nanorpc\winsock_channel.cpp" />
     <ClCompile Include="src\nanorpc\winsock_channel_impl.cpp" />
@@ -190,6 +191,7 @@
     <ClInclude Include="src\nanorpc\callback.h" />
     <ClInclude Include="src\nanorpc\object_pool.hpp" />
     <ClInclude Include="src\nanorpc\event_service.h" />
+    <ClInclude Include="src\nanorpc\service_manager.h" />
     <ClInclude Include="src\nanorpc\string_conversion.hpp" />
     <ClInclude Include="src\nanorpc\winsock_channel.h" />
     <ClInclude Include="src\nanorpc\winsock_channel_impl.h" />

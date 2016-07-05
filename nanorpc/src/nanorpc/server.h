@@ -5,6 +5,7 @@
 #include <string>
 
 #include "nanorpc/object_manager.h"
+#include "nanorpc/service_manager.h"
 #include "nanorpc/event_service.h"
 
 namespace nanorpc {
@@ -53,6 +54,7 @@ private:
                       bool *is_async);
 
   std::unique_ptr<ServerChannelInterface> channel_;
+  ServiceManager service_manager_;
   ObjectManager object_manager_;
   EventService event_service_;
 };

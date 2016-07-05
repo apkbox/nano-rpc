@@ -24,7 +24,7 @@ void Server::RegisterService(ServiceInterface *service) {
   if (service == nullptr)
     return;
 
-  object_manager_.AddService(service->GetInterfaceName(), service);
+  service_manager_.AddService(service->GetInterfaceName(), service);
 }
 
 void Server::RegisterService(const std::string &name,
@@ -33,7 +33,7 @@ void Server::RegisterService(const std::string &name,
   if (service == nullptr)
     return;
 
-  object_manager_.AddService(name, service);
+  service_manager_.AddService(name, service);
 }
 
 bool Server::WaitForSingleRequest() {
@@ -140,7 +140,7 @@ void Server::ProcessRequest(const RpcMessage &request,
     }
   } else {
     // Try to find service.
-    service = object_manager_.GetService(request.call().service().c_str());
+    service = service_manager_.GetService(request.call().service().c_str());
     if (service == nullptr) {
       response->mutable_result()->set_status(RpcUnknownInterface);
       response->mutable_result()->set_error_message("Unknown interface");

@@ -1,7 +1,6 @@
 #include "nanorpc/object_manager.h"
 
 #include <cassert>
-#include <map>
 #include <memory>
 #include <string>
 #include <unordered_map>
@@ -9,27 +8,6 @@
 namespace nanorpc {
 
 ObjectManager::ObjectManager() : last_object_id_(0) {}
-
-void ObjectManager::AddService(const std::string &name,
-                               ServiceInterface *service) {
-  assert(service != nullptr);
-  if (service == nullptr)
-    return;
-
-  services_[name] = service;
-}
-
-void ObjectManager::RemoveService(const std::string &name) {
-  services_.erase(name);
-}
-
-ServiceInterface *ObjectManager::GetService(const std::string &name) {
-  const auto iter = services_.find(name);
-  if (iter == services_.end())
-    return nullptr;
-
-  return iter->second;
-}
 
 RpcObjectId ObjectManager::AddObject(ServiceInterface *instance) {
   assert(instance != nullptr);

@@ -1,8 +1,10 @@
 #include "nanorpc/client.h"
 
+#include <algorithm>
 #include <atomic>
 #include <memory>
 #include <mutex>
+#include <thread>
 
 namespace nanorpc {
 
@@ -20,23 +22,100 @@ Client::~Client() {
 }
 
 bool Client::StartListening(ServiceInterface *event_interface) {
-  return false;
+  return StartListening(event_interface->GetInterfaceName(), event_interface);
 }
 
 bool Client::StartListening(const std::string &name,
                             ServiceInterface *event_interface) {
-  return false;
+  if (!this->EnsureConnection())
+    return false;
+
+  if (event_service_manager_.GetService(name) == nullptr) {
+    RpcCall call_message;
+    call_message.set_service("NanoRpc.RpcEventService");
+    call_message.set_method("Add");
+    call_message.set_object_id(0);  // not really needed as it defaults to zero
+
+    RpcEvent event_message;
+    event_message.set_event_name(name);
+    event_message.SerializeToString(call_message.mutable_call_data());
+
+    SendCallRequest(0, call_message);
+    event_service_manager_.AddService(name, event_interface);
+  }
+
+  return true;
 }
 
-void Client::StopListening(const std::string &name) {}
+void Client::StopListening(const std::string &name) {
+  if (channel_->GetStatus() == ChannelStatus::Established) {
+    RpcCall call_message;
+    call_message.set_service("NanoRpc.RpcEventService");
+    call_message.set_method("Remove");
+    call_message.set_object_id(0);  // not really needed as it defaults to zero
+
+    RpcEvent event_message;
+    event_message.set_event_name(name);
+    event_message.SerializeToString(call_message.mutable_call_data());
+    SendCallRequest(0, call_message);
+  }
+
+  event_service_manager_.RemoveService(name);
+
+  // Discard this interface events from the event queue.
+  {
+    std::lock_guard<std::mutex> lock(event_queue_mtx_);
+    std::remove_if(event_queue_.begin(), event_queue_.end(),
+                   [&name](const EventCall &event_call) {
+                     return name == event_call.call->call().service();
+                   });
+  }
+}
 
 void Client::CreateEventThread(int concurrency) {}
 
 bool Client::PumpEvents(bool *dropped) {
-  return false;
+  const bool kLowLatencyImpl = false;
+
+  ServiceInterface *handler;
+  std::unique_ptr<RpcMessage> event_message;
+  std::unique_ptr<RpcMessage> event_message2;
+  bool events_pending = false;
+  {
+    std::lock_guard<std::mutex> lock(event_queue_mtx_);
+    if (dropped != nullptr)
+      *dropped = event_dropped_;
+    event_dropped_ = false;
+    if (event_queue_.empty())
+      return false;
+
+    EventCall &event_call = event_queue_.front();
+    event_message = std::move(event_call.call);
+    handler = event_call.handler;
+    event_queue_.pop_front();
+    if (!kLowLatencyImpl)
+      events_pending = event_queue_.size() > 0;
+  }
+
+  handler->CallMethod(event_message->call(), nullptr);
+
+  if (kLowLatencyImpl) {
+    std::lock_guard<std::mutex> lock(event_queue_mtx_);
+    return !event_queue_.empty();
+  } else {
+    return events_pending;
+  }
 }
 
 bool Client::WaitForEvents() {
+  assert(false);
+  std::unique_lock<std::mutex> lock(event_queue_mtx_);
+  while (channel_->GetStatus() == ChannelStatus::Established) {
+    event_pending_cv_.wait_for(lock, std::chrono::milliseconds(500));
+    if (!event_queue_.empty())
+      return true;
+  }
+
   return false;
 }
 
@@ -194,9 +273,17 @@ bool Client::HandleIncomingMessage() {
   auto response = std::unique_ptr<RpcMessage>{std::make_unique<RpcMessage>()};
   response->ParseFromArray(rdbuf->Read(message_size), message_size);
 
-  // TODO: Determine here whether the message is an event or reply.
-  // Post events into event queue.
-  {
+  // If call portion of the message is filled, then it is an event.
+  if (response->has_call()) {
+    // Check first if anyone expects the event
+    auto event_service = event_service_manager_.GetService(response->call().service());
+    if (event_service != nullptr) {
+      std::lock_guard<std::mutex> lock(event_queue_mtx_);
+      // TODO: Implement queue size limiting. Drop the oldest events.
+      event_queue_.emplace_back(event_service, std::move(response));
+      event_pending_cv_.notify_all();
+    }
+  } else {
     std::lock_guard<std::mutex> lock(pending_calls_mtx_);
 
     auto pending_call = pending_calls_.find(response->id());
@@ -205,9 +292,10 @@ bool Client::HandleIncomingMessage() {
 
     pending_call->second.status = PendingCallStatus::Received;
     pending_call->second.result = std::move(response);
+
+    result_pending_cv_.notify_all();
   }
 
-  result_pending_cv_.notify_all();
   return true;
 }
 

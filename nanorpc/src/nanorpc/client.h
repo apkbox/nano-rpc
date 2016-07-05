@@ -6,11 +6,13 @@
 #include <cstdint>
 #include <memory>
 #include <mutex>
+#include <deque>
 #include <string>
 #include <thread>
 #include <unordered_map>
 
 #include "nanorpc/nanorpc2.h"
+#include "nanorpc/service_manager.h"
 
 namespace nanorpc {
 
@@ -36,6 +38,9 @@ public:
   // support the event interface or connection failed.
   // The method does not create an event thread. The user should either
   // call CreateEventThread or call PumpEvents.
+  // Note that at the moment the subscription interface is asynchronous,
+  // so it always succeedes regardless whether the server supports an
+  // event interface.
   bool StartListening(ServiceInterface *event_interface);
   bool StartListening(const std::string &name,
                       ServiceInterface *event_interface);
@@ -54,6 +59,8 @@ public:
   // Returns true if there are more events to pump.
   // If dropped returned true, then some events were dropped due to event
   // queue overflow since the last call of PumpEvents.
+  // This method returns immediately if event queue is empty.
+  // The dropped parameter can be nullptr.
   bool PumpEvents(bool *dropped);
 
   // Blocks until events are available in the event queue.
@@ -97,6 +104,24 @@ private:
     std::unique_ptr<RpcMessage> result;
   };
 
+  struct EventCall {
+    explicit EventCall(ServiceInterface *handler,
+                       std::unique_ptr<RpcMessage> &call)
+        : handler(handler), call(std::move(call)) {}
+
+    EventCall(EventCall &&other)
+        : handler(std::move(other.handler)), call(std::move(other.call)) {}
+
+    EventCall& operator=(EventCall &&other) {
+      handler = std::move(other.handler);
+      call = std::move(other.call);
+      return *this;
+    }
+
+    ServiceInterface *handler;
+    std::unique_ptr<RpcMessage> call;
+  };
+
   void SendCallRequest(uint32_t call_id, const RpcCall &rpc_call);
   bool WaitForResult(uint32_t call_id, RpcMessage *result);
   void ReceiveThreadProc();
@@ -113,6 +138,12 @@ private:
   std::mutex pending_calls_mtx_;
   std::condition_variable result_pending_cv_;
   std::unordered_map<pb::uint32, PendingCall> pending_calls_;
+
+  ServiceManager event_service_manager_;
+  std::mutex event_queue_mtx_;
+  std::condition_variable event_pending_cv_;
+  std::deque<EventCall> event_queue_;
+  bool event_dropped_;
 
   std::once_flag receive_thread_started_;
   std::unique_ptr<std::thread> receive_thread_;
