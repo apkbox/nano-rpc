@@ -280,6 +280,13 @@ bool Client::HandleIncomingMessage() {
     if (event_service != nullptr) {
       std::lock_guard<std::mutex> lock(event_queue_mtx_);
       // TODO: Implement queue size limiting. Drop the oldest events.
+      // BUG: Although it looks smart to cache the handler
+      // pointer to avoid extra lookup it is a bad move.
+      // Between time we received event and user called
+      // PumpEvent, the other thread coild have called StopListening
+      // so, the pointer to the service will be invalid.
+      // On the other hand StopListening should reliably remove
+      // events that are not being listened.
       event_queue_.emplace_back(event_service, std::move(response));
       event_pending_cv_.notify_all();
     }
