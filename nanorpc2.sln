@@ -20,6 +20,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hello_world", "hello_world\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "winsock_test", "winsock_test\winsock_test.vcxproj", "{44529669-C537-459A-89D5-BD407668CD94}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "arizona_api_server", "arizona_api_server\arizona_api_server.vcxproj", "{B23AB3CB-3FE9-4F30-85B0-B4FF2396AF55}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -68,6 +70,14 @@ Global
 		{44529669-C537-459A-89D5-BD407668CD94}.Release|Win32.Build.0 = Release|Win32
 		{44529669-C537-459A-89D5-BD407668CD94}.Release|x64.ActiveCfg = Release|x64
 		{44529669-C537-459A-89D5-BD407668CD94}.Release|x64.Build.0 = Release|x64
+		{B23AB3CB-3FE9-4F30-85B0-B4FF2396AF55}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B23AB3CB-3FE9-4F30-85B0-B4FF2396AF55}.Debug|Win32.Build.0 = Debug|Win32
+		{B23AB3CB-3FE9-4F30-85B0-B4FF2396AF55}.Debug|x64.ActiveCfg = Debug|x64
+		{B23AB3CB-3FE9-4F30-85B0-B4FF2396AF55}.Debug|x64.Build.0 = Debug|x64
+		{B23AB3CB-3FE9-4F30-85B0-B4FF2396AF55}.Release|Win32.ActiveCfg = Release|Win32
+		{B23AB3CB-3FE9-4F30-85B0-B4FF2396AF55}.Release|Win32.Build.0 = Release|Win32
+		{B23AB3CB-3FE9-4F30-85B0-B4FF2396AF55}.Release|x64.ActiveCfg = Release|x64
+		{B23AB3CB-3FE9-4F30-85B0-B4FF2396AF55}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
