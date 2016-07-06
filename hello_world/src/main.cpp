@@ -18,12 +18,24 @@ namespace hw = ::hello_world;
 
 class OrderDeskEventsListener : public hw::OrderDeskEvents {
 public:
-  void OrderStatusChanged(uint32_t order,
+  OrderDeskEventsListener(hw::OrderDesk *order_desk, int *orders_done)
+      : order_desk_(order_desk), orders_done_(orders_done) {}
+
+  void OrderStatusChanged(uint32_t order_id,
                           bool is_ready,
                           bool reading_taken,
                           bool drink_taken) override {
-    std::cout << "Order status changed event for order " << order << "." << std::endl;
+    std::cout << "Order status changed event for order " << order_id << "." << std::endl;
+    std::cout << "Getting drink..." << std::endl;
+    order_desk_->GetDrink(order_id);
+    std::cout << "Getting reading..." << std::endl;
+    order_desk_->GetReading(order_id);
+    ++*orders_done_;
   }
+
+private:
+  hw::OrderDesk *order_desk_;
+  int *orders_done_;
 };
 
 void ClientThread() {
@@ -31,12 +43,6 @@ void ClientThread() {
 
   auto channel = std::make_unique<nanorpc::WinsockClientChannel>("localhost", "50372");
   nanorpc::Client client(std::move(channel));
-
-  OrderDeskEventsListener event_listener;
-  hw::OrderDeskEvents_Stub event_listener_stub(&event_listener, nullptr);
-  client.StartListening(&event_listener_stub);
-
-  std::cout << "Client ready." << std::endl;
 
   // TODO: Patch proxy generator to take nanorpc2::Client instead of IRpcClient
   // TODO: Should it accept client at all? Should that be a shared pointer?
@@ -51,19 +57,23 @@ void ClientThread() {
   //      This also makes it easier such that service does not have to be
   //      thread safe, even when not using call serializer.
   hw::OrderDesk_Proxy order_desk(&client);
-  std::cout << "Client creates order." << std::endl;
-  int32_t order_id = order_desk.CreateOrder(hw::DrinkType::Coffee, hw::ReadingType::Newspaper);
 
-  while (!order_desk.IsOrderReady(order_id)) {
-    client.PumpEvents(nullptr);
-    std::cout << "Waiting for the order " << order_id << "." << std::endl;
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+  int orders_done = 0;
+  OrderDeskEventsListener event_listener(&order_desk, &orders_done);
+  hw::OrderDeskEvents_Stub event_listener_stub(&event_listener, nullptr);
+  client.StartListening(&event_listener_stub);
+
+  std::cout << "Client ready." << std::endl;
+
+  for (int i = 0; i < 10; ++i) {
+    std::cout << "Client creates order." << std::endl;
+    order_desk.CreateOrder(hw::DrinkType::Coffee, hw::ReadingType::Newspaper);
   }
 
-  std::cout << "Getting drink..." << std::endl;
-  order_desk.GetDrink(order_id);
-  std::cout << "Getting reading..." << std::endl;
-  order_desk.GetReading(order_id);
+  while (orders_done < 10) {
+    if (!client.PumpEvents(nullptr))
+      std::this_thread::sleep_for(std::chrono::seconds(1));
+  }
 
   client.StopListening(event_listener_stub.GetInterfaceName());
 
@@ -78,7 +88,7 @@ void ServerThread() {
   nanorpc::Server server(std::move(channel));
   std::cout << "Server created." << std::endl;
 
-  OrderDeskImpl order_desk_service;
+  OrderDeskImpl order_desk_service(&server);
   hw::OrderDesk_Stub order_desk_service_stub(&order_desk_service, nullptr);
   server.RegisterService(&order_desk_service_stub);
 

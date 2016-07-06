@@ -28,8 +28,9 @@ struct Order {
 
 class OrderDeskImpl : public hello_world::OrderDesk {
 public:
-  OrderDeskImpl()
+  OrderDeskImpl(nanorpc::EventSourceInterface *event_source)
       : last_waiting_number_(0),
+        events_(event_source),
         server_(std::thread(&OrderDeskImpl::ServerThread, this)) {}
 
   int32_t CreateOrder(hello_world::DrinkType drink,
@@ -37,10 +38,19 @@ public:
     Order order(drink, reading);
     std::lock_guard<std::mutex> lock(mtx_);
     order.waiting_number_ = ++last_waiting_number_;
+    order.time_to_complete_ = rand() % 5;
     pending_orders_.push(order);
     std::cout << "OrderDeskImpl: Creating order " << order.waiting_number_ << "." << std::endl;
-
     return order.waiting_number_;
+  }
+
+  ~OrderDeskImpl()
+  {
+    try {
+      is_running = false;
+      server_.join();
+    }
+    catch (...) {}
   }
 
   bool IsOrderReady(int order_number) override {
@@ -55,6 +65,9 @@ public:
     auto &order = completed_orders_.find(order_number);
     if (order != completed_orders_.end() && !order->second.drink_taken_) {
       order->second.drink_taken_ = true;
+      events_.OrderStatusChanged(order->second.waiting_number_, true,
+                                 order->second.reading_taken_,
+                                 order->second.drink_taken_);
       hello_world::DrinkType d = order->second.drink_;
       RemoveIfFilled(order);
       return d;
@@ -69,6 +82,9 @@ public:
     auto &order = completed_orders_.find(order_number);
     if (order != completed_orders_.end() && !order->second.reading_taken_) {
       order->second.reading_taken_ = true;
+      events_.OrderStatusChanged(order->second.waiting_number_, true,
+                                 order->second.reading_taken_,
+                                 order->second.drink_taken_);
       hello_world::ReadingType r = order->second.reading_;
       RemoveIfFilled(order);
       return r;
@@ -86,18 +102,35 @@ private:
 
   void ServerThread() {
     std::cout << "OrderDeskImpl: ...and serving." << std::endl;
-    std::lock_guard<std::mutex> lock(mtx_);
-    Order next = pending_orders_.front();
-    completed_orders_[next.waiting_number_] = next;
-    pending_orders_.pop();
+    while (is_running) {
+      {
+        std::unique_lock<std::mutex> lock(mtx_);
+        if (!pending_orders_.empty()) {
+            Order &next = pending_orders_.front();
+            if (next.time_to_complete_ > 0) {
+              --next.time_to_complete_;
+              continue;
+            }
+
+            completed_orders_[next.waiting_number_] = next;
+            pending_orders_.pop();
+            events_.OrderStatusChanged(next.waiting_number_, true, false, false);
+            continue;
+        }
+      }
+
+      std::this_thread::sleep_for(std::chrono::seconds(1));
+    }
   }
 
+  bool is_running = true;
   int last_waiting_number_;
   std::queue<Order> pending_orders_;
   std::map<int, Order> completed_orders_;
 
   std::mutex mtx_;
   std::thread server_;
+  ::hello_world::OrderDeskEvents_EventProxy events_;
 };
 
 #endif  // HELLO_WORLD_SERVICE_H__
