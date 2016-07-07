@@ -68,14 +68,14 @@ void WriteBufferImpl::Flush() {
   current_->size = ptr_ - current_->buffer;
 }
 
-WinsockChannelImpl::WinsockChannelImpl(const std::string &port)
+WinsockChannelImpl::WinsockChannelImpl(SOCKET socket)
     : address_(),
-      port_(port),
+      port_(),
       is_client(false),
-      status_(ChannelStatus::NotConnected),
+      status_(ChannelStatus::Established),
       addrinfo_(nullptr),
       listening_socket_(INVALID_SOCKET),
-      socket_(INVALID_SOCKET) {}
+      socket_(socket) {}
 
 WinsockChannelImpl::WinsockChannelImpl(const std::string &address,
                                        const std::string &port)

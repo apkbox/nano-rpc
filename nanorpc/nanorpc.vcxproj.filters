@@ -51,6 +51,9 @@
     <ClCompile Include="src\nanorpc\service_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\nanorpc\winsock_server_transport_impl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\nanorpc\async_callback.hpp">

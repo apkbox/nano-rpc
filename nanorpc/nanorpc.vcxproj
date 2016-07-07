@@ -178,6 +178,7 @@
     <ClCompile Include="src\nanorpc\string_conversion.cpp" />
     <ClCompile Include="src\nanorpc\winsock_channel.cpp" />
     <ClCompile Include="src\nanorpc\winsock_channel_impl.cpp" />
+    <ClCompile Include="src\nanorpc\winsock_server_transport_impl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\nanorpc\client.h" />

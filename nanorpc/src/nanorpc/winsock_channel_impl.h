@@ -20,9 +20,11 @@ namespace nanorpc {
 
 class ScopedHandle {
 public:
-  ScopedHandle(HANDLE handle) : handle_(handle) {}
+  explicit ScopedHandle(HANDLE handle) : handle_(handle) {}
   ScopedHandle() : handle_(nullptr) {}
-  ~ScopedHandle() {  }
+  ~ScopedHandle() {
+    Close();
+  }
 
   bool IsValid() const { return handle_ != nullptr; }
 
@@ -47,6 +49,11 @@ public:
 
 private:
   HANDLE handle_;
+
+  ScopedHandle(const ScopedHandle &other) = delete;
+  ScopedHandle &operator=(const ScopedHandle &other) = delete;
+  ScopedHandle(ScopedHandle &&other) = delete;
+  ScopedHandle &operator=(ScopedHandle &&other) = delete;
 };
 
 class WinsockChannelImpl;
@@ -84,7 +91,7 @@ private:
 };
 
 class WriteBufferImpl final : public WriteBuffer {
-  friend class WinsockChannelImpl;
+  friend class nanorpc::WinsockChannelImpl;
 public:
   ~WriteBufferImpl();
 
@@ -121,7 +128,34 @@ private:
   size_t committed_;
 };
 
+class WinsockServerTransportImpl {
+public:
+  explicit WinsockServerTransportImpl(const std::string &port);
+  ~WinsockServerTransportImpl();
+
+  bool IsBound() const;
+
+  std::unique_ptr<WinsockChannelImpl> Listen();
+  void Cancel();
+
+private:
+  void Cleanup();
+
+  std::string port_;
+
+  std::mutex binding_mtx_;
+  bool wsa_started_;
+  bool is_bound_;
+
+  struct addrinfo *addrinfo_;
+  SOCKET listening_socket_;
+
+  NANORPC_DISALLOW_COPY_AND_ASSIGN(WinsockServerTransportImpl);
+};
+
 class WinsockChannelImpl {
+  friend class WinsockServerTransportImpl;
+
 public:
   explicit WinsockChannelImpl(const std::string &port);
   explicit WinsockChannelImpl(const std::string &address, const std::string &port);
@@ -141,6 +175,8 @@ public:
   bool Write(const void *buffer, size_t buffer_size);
 
 private:
+  explicit WinsockChannelImpl(SOCKET socket);
+
   bool ConnectServer();
   bool ConnectClient();
 
