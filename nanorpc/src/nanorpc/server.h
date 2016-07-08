@@ -10,13 +10,14 @@
 
 namespace nanorpc {
 
-class ServerChannelInterface;
+class ServerTransport;
 class ServiceInterface;
 class RpcCall;
 class RpcMessage;
 
 class Server : public EventSourceInterface {
 public:
+  Server(std::unique_ptr<ServerTransport> transport);
   Server(std::unique_ptr<ServerChannelInterface> channel);
   ~Server();
 
@@ -53,8 +54,12 @@ private:
                       RpcMessage *response,
                       bool *is_async);
 
-  std::unique_ptr<ServerChannelInterface> channel_;
+  struct Context {};
+
+  std::unique_ptr<ServerTransport> transport_;
   ServiceManager service_manager_;
+
+  std::unique_ptr<ServerChannelInterface> channel_;
   ObjectManager object_manager_;
   EventService event_service_;
 };

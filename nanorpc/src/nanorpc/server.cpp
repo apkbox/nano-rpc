@@ -7,6 +7,11 @@
 
 namespace nanorpc {
 
+Server::Server(std::unique_ptr<ServerTransport> transport)
+    : transport_(std::move(transport)) {
+  RegisterService(&event_service_);
+}
+
 Server::Server(std::unique_ptr<ServerChannelInterface> channel)
     : channel_(std::move(channel)) {
   RegisterService(&event_service_);
