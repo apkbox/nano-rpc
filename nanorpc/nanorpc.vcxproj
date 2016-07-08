@@ -176,6 +176,7 @@
     <ClCompile Include="src\nanorpc\server.cpp" />
     <ClCompile Include="src\nanorpc\service_manager.cpp" />
     <ClCompile Include="src\nanorpc\string_conversion.cpp" />
+    <ClCompile Include="src\nanorpc\winsock_buffers_impl.cpp" />
     <ClCompile Include="src\nanorpc\winsock_channel.cpp" />
     <ClCompile Include="src\nanorpc\winsock_channel_impl.cpp" />
     <ClCompile Include="src\nanorpc\winsock_server_transport_impl.cpp" />
@@ -196,6 +197,8 @@
     <ClInclude Include="src\nanorpc\string_conversion.hpp" />
     <ClInclude Include="src\nanorpc\winsock_channel.h" />
     <ClInclude Include="src\nanorpc\winsock_channel_impl.h" />
+    <ClInclude Include="src\nanorpc\winsock_server_transport_impl.h" />
+    <ClInclude Include="src\nanorpc\winsock_buffers_impl.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

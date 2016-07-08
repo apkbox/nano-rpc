@@ -9,26 +9,21 @@
 namespace nanorpc {
 
 class WinsockChannelImpl;
+class WinsockServerTransportImpl;
 
-class WinsockServerChannel final : public ServerChannelInterface {
+class WinsockServerTransport final : public ServerTransport {
 public:
-  WinsockServerChannel(const std::string &port);
-  ~WinsockServerChannel();
+  WinsockServerTransport(const std::string &port);
+  ~WinsockServerTransport();
 
-  ChannelStatus GetStatus() const override;
-
-  bool Connect() override;
-  void Shutdown() override;
-  void Disconnect() override;
-
-  std::unique_ptr<ReadBuffer> Read(size_t bytes) override;
-  std::unique_ptr<WriteBuffer> CreateWriteBuffer() override;
-  void Write(std::unique_ptr<WriteBuffer> buffer) override;
+  bool IsBound() const override;
+  std::unique_ptr<ChannelInterface> Listen() override;
+  void Cancel() override;
 
 private:
-  std::unique_ptr<WinsockChannelImpl> impl_;
+  std::unique_ptr<WinsockServerTransportImpl> impl_;
 
-  NANORPC_DISALLOW_COPY_AND_ASSIGN(WinsockServerChannel);
+  NANORPC_DISALLOW_COPY_AND_ASSIGN(WinsockServerTransport);
 };
 
 class WinsockClientChannel final : public ClientChannelInterface {

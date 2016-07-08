@@ -40,19 +40,21 @@ struct ResponseMessage {
 };
 
 void ServerThreadProc() {
+#if 0
   std::cout << "SERVER: Starting... " << std::endl;
-  nanorpc::WinsockServerChannel channel("2345");
-  if (!channel.Connect()) {
+  nanorpc::WinsockServerTransport transport("2345");
+  auto channel = transport.Listen();
+  if (channel == nullptr) {
     std::cout << "SERVER: Connection failed." << std::endl;
     return;
   }
 
   while (true) {
-    auto request_size = channel.Read(sizeof(int));
+    auto request_size = channel->Read(sizeof(int));
     if (request_size == nullptr)
       break;
 
-    auto request_message = channel.Read(*request_size->ReadAs<int>());
+    auto request_message = channel->Read(*request_size->ReadAs<int>());
     if (request_message == nullptr)
       break;
 
@@ -65,7 +67,7 @@ void ServerThreadProc() {
 #endif
 
     std::unique_ptr<nanorpc::WriteBuffer> response_message =
-        channel.CreateWriteBuffer();
+        channel->CreateWriteBuffer();
     int *response_size = response_message->WriteAs<int>();
     ResponseMessage *response = response_message->WriteAs<ResponseMessage>();
     response->call_id = request->call_id;
@@ -85,16 +87,17 @@ void ServerThreadProc() {
 #endif
 
     *response_size = response_message->GetSize() - sizeof(int);
-    channel.Write(std::move(response_message));
+    channel->Write(std::move(response_message));
 
 #if defined(SHOW_PROGRESS)
     std::cout << "SERVER: [" << request->call_id << "]: Done." << std::endl;
 #endif
   }
 
-  channel.Disconnect();
+  channel->Disconnect();
 
   std::cout << "SERVER: Exiting." << std::endl;
+#endif
 }
 
 void ClientThreadProc() {

@@ -147,6 +147,15 @@ public:
   virtual ~ClientChannelInterface() {}
 };
 
+class ServerTransport {
+public:
+  virtual ~ServerTransport() {}
+
+  virtual bool IsBound() const = 0;
+  virtual std::unique_ptr<ChannelInterface> Listen() = 0;
+  virtual void Cancel() = 0;
+};
+
 class CallHandlerInterface {
 public:
   virtual ~CallHandlerInterface() {}

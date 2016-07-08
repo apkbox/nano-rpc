@@ -23,59 +23,118 @@
 
 #pragma comment(lib, "Ws2_32.lib")
 
+#include "nanorpc/winsock_buffers_impl.h"
+
 namespace nanorpc {
 
-WriteBufferImpl::~WriteBufferImpl() {
-  auto p = &head_;
+WinsockServerChannelImpl::WinsockServerChannelImpl(SOCKET socket)
+    : status_(ChannelStatus::Established), socket_(socket) {
+  WSADATA wsaData;
+  WSAStartup(MAKEWORD(2, 2), &wsaData);
+}
+
+WinsockServerChannelImpl::~WinsockServerChannelImpl() {
+  Disconnect();
+}
+
+void WinsockServerChannelImpl::Shutdown() {
+  if (status_ == ChannelStatus::NotConnected)
+    return;
+
+  if (socket_ != INVALID_SOCKET) {
+    int result = shutdown(socket_, SD_SEND);
+    if (result == SOCKET_ERROR)
+      Disconnect();
+  }
+}
+
+void WinsockServerChannelImpl::Disconnect() {
+  if (status_ == ChannelStatus::NotConnected)
+    return;
+
+  if (socket_ != INVALID_SOCKET) {
+    closesocket(socket_);
+    socket_ = INVALID_SOCKET;
+  }
+
+  status_ = ChannelStatus::NotConnected;
+}
+
+std::unique_ptr<ReadBuffer> WinsockServerChannelImpl::Read(size_t bytes) {
+  std::unique_ptr<ReadBufferImpl> buffer{new ReadBufferImpl(bytes)};
+  size_t bytes_read;
+  auto &buf = buffer.get()->buffer_;
+  if (!Read(&buf[0], buf.size(), &bytes_read) || bytes_read == 0)
+    return nullptr;
+  return std::unique_ptr<ReadBuffer>(std::move(buffer));
+}
+
+std::unique_ptr<WriteBuffer> WinsockServerChannelImpl::CreateWriteBuffer() {
+  return std::unique_ptr<WriteBuffer>{new WriteBufferImpl()};
+}
+
+void WinsockServerChannelImpl::Write(std::unique_ptr<WriteBuffer> buffer) {
+  // TODO: This is not good
+  WriteBufferImpl *raw_buffer = static_cast<WriteBufferImpl *>(buffer.get());
+  raw_buffer->Flush();
+
+  auto p = &raw_buffer->head_;
+  if (p->buffer == nullptr)
+    return;
   do {
-    delete[] p->buffer;
+    Write(p->buffer, p->size);
     p = p->next;
   } while (p != nullptr);
 }
 
-void *WriteBufferImpl::Write(size_t bytes) {
-  AllocBufferIfNeeded(bytes);
+bool WinsockServerChannelImpl::Read(void *buffer,
+                                    size_t buffer_size,
+                                    size_t *bytes_read) {
+  std::lock_guard<std::mutex> lock(read_lock_);
 
-  auto avail = current_->size - (ptr_ - current_->buffer);
-  if (avail < bytes) {
-    // Store the amount of buffer used
-    current_->size = ptr_ - current_->buffer;
-    committed_ += current_->size;
+  *bytes_read = 0;
 
-    // Create new chunk
-    current_->next = new Chunk{};
-    current_ = current_->next;
-    AllocBufferIfNeeded(bytes);
+  char *ptr = reinterpret_cast<char *>(buffer);
+  while (buffer_size > 0) {
+    int result = recv(socket_, ptr, buffer_size, 0);
+    if (result == SOCKET_ERROR)
+      return WSAGetLastError() == WSA_IO_PENDING;
+
+    if (result == 0) {
+      *bytes_read = 0;
+      return true;
+    }
+
+    if (result <= buffer_size) {
+      ptr += result;
+      buffer_size -= result;
+      *bytes_read += result;
+    }
   }
 
-  auto p = ptr_;
-  ptr_ += bytes;
-  return p;
+  return true;
 }
 
-void WriteBufferImpl::AllocBufferIfNeeded(size_t bytes) {
-  if (current_->buffer == nullptr) {
-    current_->size = std::max(bytes, kDefaultChunkSize);
-    current_->buffer = new unsigned char[current_->size];
-    ptr_ = current_->buffer;
+bool WinsockServerChannelImpl::Write(const void *buffer, size_t buffer_size) {
+  std::lock_guard<std::mutex> lock(write_lock_);
+
+  int result =
+      send(socket_, reinterpret_cast<const char *>(buffer), buffer_size, 0);
+  if (result == SOCKET_ERROR)
+    return WSAGetLastError() == WSA_IO_PENDING;
+
+  return true;
+}
+
+void WinsockServerChannelImpl::Cleanup() {
+  if (socket_ != INVALID_SOCKET) {
+    closesocket(socket_);
+    socket_ = INVALID_SOCKET;
   }
+
+  WSACleanup();
+  status_ = ChannelStatus::NotConnected;
 }
-
-void WriteBufferImpl::Flush() {
-  if (current_->buffer == nullptr)
-    return;
-
-  current_->size = ptr_ - current_->buffer;
-}
-
-WinsockChannelImpl::WinsockChannelImpl(SOCKET socket)
-    : address_(),
-      port_(),
-      is_client(false),
-      status_(ChannelStatus::Established),
-      addrinfo_(nullptr),
-      listening_socket_(INVALID_SOCKET),
-      socket_(socket) {}
 
 WinsockChannelImpl::WinsockChannelImpl(const std::string &address,
                                        const std::string &port)
@@ -193,8 +252,8 @@ bool WinsockChannelImpl::ConnectServer() {
     goto exit;
 
   // Create a SOCKET for the server to listen for client connections
-  listening_socket_ =
-      socket(addrinfo_->ai_family, addrinfo_->ai_socktype, addrinfo_->ai_protocol);
+  listening_socket_ = socket(addrinfo_->ai_family, addrinfo_->ai_socktype,
+                             addrinfo_->ai_protocol);
   if (listening_socket_ == INVALID_SOCKET)
     goto exit;
 
@@ -245,9 +304,8 @@ void WinsockChannelImpl::Disconnect() {
   status_ = ChannelStatus::NotConnected;
 }
 
-
 std::unique_ptr<ReadBuffer> WinsockChannelImpl::Read(size_t bytes) {
-  std::unique_ptr<ReadBufferImpl> buffer{ new ReadBufferImpl(bytes) };
+  std::unique_ptr<ReadBufferImpl> buffer{new ReadBufferImpl(bytes)};
   size_t bytes_read;
   auto &buf = buffer.get()->buffer_;
   if (!Read(&buf[0], buf.size(), &bytes_read) || bytes_read == 0)

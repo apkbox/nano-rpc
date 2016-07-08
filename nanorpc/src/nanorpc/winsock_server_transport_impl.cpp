@@ -1,4 +1,4 @@
-#include "nanorpc/winsock_channel_impl.h"
+#include "nanorpc/winsock_server_transport_impl.h"
 
 #ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN
@@ -7,6 +7,8 @@
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #include <iphlpapi.h>
+
+#include "nanorpc/winsock_channel_impl.h"
 
 #if defined(min)
 #undef min
@@ -35,7 +37,7 @@ bool WinsockServerTransportImpl::IsBound() const {
   return is_bound_;
 }
 
-std::unique_ptr<WinsockChannelImpl> WinsockServerTransportImpl::Listen() {
+std::unique_ptr<WinsockServerChannelImpl> WinsockServerTransportImpl::Listen() {
   std::unique_lock<std::mutex> lock(binding_mtx_);
   if (!is_bound_) {
     struct addrinfo hints = {};
@@ -55,14 +57,14 @@ std::unique_ptr<WinsockChannelImpl> WinsockServerTransportImpl::Listen() {
       goto error;
 
     // Create a SOCKET for the server to listen for client connections
-    listening_socket_ =
-      socket(addrinfo_->ai_family, addrinfo_->ai_socktype, addrinfo_->ai_protocol);
+    listening_socket_ = socket(addrinfo_->ai_family, addrinfo_->ai_socktype,
+                               addrinfo_->ai_protocol);
     if (listening_socket_ == INVALID_SOCKET)
       goto error;
 
     // Setup the TCP listening socket
     if (bind(listening_socket_, addrinfo_->ai_addr,
-      static_cast<int>(addrinfo_->ai_addrlen)) == SOCKET_ERROR)
+             static_cast<int>(addrinfo_->ai_addrlen)) == SOCKET_ERROR)
       goto error;
 
     is_bound_ = true;
@@ -79,7 +81,8 @@ std::unique_ptr<WinsockChannelImpl> WinsockServerTransportImpl::Listen() {
       goto error;
   }
 
-  return std::unique_ptr<WinsockChannelImpl>{new WinsockChannelImpl{socket}};
+  return std::unique_ptr<WinsockServerChannelImpl>{
+    new WinsockServerChannelImpl{ socket }};
 
 error:
   Cleanup();
