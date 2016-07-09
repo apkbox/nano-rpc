@@ -16,34 +16,29 @@ class ServiceInterface;
 class RpcCall;
 class RpcMessage;
 
+// TODO: Remove event source interface from base classes and provide
+// method to get it.
 class ServerContext : public EventSourceInterface {
 public:
-  ServerContext(std::unique_ptr<ServerChannelInterface> &channel,
+  ServerContext(std::unique_ptr<ChannelInterface> &channel,
                 std::shared_ptr<ServiceManager> &service_manager);
-  ~ServerContext();
+  virtual ~ServerContext();
 
   // Wait for request and handle it.
   // This method explicitly serializes calls for all services.
   // This method can be called multiple times.
   // Calling from multiple threads results in waiting for request in
   // each thread. It is undetermined in which order calls will be satisfied.
-  // The wait may be terminated by calling Shutdown.
+  // The wait may be terminated by calling Close.
   // If connection is not established, this method will call Connect on the
   // channel.
   // Returns true if request was satisfied, false if connection terminated or
   // Shutdown was called.
   bool WaitForSingleRequest();
 
-  // Connects and waits for requests until connection is terminated or
-  // Shutdown is called.
-  // Attempt to call from another thread, while call in progress, will fail.
-  // Returns true if connection terminated or Shutdown is called.
-  // Returns false if method is called concurrently.
-  bool ConnectAndWait();
-
-  // Closes channel and shuts down the server.
+  // Closes channel and shuts down the server context.
   // This method can be called from any thread.
-  void Shutdown();
+  void Close();
 
   bool SendEvent(const RpcCall &call) override;
 
@@ -52,11 +47,13 @@ private:
                       RpcMessage *response,
                       bool *is_async);
 
-  std::unique_ptr<ServerChannelInterface> channel_;
+  std::unique_ptr<ChannelInterface> channel_;
   std::shared_ptr<ServiceManager> global_services_;
   ServiceManager context_services_;
   ObjectManager object_manager_;
   EventService event_service_;
+
+  NANORPC_DISALLOW_COPY_AND_ASSIGN(ServerContext);
 };
 
 }  // namespace nanorpc

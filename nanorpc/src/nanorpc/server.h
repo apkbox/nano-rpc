@@ -4,9 +4,8 @@
 #include <memory>
 #include <string>
 
-#include "nanorpc/object_manager.h"
+#include "nanorpc/server_context.h"
 #include "nanorpc/service_manager.h"
-#include "nanorpc/event_service.h"
 
 namespace nanorpc {
 
@@ -15,11 +14,12 @@ class ServiceInterface;
 class RpcCall;
 class RpcMessage;
 
-class Server : public EventSourceInterface {
+// TODO: Remove event source interface from base classes and provide
+// method to get it.
+class SimpleServer : public EventSourceInterface {
 public:
-  Server(std::unique_ptr<ServerTransport> transport);
-  Server(std::unique_ptr<ServerChannelInterface> channel);
-  ~Server();
+  SimpleServer(std::unique_ptr<ServerTransport> transport);
+  ~SimpleServer();
 
   void RegisterService(ServiceInterface *service);
   void RegisterService(const std::string &name, ServiceInterface *service);
@@ -50,18 +50,54 @@ public:
   bool SendEvent(const RpcCall &call) override;
 
 private:
-  void ProcessRequest(const RpcMessage &request,
-                      RpcMessage *response,
-                      bool *is_async);
+  std::unique_ptr<ServerTransport> transport_;
+  std::shared_ptr<ServiceManager> services_;
+  std::unique_ptr<ServerContext> context_;
 
-  struct Context {};
+  NANORPC_DISALLOW_COPY_AND_ASSIGN(SimpleServer);
+};
+
+// TODO: Remove event source interface from base classes and provide
+// method to get it.
+class Server : public EventSourceInterface {
+public:
+  Server(std::unique_ptr<ServerTransport> transport);
+  ~Server();
+
+  void RegisterService(ServiceInterface *service);
+  void RegisterService(const std::string &name, ServiceInterface *service);
+
+  // Connects and waits for requests until connection is terminated or
+  // Shutdown is called.
+  // Attempt to call from another thread, while call in progress, will fail.
+  // Returns true if connection terminated or Shutdown is called.
+  // Returns false if method is called concurrently.
+  bool Wait();
+
+  // Closes channel and shuts down the server.
+  // This method can be called from any thread.
+  void Shutdown();
+
+  bool SendEvent(const RpcCall &call) override;
+
+private:
+  class Context : public ServerContext {
+  public:
+    Context(std::unique_ptr<ChannelInterface> &channel,
+      std::shared_ptr<ServiceManager> &service_manager);
+
+    void Close();
+
+  private:
+    void ServerThread();
+    std::thread thread_;
+  };
 
   std::unique_ptr<ServerTransport> transport_;
-  ServiceManager service_manager_;
+  std::shared_ptr<ServiceManager> services_;
+  std::vector<std::unique_ptr<Context>> contexts_;
 
-  std::unique_ptr<ServerChannelInterface> channel_;
-  ObjectManager object_manager_;
-  EventService event_service_;
+  NANORPC_DISALLOW_COPY_AND_ASSIGN(Server);
 };
 
 }  // namespace nanorpc

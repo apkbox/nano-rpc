@@ -7,7 +7,7 @@
 
 namespace nanorpc {
 
-ServerContext::ServerContext(std::unique_ptr<ServerChannelInterface> &channel,
+ServerContext::ServerContext(std::unique_ptr<ChannelInterface> &channel,
                              std::shared_ptr<ServiceManager> &service_manager)
     : channel_{std::move(channel)}, global_services_{service_manager} {
   context_services_.AddService(event_service_.GetInterfaceName(),
@@ -16,16 +16,14 @@ ServerContext::ServerContext(std::unique_ptr<ServerChannelInterface> &channel,
 
 ServerContext::~ServerContext() {
   try {
-    Shutdown();
+    Close();
   } catch (...) {
   }
 }
 
 bool ServerContext::WaitForSingleRequest() {
-  if (channel_->GetStatus() != ChannelStatus::Established) {
-    if (!channel_->Connect())
+  if (channel_->GetStatus() != ChannelStatus::Established)
       return false;
-  }
 
   auto rdbuf = channel_->Read(sizeof(uint32_t));
   if (rdbuf == nullptr)
@@ -58,7 +56,7 @@ bool ServerContext::WaitForSingleRequest() {
   return true;
 }
 
-void ServerContext::Shutdown() {
+void ServerContext::Close() {
   channel_->Shutdown();
   channel_->Disconnect();
 }
