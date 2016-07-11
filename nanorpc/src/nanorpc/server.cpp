@@ -14,8 +14,7 @@ SimpleServer::SimpleServer(std::unique_ptr<ServerTransport> transport)
 SimpleServer::~SimpleServer() {
   try {
     Shutdown();
-  }
-  catch (...) {
+  } catch (...) {
   }
 }
 
@@ -59,31 +58,14 @@ void SimpleServer::Shutdown() {
   transport_->Cancel();
 }
 
-bool SimpleServer::SendEvent(const RpcCall &call) {
-  if (context_ == nullptr)
-    return false;
-  return context_->SendEvent(call);
-}
-
-Server::Context::Context(std::unique_ptr<ChannelInterface> &channel,
-                         std::shared_ptr<ServiceManager> &service_manager)
-    : ServerContext(channel, service_manager),
-      thread_(&Context::ServerThread, this) {}
-
-void Server::Context::Close() {
-  ServerContext::Close();
-  thread_.join();
-}
-
-void Server::Context::ServerThread() {
-  while (WaitForSingleRequest()) {
-    /* EMPTY */
-  }
+EventSourceInterface *SimpleServer::GetEventSource() {
+  return context_.get();
 }
 
 Server::Server(std::unique_ptr<ServerTransport> transport)
     : transport_(std::move(transport)),
-    services_(std::make_shared<ServiceManager>()) {}
+      services_(std::make_shared<ServiceManager>()),
+      event_source_(*this) {}
 
 Server::~Server() {
   try {
@@ -129,8 +111,35 @@ void Server::Shutdown() {
   }
 }
 
-bool Server::SendEvent(const RpcCall &call) {
-  return true;
+EventSourceInterface *Server::GetEventSource() {
+  return &event_source_;
+}
+
+Server::Context::Context(std::unique_ptr<ChannelInterface> &channel,
+                         std::shared_ptr<ServiceManager> &service_manager)
+    : ServerContext(channel, service_manager),
+      thread_(&Context::ServerThread, this) {}
+
+void Server::Context::Close() {
+  ServerContext::Close();
+  thread_.join();
+}
+
+EventSourceInterface *Server::Context::GetEventSource() {
+  return this;
+}
+
+void Server::Context::ServerThread() {
+  while (WaitForSingleRequest()) {
+    /* EMPTY */
+  }
+}
+
+bool Server::EventSource::SendEvent(const RpcCall &call) {
+  bool result = false;
+  for (auto &c : server_.contexts_)
+    result |= c->SendEvent(call);
+  return false;
 }
 
 }  // namespace nanorpc

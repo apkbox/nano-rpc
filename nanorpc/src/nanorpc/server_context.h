@@ -16,8 +16,6 @@ class ServiceInterface;
 class RpcCall;
 class RpcMessage;
 
-// TODO: Remove event source interface from base classes and provide
-// method to get it.
 class ServerContext : public EventSourceInterface {
 public:
   ServerContext(std::unique_ptr<ChannelInterface> &channel,

@@ -153,11 +153,11 @@ class RpcCall : public ::google::protobuf::Message {
   ::std::string* release_method();
   void set_allocated_method(::std::string* method);
 
-  // optional uint32 object_id = 3;
+  // optional uint64 object_id = 3;
   void clear_object_id();
   static const int kObjectIdFieldNumber = 3;
-  ::google::protobuf::uint32 object_id() const;
-  void set_object_id(::google::protobuf::uint32 value);
+  ::google::protobuf::uint64 object_id() const;
+  void set_object_id(::google::protobuf::uint64 value);
 
   // optional bytes call_data = 4;
   void clear_call_data();
@@ -177,8 +177,8 @@ class RpcCall : public ::google::protobuf::Message {
   bool _is_default_instance_;
   ::google::protobuf::internal::ArenaStringPtr service_;
   ::google::protobuf::internal::ArenaStringPtr method_;
+  ::google::protobuf::uint64 object_id_;
   ::google::protobuf::internal::ArenaStringPtr call_data_;
-  ::google::protobuf::uint32 object_id_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_nanorpc_2frpc_5ftypes_2eproto();
   friend void protobuf_AssignDesc_nanorpc_2frpc_5ftypes_2eproto();
@@ -755,18 +755,18 @@ class RpcObject : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // optional uint32 object_id = 1;
+  // optional uint64 object_id = 1;
   void clear_object_id();
   static const int kObjectIdFieldNumber = 1;
-  ::google::protobuf::uint32 object_id() const;
-  void set_object_id(::google::protobuf::uint32 value);
+  ::google::protobuf::uint64 object_id() const;
+  void set_object_id(::google::protobuf::uint64 value);
 
   // @@protoc_insertion_point(class_scope:nanorpc.RpcObject)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   bool _is_default_instance_;
-  ::google::protobuf::uint32 object_id_;
+  ::google::protobuf::uint64 object_id_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_nanorpc_2frpc_5ftypes_2eproto();
   friend void protobuf_AssignDesc_nanorpc_2frpc_5ftypes_2eproto();
@@ -974,15 +974,15 @@ inline void RpcCall::set_allocated_method(::std::string* method) {
   // @@protoc_insertion_point(field_set_allocated:nanorpc.RpcCall.method)
 }
 
-// optional uint32 object_id = 3;
+// optional uint64 object_id = 3;
 inline void RpcCall::clear_object_id() {
-  object_id_ = 0u;
+  object_id_ = GOOGLE_ULONGLONG(0);
 }
-inline ::google::protobuf::uint32 RpcCall::object_id() const {
+inline ::google::protobuf::uint64 RpcCall::object_id() const {
   // @@protoc_insertion_point(field_get:nanorpc.RpcCall.object_id)
   return object_id_;
 }
-inline void RpcCall::set_object_id(::google::protobuf::uint32 value) {
+inline void RpcCall::set_object_id(::google::protobuf::uint64 value) {
   
   object_id_ = value;
   // @@protoc_insertion_point(field_set:nanorpc.RpcCall.object_id)
@@ -1324,15 +1324,15 @@ inline void SInt64Value::set_value(::google::protobuf::int64 value) {
 
 // RpcObject
 
-// optional uint32 object_id = 1;
+// optional uint64 object_id = 1;
 inline void RpcObject::clear_object_id() {
-  object_id_ = 0u;
+  object_id_ = GOOGLE_ULONGLONG(0);
 }
-inline ::google::protobuf::uint32 RpcObject::object_id() const {
+inline ::google::protobuf::uint64 RpcObject::object_id() const {
   // @@protoc_insertion_point(field_get:nanorpc.RpcObject.object_id)
   return object_id_;
 }
-inline void RpcObject::set_object_id(::google::protobuf::uint32 value) {
+inline void RpcObject::set_object_id(::google::protobuf::uint64 value) {
   
   object_id_ = value;
   // @@protoc_insertion_point(field_set:nanorpc.RpcObject.object_id)

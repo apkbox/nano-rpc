@@ -88,7 +88,7 @@ void ServerThread() {
   nanorpc::SimpleServer server(std::move(transport));
   std::cout << "Server created." << std::endl;
 
-  OrderDeskImpl order_desk_service(&server);
+  OrderDeskImpl order_desk_service(server.GetEventSource());
   hw::OrderDesk_Stub order_desk_service_stub(&order_desk_service, nullptr);
   server.RegisterService(&order_desk_service_stub);
 

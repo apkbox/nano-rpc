@@ -14,9 +14,7 @@ class ServiceInterface;
 class RpcCall;
 class RpcMessage;
 
-// TODO: Remove event source interface from base classes and provide
-// method to get it.
-class SimpleServer : public EventSourceInterface {
+class SimpleServer {
 public:
   SimpleServer(std::unique_ptr<ServerTransport> transport);
   ~SimpleServer();
@@ -47,7 +45,7 @@ public:
   // This method can be called from any thread.
   void Shutdown();
 
-  bool SendEvent(const RpcCall &call) override;
+  EventSourceInterface *GetEventSource();
 
 private:
   std::unique_ptr<ServerTransport> transport_;
@@ -57,9 +55,7 @@ private:
   NANORPC_DISALLOW_COPY_AND_ASSIGN(SimpleServer);
 };
 
-// TODO: Remove event source interface from base classes and provide
-// method to get it.
-class Server : public EventSourceInterface {
+class Server {
 public:
   Server(std::unique_ptr<ServerTransport> transport);
   ~Server();
@@ -78,7 +74,7 @@ public:
   // This method can be called from any thread.
   void Shutdown();
 
-  bool SendEvent(const RpcCall &call) override;
+  EventSourceInterface *GetEventSource();
 
 private:
   class Context : public ServerContext {
@@ -88,14 +84,26 @@ private:
 
     void Close();
 
+    EventSourceInterface *GetEventSource();
+
   private:
     void ServerThread();
     std::thread thread_;
   };
 
+  class EventSource : public EventSourceInterface {
+  public:
+    EventSource(Server &server) : server_(server) {}
+    bool SendEvent(const RpcCall &call) override;
+
+  private:
+    Server &server_;
+  };
+
   std::unique_ptr<ServerTransport> transport_;
   std::shared_ptr<ServiceManager> services_;
   std::vector<std::unique_ptr<Context>> contexts_;
+  EventSource event_source_;
 
   NANORPC_DISALLOW_COPY_AND_ASSIGN(Server);
 };
