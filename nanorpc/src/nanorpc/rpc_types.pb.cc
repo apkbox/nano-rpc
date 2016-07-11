@@ -267,7 +267,7 @@ void protobuf_AddDesc_nanorpc_2frpc_5ftypes_2eproto() {
     "\n\027nanorpc/rpc_types.proto\022\007nanorpc\032 goog"
     "le/protobuf/descriptor.proto\"P\n\007RpcCall\022"
     "\017\n\007service\030\001 \001(\t\022\016\n\006method\030\002 \001(\t\022\021\n\tobje"
-    "ct_id\030\003 \001(\r\022\021\n\tcall_data\030\004 \001(\014\"[\n\tRpcRes"
+    "ct_id\030\003 \001(\004\022\021\n\tcall_data\030\004 \001(\014\"[\n\tRpcRes"
     "ult\022\"\n\006status\030\001 \001(\0162\022.nanorpc.RpcStatus\022"
     "\025\n\rerror_message\030\002 \001(\t\022\023\n\013result_data\030\003 "
     "\001(\014\"\\\n\nRpcMessage\022\n\n\002id\030\001 \001(\r\022\036\n\004call\030\002 "
@@ -275,7 +275,7 @@ void protobuf_AddDesc_nanorpc_2frpc_5ftypes_2eproto() {
     "nanorpc.RpcResult\"\t\n\007RpcVoid\" \n\017WideStri"
     "ngValue\022\r\n\005value\030\001 \001(\t\"\034\n\013SInt32Value\022\r\n"
     "\005value\030\001 \001(\021\"\034\n\013SInt64Value\022\r\n\005value\030\001 \001"
-    "(\022\"\036\n\tRpcObject\022\021\n\tobject_id\030\001 \001(\r\"\036\n\010Rp"
+    "(\022\"\036\n\tRpcObject\022\021\n\tobject_id\030\001 \001(\004\"\036\n\010Rp"
     "cEvent\022\022\n\nevent_name\030\001 \001(\t*\226\001\n\tRpcStatus"
     "\022\020\n\014RpcSucceeded\020\000\022\025\n\021RpcChannelFailure\020"
     "\001\022\024\n\020RpcUnknownMethod\020\002\022\024\n\020RpcProtocolEr"
@@ -394,7 +394,7 @@ void RpcCall::SharedCtor() {
   _cached_size_ = 0;
   service_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   method_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  object_id_ = 0u;
+  object_id_ = GOOGLE_ULONGLONG(0);
   call_data_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
@@ -440,7 +440,7 @@ void RpcCall::Clear() {
 // @@protoc_insertion_point(message_clear_start:nanorpc.RpcCall)
   service_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   method_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  object_id_ = 0u;
+  object_id_ = GOOGLE_ULONGLONG(0);
   call_data_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
@@ -487,12 +487,12 @@ bool RpcCall::MergePartialFromCodedStream(
         break;
       }
 
-      // optional uint32 object_id = 3;
+      // optional uint64 object_id = 3;
       case 3: {
         if (tag == 24) {
          parse_object_id:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
                  input, &object_id_)));
 
         } else {
@@ -559,9 +559,9 @@ void RpcCall::SerializeWithCachedSizes(
       2, this->method(), output);
   }
 
-  // optional uint32 object_id = 3;
+  // optional uint64 object_id = 3;
   if (this->object_id() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(3, this->object_id(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt64(3, this->object_id(), output);
   }
 
   // optional bytes call_data = 4;
@@ -598,9 +598,9 @@ void RpcCall::SerializeWithCachedSizes(
         2, this->method(), target);
   }
 
-  // optional uint32 object_id = 3;
+  // optional uint64 object_id = 3;
   if (this->object_id() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(3, this->object_id(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(3, this->object_id(), target);
   }
 
   // optional bytes call_data = 4;
@@ -632,10 +632,10 @@ int RpcCall::ByteSize() const {
         this->method());
   }
 
-  // optional uint32 object_id = 3;
+  // optional uint64 object_id = 3;
   if (this->object_id() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+      ::google::protobuf::internal::WireFormatLite::UInt64Size(
         this->object_id());
   }
 
@@ -818,15 +818,15 @@ void RpcCall::clear_method() {
   // @@protoc_insertion_point(field_set_allocated:nanorpc.RpcCall.method)
 }
 
-// optional uint32 object_id = 3;
+// optional uint64 object_id = 3;
 void RpcCall::clear_object_id() {
-  object_id_ = 0u;
+  object_id_ = GOOGLE_ULONGLONG(0);
 }
- ::google::protobuf::uint32 RpcCall::object_id() const {
+ ::google::protobuf::uint64 RpcCall::object_id() const {
   // @@protoc_insertion_point(field_get:nanorpc.RpcCall.object_id)
   return object_id_;
 }
- void RpcCall::set_object_id(::google::protobuf::uint32 value) {
+ void RpcCall::set_object_id(::google::protobuf::uint64 value) {
   
   object_id_ = value;
   // @@protoc_insertion_point(field_set:nanorpc.RpcCall.object_id)
@@ -2647,7 +2647,7 @@ RpcObject::RpcObject(const RpcObject& from)
 void RpcObject::SharedCtor() {
     _is_default_instance_ = false;
   _cached_size_ = 0;
-  object_id_ = 0u;
+  object_id_ = GOOGLE_ULONGLONG(0);
 }
 
 RpcObject::~RpcObject() {
@@ -2687,7 +2687,7 @@ RpcObject* RpcObject::New(::google::protobuf::Arena* arena) const {
 
 void RpcObject::Clear() {
 // @@protoc_insertion_point(message_clear_start:nanorpc.RpcObject)
-  object_id_ = 0u;
+  object_id_ = GOOGLE_ULONGLONG(0);
 }
 
 bool RpcObject::MergePartialFromCodedStream(
@@ -2700,11 +2700,11 @@ bool RpcObject::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional uint32 object_id = 1;
+      // optional uint64 object_id = 1;
       case 1: {
         if (tag == 8) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
                  input, &object_id_)));
 
         } else {
@@ -2738,9 +2738,9 @@ failure:
 void RpcObject::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:nanorpc.RpcObject)
-  // optional uint32 object_id = 1;
+  // optional uint64 object_id = 1;
   if (this->object_id() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->object_id(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt64(1, this->object_id(), output);
   }
 
   // @@protoc_insertion_point(serialize_end:nanorpc.RpcObject)
@@ -2749,9 +2749,9 @@ void RpcObject::SerializeWithCachedSizes(
 ::google::protobuf::uint8* RpcObject::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:nanorpc.RpcObject)
-  // optional uint32 object_id = 1;
+  // optional uint64 object_id = 1;
   if (this->object_id() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->object_id(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(1, this->object_id(), target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:nanorpc.RpcObject)
@@ -2762,10 +2762,10 @@ int RpcObject::ByteSize() const {
 // @@protoc_insertion_point(message_byte_size_start:nanorpc.RpcObject)
   int total_size = 0;
 
-  // optional uint32 object_id = 1;
+  // optional uint64 object_id = 1;
   if (this->object_id() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+      ::google::protobuf::internal::WireFormatLite::UInt64Size(
         this->object_id());
   }
 
@@ -2838,15 +2838,15 @@ void RpcObject::InternalSwap(RpcObject* other) {
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // RpcObject
 
-// optional uint32 object_id = 1;
+// optional uint64 object_id = 1;
 void RpcObject::clear_object_id() {
-  object_id_ = 0u;
+  object_id_ = GOOGLE_ULONGLONG(0);
 }
- ::google::protobuf::uint32 RpcObject::object_id() const {
+ ::google::protobuf::uint64 RpcObject::object_id() const {
   // @@protoc_insertion_point(field_get:nanorpc.RpcObject.object_id)
   return object_id_;
 }
- void RpcObject::set_object_id(::google::protobuf::uint32 value) {
+ void RpcObject::set_object_id(::google::protobuf::uint64 value) {
   
   object_id_ = value;
   // @@protoc_insertion_point(field_set:nanorpc.RpcObject.object_id)

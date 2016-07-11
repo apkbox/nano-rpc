@@ -14,6 +14,8 @@ class ServiceInterface;
 // these can be called concurrently from app threads while
 // registering/unregistering event listeners and from incoming messages thread
 // while looking up for event routing.
+// TODO: Make it a template so we can specify locking policy.
+// This is needed for per-context service manager as it does not require locking.
 class ServiceManager {
 public:
   ServiceManager() {}

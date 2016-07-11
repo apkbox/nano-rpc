@@ -51,6 +51,18 @@
     <ClCompile Include="src\nanorpc\service_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\nanorpc\winsock_server_transport_impl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nanorpc\winsock_buffers_impl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nanorpc\server_context.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nanorpc\precompile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\nanorpc\async_callback.hpp">
@@ -80,9 +92,6 @@
     <ClInclude Include="src\nanorpc\winsock_channel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\nanorpc\winsock_channel_impl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\nanorpc\event_service.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -96,6 +105,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\nanorpc\service_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\nanorpc\winsock_channel_impl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\nanorpc\winsock_server_transport_impl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\nanorpc\winsock_buffers_impl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\nanorpc\server_context.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\nanorpc\precompile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

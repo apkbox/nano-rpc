@@ -1,40 +1,24 @@
 #include "nanorpc/winsock_channel.h"
-
 #include "nanorpc/winsock_channel_impl.h"
+#include "nanorpc/winsock_server_transport_impl.h"
 
 namespace nanorpc {
 
-WinsockServerChannel::WinsockServerChannel(const std::string &port)
-    : impl_{ new WinsockChannelImpl{ port } } {}
+WinsockServerTransport::WinsockServerTransport(const std::string &port)
+    : impl_{new WinsockServerTransportImpl{port}} {}
 
-WinsockServerChannel::~WinsockServerChannel() {}
-
-ChannelStatus WinsockServerChannel::GetStatus() const {
-  return impl_->GetStatus();
+bool WinsockServerTransport::IsBound() const {
+  return impl_->IsBound();
 }
 
-bool WinsockServerChannel::Connect() {
-  return impl_->Connect();
+WinsockServerTransport::~WinsockServerTransport() {}
+
+std::unique_ptr<ChannelInterface> WinsockServerTransport::Listen() {
+  return std::unique_ptr<ChannelInterface>{impl_->Listen()};
 }
 
-void WinsockServerChannel::Shutdown() {
-  impl_->Shutdown();
-}
-
-void WinsockServerChannel::Disconnect() {
-  impl_->Disconnect();
-}
-
-std::unique_ptr<ReadBuffer> WinsockServerChannel::Read(size_t bytes) {
-  return impl_->Read(bytes);
-}
-
-std::unique_ptr<WriteBuffer> WinsockServerChannel::CreateWriteBuffer() {
-  return impl_->CreateWriteBuffer();
-}
-
-void WinsockServerChannel::Write(std::unique_ptr<WriteBuffer> buffer) {
-  impl_->Write(std::move(buffer));
+void WinsockServerTransport::Cancel() {
+  impl_->Cancel();
 }
 
 WinsockClientChannel::WinsockClientChannel(const std::string &address,

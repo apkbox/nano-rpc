@@ -84,11 +84,11 @@ void ClientThread() {
 
 void ServerThread() {
   std::cout << "Server thread started." << std::endl;
-  auto channel = std::make_unique<nanorpc::WinsockServerChannel>("50372");
-  nanorpc::Server server(std::move(channel));
+  auto transport = std::make_unique<nanorpc::WinsockServerTransport>("50372");
+  nanorpc::SimpleServer server(std::move(transport));
   std::cout << "Server created." << std::endl;
 
-  OrderDeskImpl order_desk_service(&server);
+  OrderDeskImpl order_desk_service(server.GetEventSource());
   hw::OrderDesk_Stub order_desk_service_stub(&order_desk_service, nullptr);
   server.RegisterService(&order_desk_service_stub);
 

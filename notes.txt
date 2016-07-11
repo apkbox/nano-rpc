@@ -28,6 +28,27 @@ TODO:
   the client to be able to handle reconnection for the case when server already
   dumped the client context due to timeout or some other reasons.
 
+* There are many different transports out there, one discriminator is
+  connection cardinality.
+    - Point-to-point transports (RS232 for example)
+    - One-to-many transports (TCP/IP sockets, pipe)
+  Connection attempt on the server side can result in the following results:
+    - Succeeded
+    - Failed (no more connections available) - further attempt will fail
+    - Failed (temporary issue) - further attempts may succeed.
+  To handle p2p transports make transport to return maximum number of
+  connections it can satisfy - [1..Inf]. This will fit perfectly into server
+  provided restriction on numer of connections like below:
+    while (true) {
+      if (n_conn < min(transport.max_conn(), server.max_conn())) {
+        /* connect */
+        ++n_conn;
+      }
+      else {
+        /* refuse connection */
+      }
+    }
+
 OTHER THOUGHTS:
 * object_id_value and event_name fields included into RpcParameter apparently
   to make object manager and event service looks as any other service and yet

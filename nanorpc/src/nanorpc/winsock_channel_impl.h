@@ -1,6 +1,7 @@
 #if !defined(NANORPC_WINSOCK_CHANNEL_IMPL_H__)
 #define NANORPC_WINSOCK_CHANNEL_IMPL_H__
 
+#include <cassert>
 #include <atomic>
 #include <condition_variable>
 #include <memory>
@@ -18,107 +19,37 @@
 
 namespace nanorpc {
 
-class ScopedHandle {
+class WinsockServerChannelImpl : public ServerChannelInterface {
+  friend class WinsockServerTransportImpl;
 public:
-  ScopedHandle(HANDLE handle) : handle_(handle) {}
-  ScopedHandle() : handle_(nullptr) {}
-  ~ScopedHandle() {  }
+  ~WinsockServerChannelImpl();
 
-  bool IsValid() const { return handle_ != nullptr; }
+  ChannelStatus GetStatus() const override { return status_; }
 
-  HANDLE Get() const { return handle_; }
-  operator HANDLE() const { return handle_; }
+  bool Connect() override { assert(false); return false; }
+  void Shutdown() override;
+  void Disconnect() override;
 
-  HANDLE Take() {
-    HANDLE tmp = handle_;
-    handle_ = nullptr;
-    return tmp;
-  }
+  std::unique_ptr<ReadBuffer> Read(size_t bytes) override;
+  std::unique_ptr<WriteBuffer> CreateWriteBuffer() override;
+  void Write(std::unique_ptr<WriteBuffer> buffer) override;
 
-  void Set(HANDLE handle) {
-    Close();
-    handle_ = handle;
-  }
-
-  void Close() {
-    if (handle_ != NULL)
-      CloseHandle(handle_);
-  }
+  bool Read(void *buffer, size_t buffer_size, size_t *bytes_read);
+  bool Write(const void *buffer, size_t buffer_size);
 
 private:
-  HANDLE handle_;
-};
+  explicit WinsockServerChannelImpl(SOCKET socket);
 
-class WinsockChannelImpl;
+  void Cleanup();
 
-class ReadBufferImpl final : public ReadBuffer {
-  friend class WinsockChannelImpl;
-public:
-  size_t GetSize() const override { return buffer_.size(); }
-  size_t GetRemaining() const override { return ptr_ - &buffer_[0]; }
+  ChannelStatus status_;
 
-  const void *Peek(size_t bytes) const override {
-    if (bytes > buffer_.size())
-      return nullptr;
-    return ptr_;
-  }
+  SOCKET socket_;
 
-  const void *Read(size_t bytes) override {
-    if (((ptr_ - &buffer_[0]) + bytes) > buffer_.size())
-      return nullptr;
-    auto p = ptr_;
-    ptr_ += bytes;
-    return p;
-  }
+  std::mutex read_lock_;
+  std::mutex write_lock_;
 
-  virtual bool Skip(size_t bytes) override { return Read(bytes) != nullptr; }
-
-  void Reset() override { ptr_ = &buffer_[0]; }
-
-private:
-  explicit ReadBufferImpl(size_t buffer_size)
-      : buffer_(buffer_size), ptr_(&buffer_[0]) {}
-
-  std::vector<unsigned char> buffer_;
-  unsigned char *ptr_;
-};
-
-class WriteBufferImpl final : public WriteBuffer {
-  friend class WinsockChannelImpl;
-public:
-  ~WriteBufferImpl();
-
-  size_t GetSize() const override {
-    if (current_->buffer == nullptr)
-      return committed_;
-    return committed_ + (ptr_ - current_->buffer);
-  }
-
-  void *Write(size_t bytes) override;
-
-private:
-  struct Chunk {
-    unsigned char *buffer;
-    size_t size;
-    Chunk *next;
-  };
-
-  static const size_t kDefaultChunkSize = 512;
-
-  explicit WriteBufferImpl() : current_(&head_), ptr_(nullptr), committed_(0) {
-    head_.buffer = nullptr;
-    head_.size = 0;
-    head_.next = nullptr;
-  }
-
-  void AllocBufferIfNeeded(size_t bytes);
-
-  void Flush();
-
-  Chunk head_;
-  Chunk *current_;
-  unsigned char *ptr_;
-  size_t committed_;
+  NANORPC_DISALLOW_COPY_AND_ASSIGN(WinsockServerChannelImpl);
 };
 
 class WinsockChannelImpl {
@@ -162,6 +93,7 @@ private:
 
   NANORPC_DISALLOW_COPY_AND_ASSIGN(WinsockChannelImpl);
 };
+
 
 }  // namespace nanorpc
 

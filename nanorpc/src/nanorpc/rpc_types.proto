@@ -42,7 +42,7 @@ enum RpcStatus {
 message RpcCall {
 	string service = 1;
 	string method = 2;
-	uint32 object_id = 3;
+	uint64 object_id = 3;
 	bytes call_data = 4;
 }
 
@@ -74,7 +74,7 @@ message SInt64Value {
 }
 
 message RpcObject {
-	uint32 object_id = 1;
+	uint64 object_id = 1;
 }
 
 message RpcEvent {
