@@ -31,9 +31,9 @@ public:
   Client(std::unique_ptr<ClientChannelInterface> channel);
   ~Client();
 
-  // Tells to the server that the client is interested in events from
+  // Tells the server that the client is interested in events from
   // specific event interface.
-  // The method creates connection if connection was not created yet.
+  // The method creates a connection when client is not connected yet.
   // Returns true if subscription succeeded, false if server does not
   // support the event interface or connection failed.
   // The method does not create an event thread. The user should either

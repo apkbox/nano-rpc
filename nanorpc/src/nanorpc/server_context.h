@@ -16,6 +16,9 @@ class ServiceInterface;
 class RpcCall;
 class RpcMessage;
 
+// TODO: Rename to ServerThread or ServerCore may be?
+// TODO: May be make it a template with Context argument
+// that is passed to ProcessRequest and then into CallMethod?
 class ServerContext : public EventSourceInterface {
 public:
   ServerContext(std::unique_ptr<ChannelInterface> &channel,
