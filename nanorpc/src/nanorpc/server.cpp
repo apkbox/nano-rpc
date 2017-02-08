@@ -9,7 +9,8 @@ namespace nanorpc {
 
 SimpleServer::SimpleServer(std::unique_ptr<ServerTransport> transport)
     : transport_(std::move(transport)),
-      services_(std::make_shared<ServiceManager>()) {}
+      services_(std::make_shared<ServiceManager>()),
+      event_source_(*this) {}
 
 SimpleServer::~SimpleServer() {
   try {
@@ -59,7 +60,12 @@ void SimpleServer::Shutdown() {
 }
 
 EventSourceInterface *SimpleServer::GetEventSource() {
-  return context_.get();
+  return &event_source_;
+}
+
+bool SimpleServer::EventSource::SendEvent(const RpcCall &call) {
+  bool result = server_.context_->SendEvent(call);
+  return false;
 }
 
 Server::Server(std::unique_ptr<ServerTransport> transport)

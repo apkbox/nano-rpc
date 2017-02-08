@@ -48,9 +48,19 @@ public:
   EventSourceInterface *GetEventSource();
 
 private:
+  class EventSource : public EventSourceInterface {
+  public:
+    EventSource(SimpleServer &server) : server_(server) {}
+    bool SendEvent(const RpcCall &call) override;
+
+  private:
+    SimpleServer &server_;
+  };
+
   std::unique_ptr<ServerTransport> transport_;
   std::shared_ptr<ServiceManager> services_;
   std::unique_ptr<ServerContext> context_;
+  EventSource event_source_;
 
   NANORPC_DISALLOW_COPY_AND_ASSIGN(SimpleServer);
 };
