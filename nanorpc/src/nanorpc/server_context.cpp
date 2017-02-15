@@ -75,6 +75,9 @@ bool ServerContext::SendEvent(const RpcCall &call) {
   event_message.set_id(0);
   *event_message.mutable_call() = call;
 
+  // TODO: This is quite inefficient here, because the call is serialized
+  // for each context (connection). It would be nice to cache the serialized
+  // version and then send it for each context.
   auto wrbuf = channel_->CreateWriteBuffer();
   auto message_size = event_message.ByteSize();
   wrbuf->WriteAs<uint32_t>(message_size);
