@@ -16,6 +16,11 @@ class ServiceInterface;
 class RpcCall;
 class RpcMessage;
 
+class ServerContextInterface {
+public:
+  virtual ~ServerContextInterface() {}
+};
+
 // TODO: Rename to ServerThread or ServerCore may be?
 // TODO: May be make it a template with Context argument
 // that is passed to ProcessRequest and then into CallMethod?
