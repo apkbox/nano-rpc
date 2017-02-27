@@ -18,229 +18,233 @@
 // @@protoc_insertion_point(includes)
 
 namespace codegen_test {
+class StructTypeDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<StructType> {
+} _StructType_default_instance_;
+class EnumType_wrapper__DefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<EnumType_wrapper__> {
+} _EnumType_wrapper___default_instance_;
+class Method_V_biuIUsSfdEAWM_args__DefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<Method_V_biuIUsSfdEAWM_args__> {
+} _Method_V_biuIUsSfdEAWM_args___default_instance_;
+
+namespace protobuf_codegen_5ftest_2eproto {
+
 
 namespace {
 
-const ::google::protobuf::Descriptor* StructType_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  StructType_reflection_ = NULL;
-const ::google::protobuf::Descriptor* EnumType_wrapper___descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  EnumType_wrapper___reflection_ = NULL;
-const ::google::protobuf::Descriptor* Method_V_biuIUsSfdEAWM_args___descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  Method_V_biuIUsSfdEAWM_args___reflection_ = NULL;
-const ::google::protobuf::EnumDescriptor* EnumType_descriptor_ = NULL;
+::google::protobuf::Metadata file_level_metadata[3];
+const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[1];
 
 }  // namespace
 
+const ::google::protobuf::uint32 TableStruct::offsets[] = {
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StructType, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StructType, bool_value_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StructType, int32_value_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StructType, uint32_value_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StructType, int64_value_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StructType, uint64_value_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StructType, sint32_value_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StructType, sint64_value_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StructType, float_value_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StructType, double_value_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StructType, enum_value_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StructType, string_value_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StructType, wstring_value_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EnumType_wrapper__, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EnumType_wrapper__, value_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Method_V_biuIUsSfdEAWM_args__, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Method_V_biuIUsSfdEAWM_args__, bool_value_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Method_V_biuIUsSfdEAWM_args__, int32_value_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Method_V_biuIUsSfdEAWM_args__, uint32_value_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Method_V_biuIUsSfdEAWM_args__, int64_value_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Method_V_biuIUsSfdEAWM_args__, uint64_value_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Method_V_biuIUsSfdEAWM_args__, sint32_value_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Method_V_biuIUsSfdEAWM_args__, sint64_value_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Method_V_biuIUsSfdEAWM_args__, float_value_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Method_V_biuIUsSfdEAWM_args__, double_value_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Method_V_biuIUsSfdEAWM_args__, enum_value_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Method_V_biuIUsSfdEAWM_args__, string_value_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Method_V_biuIUsSfdEAWM_args__, wstring_value_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Method_V_biuIUsSfdEAWM_args__, struct_value_),
+};
 
-void protobuf_AssignDesc_codegen_5ftest_2eproto() {
-  protobuf_AddDesc_codegen_5ftest_2eproto();
-  const ::google::protobuf::FileDescriptor* file =
-    ::google::protobuf::DescriptorPool::generated_pool()->FindFileByName(
-      "codegen_test.proto");
-  GOOGLE_CHECK(file != NULL);
-  StructType_descriptor_ = file->message_type(0);
-  static const int StructType_offsets_[12] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StructType, bool_value_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StructType, int32_value_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StructType, uint32_value_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StructType, int64_value_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StructType, uint64_value_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StructType, sint32_value_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StructType, sint64_value_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StructType, float_value_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StructType, double_value_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StructType, enum_value_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StructType, string_value_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StructType, wstring_value_),
-  };
-  StructType_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      StructType_descriptor_,
-      StructType::default_instance_,
-      StructType_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(StructType),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StructType, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StructType, _is_default_instance_));
-  EnumType_wrapper___descriptor_ = file->message_type(1);
-  static const int EnumType_wrapper___offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EnumType_wrapper__, value_),
-  };
-  EnumType_wrapper___reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      EnumType_wrapper___descriptor_,
-      EnumType_wrapper__::default_instance_,
-      EnumType_wrapper___offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(EnumType_wrapper__),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EnumType_wrapper__, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EnumType_wrapper__, _is_default_instance_));
-  Method_V_biuIUsSfdEAWM_args___descriptor_ = file->message_type(2);
-  static const int Method_V_biuIUsSfdEAWM_args___offsets_[13] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Method_V_biuIUsSfdEAWM_args__, bool_value_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Method_V_biuIUsSfdEAWM_args__, int32_value_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Method_V_biuIUsSfdEAWM_args__, uint32_value_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Method_V_biuIUsSfdEAWM_args__, int64_value_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Method_V_biuIUsSfdEAWM_args__, uint64_value_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Method_V_biuIUsSfdEAWM_args__, sint32_value_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Method_V_biuIUsSfdEAWM_args__, sint64_value_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Method_V_biuIUsSfdEAWM_args__, float_value_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Method_V_biuIUsSfdEAWM_args__, double_value_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Method_V_biuIUsSfdEAWM_args__, enum_value_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Method_V_biuIUsSfdEAWM_args__, string_value_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Method_V_biuIUsSfdEAWM_args__, wstring_value_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Method_V_biuIUsSfdEAWM_args__, struct_value_),
-  };
-  Method_V_biuIUsSfdEAWM_args___reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      Method_V_biuIUsSfdEAWM_args___descriptor_,
-      Method_V_biuIUsSfdEAWM_args__::default_instance_,
-      Method_V_biuIUsSfdEAWM_args___offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(Method_V_biuIUsSfdEAWM_args__),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Method_V_biuIUsSfdEAWM_args__, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Method_V_biuIUsSfdEAWM_args__, _is_default_instance_));
-  EnumType_descriptor_ = file->enum_type(0);
-}
+static const ::google::protobuf::internal::MigrationSchema schemas[] = {
+  { 0, -1, sizeof(StructType)},
+  { 16, -1, sizeof(EnumType_wrapper__)},
+  { 21, -1, sizeof(Method_V_biuIUsSfdEAWM_args__)},
+};
+
+static ::google::protobuf::Message const * const file_default_instances[] = {
+  reinterpret_cast<const ::google::protobuf::Message*>(&_StructType_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_EnumType_wrapper___default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_Method_V_biuIUsSfdEAWM_args___default_instance_),
+};
 
 namespace {
 
-GOOGLE_PROTOBUF_DECLARE_ONCE(protobuf_AssignDescriptors_once_);
-inline void protobuf_AssignDescriptorsOnce() {
-  ::google::protobuf::GoogleOnceInit(&protobuf_AssignDescriptors_once_,
-                 &protobuf_AssignDesc_codegen_5ftest_2eproto);
+void protobuf_AssignDescriptors() {
+  AddDescriptors();
+  ::google::protobuf::MessageFactory* factory = NULL;
+  AssignDescriptors(
+      "codegen_test.proto", schemas, file_default_instances, TableStruct::offsets, factory,
+      file_level_metadata, file_level_enum_descriptors, NULL);
 }
 
+void protobuf_AssignDescriptorsOnce() {
+  static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
+  ::google::protobuf::GoogleOnceInit(&once, &protobuf_AssignDescriptors);
+}
+
+void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      StructType_descriptor_, &StructType::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      EnumType_wrapper___descriptor_, &EnumType_wrapper__::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      Method_V_biuIUsSfdEAWM_args___descriptor_, &Method_V_biuIUsSfdEAWM_args__::default_instance());
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 3);
 }
 
 }  // namespace
 
-void protobuf_ShutdownFile_codegen_5ftest_2eproto() {
-  delete StructType::default_instance_;
-  delete StructType_reflection_;
-  delete EnumType_wrapper__::default_instance_;
-  delete EnumType_wrapper___reflection_;
-  delete Method_V_biuIUsSfdEAWM_args__::default_instance_;
-  delete Method_V_biuIUsSfdEAWM_args___reflection_;
+void TableStruct::Shutdown() {
+  _StructType_default_instance_.Shutdown();
+  delete file_level_metadata[0].reflection;
+  _EnumType_wrapper___default_instance_.Shutdown();
+  delete file_level_metadata[1].reflection;
+  _Method_V_biuIUsSfdEAWM_args___default_instance_.Shutdown();
+  delete file_level_metadata[2].reflection;
 }
 
-void protobuf_AddDesc_codegen_5ftest_2eproto() {
-  static bool already_here = false;
-  if (already_here) return;
-  already_here = true;
+void TableStruct::InitDefaultsImpl() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
-  ::google::protobuf::protobuf_AddDesc_google_2fprotobuf_2fwrappers_2eproto();
-  ::nanorpc::protobuf_AddDesc_nanorpc_2frpc_5ftypes_2eproto();
-  ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\022codegen_test.proto\022\014codegen_test\032\036goog"
-    "le/protobuf/wrappers.proto\032\027nanorpc/rpc_"
-    "types.proto\"\246\002\n\nStructType\022\022\n\nbool_value"
-    "\030\001 \001(\010\022\023\n\013int32_value\030\002 \001(\005\022\024\n\014uint32_va"
-    "lue\030\003 \001(\r\022\023\n\013int64_value\030\004 \001(\003\022\024\n\014uint64"
-    "_value\030\005 \001(\004\022\024\n\014sint32_value\030\006 \001(\021\022\024\n\014si"
-    "nt64_value\030\007 \001(\022\022\023\n\013float_value\030\010 \001(\002\022\024\n"
-    "\014double_value\030\t \001(\001\022*\n\nenum_value\030\n \001(\0162"
-    "\026.codegen_test.EnumType\022\024\n\014string_value\030"
-    "\013 \001(\t\022\025\n\rwstring_value\030\014 \001(\t\"A\n\022EnumType"
-    "_wrapper__\022%\n\005value\030\001 \001(\0162\026.codegen_test"
-    ".EnumType:\004\220\371+\001\"\357\002\n\035Method_V_biuIUsSfdEA"
-    "WM_args__\022\022\n\nbool_value\030\001 \001(\010\022\023\n\013int32_v"
-    "alue\030\002 \001(\005\022\024\n\014uint32_value\030\003 \001(\r\022\023\n\013int6"
-    "4_value\030\004 \001(\003\022\024\n\014uint64_value\030\005 \001(\004\022\024\n\014s"
-    "int32_value\030\006 \001(\021\022\024\n\014sint64_value\030\007 \001(\022\022"
-    "\023\n\013float_value\030\010 \001(\002\022\024\n\014double_value\030\t \001"
-    "(\001\022*\n\nenum_value\030\n \001(\0162\026.codegen_test.En"
-    "umType\022\024\n\014string_value\030\013 \001(\t\022\025\n\rwstring_"
-    "value\030\014 \001(\t\022.\n\014struct_value\030\r \001(\0132\030.code"
-    "gen_test.StructType:\004\210\371+\001*Z\n\010EnumType\022\016\n"
-    "\nEnumValue0\020\000\022\016\n\nEnumValue1\020\001\022\016\n\nEnumVal"
-    "ue2\020\002\022\016\n\nEnumValue3\020\003\022\016\n\nEnumValue4\020\0042\367\r"
-    "\n\023TestServiceInteface\0220\n\nMethod_V_V\022\020.na"
-    "norpc.RpcVoid\032\020.nanorpc.RpcVoid\022:\n\nMetho"
-    "d_V_b\022\032.google.protobuf.BoolValue\032\020.nano"
-    "rpc.RpcVoid\022;\n\nMethod_V_i\022\033.google.proto"
-    "buf.Int32Value\032\020.nanorpc.RpcVoid\022<\n\nMeth"
-    "od_V_u\022\034.google.protobuf.UInt32Value\032\020.n"
-    "anorpc.RpcVoid\0224\n\nMethod_V_s\022\024.nanorpc.S"
-    "Int32Value\032\020.nanorpc.RpcVoid\022;\n\nMethod_V"
-    "_I\022\033.google.protobuf.Int64Value\032\020.nanorp"
-    "c.RpcVoid\022<\n\nMethod_V_U\022\034.google.protobu"
-    "f.UInt64Value\032\020.nanorpc.RpcVoid\0224\n\nMetho"
-    "d_V_S\022\024.nanorpc.SInt64Value\032\020.nanorpc.Rp"
-    "cVoid\022;\n\nMethod_V_f\022\033.google.protobuf.Fl"
-    "oatValue\032\020.nanorpc.RpcVoid\022<\n\nMethod_V_d"
-    "\022\034.google.protobuf.DoubleValue\032\020.nanorpc"
-    ".RpcVoid\022@\n\nMethod_V_E\022 .codegen_test.En"
-    "umType_wrapper__\032\020.nanorpc.RpcVoid\022<\n\nMe"
-    "thod_V_A\022\034.google.protobuf.StringValue\032\020"
-    ".nanorpc.RpcVoid\0228\n\nMethod_V_W\022\030.nanorpc"
-    ".WideStringValue\032\020.nanorpc.RpcVoid\0228\n\nMe"
-    "thod_V_M\022\030.codegen_test.StructType\032\020.nan"
-    "orpc.RpcVoid\022:\n\nMethod_b_V\022\020.nanorpc.Rpc"
-    "Void\032\032.google.protobuf.BoolValue\022;\n\nMeth"
-    "od_i_V\022\020.nanorpc.RpcVoid\032\033.google.protob"
-    "uf.Int32Value\022<\n\nMethod_u_V\022\020.nanorpc.Rp"
-    "cVoid\032\034.google.protobuf.UInt32Value\0224\n\nM"
-    "ethod_s_V\022\020.nanorpc.RpcVoid\032\024.nanorpc.SI"
-    "nt32Value\022;\n\nMethod_I_V\022\020.nanorpc.RpcVoi"
-    "d\032\033.google.protobuf.Int64Value\022<\n\nMethod"
-    "_U_V\022\020.nanorpc.RpcVoid\032\034.google.protobuf"
-    ".UInt64Value\0224\n\nMethod_S_V\022\020.nanorpc.Rpc"
-    "Void\032\024.nanorpc.SInt64Value\022;\n\nMethod_f_V"
-    "\022\020.nanorpc.RpcVoid\032\033.google.protobuf.Flo"
-    "atValue\022<\n\nMethod_d_V\022\020.nanorpc.RpcVoid\032"
-    "\034.google.protobuf.DoubleValue\022@\n\nMethod_"
-    "E_V\022\020.nanorpc.RpcVoid\032 .codegen_test.Enu"
-    "mType_wrapper__\022<\n\nMethod_A_V\022\020.nanorpc."
-    "RpcVoid\032\034.google.protobuf.StringValue\0228\n"
-    "\nMethod_W_V\022\020.nanorpc.RpcVoid\032\030.nanorpc."
-    "WideStringValue\0228\n\nMethod_M_V\022\020.nanorpc."
-    "RpcVoid\032\030.codegen_test.StructType\022W\n\026Met"
-    "hod_V_biuIUsSfdEAWM\022+.codegen_test.Metho"
-    "d_V_biuIUsSfdEAWM_args__\032\020.nanorpc.RpcVo"
-    "id\022;\n\017AsyncMethod_V_V\022\020.nanorpc.RpcVoid\032"
-    "\020.nanorpc.RpcVoid\"\004\220\222,\001b\006proto3", 2711);
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
-    "codegen_test.proto", &protobuf_RegisterTypes);
-  StructType::default_instance_ = new StructType();
-  EnumType_wrapper__::default_instance_ = new EnumType_wrapper__();
-  Method_V_biuIUsSfdEAWM_args__::default_instance_ = new Method_V_biuIUsSfdEAWM_args__();
-  StructType::default_instance_->InitAsDefaultInstance();
-  EnumType_wrapper__::default_instance_->InitAsDefaultInstance();
-  Method_V_biuIUsSfdEAWM_args__::default_instance_->InitAsDefaultInstance();
-  ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_codegen_5ftest_2eproto);
+  ::google::protobuf::internal::InitProtobufDefaults();
+  ::google::protobuf::protobuf_google_2fprotobuf_2fempty_2eproto::InitDefaults();
+  ::google::protobuf::protobuf_google_2fprotobuf_2fwrappers_2eproto::InitDefaults();
+  ::nanorpc::protobuf_nanorpc_2frpc_5ftypes_2eproto::InitDefaults();
+  _StructType_default_instance_.DefaultConstruct();
+  _EnumType_wrapper___default_instance_.DefaultConstruct();
+  _Method_V_biuIUsSfdEAWM_args___default_instance_.DefaultConstruct();
+  _Method_V_biuIUsSfdEAWM_args___default_instance_.get_mutable()->struct_value_ = const_cast< ::codegen_test::StructType*>(
+      ::codegen_test::StructType::internal_default_instance());
 }
 
+void InitDefaults() {
+  static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
+  ::google::protobuf::GoogleOnceInit(&once, &TableStruct::InitDefaultsImpl);
+}
+void AddDescriptorsImpl() {
+  InitDefaults();
+  static const char descriptor[] = {
+      "\n\022codegen_test.proto\022\014codegen_test\032\033goog"
+      "le/protobuf/empty.proto\032\036google/protobuf"
+      "/wrappers.proto\032\027nanorpc/rpc_types.proto"
+      "\"\246\002\n\nStructType\022\022\n\nbool_value\030\001 \001(\010\022\023\n\013i"
+      "nt32_value\030\002 \001(\005\022\024\n\014uint32_value\030\003 \001(\r\022\023"
+      "\n\013int64_value\030\004 \001(\003\022\024\n\014uint64_value\030\005 \001("
+      "\004\022\024\n\014sint32_value\030\006 \001(\021\022\024\n\014sint64_value\030"
+      "\007 \001(\022\022\023\n\013float_value\030\010 \001(\002\022\024\n\014double_val"
+      "ue\030\t \001(\001\022*\n\nenum_value\030\n \001(\0162\026.codegen_t"
+      "est.EnumType\022\024\n\014string_value\030\013 \001(\t\022\025\n\rws"
+      "tring_value\030\014 \001(\t\"A\n\022EnumType_wrapper__\022"
+      "%\n\005value\030\001 \001(\0162\026.codegen_test.EnumType:\004"
+      "\220\371+\001\"\357\002\n\035Method_V_biuIUsSfdEAWM_args__\022\022"
+      "\n\nbool_value\030\001 \001(\010\022\023\n\013int32_value\030\002 \001(\005\022"
+      "\024\n\014uint32_value\030\003 \001(\r\022\023\n\013int64_value\030\004 \001"
+      "(\003\022\024\n\014uint64_value\030\005 \001(\004\022\024\n\014sint32_value"
+      "\030\006 \001(\021\022\024\n\014sint64_value\030\007 \001(\022\022\023\n\013float_va"
+      "lue\030\010 \001(\002\022\024\n\014double_value\030\t \001(\001\022*\n\nenum_"
+      "value\030\n \001(\0162\026.codegen_test.EnumType\022\024\n\014s"
+      "tring_value\030\013 \001(\t\022\025\n\rwstring_value\030\014 \001(\t"
+      "\022.\n\014struct_value\030\r \001(\0132\030.codegen_test.St"
+      "ructType:\004\210\371+\001*Z\n\010EnumType\022\016\n\nEnumValue0"
+      "\020\000\022\016\n\nEnumValue1\020\001\022\016\n\nEnumValue2\020\002\022\016\n\nEn"
+      "umValue3\020\003\022\016\n\nEnumValue4\020\0042\261\017\n\023TestServi"
+      "ceInteface\022<\n\nMethod_V_V\022\026.google.protob"
+      "uf.Empty\032\026.google.protobuf.Empty\022@\n\nMeth"
+      "od_V_b\022\032.google.protobuf.BoolValue\032\026.goo"
+      "gle.protobuf.Empty\022A\n\nMethod_V_i\022\033.googl"
+      "e.protobuf.Int32Value\032\026.google.protobuf."
+      "Empty\022B\n\nMethod_V_u\022\034.google.protobuf.UI"
+      "nt32Value\032\026.google.protobuf.Empty\022:\n\nMet"
+      "hod_V_s\022\024.nanorpc.SInt32Value\032\026.google.p"
+      "rotobuf.Empty\022A\n\nMethod_V_I\022\033.google.pro"
+      "tobuf.Int64Value\032\026.google.protobuf.Empty"
+      "\022B\n\nMethod_V_U\022\034.google.protobuf.UInt64V"
+      "alue\032\026.google.protobuf.Empty\022:\n\nMethod_V"
+      "_S\022\024.nanorpc.SInt64Value\032\026.google.protob"
+      "uf.Empty\022A\n\nMethod_V_f\022\033.google.protobuf"
+      ".FloatValue\032\026.google.protobuf.Empty\022B\n\nM"
+      "ethod_V_d\022\034.google.protobuf.DoubleValue\032"
+      "\026.google.protobuf.Empty\022F\n\nMethod_V_E\022 ."
+      "codegen_test.EnumType_wrapper__\032\026.google"
+      ".protobuf.Empty\022B\n\nMethod_V_A\022\034.google.p"
+      "rotobuf.StringValue\032\026.google.protobuf.Em"
+      "pty\022>\n\nMethod_V_W\022\030.nanorpc.WideStringVa"
+      "lue\032\026.google.protobuf.Empty\022>\n\nMethod_V_"
+      "M\022\030.codegen_test.StructType\032\026.google.pro"
+      "tobuf.Empty\022@\n\nMethod_b_V\022\026.google.proto"
+      "buf.Empty\032\032.google.protobuf.BoolValue\022A\n"
+      "\nMethod_i_V\022\026.google.protobuf.Empty\032\033.go"
+      "ogle.protobuf.Int32Value\022B\n\nMethod_u_V\022\026"
+      ".google.protobuf.Empty\032\034.google.protobuf"
+      ".UInt32Value\022:\n\nMethod_s_V\022\026.google.prot"
+      "obuf.Empty\032\024.nanorpc.SInt32Value\022A\n\nMeth"
+      "od_I_V\022\026.google.protobuf.Empty\032\033.google."
+      "protobuf.Int64Value\022B\n\nMethod_U_V\022\026.goog"
+      "le.protobuf.Empty\032\034.google.protobuf.UInt"
+      "64Value\022:\n\nMethod_S_V\022\026.google.protobuf."
+      "Empty\032\024.nanorpc.SInt64Value\022A\n\nMethod_f_"
+      "V\022\026.google.protobuf.Empty\032\033.google.proto"
+      "buf.FloatValue\022B\n\nMethod_d_V\022\026.google.pr"
+      "otobuf.Empty\032\034.google.protobuf.DoubleVal"
+      "ue\022F\n\nMethod_E_V\022\026.google.protobuf.Empty"
+      "\032 .codegen_test.EnumType_wrapper__\022B\n\nMe"
+      "thod_A_V\022\026.google.protobuf.Empty\032\034.googl"
+      "e.protobuf.StringValue\022>\n\nMethod_W_V\022\026.g"
+      "oogle.protobuf.Empty\032\030.nanorpc.WideStrin"
+      "gValue\022>\n\nMethod_M_V\022\026.google.protobuf.E"
+      "mpty\032\030.codegen_test.StructType\022]\n\026Method"
+      "_V_biuIUsSfdEAWM\022+.codegen_test.Method_V"
+      "_biuIUsSfdEAWM_args__\032\026.google.protobuf."
+      "Empty\022G\n\017AsyncMethod_V_V\022\026.google.protob"
+      "uf.Empty\032\026.google.protobuf.Empty\"\004\220\222,\001b\006"
+      "proto3"
+  };
+  ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
+      descriptor, 2926);
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
+    "codegen_test.proto", &protobuf_RegisterTypes);
+  ::google::protobuf::protobuf_google_2fprotobuf_2fempty_2eproto::AddDescriptors();
+  ::google::protobuf::protobuf_google_2fprotobuf_2fwrappers_2eproto::AddDescriptors();
+  ::nanorpc::protobuf_nanorpc_2frpc_5ftypes_2eproto::AddDescriptors();
+  ::google::protobuf::internal::OnShutdown(&TableStruct::Shutdown);
+}
+
+void AddDescriptors() {
+  static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
+  ::google::protobuf::GoogleOnceInit(&once, &AddDescriptorsImpl);
+}
 // Force AddDescriptors() to be called at static initialization time.
-struct StaticDescriptorInitializer_codegen_5ftest_2eproto {
-  StaticDescriptorInitializer_codegen_5ftest_2eproto() {
-    protobuf_AddDesc_codegen_5ftest_2eproto();
+struct StaticDescriptorInitializer {
+  StaticDescriptorInitializer() {
+    AddDescriptors();
   }
-} static_descriptor_initializer_codegen_5ftest_2eproto_;
+} static_descriptor_initializer;
+
+}  // namespace protobuf_codegen_5ftest_2eproto
+
 const ::google::protobuf::EnumDescriptor* EnumType_descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return EnumType_descriptor_;
+  protobuf_codegen_5ftest_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_codegen_5ftest_2eproto::file_level_enum_descriptors[0];
 }
 bool EnumType_IsValid(int value) {
-  switch(value) {
+  switch (value) {
     case 0:
     case 1:
     case 2:
@@ -251,16 +255,6 @@ bool EnumType_IsValid(int value) {
       return false;
   }
 }
-
-
-namespace {
-
-static void MergeFromFail(int line) GOOGLE_ATTRIBUTE_COLD;
-static void MergeFromFail(int line) {
-  GOOGLE_CHECK(false) << __FILE__ << ":" << line;
-}
-
-}  // namespace
 
 
 // ===================================================================
@@ -282,38 +276,37 @@ const int StructType::kWstringValueFieldNumber;
 
 StructType::StructType()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_codegen_5ftest_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:codegen_test.StructType)
 }
-
-void StructType::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 StructType::StructType(const StructType& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  string_value_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.string_value().size() > 0) {
+    string_value_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.string_value_);
+  }
+  wstring_value_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.wstring_value().size() > 0) {
+    wstring_value_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.wstring_value_);
+  }
+  ::memcpy(&bool_value_, &from.bool_value_,
+    reinterpret_cast<char*>(&enum_value_) -
+    reinterpret_cast<char*>(&bool_value_) + sizeof(enum_value_));
   // @@protoc_insertion_point(copy_constructor:codegen_test.StructType)
 }
 
 void StructType::SharedCtor() {
-    _is_default_instance_ = false;
-  ::google::protobuf::internal::GetEmptyString();
-  _cached_size_ = 0;
-  bool_value_ = false;
-  int32_value_ = 0;
-  uint32_value_ = 0u;
-  int64_value_ = GOOGLE_LONGLONG(0);
-  uint64_value_ = GOOGLE_ULONGLONG(0);
-  sint32_value_ = 0;
-  sint64_value_ = GOOGLE_LONGLONG(0);
-  float_value_ = 0;
-  double_value_ = 0;
-  enum_value_ = 0;
   string_value_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   wstring_value_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ::memset(&bool_value_, 0, reinterpret_cast<char*>(&enum_value_) -
+    reinterpret_cast<char*>(&bool_value_) + sizeof(enum_value_));
+  _cached_size_ = 0;
 }
 
 StructType::~StructType() {
@@ -324,8 +317,6 @@ StructType::~StructType() {
 void StructType::SharedDtor() {
   string_value_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   wstring_value_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (this != default_instance_) {
-  }
 }
 
 void StructType::SetCachedSize(int size) const {
@@ -334,16 +325,14 @@ void StructType::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* StructType::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return StructType_descriptor_;
+  protobuf_codegen_5ftest_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_codegen_5ftest_2eproto::file_level_metadata[0].descriptor;
 }
 
 const StructType& StructType::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_codegen_5ftest_2eproto();
-  return *default_instance_;
+  protobuf_codegen_5ftest_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-StructType* StructType::default_instance_ = NULL;
 
 StructType* StructType::New(::google::protobuf::Arena* arena) const {
   StructType* n = new StructType;
@@ -355,32 +344,10 @@ StructType* StructType::New(::google::protobuf::Arena* arena) const {
 
 void StructType::Clear() {
 // @@protoc_insertion_point(message_clear_start:codegen_test.StructType)
-#if defined(__clang__)
-#define ZR_HELPER_(f) \
-  _Pragma("clang diagnostic push") \
-  _Pragma("clang diagnostic ignored \"-Winvalid-offsetof\"") \
-  __builtin_offsetof(StructType, f) \
-  _Pragma("clang diagnostic pop")
-#else
-#define ZR_HELPER_(f) reinterpret_cast<char*>(\
-  &reinterpret_cast<StructType*>(16)->f)
-#endif
-
-#define ZR_(first, last) do {\
-  ::memset(&first, 0,\
-           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
-} while (0)
-
-  ZR_(bool_value_, sint64_value_);
-  float_value_ = 0;
-  double_value_ = 0;
-  enum_value_ = 0;
   string_value_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   wstring_value_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-
-#undef ZR_HELPER_
-#undef ZR_
-
+  ::memset(&bool_value_, 0, reinterpret_cast<char*>(&enum_value_) -
+    reinterpret_cast<char*>(&bool_value_) + sizeof(enum_value_));
 }
 
 bool StructType::MergePartialFromCodedStream(
@@ -389,148 +356,130 @@ bool StructType::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:codegen_test.StructType)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional bool bool_value = 1;
+      // bool bool_value = 1;
       case 1: {
-        if (tag == 8) {
+        if (tag == 8u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
                  input, &bool_value_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(16)) goto parse_int32_value;
         break;
       }
 
-      // optional int32 int32_value = 2;
+      // int32 int32_value = 2;
       case 2: {
-        if (tag == 16) {
-         parse_int32_value:
+        if (tag == 16u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &int32_value_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(24)) goto parse_uint32_value;
         break;
       }
 
-      // optional uint32 uint32_value = 3;
+      // uint32 uint32_value = 3;
       case 3: {
-        if (tag == 24) {
-         parse_uint32_value:
+        if (tag == 24u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
                  input, &uint32_value_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(32)) goto parse_int64_value;
         break;
       }
 
-      // optional int64 int64_value = 4;
+      // int64 int64_value = 4;
       case 4: {
-        if (tag == 32) {
-         parse_int64_value:
+        if (tag == 32u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &int64_value_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(40)) goto parse_uint64_value;
         break;
       }
 
-      // optional uint64 uint64_value = 5;
+      // uint64 uint64_value = 5;
       case 5: {
-        if (tag == 40) {
-         parse_uint64_value:
+        if (tag == 40u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
                  input, &uint64_value_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(48)) goto parse_sint32_value;
         break;
       }
 
-      // optional sint32 sint32_value = 6;
+      // sint32 sint32_value = 6;
       case 6: {
-        if (tag == 48) {
-         parse_sint32_value:
+        if (tag == 48u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_SINT32>(
                  input, &sint32_value_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(56)) goto parse_sint64_value;
         break;
       }
 
-      // optional sint64 sint64_value = 7;
+      // sint64 sint64_value = 7;
       case 7: {
-        if (tag == 56) {
-         parse_sint64_value:
+        if (tag == 56u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_SINT64>(
                  input, &sint64_value_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(69)) goto parse_float_value;
         break;
       }
 
-      // optional float float_value = 8;
+      // float float_value = 8;
       case 8: {
-        if (tag == 69) {
-         parse_float_value:
+        if (tag == 69u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
                  input, &float_value_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(73)) goto parse_double_value;
         break;
       }
 
-      // optional double double_value = 9;
+      // double double_value = 9;
       case 9: {
-        if (tag == 73) {
-         parse_double_value:
+        if (tag == 73u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
                  input, &double_value_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(80)) goto parse_enum_value;
         break;
       }
 
-      // optional .codegen_test.EnumType enum_value = 10;
+      // .codegen_test.EnumType enum_value = 10;
       case 10: {
-        if (tag == 80) {
-         parse_enum_value:
+        if (tag == 80u) {
           int value;
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
@@ -539,14 +488,12 @@ bool StructType::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(90)) goto parse_string_value;
         break;
       }
 
-      // optional string string_value = 11;
+      // string string_value = 11;
       case 11: {
-        if (tag == 90) {
-         parse_string_value:
+        if (tag == 90u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_string_value()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -556,14 +503,12 @@ bool StructType::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(98)) goto parse_wstring_value;
         break;
       }
 
-      // optional string wstring_value = 12;
+      // string wstring_value = 12;
       case 12: {
-        if (tag == 98) {
-         parse_wstring_value:
+        if (tag == 98u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_wstring_value()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -573,7 +518,6 @@ bool StructType::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -601,58 +545,58 @@ failure:
 void StructType::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:codegen_test.StructType)
-  // optional bool bool_value = 1;
+  // bool bool_value = 1;
   if (this->bool_value() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(1, this->bool_value(), output);
   }
 
-  // optional int32 int32_value = 2;
+  // int32 int32_value = 2;
   if (this->int32_value() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->int32_value(), output);
   }
 
-  // optional uint32 uint32_value = 3;
+  // uint32 uint32_value = 3;
   if (this->uint32_value() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(3, this->uint32_value(), output);
   }
 
-  // optional int64 int64_value = 4;
+  // int64 int64_value = 4;
   if (this->int64_value() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt64(4, this->int64_value(), output);
   }
 
-  // optional uint64 uint64_value = 5;
+  // uint64 uint64_value = 5;
   if (this->uint64_value() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt64(5, this->uint64_value(), output);
   }
 
-  // optional sint32 sint32_value = 6;
+  // sint32 sint32_value = 6;
   if (this->sint32_value() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteSInt32(6, this->sint32_value(), output);
   }
 
-  // optional sint64 sint64_value = 7;
+  // sint64 sint64_value = 7;
   if (this->sint64_value() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteSInt64(7, this->sint64_value(), output);
   }
 
-  // optional float float_value = 8;
+  // float float_value = 8;
   if (this->float_value() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteFloat(8, this->float_value(), output);
   }
 
-  // optional double double_value = 9;
+  // double double_value = 9;
   if (this->double_value() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteDouble(9, this->double_value(), output);
   }
 
-  // optional .codegen_test.EnumType enum_value = 10;
+  // .codegen_test.EnumType enum_value = 10;
   if (this->enum_value() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       10, this->enum_value(), output);
   }
 
-  // optional string string_value = 11;
+  // string string_value = 11;
   if (this->string_value().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->string_value().data(), this->string_value().length(),
@@ -662,7 +606,7 @@ void StructType::SerializeWithCachedSizes(
       11, this->string_value(), output);
   }
 
-  // optional string wstring_value = 12;
+  // string wstring_value = 12;
   if (this->wstring_value().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->wstring_value().data(), this->wstring_value().length(),
@@ -675,61 +619,62 @@ void StructType::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:codegen_test.StructType)
 }
 
-::google::protobuf::uint8* StructType::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* StructType::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:codegen_test.StructType)
-  // optional bool bool_value = 1;
+  // bool bool_value = 1;
   if (this->bool_value() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(1, this->bool_value(), target);
   }
 
-  // optional int32 int32_value = 2;
+  // int32 int32_value = 2;
   if (this->int32_value() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->int32_value(), target);
   }
 
-  // optional uint32 uint32_value = 3;
+  // uint32 uint32_value = 3;
   if (this->uint32_value() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(3, this->uint32_value(), target);
   }
 
-  // optional int64 int64_value = 4;
+  // int64 int64_value = 4;
   if (this->int64_value() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(4, this->int64_value(), target);
   }
 
-  // optional uint64 uint64_value = 5;
+  // uint64 uint64_value = 5;
   if (this->uint64_value() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(5, this->uint64_value(), target);
   }
 
-  // optional sint32 sint32_value = 6;
+  // sint32 sint32_value = 6;
   if (this->sint32_value() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteSInt32ToArray(6, this->sint32_value(), target);
   }
 
-  // optional sint64 sint64_value = 7;
+  // sint64 sint64_value = 7;
   if (this->sint64_value() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(7, this->sint64_value(), target);
   }
 
-  // optional float float_value = 8;
+  // float float_value = 8;
   if (this->float_value() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(8, this->float_value(), target);
   }
 
-  // optional double double_value = 9;
+  // double double_value = 9;
   if (this->double_value() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(9, this->double_value(), target);
   }
 
-  // optional .codegen_test.EnumType enum_value = 10;
+  // .codegen_test.EnumType enum_value = 10;
   if (this->enum_value() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       10, this->enum_value(), target);
   }
 
-  // optional string string_value = 11;
+  // string string_value = 11;
   if (this->string_value().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->string_value().data(), this->string_value().length(),
@@ -740,7 +685,7 @@ void StructType::SerializeWithCachedSizes(
         11, this->string_value(), target);
   }
 
-  // optional string wstring_value = 12;
+  // string wstring_value = 12;
   if (this->wstring_value().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->wstring_value().data(), this->wstring_value().length(),
@@ -755,97 +700,98 @@ void StructType::SerializeWithCachedSizes(
   return target;
 }
 
-int StructType::ByteSize() const {
+size_t StructType::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:codegen_test.StructType)
-  int total_size = 0;
+  size_t total_size = 0;
 
-  // optional bool bool_value = 1;
-  if (this->bool_value() != 0) {
-    total_size += 1 + 1;
-  }
-
-  // optional int32 int32_value = 2;
-  if (this->int32_value() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->int32_value());
-  }
-
-  // optional uint32 uint32_value = 3;
-  if (this->uint32_value() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::UInt32Size(
-        this->uint32_value());
-  }
-
-  // optional int64 int64_value = 4;
-  if (this->int64_value() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int64Size(
-        this->int64_value());
-  }
-
-  // optional uint64 uint64_value = 5;
-  if (this->uint64_value() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::UInt64Size(
-        this->uint64_value());
-  }
-
-  // optional sint32 sint32_value = 6;
-  if (this->sint32_value() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::SInt32Size(
-        this->sint32_value());
-  }
-
-  // optional sint64 sint64_value = 7;
-  if (this->sint64_value() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::SInt64Size(
-        this->sint64_value());
-  }
-
-  // optional float float_value = 8;
-  if (this->float_value() != 0) {
-    total_size += 1 + 4;
-  }
-
-  // optional double double_value = 9;
-  if (this->double_value() != 0) {
-    total_size += 1 + 8;
-  }
-
-  // optional .codegen_test.EnumType enum_value = 10;
-  if (this->enum_value() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::EnumSize(this->enum_value());
-  }
-
-  // optional string string_value = 11;
+  // string string_value = 11;
   if (this->string_value().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->string_value());
   }
 
-  // optional string wstring_value = 12;
+  // string wstring_value = 12;
   if (this->wstring_value().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->wstring_value());
   }
 
+  // bool bool_value = 1;
+  if (this->bool_value() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // int32 int32_value = 2;
+  if (this->int32_value() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->int32_value());
+  }
+
+  // int64 int64_value = 4;
+  if (this->int64_value() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
+        this->int64_value());
+  }
+
+  // uint32 uint32_value = 3;
+  if (this->uint32_value() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->uint32_value());
+  }
+
+  // sint32 sint32_value = 6;
+  if (this->sint32_value() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::SInt32Size(
+        this->sint32_value());
+  }
+
+  // uint64 uint64_value = 5;
+  if (this->uint64_value() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt64Size(
+        this->uint64_value());
+  }
+
+  // sint64 sint64_value = 7;
+  if (this->sint64_value() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::SInt64Size(
+        this->sint64_value());
+  }
+
+  // double double_value = 9;
+  if (this->double_value() != 0) {
+    total_size += 1 + 8;
+  }
+
+  // float float_value = 8;
+  if (this->float_value() != 0) {
+    total_size += 1 + 4;
+  }
+
+  // .codegen_test.EnumType enum_value = 10;
+  if (this->enum_value() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::EnumSize(this->enum_value());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void StructType::MergeFrom(const ::google::protobuf::Message& from) {
 // @@protoc_insertion_point(generalized_merge_from_start:codegen_test.StructType)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const StructType* source = 
+  GOOGLE_DCHECK_NE(&from, this);
+  const StructType* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const StructType>(
           &from);
   if (source == NULL) {
@@ -859,37 +805,8 @@ void StructType::MergeFrom(const ::google::protobuf::Message& from) {
 
 void StructType::MergeFrom(const StructType& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:codegen_test.StructType)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  if (from.bool_value() != 0) {
-    set_bool_value(from.bool_value());
-  }
-  if (from.int32_value() != 0) {
-    set_int32_value(from.int32_value());
-  }
-  if (from.uint32_value() != 0) {
-    set_uint32_value(from.uint32_value());
-  }
-  if (from.int64_value() != 0) {
-    set_int64_value(from.int64_value());
-  }
-  if (from.uint64_value() != 0) {
-    set_uint64_value(from.uint64_value());
-  }
-  if (from.sint32_value() != 0) {
-    set_sint32_value(from.sint32_value());
-  }
-  if (from.sint64_value() != 0) {
-    set_sint64_value(from.sint64_value());
-  }
-  if (from.float_value() != 0) {
-    set_float_value(from.float_value());
-  }
-  if (from.double_value() != 0) {
-    set_double_value(from.double_value());
-  }
-  if (from.enum_value() != 0) {
-    set_enum_value(from.enum_value());
-  }
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from.string_value().size() > 0) {
 
     string_value_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.string_value_);
@@ -897,6 +814,36 @@ void StructType::MergeFrom(const StructType& from) {
   if (from.wstring_value().size() > 0) {
 
     wstring_value_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.wstring_value_);
+  }
+  if (from.bool_value() != 0) {
+    set_bool_value(from.bool_value());
+  }
+  if (from.int32_value() != 0) {
+    set_int32_value(from.int32_value());
+  }
+  if (from.int64_value() != 0) {
+    set_int64_value(from.int64_value());
+  }
+  if (from.uint32_value() != 0) {
+    set_uint32_value(from.uint32_value());
+  }
+  if (from.sint32_value() != 0) {
+    set_sint32_value(from.sint32_value());
+  }
+  if (from.uint64_value() != 0) {
+    set_uint64_value(from.uint64_value());
+  }
+  if (from.sint64_value() != 0) {
+    set_sint64_value(from.sint64_value());
+  }
+  if (from.double_value() != 0) {
+    set_double_value(from.double_value());
+  }
+  if (from.float_value() != 0) {
+    set_float_value(from.float_value());
+  }
+  if (from.enum_value() != 0) {
+    set_enum_value(from.enum_value());
   }
 }
 
@@ -915,7 +862,6 @@ void StructType::CopyFrom(const StructType& from) {
 }
 
 bool StructType::IsInitialized() const {
-
   return true;
 }
 
@@ -924,208 +870,212 @@ void StructType::Swap(StructType* other) {
   InternalSwap(other);
 }
 void StructType::InternalSwap(StructType* other) {
-  std::swap(bool_value_, other->bool_value_);
-  std::swap(int32_value_, other->int32_value_);
-  std::swap(uint32_value_, other->uint32_value_);
-  std::swap(int64_value_, other->int64_value_);
-  std::swap(uint64_value_, other->uint64_value_);
-  std::swap(sint32_value_, other->sint32_value_);
-  std::swap(sint64_value_, other->sint64_value_);
-  std::swap(float_value_, other->float_value_);
-  std::swap(double_value_, other->double_value_);
-  std::swap(enum_value_, other->enum_value_);
   string_value_.Swap(&other->string_value_);
   wstring_value_.Swap(&other->wstring_value_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(bool_value_, other->bool_value_);
+  std::swap(int32_value_, other->int32_value_);
+  std::swap(int64_value_, other->int64_value_);
+  std::swap(uint32_value_, other->uint32_value_);
+  std::swap(sint32_value_, other->sint32_value_);
+  std::swap(uint64_value_, other->uint64_value_);
+  std::swap(sint64_value_, other->sint64_value_);
+  std::swap(double_value_, other->double_value_);
+  std::swap(float_value_, other->float_value_);
+  std::swap(enum_value_, other->enum_value_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata StructType::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = StructType_descriptor_;
-  metadata.reflection = StructType_reflection_;
-  return metadata;
+  protobuf_codegen_5ftest_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_codegen_5ftest_2eproto::file_level_metadata[0];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // StructType
 
-// optional bool bool_value = 1;
+// bool bool_value = 1;
 void StructType::clear_bool_value() {
   bool_value_ = false;
 }
- bool StructType::bool_value() const {
+bool StructType::bool_value() const {
   // @@protoc_insertion_point(field_get:codegen_test.StructType.bool_value)
   return bool_value_;
 }
- void StructType::set_bool_value(bool value) {
+void StructType::set_bool_value(bool value) {
   
   bool_value_ = value;
   // @@protoc_insertion_point(field_set:codegen_test.StructType.bool_value)
 }
 
-// optional int32 int32_value = 2;
+// int32 int32_value = 2;
 void StructType::clear_int32_value() {
   int32_value_ = 0;
 }
- ::google::protobuf::int32 StructType::int32_value() const {
+::google::protobuf::int32 StructType::int32_value() const {
   // @@protoc_insertion_point(field_get:codegen_test.StructType.int32_value)
   return int32_value_;
 }
- void StructType::set_int32_value(::google::protobuf::int32 value) {
+void StructType::set_int32_value(::google::protobuf::int32 value) {
   
   int32_value_ = value;
   // @@protoc_insertion_point(field_set:codegen_test.StructType.int32_value)
 }
 
-// optional uint32 uint32_value = 3;
+// uint32 uint32_value = 3;
 void StructType::clear_uint32_value() {
   uint32_value_ = 0u;
 }
- ::google::protobuf::uint32 StructType::uint32_value() const {
+::google::protobuf::uint32 StructType::uint32_value() const {
   // @@protoc_insertion_point(field_get:codegen_test.StructType.uint32_value)
   return uint32_value_;
 }
- void StructType::set_uint32_value(::google::protobuf::uint32 value) {
+void StructType::set_uint32_value(::google::protobuf::uint32 value) {
   
   uint32_value_ = value;
   // @@protoc_insertion_point(field_set:codegen_test.StructType.uint32_value)
 }
 
-// optional int64 int64_value = 4;
+// int64 int64_value = 4;
 void StructType::clear_int64_value() {
   int64_value_ = GOOGLE_LONGLONG(0);
 }
- ::google::protobuf::int64 StructType::int64_value() const {
+::google::protobuf::int64 StructType::int64_value() const {
   // @@protoc_insertion_point(field_get:codegen_test.StructType.int64_value)
   return int64_value_;
 }
- void StructType::set_int64_value(::google::protobuf::int64 value) {
+void StructType::set_int64_value(::google::protobuf::int64 value) {
   
   int64_value_ = value;
   // @@protoc_insertion_point(field_set:codegen_test.StructType.int64_value)
 }
 
-// optional uint64 uint64_value = 5;
+// uint64 uint64_value = 5;
 void StructType::clear_uint64_value() {
   uint64_value_ = GOOGLE_ULONGLONG(0);
 }
- ::google::protobuf::uint64 StructType::uint64_value() const {
+::google::protobuf::uint64 StructType::uint64_value() const {
   // @@protoc_insertion_point(field_get:codegen_test.StructType.uint64_value)
   return uint64_value_;
 }
- void StructType::set_uint64_value(::google::protobuf::uint64 value) {
+void StructType::set_uint64_value(::google::protobuf::uint64 value) {
   
   uint64_value_ = value;
   // @@protoc_insertion_point(field_set:codegen_test.StructType.uint64_value)
 }
 
-// optional sint32 sint32_value = 6;
+// sint32 sint32_value = 6;
 void StructType::clear_sint32_value() {
   sint32_value_ = 0;
 }
- ::google::protobuf::int32 StructType::sint32_value() const {
+::google::protobuf::int32 StructType::sint32_value() const {
   // @@protoc_insertion_point(field_get:codegen_test.StructType.sint32_value)
   return sint32_value_;
 }
- void StructType::set_sint32_value(::google::protobuf::int32 value) {
+void StructType::set_sint32_value(::google::protobuf::int32 value) {
   
   sint32_value_ = value;
   // @@protoc_insertion_point(field_set:codegen_test.StructType.sint32_value)
 }
 
-// optional sint64 sint64_value = 7;
+// sint64 sint64_value = 7;
 void StructType::clear_sint64_value() {
   sint64_value_ = GOOGLE_LONGLONG(0);
 }
- ::google::protobuf::int64 StructType::sint64_value() const {
+::google::protobuf::int64 StructType::sint64_value() const {
   // @@protoc_insertion_point(field_get:codegen_test.StructType.sint64_value)
   return sint64_value_;
 }
- void StructType::set_sint64_value(::google::protobuf::int64 value) {
+void StructType::set_sint64_value(::google::protobuf::int64 value) {
   
   sint64_value_ = value;
   // @@protoc_insertion_point(field_set:codegen_test.StructType.sint64_value)
 }
 
-// optional float float_value = 8;
+// float float_value = 8;
 void StructType::clear_float_value() {
   float_value_ = 0;
 }
- float StructType::float_value() const {
+float StructType::float_value() const {
   // @@protoc_insertion_point(field_get:codegen_test.StructType.float_value)
   return float_value_;
 }
- void StructType::set_float_value(float value) {
+void StructType::set_float_value(float value) {
   
   float_value_ = value;
   // @@protoc_insertion_point(field_set:codegen_test.StructType.float_value)
 }
 
-// optional double double_value = 9;
+// double double_value = 9;
 void StructType::clear_double_value() {
   double_value_ = 0;
 }
- double StructType::double_value() const {
+double StructType::double_value() const {
   // @@protoc_insertion_point(field_get:codegen_test.StructType.double_value)
   return double_value_;
 }
- void StructType::set_double_value(double value) {
+void StructType::set_double_value(double value) {
   
   double_value_ = value;
   // @@protoc_insertion_point(field_set:codegen_test.StructType.double_value)
 }
 
-// optional .codegen_test.EnumType enum_value = 10;
+// .codegen_test.EnumType enum_value = 10;
 void StructType::clear_enum_value() {
   enum_value_ = 0;
 }
- ::codegen_test::EnumType StructType::enum_value() const {
+::codegen_test::EnumType StructType::enum_value() const {
   // @@protoc_insertion_point(field_get:codegen_test.StructType.enum_value)
   return static_cast< ::codegen_test::EnumType >(enum_value_);
 }
- void StructType::set_enum_value(::codegen_test::EnumType value) {
+void StructType::set_enum_value(::codegen_test::EnumType value) {
   
   enum_value_ = value;
   // @@protoc_insertion_point(field_set:codegen_test.StructType.enum_value)
 }
 
-// optional string string_value = 11;
+// string string_value = 11;
 void StructType::clear_string_value() {
   string_value_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& StructType::string_value() const {
+const ::std::string& StructType::string_value() const {
   // @@protoc_insertion_point(field_get:codegen_test.StructType.string_value)
-  return string_value_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return string_value_.GetNoArena();
 }
- void StructType::set_string_value(const ::std::string& value) {
+void StructType::set_string_value(const ::std::string& value) {
   
   string_value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:codegen_test.StructType.string_value)
 }
- void StructType::set_string_value(const char* value) {
+#if LANG_CXX11
+void StructType::set_string_value(::std::string&& value) {
+  
+  string_value_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:codegen_test.StructType.string_value)
+}
+#endif
+void StructType::set_string_value(const char* value) {
   
   string_value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:codegen_test.StructType.string_value)
 }
- void StructType::set_string_value(const char* value, size_t size) {
+void StructType::set_string_value(const char* value, size_t size) {
   
   string_value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:codegen_test.StructType.string_value)
 }
- ::std::string* StructType::mutable_string_value() {
+::std::string* StructType::mutable_string_value() {
   
   // @@protoc_insertion_point(field_mutable:codegen_test.StructType.string_value)
   return string_value_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* StructType::release_string_value() {
+::std::string* StructType::release_string_value() {
   // @@protoc_insertion_point(field_release:codegen_test.StructType.string_value)
   
   return string_value_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void StructType::set_allocated_string_value(::std::string* string_value) {
+void StructType::set_allocated_string_value(::std::string* string_value) {
   if (string_value != NULL) {
     
   } else {
@@ -1135,41 +1085,49 @@ void StructType::clear_string_value() {
   // @@protoc_insertion_point(field_set_allocated:codegen_test.StructType.string_value)
 }
 
-// optional string wstring_value = 12;
+// string wstring_value = 12;
 void StructType::clear_wstring_value() {
   wstring_value_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& StructType::wstring_value() const {
+const ::std::string& StructType::wstring_value() const {
   // @@protoc_insertion_point(field_get:codegen_test.StructType.wstring_value)
-  return wstring_value_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return wstring_value_.GetNoArena();
 }
- void StructType::set_wstring_value(const ::std::string& value) {
+void StructType::set_wstring_value(const ::std::string& value) {
   
   wstring_value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:codegen_test.StructType.wstring_value)
 }
- void StructType::set_wstring_value(const char* value) {
+#if LANG_CXX11
+void StructType::set_wstring_value(::std::string&& value) {
+  
+  wstring_value_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:codegen_test.StructType.wstring_value)
+}
+#endif
+void StructType::set_wstring_value(const char* value) {
   
   wstring_value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:codegen_test.StructType.wstring_value)
 }
- void StructType::set_wstring_value(const char* value, size_t size) {
+void StructType::set_wstring_value(const char* value, size_t size) {
   
   wstring_value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:codegen_test.StructType.wstring_value)
 }
- ::std::string* StructType::mutable_wstring_value() {
+::std::string* StructType::mutable_wstring_value() {
   
   // @@protoc_insertion_point(field_mutable:codegen_test.StructType.wstring_value)
   return wstring_value_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* StructType::release_wstring_value() {
+::std::string* StructType::release_wstring_value() {
   // @@protoc_insertion_point(field_release:codegen_test.StructType.wstring_value)
   
   return wstring_value_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void StructType::set_allocated_wstring_value(::std::string* wstring_value) {
+void StructType::set_allocated_wstring_value(::std::string* wstring_value) {
   if (wstring_value != NULL) {
     
   } else {
@@ -1189,26 +1147,24 @@ const int EnumType_wrapper__::kValueFieldNumber;
 
 EnumType_wrapper__::EnumType_wrapper__()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_codegen_5ftest_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:codegen_test.EnumType_wrapper__)
 }
-
-void EnumType_wrapper__::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 EnumType_wrapper__::EnumType_wrapper__(const EnumType_wrapper__& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  value_ = from.value_;
   // @@protoc_insertion_point(copy_constructor:codegen_test.EnumType_wrapper__)
 }
 
 void EnumType_wrapper__::SharedCtor() {
-    _is_default_instance_ = false;
-  _cached_size_ = 0;
   value_ = 0;
+  _cached_size_ = 0;
 }
 
 EnumType_wrapper__::~EnumType_wrapper__() {
@@ -1217,8 +1173,6 @@ EnumType_wrapper__::~EnumType_wrapper__() {
 }
 
 void EnumType_wrapper__::SharedDtor() {
-  if (this != default_instance_) {
-  }
 }
 
 void EnumType_wrapper__::SetCachedSize(int size) const {
@@ -1227,16 +1181,14 @@ void EnumType_wrapper__::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* EnumType_wrapper__::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return EnumType_wrapper___descriptor_;
+  protobuf_codegen_5ftest_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_codegen_5ftest_2eproto::file_level_metadata[1].descriptor;
 }
 
 const EnumType_wrapper__& EnumType_wrapper__::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_codegen_5ftest_2eproto();
-  return *default_instance_;
+  protobuf_codegen_5ftest_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-EnumType_wrapper__* EnumType_wrapper__::default_instance_ = NULL;
 
 EnumType_wrapper__* EnumType_wrapper__::New(::google::protobuf::Arena* arena) const {
   EnumType_wrapper__* n = new EnumType_wrapper__;
@@ -1257,13 +1209,13 @@ bool EnumType_wrapper__::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:codegen_test.EnumType_wrapper__)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional .codegen_test.EnumType value = 1;
+      // .codegen_test.EnumType value = 1;
       case 1: {
-        if (tag == 8) {
+        if (tag == 8u) {
           int value;
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
@@ -1272,7 +1224,6 @@ bool EnumType_wrapper__::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -1300,7 +1251,7 @@ failure:
 void EnumType_wrapper__::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:codegen_test.EnumType_wrapper__)
-  // optional .codegen_test.EnumType value = 1;
+  // .codegen_test.EnumType value = 1;
   if (this->value() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       1, this->value(), output);
@@ -1309,10 +1260,11 @@ void EnumType_wrapper__::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:codegen_test.EnumType_wrapper__)
 }
 
-::google::protobuf::uint8* EnumType_wrapper__::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* EnumType_wrapper__::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:codegen_test.EnumType_wrapper__)
-  // optional .codegen_test.EnumType value = 1;
+  // .codegen_test.EnumType value = 1;
   if (this->value() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       1, this->value(), target);
@@ -1322,26 +1274,27 @@ void EnumType_wrapper__::SerializeWithCachedSizes(
   return target;
 }
 
-int EnumType_wrapper__::ByteSize() const {
+size_t EnumType_wrapper__::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:codegen_test.EnumType_wrapper__)
-  int total_size = 0;
+  size_t total_size = 0;
 
-  // optional .codegen_test.EnumType value = 1;
+  // .codegen_test.EnumType value = 1;
   if (this->value() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::EnumSize(this->value());
   }
 
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void EnumType_wrapper__::MergeFrom(const ::google::protobuf::Message& from) {
 // @@protoc_insertion_point(generalized_merge_from_start:codegen_test.EnumType_wrapper__)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const EnumType_wrapper__* source = 
+  GOOGLE_DCHECK_NE(&from, this);
+  const EnumType_wrapper__* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const EnumType_wrapper__>(
           &from);
   if (source == NULL) {
@@ -1355,7 +1308,8 @@ void EnumType_wrapper__::MergeFrom(const ::google::protobuf::Message& from) {
 
 void EnumType_wrapper__::MergeFrom(const EnumType_wrapper__& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:codegen_test.EnumType_wrapper__)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from.value() != 0) {
     set_value(from.value());
   }
@@ -1376,7 +1330,6 @@ void EnumType_wrapper__::CopyFrom(const EnumType_wrapper__& from) {
 }
 
 bool EnumType_wrapper__::IsInitialized() const {
-
   return true;
 }
 
@@ -1386,30 +1339,26 @@ void EnumType_wrapper__::Swap(EnumType_wrapper__* other) {
 }
 void EnumType_wrapper__::InternalSwap(EnumType_wrapper__* other) {
   std::swap(value_, other->value_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata EnumType_wrapper__::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = EnumType_wrapper___descriptor_;
-  metadata.reflection = EnumType_wrapper___reflection_;
-  return metadata;
+  protobuf_codegen_5ftest_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_codegen_5ftest_2eproto::file_level_metadata[1];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // EnumType_wrapper__
 
-// optional .codegen_test.EnumType value = 1;
+// .codegen_test.EnumType value = 1;
 void EnumType_wrapper__::clear_value() {
   value_ = 0;
 }
- ::codegen_test::EnumType EnumType_wrapper__::value() const {
+::codegen_test::EnumType EnumType_wrapper__::value() const {
   // @@protoc_insertion_point(field_get:codegen_test.EnumType_wrapper__.value)
   return static_cast< ::codegen_test::EnumType >(value_);
 }
- void EnumType_wrapper__::set_value(::codegen_test::EnumType value) {
+void EnumType_wrapper__::set_value(::codegen_test::EnumType value) {
   
   value_ = value;
   // @@protoc_insertion_point(field_set:codegen_test.EnumType_wrapper__.value)
@@ -1437,40 +1386,42 @@ const int Method_V_biuIUsSfdEAWM_args__::kStructValueFieldNumber;
 
 Method_V_biuIUsSfdEAWM_args__::Method_V_biuIUsSfdEAWM_args__()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_codegen_5ftest_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:codegen_test.Method_V_biuIUsSfdEAWM_args__)
 }
-
-void Method_V_biuIUsSfdEAWM_args__::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-  struct_value_ = const_cast< ::codegen_test::StructType*>(&::codegen_test::StructType::default_instance());
-}
-
 Method_V_biuIUsSfdEAWM_args__::Method_V_biuIUsSfdEAWM_args__(const Method_V_biuIUsSfdEAWM_args__& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  string_value_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.string_value().size() > 0) {
+    string_value_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.string_value_);
+  }
+  wstring_value_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.wstring_value().size() > 0) {
+    wstring_value_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.wstring_value_);
+  }
+  if (from.has_struct_value()) {
+    struct_value_ = new ::codegen_test::StructType(*from.struct_value_);
+  } else {
+    struct_value_ = NULL;
+  }
+  ::memcpy(&bool_value_, &from.bool_value_,
+    reinterpret_cast<char*>(&enum_value_) -
+    reinterpret_cast<char*>(&bool_value_) + sizeof(enum_value_));
   // @@protoc_insertion_point(copy_constructor:codegen_test.Method_V_biuIUsSfdEAWM_args__)
 }
 
 void Method_V_biuIUsSfdEAWM_args__::SharedCtor() {
-    _is_default_instance_ = false;
-  ::google::protobuf::internal::GetEmptyString();
-  _cached_size_ = 0;
-  bool_value_ = false;
-  int32_value_ = 0;
-  uint32_value_ = 0u;
-  int64_value_ = GOOGLE_LONGLONG(0);
-  uint64_value_ = GOOGLE_ULONGLONG(0);
-  sint32_value_ = 0;
-  sint64_value_ = GOOGLE_LONGLONG(0);
-  float_value_ = 0;
-  double_value_ = 0;
-  enum_value_ = 0;
   string_value_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   wstring_value_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  struct_value_ = NULL;
+  ::memset(&struct_value_, 0, reinterpret_cast<char*>(&enum_value_) -
+    reinterpret_cast<char*>(&struct_value_) + sizeof(enum_value_));
+  _cached_size_ = 0;
 }
 
 Method_V_biuIUsSfdEAWM_args__::~Method_V_biuIUsSfdEAWM_args__() {
@@ -1481,7 +1432,7 @@ Method_V_biuIUsSfdEAWM_args__::~Method_V_biuIUsSfdEAWM_args__() {
 void Method_V_biuIUsSfdEAWM_args__::SharedDtor() {
   string_value_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   wstring_value_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (this != default_instance_) {
+  if (this != internal_default_instance()) {
     delete struct_value_;
   }
 }
@@ -1492,16 +1443,14 @@ void Method_V_biuIUsSfdEAWM_args__::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* Method_V_biuIUsSfdEAWM_args__::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return Method_V_biuIUsSfdEAWM_args___descriptor_;
+  protobuf_codegen_5ftest_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_codegen_5ftest_2eproto::file_level_metadata[2].descriptor;
 }
 
 const Method_V_biuIUsSfdEAWM_args__& Method_V_biuIUsSfdEAWM_args__::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_codegen_5ftest_2eproto();
-  return *default_instance_;
+  protobuf_codegen_5ftest_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-Method_V_biuIUsSfdEAWM_args__* Method_V_biuIUsSfdEAWM_args__::default_instance_ = NULL;
 
 Method_V_biuIUsSfdEAWM_args__* Method_V_biuIUsSfdEAWM_args__::New(::google::protobuf::Arena* arena) const {
   Method_V_biuIUsSfdEAWM_args__* n = new Method_V_biuIUsSfdEAWM_args__;
@@ -1513,34 +1462,14 @@ Method_V_biuIUsSfdEAWM_args__* Method_V_biuIUsSfdEAWM_args__::New(::google::prot
 
 void Method_V_biuIUsSfdEAWM_args__::Clear() {
 // @@protoc_insertion_point(message_clear_start:codegen_test.Method_V_biuIUsSfdEAWM_args__)
-#if defined(__clang__)
-#define ZR_HELPER_(f) \
-  _Pragma("clang diagnostic push") \
-  _Pragma("clang diagnostic ignored \"-Winvalid-offsetof\"") \
-  __builtin_offsetof(Method_V_biuIUsSfdEAWM_args__, f) \
-  _Pragma("clang diagnostic pop")
-#else
-#define ZR_HELPER_(f) reinterpret_cast<char*>(\
-  &reinterpret_cast<Method_V_biuIUsSfdEAWM_args__*>(16)->f)
-#endif
-
-#define ZR_(first, last) do {\
-  ::memset(&first, 0,\
-           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
-} while (0)
-
-  ZR_(bool_value_, sint64_value_);
-  float_value_ = 0;
-  double_value_ = 0;
-  enum_value_ = 0;
   string_value_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   wstring_value_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (GetArenaNoVirtual() == NULL && struct_value_ != NULL) delete struct_value_;
+  if (GetArenaNoVirtual() == NULL && struct_value_ != NULL) {
+    delete struct_value_;
+  }
   struct_value_ = NULL;
-
-#undef ZR_HELPER_
-#undef ZR_
-
+  ::memset(&bool_value_, 0, reinterpret_cast<char*>(&enum_value_) -
+    reinterpret_cast<char*>(&bool_value_) + sizeof(enum_value_));
 }
 
 bool Method_V_biuIUsSfdEAWM_args__::MergePartialFromCodedStream(
@@ -1549,148 +1478,130 @@ bool Method_V_biuIUsSfdEAWM_args__::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:codegen_test.Method_V_biuIUsSfdEAWM_args__)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional bool bool_value = 1;
+      // bool bool_value = 1;
       case 1: {
-        if (tag == 8) {
+        if (tag == 8u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
                  input, &bool_value_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(16)) goto parse_int32_value;
         break;
       }
 
-      // optional int32 int32_value = 2;
+      // int32 int32_value = 2;
       case 2: {
-        if (tag == 16) {
-         parse_int32_value:
+        if (tag == 16u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &int32_value_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(24)) goto parse_uint32_value;
         break;
       }
 
-      // optional uint32 uint32_value = 3;
+      // uint32 uint32_value = 3;
       case 3: {
-        if (tag == 24) {
-         parse_uint32_value:
+        if (tag == 24u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
                  input, &uint32_value_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(32)) goto parse_int64_value;
         break;
       }
 
-      // optional int64 int64_value = 4;
+      // int64 int64_value = 4;
       case 4: {
-        if (tag == 32) {
-         parse_int64_value:
+        if (tag == 32u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &int64_value_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(40)) goto parse_uint64_value;
         break;
       }
 
-      // optional uint64 uint64_value = 5;
+      // uint64 uint64_value = 5;
       case 5: {
-        if (tag == 40) {
-         parse_uint64_value:
+        if (tag == 40u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
                  input, &uint64_value_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(48)) goto parse_sint32_value;
         break;
       }
 
-      // optional sint32 sint32_value = 6;
+      // sint32 sint32_value = 6;
       case 6: {
-        if (tag == 48) {
-         parse_sint32_value:
+        if (tag == 48u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_SINT32>(
                  input, &sint32_value_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(56)) goto parse_sint64_value;
         break;
       }
 
-      // optional sint64 sint64_value = 7;
+      // sint64 sint64_value = 7;
       case 7: {
-        if (tag == 56) {
-         parse_sint64_value:
+        if (tag == 56u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_SINT64>(
                  input, &sint64_value_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(69)) goto parse_float_value;
         break;
       }
 
-      // optional float float_value = 8;
+      // float float_value = 8;
       case 8: {
-        if (tag == 69) {
-         parse_float_value:
+        if (tag == 69u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
                  input, &float_value_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(73)) goto parse_double_value;
         break;
       }
 
-      // optional double double_value = 9;
+      // double double_value = 9;
       case 9: {
-        if (tag == 73) {
-         parse_double_value:
+        if (tag == 73u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
                  input, &double_value_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(80)) goto parse_enum_value;
         break;
       }
 
-      // optional .codegen_test.EnumType enum_value = 10;
+      // .codegen_test.EnumType enum_value = 10;
       case 10: {
-        if (tag == 80) {
-         parse_enum_value:
+        if (tag == 80u) {
           int value;
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
@@ -1699,14 +1610,12 @@ bool Method_V_biuIUsSfdEAWM_args__::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(90)) goto parse_string_value;
         break;
       }
 
-      // optional string string_value = 11;
+      // string string_value = 11;
       case 11: {
-        if (tag == 90) {
-         parse_string_value:
+        if (tag == 90u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_string_value()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -1716,14 +1625,12 @@ bool Method_V_biuIUsSfdEAWM_args__::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(98)) goto parse_wstring_value;
         break;
       }
 
-      // optional string wstring_value = 12;
+      // string wstring_value = 12;
       case 12: {
-        if (tag == 98) {
-         parse_wstring_value:
+        if (tag == 98u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_wstring_value()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -1733,20 +1640,17 @@ bool Method_V_biuIUsSfdEAWM_args__::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(106)) goto parse_struct_value;
         break;
       }
 
-      // optional .codegen_test.StructType struct_value = 13;
+      // .codegen_test.StructType struct_value = 13;
       case 13: {
-        if (tag == 106) {
-         parse_struct_value:
+        if (tag == 106u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_struct_value()));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -1774,58 +1678,58 @@ failure:
 void Method_V_biuIUsSfdEAWM_args__::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:codegen_test.Method_V_biuIUsSfdEAWM_args__)
-  // optional bool bool_value = 1;
+  // bool bool_value = 1;
   if (this->bool_value() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(1, this->bool_value(), output);
   }
 
-  // optional int32 int32_value = 2;
+  // int32 int32_value = 2;
   if (this->int32_value() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->int32_value(), output);
   }
 
-  // optional uint32 uint32_value = 3;
+  // uint32 uint32_value = 3;
   if (this->uint32_value() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(3, this->uint32_value(), output);
   }
 
-  // optional int64 int64_value = 4;
+  // int64 int64_value = 4;
   if (this->int64_value() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt64(4, this->int64_value(), output);
   }
 
-  // optional uint64 uint64_value = 5;
+  // uint64 uint64_value = 5;
   if (this->uint64_value() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt64(5, this->uint64_value(), output);
   }
 
-  // optional sint32 sint32_value = 6;
+  // sint32 sint32_value = 6;
   if (this->sint32_value() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteSInt32(6, this->sint32_value(), output);
   }
 
-  // optional sint64 sint64_value = 7;
+  // sint64 sint64_value = 7;
   if (this->sint64_value() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteSInt64(7, this->sint64_value(), output);
   }
 
-  // optional float float_value = 8;
+  // float float_value = 8;
   if (this->float_value() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteFloat(8, this->float_value(), output);
   }
 
-  // optional double double_value = 9;
+  // double double_value = 9;
   if (this->double_value() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteDouble(9, this->double_value(), output);
   }
 
-  // optional .codegen_test.EnumType enum_value = 10;
+  // .codegen_test.EnumType enum_value = 10;
   if (this->enum_value() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       10, this->enum_value(), output);
   }
 
-  // optional string string_value = 11;
+  // string string_value = 11;
   if (this->string_value().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->string_value().data(), this->string_value().length(),
@@ -1835,7 +1739,7 @@ void Method_V_biuIUsSfdEAWM_args__::SerializeWithCachedSizes(
       11, this->string_value(), output);
   }
 
-  // optional string wstring_value = 12;
+  // string wstring_value = 12;
   if (this->wstring_value().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->wstring_value().data(), this->wstring_value().length(),
@@ -1845,7 +1749,7 @@ void Method_V_biuIUsSfdEAWM_args__::SerializeWithCachedSizes(
       12, this->wstring_value(), output);
   }
 
-  // optional .codegen_test.StructType struct_value = 13;
+  // .codegen_test.StructType struct_value = 13;
   if (this->has_struct_value()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       13, *this->struct_value_, output);
@@ -1854,61 +1758,62 @@ void Method_V_biuIUsSfdEAWM_args__::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:codegen_test.Method_V_biuIUsSfdEAWM_args__)
 }
 
-::google::protobuf::uint8* Method_V_biuIUsSfdEAWM_args__::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* Method_V_biuIUsSfdEAWM_args__::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:codegen_test.Method_V_biuIUsSfdEAWM_args__)
-  // optional bool bool_value = 1;
+  // bool bool_value = 1;
   if (this->bool_value() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(1, this->bool_value(), target);
   }
 
-  // optional int32 int32_value = 2;
+  // int32 int32_value = 2;
   if (this->int32_value() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->int32_value(), target);
   }
 
-  // optional uint32 uint32_value = 3;
+  // uint32 uint32_value = 3;
   if (this->uint32_value() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(3, this->uint32_value(), target);
   }
 
-  // optional int64 int64_value = 4;
+  // int64 int64_value = 4;
   if (this->int64_value() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(4, this->int64_value(), target);
   }
 
-  // optional uint64 uint64_value = 5;
+  // uint64 uint64_value = 5;
   if (this->uint64_value() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(5, this->uint64_value(), target);
   }
 
-  // optional sint32 sint32_value = 6;
+  // sint32 sint32_value = 6;
   if (this->sint32_value() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteSInt32ToArray(6, this->sint32_value(), target);
   }
 
-  // optional sint64 sint64_value = 7;
+  // sint64 sint64_value = 7;
   if (this->sint64_value() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteSInt64ToArray(7, this->sint64_value(), target);
   }
 
-  // optional float float_value = 8;
+  // float float_value = 8;
   if (this->float_value() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(8, this->float_value(), target);
   }
 
-  // optional double double_value = 9;
+  // double double_value = 9;
   if (this->double_value() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(9, this->double_value(), target);
   }
 
-  // optional .codegen_test.EnumType enum_value = 10;
+  // .codegen_test.EnumType enum_value = 10;
   if (this->enum_value() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       10, this->enum_value(), target);
   }
 
-  // optional string string_value = 11;
+  // string string_value = 11;
   if (this->string_value().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->string_value().data(), this->string_value().length(),
@@ -1919,7 +1824,7 @@ void Method_V_biuIUsSfdEAWM_args__::SerializeWithCachedSizes(
         11, this->string_value(), target);
   }
 
-  // optional string wstring_value = 12;
+  // string wstring_value = 12;
   if (this->wstring_value().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->wstring_value().data(), this->wstring_value().length(),
@@ -1930,115 +1835,116 @@ void Method_V_biuIUsSfdEAWM_args__::SerializeWithCachedSizes(
         12, this->wstring_value(), target);
   }
 
-  // optional .codegen_test.StructType struct_value = 13;
+  // .codegen_test.StructType struct_value = 13;
   if (this->has_struct_value()) {
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        13, *this->struct_value_, target);
+      InternalWriteMessageNoVirtualToArray(
+        13, *this->struct_value_, false, target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:codegen_test.Method_V_biuIUsSfdEAWM_args__)
   return target;
 }
 
-int Method_V_biuIUsSfdEAWM_args__::ByteSize() const {
+size_t Method_V_biuIUsSfdEAWM_args__::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:codegen_test.Method_V_biuIUsSfdEAWM_args__)
-  int total_size = 0;
+  size_t total_size = 0;
 
-  // optional bool bool_value = 1;
-  if (this->bool_value() != 0) {
-    total_size += 1 + 1;
-  }
-
-  // optional int32 int32_value = 2;
-  if (this->int32_value() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->int32_value());
-  }
-
-  // optional uint32 uint32_value = 3;
-  if (this->uint32_value() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::UInt32Size(
-        this->uint32_value());
-  }
-
-  // optional int64 int64_value = 4;
-  if (this->int64_value() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int64Size(
-        this->int64_value());
-  }
-
-  // optional uint64 uint64_value = 5;
-  if (this->uint64_value() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::UInt64Size(
-        this->uint64_value());
-  }
-
-  // optional sint32 sint32_value = 6;
-  if (this->sint32_value() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::SInt32Size(
-        this->sint32_value());
-  }
-
-  // optional sint64 sint64_value = 7;
-  if (this->sint64_value() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::SInt64Size(
-        this->sint64_value());
-  }
-
-  // optional float float_value = 8;
-  if (this->float_value() != 0) {
-    total_size += 1 + 4;
-  }
-
-  // optional double double_value = 9;
-  if (this->double_value() != 0) {
-    total_size += 1 + 8;
-  }
-
-  // optional .codegen_test.EnumType enum_value = 10;
-  if (this->enum_value() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::EnumSize(this->enum_value());
-  }
-
-  // optional string string_value = 11;
+  // string string_value = 11;
   if (this->string_value().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->string_value());
   }
 
-  // optional string wstring_value = 12;
+  // string wstring_value = 12;
   if (this->wstring_value().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->wstring_value());
   }
 
-  // optional .codegen_test.StructType struct_value = 13;
+  // .codegen_test.StructType struct_value = 13;
   if (this->has_struct_value()) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
         *this->struct_value_);
   }
 
+  // bool bool_value = 1;
+  if (this->bool_value() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // int32 int32_value = 2;
+  if (this->int32_value() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->int32_value());
+  }
+
+  // int64 int64_value = 4;
+  if (this->int64_value() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
+        this->int64_value());
+  }
+
+  // uint32 uint32_value = 3;
+  if (this->uint32_value() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->uint32_value());
+  }
+
+  // sint32 sint32_value = 6;
+  if (this->sint32_value() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::SInt32Size(
+        this->sint32_value());
+  }
+
+  // uint64 uint64_value = 5;
+  if (this->uint64_value() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt64Size(
+        this->uint64_value());
+  }
+
+  // sint64 sint64_value = 7;
+  if (this->sint64_value() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::SInt64Size(
+        this->sint64_value());
+  }
+
+  // double double_value = 9;
+  if (this->double_value() != 0) {
+    total_size += 1 + 8;
+  }
+
+  // float float_value = 8;
+  if (this->float_value() != 0) {
+    total_size += 1 + 4;
+  }
+
+  // .codegen_test.EnumType enum_value = 10;
+  if (this->enum_value() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::EnumSize(this->enum_value());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void Method_V_biuIUsSfdEAWM_args__::MergeFrom(const ::google::protobuf::Message& from) {
 // @@protoc_insertion_point(generalized_merge_from_start:codegen_test.Method_V_biuIUsSfdEAWM_args__)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const Method_V_biuIUsSfdEAWM_args__* source = 
+  GOOGLE_DCHECK_NE(&from, this);
+  const Method_V_biuIUsSfdEAWM_args__* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const Method_V_biuIUsSfdEAWM_args__>(
           &from);
   if (source == NULL) {
@@ -2052,37 +1958,8 @@ void Method_V_biuIUsSfdEAWM_args__::MergeFrom(const ::google::protobuf::Message&
 
 void Method_V_biuIUsSfdEAWM_args__::MergeFrom(const Method_V_biuIUsSfdEAWM_args__& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:codegen_test.Method_V_biuIUsSfdEAWM_args__)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  if (from.bool_value() != 0) {
-    set_bool_value(from.bool_value());
-  }
-  if (from.int32_value() != 0) {
-    set_int32_value(from.int32_value());
-  }
-  if (from.uint32_value() != 0) {
-    set_uint32_value(from.uint32_value());
-  }
-  if (from.int64_value() != 0) {
-    set_int64_value(from.int64_value());
-  }
-  if (from.uint64_value() != 0) {
-    set_uint64_value(from.uint64_value());
-  }
-  if (from.sint32_value() != 0) {
-    set_sint32_value(from.sint32_value());
-  }
-  if (from.sint64_value() != 0) {
-    set_sint64_value(from.sint64_value());
-  }
-  if (from.float_value() != 0) {
-    set_float_value(from.float_value());
-  }
-  if (from.double_value() != 0) {
-    set_double_value(from.double_value());
-  }
-  if (from.enum_value() != 0) {
-    set_enum_value(from.enum_value());
-  }
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from.string_value().size() > 0) {
 
     string_value_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.string_value_);
@@ -2093,6 +1970,36 @@ void Method_V_biuIUsSfdEAWM_args__::MergeFrom(const Method_V_biuIUsSfdEAWM_args_
   }
   if (from.has_struct_value()) {
     mutable_struct_value()->::codegen_test::StructType::MergeFrom(from.struct_value());
+  }
+  if (from.bool_value() != 0) {
+    set_bool_value(from.bool_value());
+  }
+  if (from.int32_value() != 0) {
+    set_int32_value(from.int32_value());
+  }
+  if (from.int64_value() != 0) {
+    set_int64_value(from.int64_value());
+  }
+  if (from.uint32_value() != 0) {
+    set_uint32_value(from.uint32_value());
+  }
+  if (from.sint32_value() != 0) {
+    set_sint32_value(from.sint32_value());
+  }
+  if (from.uint64_value() != 0) {
+    set_uint64_value(from.uint64_value());
+  }
+  if (from.sint64_value() != 0) {
+    set_sint64_value(from.sint64_value());
+  }
+  if (from.double_value() != 0) {
+    set_double_value(from.double_value());
+  }
+  if (from.float_value() != 0) {
+    set_float_value(from.float_value());
+  }
+  if (from.enum_value() != 0) {
+    set_enum_value(from.enum_value());
   }
 }
 
@@ -2111,7 +2018,6 @@ void Method_V_biuIUsSfdEAWM_args__::CopyFrom(const Method_V_biuIUsSfdEAWM_args__
 }
 
 bool Method_V_biuIUsSfdEAWM_args__::IsInitialized() const {
-
   return true;
 }
 
@@ -2120,209 +2026,213 @@ void Method_V_biuIUsSfdEAWM_args__::Swap(Method_V_biuIUsSfdEAWM_args__* other) {
   InternalSwap(other);
 }
 void Method_V_biuIUsSfdEAWM_args__::InternalSwap(Method_V_biuIUsSfdEAWM_args__* other) {
-  std::swap(bool_value_, other->bool_value_);
-  std::swap(int32_value_, other->int32_value_);
-  std::swap(uint32_value_, other->uint32_value_);
-  std::swap(int64_value_, other->int64_value_);
-  std::swap(uint64_value_, other->uint64_value_);
-  std::swap(sint32_value_, other->sint32_value_);
-  std::swap(sint64_value_, other->sint64_value_);
-  std::swap(float_value_, other->float_value_);
-  std::swap(double_value_, other->double_value_);
-  std::swap(enum_value_, other->enum_value_);
   string_value_.Swap(&other->string_value_);
   wstring_value_.Swap(&other->wstring_value_);
   std::swap(struct_value_, other->struct_value_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(bool_value_, other->bool_value_);
+  std::swap(int32_value_, other->int32_value_);
+  std::swap(int64_value_, other->int64_value_);
+  std::swap(uint32_value_, other->uint32_value_);
+  std::swap(sint32_value_, other->sint32_value_);
+  std::swap(uint64_value_, other->uint64_value_);
+  std::swap(sint64_value_, other->sint64_value_);
+  std::swap(double_value_, other->double_value_);
+  std::swap(float_value_, other->float_value_);
+  std::swap(enum_value_, other->enum_value_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata Method_V_biuIUsSfdEAWM_args__::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = Method_V_biuIUsSfdEAWM_args___descriptor_;
-  metadata.reflection = Method_V_biuIUsSfdEAWM_args___reflection_;
-  return metadata;
+  protobuf_codegen_5ftest_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_codegen_5ftest_2eproto::file_level_metadata[2];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // Method_V_biuIUsSfdEAWM_args__
 
-// optional bool bool_value = 1;
+// bool bool_value = 1;
 void Method_V_biuIUsSfdEAWM_args__::clear_bool_value() {
   bool_value_ = false;
 }
- bool Method_V_biuIUsSfdEAWM_args__::bool_value() const {
+bool Method_V_biuIUsSfdEAWM_args__::bool_value() const {
   // @@protoc_insertion_point(field_get:codegen_test.Method_V_biuIUsSfdEAWM_args__.bool_value)
   return bool_value_;
 }
- void Method_V_biuIUsSfdEAWM_args__::set_bool_value(bool value) {
+void Method_V_biuIUsSfdEAWM_args__::set_bool_value(bool value) {
   
   bool_value_ = value;
   // @@protoc_insertion_point(field_set:codegen_test.Method_V_biuIUsSfdEAWM_args__.bool_value)
 }
 
-// optional int32 int32_value = 2;
+// int32 int32_value = 2;
 void Method_V_biuIUsSfdEAWM_args__::clear_int32_value() {
   int32_value_ = 0;
 }
- ::google::protobuf::int32 Method_V_biuIUsSfdEAWM_args__::int32_value() const {
+::google::protobuf::int32 Method_V_biuIUsSfdEAWM_args__::int32_value() const {
   // @@protoc_insertion_point(field_get:codegen_test.Method_V_biuIUsSfdEAWM_args__.int32_value)
   return int32_value_;
 }
- void Method_V_biuIUsSfdEAWM_args__::set_int32_value(::google::protobuf::int32 value) {
+void Method_V_biuIUsSfdEAWM_args__::set_int32_value(::google::protobuf::int32 value) {
   
   int32_value_ = value;
   // @@protoc_insertion_point(field_set:codegen_test.Method_V_biuIUsSfdEAWM_args__.int32_value)
 }
 
-// optional uint32 uint32_value = 3;
+// uint32 uint32_value = 3;
 void Method_V_biuIUsSfdEAWM_args__::clear_uint32_value() {
   uint32_value_ = 0u;
 }
- ::google::protobuf::uint32 Method_V_biuIUsSfdEAWM_args__::uint32_value() const {
+::google::protobuf::uint32 Method_V_biuIUsSfdEAWM_args__::uint32_value() const {
   // @@protoc_insertion_point(field_get:codegen_test.Method_V_biuIUsSfdEAWM_args__.uint32_value)
   return uint32_value_;
 }
- void Method_V_biuIUsSfdEAWM_args__::set_uint32_value(::google::protobuf::uint32 value) {
+void Method_V_biuIUsSfdEAWM_args__::set_uint32_value(::google::protobuf::uint32 value) {
   
   uint32_value_ = value;
   // @@protoc_insertion_point(field_set:codegen_test.Method_V_biuIUsSfdEAWM_args__.uint32_value)
 }
 
-// optional int64 int64_value = 4;
+// int64 int64_value = 4;
 void Method_V_biuIUsSfdEAWM_args__::clear_int64_value() {
   int64_value_ = GOOGLE_LONGLONG(0);
 }
- ::google::protobuf::int64 Method_V_biuIUsSfdEAWM_args__::int64_value() const {
+::google::protobuf::int64 Method_V_biuIUsSfdEAWM_args__::int64_value() const {
   // @@protoc_insertion_point(field_get:codegen_test.Method_V_biuIUsSfdEAWM_args__.int64_value)
   return int64_value_;
 }
- void Method_V_biuIUsSfdEAWM_args__::set_int64_value(::google::protobuf::int64 value) {
+void Method_V_biuIUsSfdEAWM_args__::set_int64_value(::google::protobuf::int64 value) {
   
   int64_value_ = value;
   // @@protoc_insertion_point(field_set:codegen_test.Method_V_biuIUsSfdEAWM_args__.int64_value)
 }
 
-// optional uint64 uint64_value = 5;
+// uint64 uint64_value = 5;
 void Method_V_biuIUsSfdEAWM_args__::clear_uint64_value() {
   uint64_value_ = GOOGLE_ULONGLONG(0);
 }
- ::google::protobuf::uint64 Method_V_biuIUsSfdEAWM_args__::uint64_value() const {
+::google::protobuf::uint64 Method_V_biuIUsSfdEAWM_args__::uint64_value() const {
   // @@protoc_insertion_point(field_get:codegen_test.Method_V_biuIUsSfdEAWM_args__.uint64_value)
   return uint64_value_;
 }
- void Method_V_biuIUsSfdEAWM_args__::set_uint64_value(::google::protobuf::uint64 value) {
+void Method_V_biuIUsSfdEAWM_args__::set_uint64_value(::google::protobuf::uint64 value) {
   
   uint64_value_ = value;
   // @@protoc_insertion_point(field_set:codegen_test.Method_V_biuIUsSfdEAWM_args__.uint64_value)
 }
 
-// optional sint32 sint32_value = 6;
+// sint32 sint32_value = 6;
 void Method_V_biuIUsSfdEAWM_args__::clear_sint32_value() {
   sint32_value_ = 0;
 }
- ::google::protobuf::int32 Method_V_biuIUsSfdEAWM_args__::sint32_value() const {
+::google::protobuf::int32 Method_V_biuIUsSfdEAWM_args__::sint32_value() const {
   // @@protoc_insertion_point(field_get:codegen_test.Method_V_biuIUsSfdEAWM_args__.sint32_value)
   return sint32_value_;
 }
- void Method_V_biuIUsSfdEAWM_args__::set_sint32_value(::google::protobuf::int32 value) {
+void Method_V_biuIUsSfdEAWM_args__::set_sint32_value(::google::protobuf::int32 value) {
   
   sint32_value_ = value;
   // @@protoc_insertion_point(field_set:codegen_test.Method_V_biuIUsSfdEAWM_args__.sint32_value)
 }
 
-// optional sint64 sint64_value = 7;
+// sint64 sint64_value = 7;
 void Method_V_biuIUsSfdEAWM_args__::clear_sint64_value() {
   sint64_value_ = GOOGLE_LONGLONG(0);
 }
- ::google::protobuf::int64 Method_V_biuIUsSfdEAWM_args__::sint64_value() const {
+::google::protobuf::int64 Method_V_biuIUsSfdEAWM_args__::sint64_value() const {
   // @@protoc_insertion_point(field_get:codegen_test.Method_V_biuIUsSfdEAWM_args__.sint64_value)
   return sint64_value_;
 }
- void Method_V_biuIUsSfdEAWM_args__::set_sint64_value(::google::protobuf::int64 value) {
+void Method_V_biuIUsSfdEAWM_args__::set_sint64_value(::google::protobuf::int64 value) {
   
   sint64_value_ = value;
   // @@protoc_insertion_point(field_set:codegen_test.Method_V_biuIUsSfdEAWM_args__.sint64_value)
 }
 
-// optional float float_value = 8;
+// float float_value = 8;
 void Method_V_biuIUsSfdEAWM_args__::clear_float_value() {
   float_value_ = 0;
 }
- float Method_V_biuIUsSfdEAWM_args__::float_value() const {
+float Method_V_biuIUsSfdEAWM_args__::float_value() const {
   // @@protoc_insertion_point(field_get:codegen_test.Method_V_biuIUsSfdEAWM_args__.float_value)
   return float_value_;
 }
- void Method_V_biuIUsSfdEAWM_args__::set_float_value(float value) {
+void Method_V_biuIUsSfdEAWM_args__::set_float_value(float value) {
   
   float_value_ = value;
   // @@protoc_insertion_point(field_set:codegen_test.Method_V_biuIUsSfdEAWM_args__.float_value)
 }
 
-// optional double double_value = 9;
+// double double_value = 9;
 void Method_V_biuIUsSfdEAWM_args__::clear_double_value() {
   double_value_ = 0;
 }
- double Method_V_biuIUsSfdEAWM_args__::double_value() const {
+double Method_V_biuIUsSfdEAWM_args__::double_value() const {
   // @@protoc_insertion_point(field_get:codegen_test.Method_V_biuIUsSfdEAWM_args__.double_value)
   return double_value_;
 }
- void Method_V_biuIUsSfdEAWM_args__::set_double_value(double value) {
+void Method_V_biuIUsSfdEAWM_args__::set_double_value(double value) {
   
   double_value_ = value;
   // @@protoc_insertion_point(field_set:codegen_test.Method_V_biuIUsSfdEAWM_args__.double_value)
 }
 
-// optional .codegen_test.EnumType enum_value = 10;
+// .codegen_test.EnumType enum_value = 10;
 void Method_V_biuIUsSfdEAWM_args__::clear_enum_value() {
   enum_value_ = 0;
 }
- ::codegen_test::EnumType Method_V_biuIUsSfdEAWM_args__::enum_value() const {
+::codegen_test::EnumType Method_V_biuIUsSfdEAWM_args__::enum_value() const {
   // @@protoc_insertion_point(field_get:codegen_test.Method_V_biuIUsSfdEAWM_args__.enum_value)
   return static_cast< ::codegen_test::EnumType >(enum_value_);
 }
- void Method_V_biuIUsSfdEAWM_args__::set_enum_value(::codegen_test::EnumType value) {
+void Method_V_biuIUsSfdEAWM_args__::set_enum_value(::codegen_test::EnumType value) {
   
   enum_value_ = value;
   // @@protoc_insertion_point(field_set:codegen_test.Method_V_biuIUsSfdEAWM_args__.enum_value)
 }
 
-// optional string string_value = 11;
+// string string_value = 11;
 void Method_V_biuIUsSfdEAWM_args__::clear_string_value() {
   string_value_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& Method_V_biuIUsSfdEAWM_args__::string_value() const {
+const ::std::string& Method_V_biuIUsSfdEAWM_args__::string_value() const {
   // @@protoc_insertion_point(field_get:codegen_test.Method_V_biuIUsSfdEAWM_args__.string_value)
-  return string_value_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return string_value_.GetNoArena();
 }
- void Method_V_biuIUsSfdEAWM_args__::set_string_value(const ::std::string& value) {
+void Method_V_biuIUsSfdEAWM_args__::set_string_value(const ::std::string& value) {
   
   string_value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:codegen_test.Method_V_biuIUsSfdEAWM_args__.string_value)
 }
- void Method_V_biuIUsSfdEAWM_args__::set_string_value(const char* value) {
+#if LANG_CXX11
+void Method_V_biuIUsSfdEAWM_args__::set_string_value(::std::string&& value) {
+  
+  string_value_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:codegen_test.Method_V_biuIUsSfdEAWM_args__.string_value)
+}
+#endif
+void Method_V_biuIUsSfdEAWM_args__::set_string_value(const char* value) {
   
   string_value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:codegen_test.Method_V_biuIUsSfdEAWM_args__.string_value)
 }
- void Method_V_biuIUsSfdEAWM_args__::set_string_value(const char* value, size_t size) {
+void Method_V_biuIUsSfdEAWM_args__::set_string_value(const char* value, size_t size) {
   
   string_value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:codegen_test.Method_V_biuIUsSfdEAWM_args__.string_value)
 }
- ::std::string* Method_V_biuIUsSfdEAWM_args__::mutable_string_value() {
+::std::string* Method_V_biuIUsSfdEAWM_args__::mutable_string_value() {
   
   // @@protoc_insertion_point(field_mutable:codegen_test.Method_V_biuIUsSfdEAWM_args__.string_value)
   return string_value_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* Method_V_biuIUsSfdEAWM_args__::release_string_value() {
+::std::string* Method_V_biuIUsSfdEAWM_args__::release_string_value() {
   // @@protoc_insertion_point(field_release:codegen_test.Method_V_biuIUsSfdEAWM_args__.string_value)
   
   return string_value_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void Method_V_biuIUsSfdEAWM_args__::set_allocated_string_value(::std::string* string_value) {
+void Method_V_biuIUsSfdEAWM_args__::set_allocated_string_value(::std::string* string_value) {
   if (string_value != NULL) {
     
   } else {
@@ -2332,41 +2242,49 @@ void Method_V_biuIUsSfdEAWM_args__::clear_string_value() {
   // @@protoc_insertion_point(field_set_allocated:codegen_test.Method_V_biuIUsSfdEAWM_args__.string_value)
 }
 
-// optional string wstring_value = 12;
+// string wstring_value = 12;
 void Method_V_biuIUsSfdEAWM_args__::clear_wstring_value() {
   wstring_value_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& Method_V_biuIUsSfdEAWM_args__::wstring_value() const {
+const ::std::string& Method_V_biuIUsSfdEAWM_args__::wstring_value() const {
   // @@protoc_insertion_point(field_get:codegen_test.Method_V_biuIUsSfdEAWM_args__.wstring_value)
-  return wstring_value_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return wstring_value_.GetNoArena();
 }
- void Method_V_biuIUsSfdEAWM_args__::set_wstring_value(const ::std::string& value) {
+void Method_V_biuIUsSfdEAWM_args__::set_wstring_value(const ::std::string& value) {
   
   wstring_value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:codegen_test.Method_V_biuIUsSfdEAWM_args__.wstring_value)
 }
- void Method_V_biuIUsSfdEAWM_args__::set_wstring_value(const char* value) {
+#if LANG_CXX11
+void Method_V_biuIUsSfdEAWM_args__::set_wstring_value(::std::string&& value) {
+  
+  wstring_value_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:codegen_test.Method_V_biuIUsSfdEAWM_args__.wstring_value)
+}
+#endif
+void Method_V_biuIUsSfdEAWM_args__::set_wstring_value(const char* value) {
   
   wstring_value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:codegen_test.Method_V_biuIUsSfdEAWM_args__.wstring_value)
 }
- void Method_V_biuIUsSfdEAWM_args__::set_wstring_value(const char* value, size_t size) {
+void Method_V_biuIUsSfdEAWM_args__::set_wstring_value(const char* value, size_t size) {
   
   wstring_value_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:codegen_test.Method_V_biuIUsSfdEAWM_args__.wstring_value)
 }
- ::std::string* Method_V_biuIUsSfdEAWM_args__::mutable_wstring_value() {
+::std::string* Method_V_biuIUsSfdEAWM_args__::mutable_wstring_value() {
   
   // @@protoc_insertion_point(field_mutable:codegen_test.Method_V_biuIUsSfdEAWM_args__.wstring_value)
   return wstring_value_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* Method_V_biuIUsSfdEAWM_args__::release_wstring_value() {
+::std::string* Method_V_biuIUsSfdEAWM_args__::release_wstring_value() {
   // @@protoc_insertion_point(field_release:codegen_test.Method_V_biuIUsSfdEAWM_args__.wstring_value)
   
   return wstring_value_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void Method_V_biuIUsSfdEAWM_args__::set_allocated_wstring_value(::std::string* wstring_value) {
+void Method_V_biuIUsSfdEAWM_args__::set_allocated_wstring_value(::std::string* wstring_value) {
   if (wstring_value != NULL) {
     
   } else {
@@ -2376,9 +2294,9 @@ void Method_V_biuIUsSfdEAWM_args__::clear_wstring_value() {
   // @@protoc_insertion_point(field_set_allocated:codegen_test.Method_V_biuIUsSfdEAWM_args__.wstring_value)
 }
 
-// optional .codegen_test.StructType struct_value = 13;
+// .codegen_test.StructType struct_value = 13;
 bool Method_V_biuIUsSfdEAWM_args__::has_struct_value() const {
-  return !_is_default_instance_ && struct_value_ != NULL;
+  return this != internal_default_instance() && struct_value_ != NULL;
 }
 void Method_V_biuIUsSfdEAWM_args__::clear_struct_value() {
   if (GetArenaNoVirtual() == NULL && struct_value_ != NULL) delete struct_value_;
@@ -2386,7 +2304,8 @@ void Method_V_biuIUsSfdEAWM_args__::clear_struct_value() {
 }
 const ::codegen_test::StructType& Method_V_biuIUsSfdEAWM_args__::struct_value() const {
   // @@protoc_insertion_point(field_get:codegen_test.Method_V_biuIUsSfdEAWM_args__.struct_value)
-  return struct_value_ != NULL ? *struct_value_ : *default_instance_->struct_value_;
+  return struct_value_ != NULL ? *struct_value_
+                         : *::codegen_test::StructType::internal_default_instance();
 }
 ::codegen_test::StructType* Method_V_biuIUsSfdEAWM_args__::mutable_struct_value() {
   

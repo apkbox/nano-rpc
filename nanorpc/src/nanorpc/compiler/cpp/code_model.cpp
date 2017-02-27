@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "google/protobuf/compiler/plugin.pb.h"
+#include "google/protobuf/empty.pb.h"
 #include "google/protobuf/wrappers.pb.h"
 
 #include "nanorpc/rpc_types.pb.h"
@@ -20,7 +21,7 @@ namespace code_model {
 
 bool TypeModel::ParseFromDescriptor(const pb::Descriptor *type) {
   is_void_ = false;
-  if (type->full_name() == nanorpc::RpcVoid::descriptor()->full_name()) {
+  if (type->full_name() == google::protobuf::Empty::descriptor()->full_name()) {
     name_ = "void";
     is_void_ = true;
   } else if (type->full_name() == pb::BoolValue::descriptor()->full_name()) {
@@ -263,7 +264,7 @@ bool CreateCodeModel(const pb::FileDescriptor *file,
         bool no_setter = false;
         bool no_getter = false;
         const std::string &void_type_name =
-            nanorpc::RpcVoid::descriptor()->full_name();
+            google::protobuf::Empty::descriptor()->full_name();
 
         if (method->input_type()->full_name() == void_type_name)
           no_setter = true;

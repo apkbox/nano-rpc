@@ -18,194 +18,177 @@
 // @@protoc_insertion_point(includes)
 
 namespace hello_world {
+class OrderRequestDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<OrderRequest> {
+} _OrderRequest_default_instance_;
+class DrinkType_wrapper__DefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<DrinkType_wrapper__> {
+} _DrinkType_wrapper___default_instance_;
+class ReadingType_wrapper__DefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<ReadingType_wrapper__> {
+} _ReadingType_wrapper___default_instance_;
+class OrderDeskEvents_OrderStatusChanged_args__DefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<OrderDeskEvents_OrderStatusChanged_args__> {
+} _OrderDeskEvents_OrderStatusChanged_args___default_instance_;
+
+namespace protobuf_hello_5fworld_2eproto {
+
 
 namespace {
 
-const ::google::protobuf::Descriptor* OrderRequest_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  OrderRequest_reflection_ = NULL;
-const ::google::protobuf::Descriptor* DrinkType_wrapper___descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  DrinkType_wrapper___reflection_ = NULL;
-const ::google::protobuf::Descriptor* ReadingType_wrapper___descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  ReadingType_wrapper___reflection_ = NULL;
-const ::google::protobuf::Descriptor* OrderDeskEvents_OrderStatusChanged_args___descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  OrderDeskEvents_OrderStatusChanged_args___reflection_ = NULL;
-const ::google::protobuf::EnumDescriptor* DrinkType_descriptor_ = NULL;
-const ::google::protobuf::EnumDescriptor* ReadingType_descriptor_ = NULL;
+::google::protobuf::Metadata file_level_metadata[4];
+const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[2];
 
 }  // namespace
 
+const ::google::protobuf::uint32 TableStruct::offsets[] = {
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(OrderRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(OrderRequest, drink_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(OrderRequest, reading_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DrinkType_wrapper__, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DrinkType_wrapper__, value_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ReadingType_wrapper__, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ReadingType_wrapper__, value_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(OrderDeskEvents_OrderStatusChanged_args__, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(OrderDeskEvents_OrderStatusChanged_args__, order_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(OrderDeskEvents_OrderStatusChanged_args__, is_ready_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(OrderDeskEvents_OrderStatusChanged_args__, reading_taken_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(OrderDeskEvents_OrderStatusChanged_args__, drink_taken_),
+};
 
-void protobuf_AssignDesc_hello_5fworld_2eproto() {
-  protobuf_AddDesc_hello_5fworld_2eproto();
-  const ::google::protobuf::FileDescriptor* file =
-    ::google::protobuf::DescriptorPool::generated_pool()->FindFileByName(
-      "hello_world.proto");
-  GOOGLE_CHECK(file != NULL);
-  OrderRequest_descriptor_ = file->message_type(0);
-  static const int OrderRequest_offsets_[2] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(OrderRequest, drink_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(OrderRequest, reading_),
-  };
-  OrderRequest_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      OrderRequest_descriptor_,
-      OrderRequest::default_instance_,
-      OrderRequest_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(OrderRequest),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(OrderRequest, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(OrderRequest, _is_default_instance_));
-  DrinkType_wrapper___descriptor_ = file->message_type(1);
-  static const int DrinkType_wrapper___offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DrinkType_wrapper__, value_),
-  };
-  DrinkType_wrapper___reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      DrinkType_wrapper___descriptor_,
-      DrinkType_wrapper__::default_instance_,
-      DrinkType_wrapper___offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(DrinkType_wrapper__),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DrinkType_wrapper__, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DrinkType_wrapper__, _is_default_instance_));
-  ReadingType_wrapper___descriptor_ = file->message_type(2);
-  static const int ReadingType_wrapper___offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ReadingType_wrapper__, value_),
-  };
-  ReadingType_wrapper___reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      ReadingType_wrapper___descriptor_,
-      ReadingType_wrapper__::default_instance_,
-      ReadingType_wrapper___offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(ReadingType_wrapper__),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ReadingType_wrapper__, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ReadingType_wrapper__, _is_default_instance_));
-  OrderDeskEvents_OrderStatusChanged_args___descriptor_ = file->message_type(3);
-  static const int OrderDeskEvents_OrderStatusChanged_args___offsets_[4] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(OrderDeskEvents_OrderStatusChanged_args__, order_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(OrderDeskEvents_OrderStatusChanged_args__, is_ready_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(OrderDeskEvents_OrderStatusChanged_args__, reading_taken_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(OrderDeskEvents_OrderStatusChanged_args__, drink_taken_),
-  };
-  OrderDeskEvents_OrderStatusChanged_args___reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      OrderDeskEvents_OrderStatusChanged_args___descriptor_,
-      OrderDeskEvents_OrderStatusChanged_args__::default_instance_,
-      OrderDeskEvents_OrderStatusChanged_args___offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(OrderDeskEvents_OrderStatusChanged_args__),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(OrderDeskEvents_OrderStatusChanged_args__, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(OrderDeskEvents_OrderStatusChanged_args__, _is_default_instance_));
-  DrinkType_descriptor_ = file->enum_type(0);
-  ReadingType_descriptor_ = file->enum_type(1);
-}
+static const ::google::protobuf::internal::MigrationSchema schemas[] = {
+  { 0, -1, sizeof(OrderRequest)},
+  { 6, -1, sizeof(DrinkType_wrapper__)},
+  { 11, -1, sizeof(ReadingType_wrapper__)},
+  { 16, -1, sizeof(OrderDeskEvents_OrderStatusChanged_args__)},
+};
+
+static ::google::protobuf::Message const * const file_default_instances[] = {
+  reinterpret_cast<const ::google::protobuf::Message*>(&_OrderRequest_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_DrinkType_wrapper___default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_ReadingType_wrapper___default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_OrderDeskEvents_OrderStatusChanged_args___default_instance_),
+};
 
 namespace {
 
-GOOGLE_PROTOBUF_DECLARE_ONCE(protobuf_AssignDescriptors_once_);
-inline void protobuf_AssignDescriptorsOnce() {
-  ::google::protobuf::GoogleOnceInit(&protobuf_AssignDescriptors_once_,
-                 &protobuf_AssignDesc_hello_5fworld_2eproto);
+void protobuf_AssignDescriptors() {
+  AddDescriptors();
+  ::google::protobuf::MessageFactory* factory = NULL;
+  AssignDescriptors(
+      "hello_world.proto", schemas, file_default_instances, TableStruct::offsets, factory,
+      file_level_metadata, file_level_enum_descriptors, NULL);
 }
 
+void protobuf_AssignDescriptorsOnce() {
+  static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
+  ::google::protobuf::GoogleOnceInit(&once, &protobuf_AssignDescriptors);
+}
+
+void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      OrderRequest_descriptor_, &OrderRequest::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      DrinkType_wrapper___descriptor_, &DrinkType_wrapper__::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      ReadingType_wrapper___descriptor_, &ReadingType_wrapper__::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      OrderDeskEvents_OrderStatusChanged_args___descriptor_, &OrderDeskEvents_OrderStatusChanged_args__::default_instance());
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 4);
 }
 
 }  // namespace
 
-void protobuf_ShutdownFile_hello_5fworld_2eproto() {
-  delete OrderRequest::default_instance_;
-  delete OrderRequest_reflection_;
-  delete DrinkType_wrapper__::default_instance_;
-  delete DrinkType_wrapper___reflection_;
-  delete ReadingType_wrapper__::default_instance_;
-  delete ReadingType_wrapper___reflection_;
-  delete OrderDeskEvents_OrderStatusChanged_args__::default_instance_;
-  delete OrderDeskEvents_OrderStatusChanged_args___reflection_;
+void TableStruct::Shutdown() {
+  _OrderRequest_default_instance_.Shutdown();
+  delete file_level_metadata[0].reflection;
+  _DrinkType_wrapper___default_instance_.Shutdown();
+  delete file_level_metadata[1].reflection;
+  _ReadingType_wrapper___default_instance_.Shutdown();
+  delete file_level_metadata[2].reflection;
+  _OrderDeskEvents_OrderStatusChanged_args___default_instance_.Shutdown();
+  delete file_level_metadata[3].reflection;
 }
 
-void protobuf_AddDesc_hello_5fworld_2eproto() {
-  static bool already_here = false;
-  if (already_here) return;
-  already_here = true;
+void TableStruct::InitDefaultsImpl() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
-  ::google::protobuf::protobuf_AddDesc_google_2fprotobuf_2fwrappers_2eproto();
-  ::nanorpc::protobuf_AddDesc_nanorpc_2frpc_5ftypes_2eproto();
-  ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\021hello_world.proto\022\013hello_world\032\036google"
-    "/protobuf/wrappers.proto\032\027nanorpc/rpc_ty"
-    "pes.proto\"f\n\014OrderRequest\022%\n\005drink\030\002 \001(\016"
-    "2\026.hello_world.DrinkType\022)\n\007reading\030\003 \001("
-    "\0162\030.hello_world.ReadingType:\004\210\371+\001\"B\n\023Dri"
-    "nkType_wrapper__\022%\n\005value\030\001 \001(\0162\026.hello_"
-    "world.DrinkType:\004\220\371+\001\"F\n\025ReadingType_wra"
-    "pper__\022\'\n\005value\030\001 \001(\0162\030.hello_world.Read"
-    "ingType:\004\220\371+\001\"~\n)OrderDeskEvents_OrderSt"
-    "atusChanged_args__\022\r\n\005order\030\001 \001(\r\022\020\n\010is_"
-    "ready\030\002 \001(\010\022\025\n\rreading_taken\030\003 \001(\010\022\023\n\013dr"
-    "ink_taken\030\004 \001(\010:\004\210\371+\001*C\n\tDrinkType\022\013\n\007No"
-    "Drink\020\000\022\n\n\006Coffee\020\001\022\007\n\003Tea\020\002\022\t\n\005Water\020\003\022"
-    "\t\n\005Juice\020\004*9\n\013ReadingType\022\r\n\tNoReading\020\000"
-    "\022\r\n\tNewspaper\020\001\022\014\n\010Magazine\020\0022w\n\017OrderDe"
-    "skEvents\022^\n\022OrderStatusChanged\0226.hello_w"
-    "orld.OrderDeskEvents_OrderStatusChanged_"
-    "args__\032\020.nanorpc.RpcVoid\032\004\350\213,\0012\265\002\n\tOrder"
-    "Desk\022E\n\013CreateOrder\022\031.hello_world.OrderR"
-    "equest\032\033.google.protobuf.Int32Value\022G\n\014I"
-    "sOrderReady\022\033.google.protobuf.Int32Value"
-    "\032\032.google.protobuf.BoolValue\022I\n\010GetDrink"
-    "\022\033.google.protobuf.Int32Value\032 .hello_wo"
-    "rld.DrinkType_wrapper__\022M\n\nGetReading\022\033."
-    "google.protobuf.Int32Value\032\".hello_world"
-    ".ReadingType_wrapper__b\006proto3", 1030);
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
-    "hello_world.proto", &protobuf_RegisterTypes);
-  OrderRequest::default_instance_ = new OrderRequest();
-  DrinkType_wrapper__::default_instance_ = new DrinkType_wrapper__();
-  ReadingType_wrapper__::default_instance_ = new ReadingType_wrapper__();
-  OrderDeskEvents_OrderStatusChanged_args__::default_instance_ = new OrderDeskEvents_OrderStatusChanged_args__();
-  OrderRequest::default_instance_->InitAsDefaultInstance();
-  DrinkType_wrapper__::default_instance_->InitAsDefaultInstance();
-  ReadingType_wrapper__::default_instance_->InitAsDefaultInstance();
-  OrderDeskEvents_OrderStatusChanged_args__::default_instance_->InitAsDefaultInstance();
-  ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_hello_5fworld_2eproto);
+  ::google::protobuf::internal::InitProtobufDefaults();
+  ::google::protobuf::protobuf_google_2fprotobuf_2fempty_2eproto::InitDefaults();
+  ::google::protobuf::protobuf_google_2fprotobuf_2fwrappers_2eproto::InitDefaults();
+  ::nanorpc::protobuf_nanorpc_2frpc_5ftypes_2eproto::InitDefaults();
+  _OrderRequest_default_instance_.DefaultConstruct();
+  _DrinkType_wrapper___default_instance_.DefaultConstruct();
+  _ReadingType_wrapper___default_instance_.DefaultConstruct();
+  _OrderDeskEvents_OrderStatusChanged_args___default_instance_.DefaultConstruct();
 }
 
+void InitDefaults() {
+  static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
+  ::google::protobuf::GoogleOnceInit(&once, &TableStruct::InitDefaultsImpl);
+}
+void AddDescriptorsImpl() {
+  InitDefaults();
+  static const char descriptor[] = {
+      "\n\021hello_world.proto\022\013hello_world\032\033google"
+      "/protobuf/empty.proto\032\036google/protobuf/w"
+      "rappers.proto\032\027nanorpc/rpc_types.proto\"f"
+      "\n\014OrderRequest\022%\n\005drink\030\002 \001(\0162\026.hello_wo"
+      "rld.DrinkType\022)\n\007reading\030\003 \001(\0162\030.hello_w"
+      "orld.ReadingType:\004\210\371+\001\"B\n\023DrinkType_wrap"
+      "per__\022%\n\005value\030\001 \001(\0162\026.hello_world.Drink"
+      "Type:\004\220\371+\001\"F\n\025ReadingType_wrapper__\022\'\n\005v"
+      "alue\030\001 \001(\0162\030.hello_world.ReadingType:\004\220\371"
+      "+\001\"~\n)OrderDeskEvents_OrderStatusChanged"
+      "_args__\022\r\n\005order\030\001 \001(\r\022\020\n\010is_ready\030\002 \001(\010"
+      "\022\025\n\rreading_taken\030\003 \001(\010\022\023\n\013drink_taken\030\004"
+      " \001(\010:\004\210\371+\001*C\n\tDrinkType\022\013\n\007NoDrink\020\000\022\n\n\006"
+      "Coffee\020\001\022\007\n\003Tea\020\002\022\t\n\005Water\020\003\022\t\n\005Juice\020\004*"
+      "9\n\013ReadingType\022\r\n\tNoReading\020\000\022\r\n\tNewspap"
+      "er\020\001\022\014\n\010Magazine\020\0022}\n\017OrderDeskEvents\022d\n"
+      "\022OrderStatusChanged\0226.hello_world.OrderD"
+      "eskEvents_OrderStatusChanged_args__\032\026.go"
+      "ogle.protobuf.Empty\032\004\350\213,\0012\265\002\n\tOrderDesk\022"
+      "E\n\013CreateOrder\022\031.hello_world.OrderReques"
+      "t\032\033.google.protobuf.Int32Value\022G\n\014IsOrde"
+      "rReady\022\033.google.protobuf.Int32Value\032\032.go"
+      "ogle.protobuf.BoolValue\022I\n\010GetDrink\022\033.go"
+      "ogle.protobuf.Int32Value\032 .hello_world.D"
+      "rinkType_wrapper__\022M\n\nGetReading\022\033.googl"
+      "e.protobuf.Int32Value\032\".hello_world.Read"
+      "ingType_wrapper__b\006proto3"
+  };
+  ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
+      descriptor, 1065);
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
+    "hello_world.proto", &protobuf_RegisterTypes);
+  ::google::protobuf::protobuf_google_2fprotobuf_2fempty_2eproto::AddDescriptors();
+  ::google::protobuf::protobuf_google_2fprotobuf_2fwrappers_2eproto::AddDescriptors();
+  ::nanorpc::protobuf_nanorpc_2frpc_5ftypes_2eproto::AddDescriptors();
+  ::google::protobuf::internal::OnShutdown(&TableStruct::Shutdown);
+}
+
+void AddDescriptors() {
+  static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
+  ::google::protobuf::GoogleOnceInit(&once, &AddDescriptorsImpl);
+}
 // Force AddDescriptors() to be called at static initialization time.
-struct StaticDescriptorInitializer_hello_5fworld_2eproto {
-  StaticDescriptorInitializer_hello_5fworld_2eproto() {
-    protobuf_AddDesc_hello_5fworld_2eproto();
+struct StaticDescriptorInitializer {
+  StaticDescriptorInitializer() {
+    AddDescriptors();
   }
-} static_descriptor_initializer_hello_5fworld_2eproto_;
+} static_descriptor_initializer;
+
+}  // namespace protobuf_hello_5fworld_2eproto
+
 const ::google::protobuf::EnumDescriptor* DrinkType_descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return DrinkType_descriptor_;
+  protobuf_hello_5fworld_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_hello_5fworld_2eproto::file_level_enum_descriptors[0];
 }
 bool DrinkType_IsValid(int value) {
-  switch(value) {
+  switch (value) {
     case 0:
     case 1:
     case 2:
@@ -218,11 +201,11 @@ bool DrinkType_IsValid(int value) {
 }
 
 const ::google::protobuf::EnumDescriptor* ReadingType_descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return ReadingType_descriptor_;
+  protobuf_hello_5fworld_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_hello_5fworld_2eproto::file_level_enum_descriptors[1];
 }
 bool ReadingType_IsValid(int value) {
-  switch(value) {
+  switch (value) {
     case 0:
     case 1:
     case 2:
@@ -231,16 +214,6 @@ bool ReadingType_IsValid(int value) {
       return false;
   }
 }
-
-
-namespace {
-
-static void MergeFromFail(int line) GOOGLE_ATTRIBUTE_COLD;
-static void MergeFromFail(int line) {
-  GOOGLE_CHECK(false) << __FILE__ << ":" << line;
-}
-
-}  // namespace
 
 
 // ===================================================================
@@ -252,27 +225,27 @@ const int OrderRequest::kReadingFieldNumber;
 
 OrderRequest::OrderRequest()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_hello_5fworld_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:hello_world.OrderRequest)
 }
-
-void OrderRequest::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 OrderRequest::OrderRequest(const OrderRequest& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::memcpy(&drink_, &from.drink_,
+    reinterpret_cast<char*>(&reading_) -
+    reinterpret_cast<char*>(&drink_) + sizeof(reading_));
   // @@protoc_insertion_point(copy_constructor:hello_world.OrderRequest)
 }
 
 void OrderRequest::SharedCtor() {
-    _is_default_instance_ = false;
+  ::memset(&drink_, 0, reinterpret_cast<char*>(&reading_) -
+    reinterpret_cast<char*>(&drink_) + sizeof(reading_));
   _cached_size_ = 0;
-  drink_ = 0;
-  reading_ = 0;
 }
 
 OrderRequest::~OrderRequest() {
@@ -281,8 +254,6 @@ OrderRequest::~OrderRequest() {
 }
 
 void OrderRequest::SharedDtor() {
-  if (this != default_instance_) {
-  }
 }
 
 void OrderRequest::SetCachedSize(int size) const {
@@ -291,16 +262,14 @@ void OrderRequest::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* OrderRequest::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return OrderRequest_descriptor_;
+  protobuf_hello_5fworld_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_hello_5fworld_2eproto::file_level_metadata[0].descriptor;
 }
 
 const OrderRequest& OrderRequest::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_hello_5fworld_2eproto();
-  return *default_instance_;
+  protobuf_hello_5fworld_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-OrderRequest* OrderRequest::default_instance_ = NULL;
 
 OrderRequest* OrderRequest::New(::google::protobuf::Arena* arena) const {
   OrderRequest* n = new OrderRequest;
@@ -312,27 +281,8 @@ OrderRequest* OrderRequest::New(::google::protobuf::Arena* arena) const {
 
 void OrderRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:hello_world.OrderRequest)
-#if defined(__clang__)
-#define ZR_HELPER_(f) \
-  _Pragma("clang diagnostic push") \
-  _Pragma("clang diagnostic ignored \"-Winvalid-offsetof\"") \
-  __builtin_offsetof(OrderRequest, f) \
-  _Pragma("clang diagnostic pop")
-#else
-#define ZR_HELPER_(f) reinterpret_cast<char*>(\
-  &reinterpret_cast<OrderRequest*>(16)->f)
-#endif
-
-#define ZR_(first, last) do {\
-  ::memset(&first, 0,\
-           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
-} while (0)
-
-  ZR_(drink_, reading_);
-
-#undef ZR_HELPER_
-#undef ZR_
-
+  ::memset(&drink_, 0, reinterpret_cast<char*>(&reading_) -
+    reinterpret_cast<char*>(&drink_) + sizeof(reading_));
 }
 
 bool OrderRequest::MergePartialFromCodedStream(
@@ -341,13 +291,13 @@ bool OrderRequest::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:hello_world.OrderRequest)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional .hello_world.DrinkType drink = 2;
+      // .hello_world.DrinkType drink = 2;
       case 2: {
-        if (tag == 16) {
+        if (tag == 16u) {
           int value;
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
@@ -356,14 +306,12 @@ bool OrderRequest::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(24)) goto parse_reading;
         break;
       }
 
-      // optional .hello_world.ReadingType reading = 3;
+      // .hello_world.ReadingType reading = 3;
       case 3: {
-        if (tag == 24) {
-         parse_reading:
+        if (tag == 24u) {
           int value;
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
@@ -372,7 +320,6 @@ bool OrderRequest::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -400,13 +347,13 @@ failure:
 void OrderRequest::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:hello_world.OrderRequest)
-  // optional .hello_world.DrinkType drink = 2;
+  // .hello_world.DrinkType drink = 2;
   if (this->drink() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       2, this->drink(), output);
   }
 
-  // optional .hello_world.ReadingType reading = 3;
+  // .hello_world.ReadingType reading = 3;
   if (this->reading() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       3, this->reading(), output);
@@ -415,16 +362,17 @@ void OrderRequest::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:hello_world.OrderRequest)
 }
 
-::google::protobuf::uint8* OrderRequest::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* OrderRequest::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:hello_world.OrderRequest)
-  // optional .hello_world.DrinkType drink = 2;
+  // .hello_world.DrinkType drink = 2;
   if (this->drink() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       2, this->drink(), target);
   }
 
-  // optional .hello_world.ReadingType reading = 3;
+  // .hello_world.ReadingType reading = 3;
   if (this->reading() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       3, this->reading(), target);
@@ -434,32 +382,33 @@ void OrderRequest::SerializeWithCachedSizes(
   return target;
 }
 
-int OrderRequest::ByteSize() const {
+size_t OrderRequest::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:hello_world.OrderRequest)
-  int total_size = 0;
+  size_t total_size = 0;
 
-  // optional .hello_world.DrinkType drink = 2;
+  // .hello_world.DrinkType drink = 2;
   if (this->drink() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::EnumSize(this->drink());
   }
 
-  // optional .hello_world.ReadingType reading = 3;
+  // .hello_world.ReadingType reading = 3;
   if (this->reading() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::EnumSize(this->reading());
   }
 
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void OrderRequest::MergeFrom(const ::google::protobuf::Message& from) {
 // @@protoc_insertion_point(generalized_merge_from_start:hello_world.OrderRequest)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const OrderRequest* source = 
+  GOOGLE_DCHECK_NE(&from, this);
+  const OrderRequest* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const OrderRequest>(
           &from);
   if (source == NULL) {
@@ -473,7 +422,8 @@ void OrderRequest::MergeFrom(const ::google::protobuf::Message& from) {
 
 void OrderRequest::MergeFrom(const OrderRequest& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:hello_world.OrderRequest)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from.drink() != 0) {
     set_drink(from.drink());
   }
@@ -497,7 +447,6 @@ void OrderRequest::CopyFrom(const OrderRequest& from) {
 }
 
 bool OrderRequest::IsInitialized() const {
-
   return true;
 }
 
@@ -508,44 +457,40 @@ void OrderRequest::Swap(OrderRequest* other) {
 void OrderRequest::InternalSwap(OrderRequest* other) {
   std::swap(drink_, other->drink_);
   std::swap(reading_, other->reading_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata OrderRequest::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = OrderRequest_descriptor_;
-  metadata.reflection = OrderRequest_reflection_;
-  return metadata;
+  protobuf_hello_5fworld_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_hello_5fworld_2eproto::file_level_metadata[0];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // OrderRequest
 
-// optional .hello_world.DrinkType drink = 2;
+// .hello_world.DrinkType drink = 2;
 void OrderRequest::clear_drink() {
   drink_ = 0;
 }
- ::hello_world::DrinkType OrderRequest::drink() const {
+::hello_world::DrinkType OrderRequest::drink() const {
   // @@protoc_insertion_point(field_get:hello_world.OrderRequest.drink)
   return static_cast< ::hello_world::DrinkType >(drink_);
 }
- void OrderRequest::set_drink(::hello_world::DrinkType value) {
+void OrderRequest::set_drink(::hello_world::DrinkType value) {
   
   drink_ = value;
   // @@protoc_insertion_point(field_set:hello_world.OrderRequest.drink)
 }
 
-// optional .hello_world.ReadingType reading = 3;
+// .hello_world.ReadingType reading = 3;
 void OrderRequest::clear_reading() {
   reading_ = 0;
 }
- ::hello_world::ReadingType OrderRequest::reading() const {
+::hello_world::ReadingType OrderRequest::reading() const {
   // @@protoc_insertion_point(field_get:hello_world.OrderRequest.reading)
   return static_cast< ::hello_world::ReadingType >(reading_);
 }
- void OrderRequest::set_reading(::hello_world::ReadingType value) {
+void OrderRequest::set_reading(::hello_world::ReadingType value) {
   
   reading_ = value;
   // @@protoc_insertion_point(field_set:hello_world.OrderRequest.reading)
@@ -561,26 +506,24 @@ const int DrinkType_wrapper__::kValueFieldNumber;
 
 DrinkType_wrapper__::DrinkType_wrapper__()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_hello_5fworld_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:hello_world.DrinkType_wrapper__)
 }
-
-void DrinkType_wrapper__::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 DrinkType_wrapper__::DrinkType_wrapper__(const DrinkType_wrapper__& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  value_ = from.value_;
   // @@protoc_insertion_point(copy_constructor:hello_world.DrinkType_wrapper__)
 }
 
 void DrinkType_wrapper__::SharedCtor() {
-    _is_default_instance_ = false;
-  _cached_size_ = 0;
   value_ = 0;
+  _cached_size_ = 0;
 }
 
 DrinkType_wrapper__::~DrinkType_wrapper__() {
@@ -589,8 +532,6 @@ DrinkType_wrapper__::~DrinkType_wrapper__() {
 }
 
 void DrinkType_wrapper__::SharedDtor() {
-  if (this != default_instance_) {
-  }
 }
 
 void DrinkType_wrapper__::SetCachedSize(int size) const {
@@ -599,16 +540,14 @@ void DrinkType_wrapper__::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* DrinkType_wrapper__::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return DrinkType_wrapper___descriptor_;
+  protobuf_hello_5fworld_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_hello_5fworld_2eproto::file_level_metadata[1].descriptor;
 }
 
 const DrinkType_wrapper__& DrinkType_wrapper__::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_hello_5fworld_2eproto();
-  return *default_instance_;
+  protobuf_hello_5fworld_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-DrinkType_wrapper__* DrinkType_wrapper__::default_instance_ = NULL;
 
 DrinkType_wrapper__* DrinkType_wrapper__::New(::google::protobuf::Arena* arena) const {
   DrinkType_wrapper__* n = new DrinkType_wrapper__;
@@ -629,13 +568,13 @@ bool DrinkType_wrapper__::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:hello_world.DrinkType_wrapper__)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional .hello_world.DrinkType value = 1;
+      // .hello_world.DrinkType value = 1;
       case 1: {
-        if (tag == 8) {
+        if (tag == 8u) {
           int value;
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
@@ -644,7 +583,6 @@ bool DrinkType_wrapper__::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -672,7 +610,7 @@ failure:
 void DrinkType_wrapper__::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:hello_world.DrinkType_wrapper__)
-  // optional .hello_world.DrinkType value = 1;
+  // .hello_world.DrinkType value = 1;
   if (this->value() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       1, this->value(), output);
@@ -681,10 +619,11 @@ void DrinkType_wrapper__::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:hello_world.DrinkType_wrapper__)
 }
 
-::google::protobuf::uint8* DrinkType_wrapper__::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* DrinkType_wrapper__::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:hello_world.DrinkType_wrapper__)
-  // optional .hello_world.DrinkType value = 1;
+  // .hello_world.DrinkType value = 1;
   if (this->value() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       1, this->value(), target);
@@ -694,26 +633,27 @@ void DrinkType_wrapper__::SerializeWithCachedSizes(
   return target;
 }
 
-int DrinkType_wrapper__::ByteSize() const {
+size_t DrinkType_wrapper__::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:hello_world.DrinkType_wrapper__)
-  int total_size = 0;
+  size_t total_size = 0;
 
-  // optional .hello_world.DrinkType value = 1;
+  // .hello_world.DrinkType value = 1;
   if (this->value() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::EnumSize(this->value());
   }
 
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void DrinkType_wrapper__::MergeFrom(const ::google::protobuf::Message& from) {
 // @@protoc_insertion_point(generalized_merge_from_start:hello_world.DrinkType_wrapper__)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const DrinkType_wrapper__* source = 
+  GOOGLE_DCHECK_NE(&from, this);
+  const DrinkType_wrapper__* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const DrinkType_wrapper__>(
           &from);
   if (source == NULL) {
@@ -727,7 +667,8 @@ void DrinkType_wrapper__::MergeFrom(const ::google::protobuf::Message& from) {
 
 void DrinkType_wrapper__::MergeFrom(const DrinkType_wrapper__& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:hello_world.DrinkType_wrapper__)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from.value() != 0) {
     set_value(from.value());
   }
@@ -748,7 +689,6 @@ void DrinkType_wrapper__::CopyFrom(const DrinkType_wrapper__& from) {
 }
 
 bool DrinkType_wrapper__::IsInitialized() const {
-
   return true;
 }
 
@@ -758,30 +698,26 @@ void DrinkType_wrapper__::Swap(DrinkType_wrapper__* other) {
 }
 void DrinkType_wrapper__::InternalSwap(DrinkType_wrapper__* other) {
   std::swap(value_, other->value_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata DrinkType_wrapper__::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = DrinkType_wrapper___descriptor_;
-  metadata.reflection = DrinkType_wrapper___reflection_;
-  return metadata;
+  protobuf_hello_5fworld_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_hello_5fworld_2eproto::file_level_metadata[1];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // DrinkType_wrapper__
 
-// optional .hello_world.DrinkType value = 1;
+// .hello_world.DrinkType value = 1;
 void DrinkType_wrapper__::clear_value() {
   value_ = 0;
 }
- ::hello_world::DrinkType DrinkType_wrapper__::value() const {
+::hello_world::DrinkType DrinkType_wrapper__::value() const {
   // @@protoc_insertion_point(field_get:hello_world.DrinkType_wrapper__.value)
   return static_cast< ::hello_world::DrinkType >(value_);
 }
- void DrinkType_wrapper__::set_value(::hello_world::DrinkType value) {
+void DrinkType_wrapper__::set_value(::hello_world::DrinkType value) {
   
   value_ = value;
   // @@protoc_insertion_point(field_set:hello_world.DrinkType_wrapper__.value)
@@ -797,26 +733,24 @@ const int ReadingType_wrapper__::kValueFieldNumber;
 
 ReadingType_wrapper__::ReadingType_wrapper__()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_hello_5fworld_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:hello_world.ReadingType_wrapper__)
 }
-
-void ReadingType_wrapper__::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 ReadingType_wrapper__::ReadingType_wrapper__(const ReadingType_wrapper__& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  value_ = from.value_;
   // @@protoc_insertion_point(copy_constructor:hello_world.ReadingType_wrapper__)
 }
 
 void ReadingType_wrapper__::SharedCtor() {
-    _is_default_instance_ = false;
-  _cached_size_ = 0;
   value_ = 0;
+  _cached_size_ = 0;
 }
 
 ReadingType_wrapper__::~ReadingType_wrapper__() {
@@ -825,8 +759,6 @@ ReadingType_wrapper__::~ReadingType_wrapper__() {
 }
 
 void ReadingType_wrapper__::SharedDtor() {
-  if (this != default_instance_) {
-  }
 }
 
 void ReadingType_wrapper__::SetCachedSize(int size) const {
@@ -835,16 +767,14 @@ void ReadingType_wrapper__::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* ReadingType_wrapper__::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return ReadingType_wrapper___descriptor_;
+  protobuf_hello_5fworld_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_hello_5fworld_2eproto::file_level_metadata[2].descriptor;
 }
 
 const ReadingType_wrapper__& ReadingType_wrapper__::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_hello_5fworld_2eproto();
-  return *default_instance_;
+  protobuf_hello_5fworld_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-ReadingType_wrapper__* ReadingType_wrapper__::default_instance_ = NULL;
 
 ReadingType_wrapper__* ReadingType_wrapper__::New(::google::protobuf::Arena* arena) const {
   ReadingType_wrapper__* n = new ReadingType_wrapper__;
@@ -865,13 +795,13 @@ bool ReadingType_wrapper__::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:hello_world.ReadingType_wrapper__)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional .hello_world.ReadingType value = 1;
+      // .hello_world.ReadingType value = 1;
       case 1: {
-        if (tag == 8) {
+        if (tag == 8u) {
           int value;
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
@@ -880,7 +810,6 @@ bool ReadingType_wrapper__::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -908,7 +837,7 @@ failure:
 void ReadingType_wrapper__::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:hello_world.ReadingType_wrapper__)
-  // optional .hello_world.ReadingType value = 1;
+  // .hello_world.ReadingType value = 1;
   if (this->value() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       1, this->value(), output);
@@ -917,10 +846,11 @@ void ReadingType_wrapper__::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:hello_world.ReadingType_wrapper__)
 }
 
-::google::protobuf::uint8* ReadingType_wrapper__::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* ReadingType_wrapper__::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:hello_world.ReadingType_wrapper__)
-  // optional .hello_world.ReadingType value = 1;
+  // .hello_world.ReadingType value = 1;
   if (this->value() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       1, this->value(), target);
@@ -930,26 +860,27 @@ void ReadingType_wrapper__::SerializeWithCachedSizes(
   return target;
 }
 
-int ReadingType_wrapper__::ByteSize() const {
+size_t ReadingType_wrapper__::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:hello_world.ReadingType_wrapper__)
-  int total_size = 0;
+  size_t total_size = 0;
 
-  // optional .hello_world.ReadingType value = 1;
+  // .hello_world.ReadingType value = 1;
   if (this->value() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::EnumSize(this->value());
   }
 
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void ReadingType_wrapper__::MergeFrom(const ::google::protobuf::Message& from) {
 // @@protoc_insertion_point(generalized_merge_from_start:hello_world.ReadingType_wrapper__)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const ReadingType_wrapper__* source = 
+  GOOGLE_DCHECK_NE(&from, this);
+  const ReadingType_wrapper__* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const ReadingType_wrapper__>(
           &from);
   if (source == NULL) {
@@ -963,7 +894,8 @@ void ReadingType_wrapper__::MergeFrom(const ::google::protobuf::Message& from) {
 
 void ReadingType_wrapper__::MergeFrom(const ReadingType_wrapper__& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:hello_world.ReadingType_wrapper__)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from.value() != 0) {
     set_value(from.value());
   }
@@ -984,7 +916,6 @@ void ReadingType_wrapper__::CopyFrom(const ReadingType_wrapper__& from) {
 }
 
 bool ReadingType_wrapper__::IsInitialized() const {
-
   return true;
 }
 
@@ -994,30 +925,26 @@ void ReadingType_wrapper__::Swap(ReadingType_wrapper__* other) {
 }
 void ReadingType_wrapper__::InternalSwap(ReadingType_wrapper__* other) {
   std::swap(value_, other->value_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata ReadingType_wrapper__::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = ReadingType_wrapper___descriptor_;
-  metadata.reflection = ReadingType_wrapper___reflection_;
-  return metadata;
+  protobuf_hello_5fworld_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_hello_5fworld_2eproto::file_level_metadata[2];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // ReadingType_wrapper__
 
-// optional .hello_world.ReadingType value = 1;
+// .hello_world.ReadingType value = 1;
 void ReadingType_wrapper__::clear_value() {
   value_ = 0;
 }
- ::hello_world::ReadingType ReadingType_wrapper__::value() const {
+::hello_world::ReadingType ReadingType_wrapper__::value() const {
   // @@protoc_insertion_point(field_get:hello_world.ReadingType_wrapper__.value)
   return static_cast< ::hello_world::ReadingType >(value_);
 }
- void ReadingType_wrapper__::set_value(::hello_world::ReadingType value) {
+void ReadingType_wrapper__::set_value(::hello_world::ReadingType value) {
   
   value_ = value;
   // @@protoc_insertion_point(field_set:hello_world.ReadingType_wrapper__.value)
@@ -1036,29 +963,27 @@ const int OrderDeskEvents_OrderStatusChanged_args__::kDrinkTakenFieldNumber;
 
 OrderDeskEvents_OrderStatusChanged_args__::OrderDeskEvents_OrderStatusChanged_args__()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_hello_5fworld_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:hello_world.OrderDeskEvents_OrderStatusChanged_args__)
 }
-
-void OrderDeskEvents_OrderStatusChanged_args__::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 OrderDeskEvents_OrderStatusChanged_args__::OrderDeskEvents_OrderStatusChanged_args__(const OrderDeskEvents_OrderStatusChanged_args__& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::memcpy(&order_, &from.order_,
+    reinterpret_cast<char*>(&drink_taken_) -
+    reinterpret_cast<char*>(&order_) + sizeof(drink_taken_));
   // @@protoc_insertion_point(copy_constructor:hello_world.OrderDeskEvents_OrderStatusChanged_args__)
 }
 
 void OrderDeskEvents_OrderStatusChanged_args__::SharedCtor() {
-    _is_default_instance_ = false;
+  ::memset(&order_, 0, reinterpret_cast<char*>(&drink_taken_) -
+    reinterpret_cast<char*>(&order_) + sizeof(drink_taken_));
   _cached_size_ = 0;
-  order_ = 0u;
-  is_ready_ = false;
-  reading_taken_ = false;
-  drink_taken_ = false;
 }
 
 OrderDeskEvents_OrderStatusChanged_args__::~OrderDeskEvents_OrderStatusChanged_args__() {
@@ -1067,8 +992,6 @@ OrderDeskEvents_OrderStatusChanged_args__::~OrderDeskEvents_OrderStatusChanged_a
 }
 
 void OrderDeskEvents_OrderStatusChanged_args__::SharedDtor() {
-  if (this != default_instance_) {
-  }
 }
 
 void OrderDeskEvents_OrderStatusChanged_args__::SetCachedSize(int size) const {
@@ -1077,16 +1000,14 @@ void OrderDeskEvents_OrderStatusChanged_args__::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* OrderDeskEvents_OrderStatusChanged_args__::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return OrderDeskEvents_OrderStatusChanged_args___descriptor_;
+  protobuf_hello_5fworld_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_hello_5fworld_2eproto::file_level_metadata[3].descriptor;
 }
 
 const OrderDeskEvents_OrderStatusChanged_args__& OrderDeskEvents_OrderStatusChanged_args__::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_hello_5fworld_2eproto();
-  return *default_instance_;
+  protobuf_hello_5fworld_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-OrderDeskEvents_OrderStatusChanged_args__* OrderDeskEvents_OrderStatusChanged_args__::default_instance_ = NULL;
 
 OrderDeskEvents_OrderStatusChanged_args__* OrderDeskEvents_OrderStatusChanged_args__::New(::google::protobuf::Arena* arena) const {
   OrderDeskEvents_OrderStatusChanged_args__* n = new OrderDeskEvents_OrderStatusChanged_args__;
@@ -1098,27 +1019,8 @@ OrderDeskEvents_OrderStatusChanged_args__* OrderDeskEvents_OrderStatusChanged_ar
 
 void OrderDeskEvents_OrderStatusChanged_args__::Clear() {
 // @@protoc_insertion_point(message_clear_start:hello_world.OrderDeskEvents_OrderStatusChanged_args__)
-#if defined(__clang__)
-#define ZR_HELPER_(f) \
-  _Pragma("clang diagnostic push") \
-  _Pragma("clang diagnostic ignored \"-Winvalid-offsetof\"") \
-  __builtin_offsetof(OrderDeskEvents_OrderStatusChanged_args__, f) \
-  _Pragma("clang diagnostic pop")
-#else
-#define ZR_HELPER_(f) reinterpret_cast<char*>(\
-  &reinterpret_cast<OrderDeskEvents_OrderStatusChanged_args__*>(16)->f)
-#endif
-
-#define ZR_(first, last) do {\
-  ::memset(&first, 0,\
-           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
-} while (0)
-
-  ZR_(order_, drink_taken_);
-
-#undef ZR_HELPER_
-#undef ZR_
-
+  ::memset(&order_, 0, reinterpret_cast<char*>(&drink_taken_) -
+    reinterpret_cast<char*>(&order_) + sizeof(drink_taken_));
 }
 
 bool OrderDeskEvents_OrderStatusChanged_args__::MergePartialFromCodedStream(
@@ -1127,66 +1029,59 @@ bool OrderDeskEvents_OrderStatusChanged_args__::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:hello_world.OrderDeskEvents_OrderStatusChanged_args__)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional uint32 order = 1;
+      // uint32 order = 1;
       case 1: {
-        if (tag == 8) {
+        if (tag == 8u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
                  input, &order_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(16)) goto parse_is_ready;
         break;
       }
 
-      // optional bool is_ready = 2;
+      // bool is_ready = 2;
       case 2: {
-        if (tag == 16) {
-         parse_is_ready:
+        if (tag == 16u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
                  input, &is_ready_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(24)) goto parse_reading_taken;
         break;
       }
 
-      // optional bool reading_taken = 3;
+      // bool reading_taken = 3;
       case 3: {
-        if (tag == 24) {
-         parse_reading_taken:
+        if (tag == 24u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
                  input, &reading_taken_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(32)) goto parse_drink_taken;
         break;
       }
 
-      // optional bool drink_taken = 4;
+      // bool drink_taken = 4;
       case 4: {
-        if (tag == 32) {
-         parse_drink_taken:
+        if (tag == 32u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
                  input, &drink_taken_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -1214,22 +1109,22 @@ failure:
 void OrderDeskEvents_OrderStatusChanged_args__::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:hello_world.OrderDeskEvents_OrderStatusChanged_args__)
-  // optional uint32 order = 1;
+  // uint32 order = 1;
   if (this->order() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->order(), output);
   }
 
-  // optional bool is_ready = 2;
+  // bool is_ready = 2;
   if (this->is_ready() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(2, this->is_ready(), output);
   }
 
-  // optional bool reading_taken = 3;
+  // bool reading_taken = 3;
   if (this->reading_taken() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(3, this->reading_taken(), output);
   }
 
-  // optional bool drink_taken = 4;
+  // bool drink_taken = 4;
   if (this->drink_taken() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(4, this->drink_taken(), output);
   }
@@ -1237,25 +1132,26 @@ void OrderDeskEvents_OrderStatusChanged_args__::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:hello_world.OrderDeskEvents_OrderStatusChanged_args__)
 }
 
-::google::protobuf::uint8* OrderDeskEvents_OrderStatusChanged_args__::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* OrderDeskEvents_OrderStatusChanged_args__::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:hello_world.OrderDeskEvents_OrderStatusChanged_args__)
-  // optional uint32 order = 1;
+  // uint32 order = 1;
   if (this->order() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->order(), target);
   }
 
-  // optional bool is_ready = 2;
+  // bool is_ready = 2;
   if (this->is_ready() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(2, this->is_ready(), target);
   }
 
-  // optional bool reading_taken = 3;
+  // bool reading_taken = 3;
   if (this->reading_taken() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(3, this->reading_taken(), target);
   }
 
-  // optional bool drink_taken = 4;
+  // bool drink_taken = 4;
   if (this->drink_taken() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(4, this->drink_taken(), target);
   }
@@ -1264,42 +1160,43 @@ void OrderDeskEvents_OrderStatusChanged_args__::SerializeWithCachedSizes(
   return target;
 }
 
-int OrderDeskEvents_OrderStatusChanged_args__::ByteSize() const {
+size_t OrderDeskEvents_OrderStatusChanged_args__::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:hello_world.OrderDeskEvents_OrderStatusChanged_args__)
-  int total_size = 0;
+  size_t total_size = 0;
 
-  // optional uint32 order = 1;
+  // uint32 order = 1;
   if (this->order() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->order());
   }
 
-  // optional bool is_ready = 2;
+  // bool is_ready = 2;
   if (this->is_ready() != 0) {
     total_size += 1 + 1;
   }
 
-  // optional bool reading_taken = 3;
+  // bool reading_taken = 3;
   if (this->reading_taken() != 0) {
     total_size += 1 + 1;
   }
 
-  // optional bool drink_taken = 4;
+  // bool drink_taken = 4;
   if (this->drink_taken() != 0) {
     total_size += 1 + 1;
   }
 
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void OrderDeskEvents_OrderStatusChanged_args__::MergeFrom(const ::google::protobuf::Message& from) {
 // @@protoc_insertion_point(generalized_merge_from_start:hello_world.OrderDeskEvents_OrderStatusChanged_args__)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const OrderDeskEvents_OrderStatusChanged_args__* source = 
+  GOOGLE_DCHECK_NE(&from, this);
+  const OrderDeskEvents_OrderStatusChanged_args__* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const OrderDeskEvents_OrderStatusChanged_args__>(
           &from);
   if (source == NULL) {
@@ -1313,7 +1210,8 @@ void OrderDeskEvents_OrderStatusChanged_args__::MergeFrom(const ::google::protob
 
 void OrderDeskEvents_OrderStatusChanged_args__::MergeFrom(const OrderDeskEvents_OrderStatusChanged_args__& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:hello_world.OrderDeskEvents_OrderStatusChanged_args__)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from.order() != 0) {
     set_order(from.order());
   }
@@ -1343,7 +1241,6 @@ void OrderDeskEvents_OrderStatusChanged_args__::CopyFrom(const OrderDeskEvents_O
 }
 
 bool OrderDeskEvents_OrderStatusChanged_args__::IsInitialized() const {
-
   return true;
 }
 
@@ -1356,72 +1253,68 @@ void OrderDeskEvents_OrderStatusChanged_args__::InternalSwap(OrderDeskEvents_Ord
   std::swap(is_ready_, other->is_ready_);
   std::swap(reading_taken_, other->reading_taken_);
   std::swap(drink_taken_, other->drink_taken_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata OrderDeskEvents_OrderStatusChanged_args__::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = OrderDeskEvents_OrderStatusChanged_args___descriptor_;
-  metadata.reflection = OrderDeskEvents_OrderStatusChanged_args___reflection_;
-  return metadata;
+  protobuf_hello_5fworld_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_hello_5fworld_2eproto::file_level_metadata[3];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // OrderDeskEvents_OrderStatusChanged_args__
 
-// optional uint32 order = 1;
+// uint32 order = 1;
 void OrderDeskEvents_OrderStatusChanged_args__::clear_order() {
   order_ = 0u;
 }
- ::google::protobuf::uint32 OrderDeskEvents_OrderStatusChanged_args__::order() const {
+::google::protobuf::uint32 OrderDeskEvents_OrderStatusChanged_args__::order() const {
   // @@protoc_insertion_point(field_get:hello_world.OrderDeskEvents_OrderStatusChanged_args__.order)
   return order_;
 }
- void OrderDeskEvents_OrderStatusChanged_args__::set_order(::google::protobuf::uint32 value) {
+void OrderDeskEvents_OrderStatusChanged_args__::set_order(::google::protobuf::uint32 value) {
   
   order_ = value;
   // @@protoc_insertion_point(field_set:hello_world.OrderDeskEvents_OrderStatusChanged_args__.order)
 }
 
-// optional bool is_ready = 2;
+// bool is_ready = 2;
 void OrderDeskEvents_OrderStatusChanged_args__::clear_is_ready() {
   is_ready_ = false;
 }
- bool OrderDeskEvents_OrderStatusChanged_args__::is_ready() const {
+bool OrderDeskEvents_OrderStatusChanged_args__::is_ready() const {
   // @@protoc_insertion_point(field_get:hello_world.OrderDeskEvents_OrderStatusChanged_args__.is_ready)
   return is_ready_;
 }
- void OrderDeskEvents_OrderStatusChanged_args__::set_is_ready(bool value) {
+void OrderDeskEvents_OrderStatusChanged_args__::set_is_ready(bool value) {
   
   is_ready_ = value;
   // @@protoc_insertion_point(field_set:hello_world.OrderDeskEvents_OrderStatusChanged_args__.is_ready)
 }
 
-// optional bool reading_taken = 3;
+// bool reading_taken = 3;
 void OrderDeskEvents_OrderStatusChanged_args__::clear_reading_taken() {
   reading_taken_ = false;
 }
- bool OrderDeskEvents_OrderStatusChanged_args__::reading_taken() const {
+bool OrderDeskEvents_OrderStatusChanged_args__::reading_taken() const {
   // @@protoc_insertion_point(field_get:hello_world.OrderDeskEvents_OrderStatusChanged_args__.reading_taken)
   return reading_taken_;
 }
- void OrderDeskEvents_OrderStatusChanged_args__::set_reading_taken(bool value) {
+void OrderDeskEvents_OrderStatusChanged_args__::set_reading_taken(bool value) {
   
   reading_taken_ = value;
   // @@protoc_insertion_point(field_set:hello_world.OrderDeskEvents_OrderStatusChanged_args__.reading_taken)
 }
 
-// optional bool drink_taken = 4;
+// bool drink_taken = 4;
 void OrderDeskEvents_OrderStatusChanged_args__::clear_drink_taken() {
   drink_taken_ = false;
 }
- bool OrderDeskEvents_OrderStatusChanged_args__::drink_taken() const {
+bool OrderDeskEvents_OrderStatusChanged_args__::drink_taken() const {
   // @@protoc_insertion_point(field_get:hello_world.OrderDeskEvents_OrderStatusChanged_args__.drink_taken)
   return drink_taken_;
 }
- void OrderDeskEvents_OrderStatusChanged_args__::set_drink_taken(bool value) {
+void OrderDeskEvents_OrderStatusChanged_args__::set_drink_taken(bool value) {
   
   drink_taken_ = value;
   // @@protoc_insertion_point(field_set:hello_world.OrderDeskEvents_OrderStatusChanged_args__.drink_taken)

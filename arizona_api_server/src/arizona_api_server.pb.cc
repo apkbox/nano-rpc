@@ -18,182 +18,170 @@
 // @@protoc_insertion_point(includes)
 
 namespace arizona_api_service {
+class ProductInfoDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<ProductInfo> {
+} _ProductInfo_default_instance_;
+class SoftwarePackageDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<SoftwarePackage> {
+} _SoftwarePackage_default_instance_;
+class SoftwarePackageListDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<SoftwarePackageList> {
+} _SoftwarePackageList_default_instance_;
+
+namespace protobuf_arizona_5fapi_5fserver_2eproto {
+
 
 namespace {
 
-const ::google::protobuf::Descriptor* ProductInfo_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  ProductInfo_reflection_ = NULL;
-const ::google::protobuf::Descriptor* SoftwarePackage_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  SoftwarePackage_reflection_ = NULL;
-const ::google::protobuf::Descriptor* SoftwarePackageList_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  SoftwarePackageList_reflection_ = NULL;
+::google::protobuf::Metadata file_level_metadata[3];
 
 }  // namespace
 
+const ::google::protobuf::uint32 TableStruct::offsets[] = {
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProductInfo, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProductInfo, version_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProductInfo, version_string_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProductInfo, serial_number_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProductInfo, platform_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProductInfo, base_model_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProductInfo, model_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProductInfo, make_and_model_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SoftwarePackage, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SoftwarePackage, file_name_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SoftwarePackage, full_path_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SoftwarePackage, description_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SoftwarePackage, version_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SoftwarePackage, version_string_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SoftwarePackage, file_size_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SoftwarePackage, space_required_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SoftwarePackage, usable_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SoftwarePackage, trusted_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SoftwarePackage, supported_products_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SoftwarePackageList, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SoftwarePackageList, list_),
+};
 
-void protobuf_AssignDesc_arizona_5fapi_5fserver_2eproto() {
-  protobuf_AddDesc_arizona_5fapi_5fserver_2eproto();
-  const ::google::protobuf::FileDescriptor* file =
-    ::google::protobuf::DescriptorPool::generated_pool()->FindFileByName(
-      "arizona_api_server.proto");
-  GOOGLE_CHECK(file != NULL);
-  ProductInfo_descriptor_ = file->message_type(0);
-  static const int ProductInfo_offsets_[7] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProductInfo, version_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProductInfo, version_string_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProductInfo, serial_number_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProductInfo, platform_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProductInfo, base_model_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProductInfo, model_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProductInfo, make_and_model_),
-  };
-  ProductInfo_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      ProductInfo_descriptor_,
-      ProductInfo::default_instance_,
-      ProductInfo_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(ProductInfo),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProductInfo, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProductInfo, _is_default_instance_));
-  SoftwarePackage_descriptor_ = file->message_type(1);
-  static const int SoftwarePackage_offsets_[10] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SoftwarePackage, file_name_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SoftwarePackage, full_path_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SoftwarePackage, description_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SoftwarePackage, version_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SoftwarePackage, version_string_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SoftwarePackage, file_size_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SoftwarePackage, space_required_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SoftwarePackage, usable_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SoftwarePackage, trusted_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SoftwarePackage, supported_products_),
-  };
-  SoftwarePackage_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      SoftwarePackage_descriptor_,
-      SoftwarePackage::default_instance_,
-      SoftwarePackage_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(SoftwarePackage),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SoftwarePackage, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SoftwarePackage, _is_default_instance_));
-  SoftwarePackageList_descriptor_ = file->message_type(2);
-  static const int SoftwarePackageList_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SoftwarePackageList, list_),
-  };
-  SoftwarePackageList_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      SoftwarePackageList_descriptor_,
-      SoftwarePackageList::default_instance_,
-      SoftwarePackageList_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(SoftwarePackageList),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SoftwarePackageList, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SoftwarePackageList, _is_default_instance_));
-}
+static const ::google::protobuf::internal::MigrationSchema schemas[] = {
+  { 0, -1, sizeof(ProductInfo)},
+  { 11, -1, sizeof(SoftwarePackage)},
+  { 25, -1, sizeof(SoftwarePackageList)},
+};
+
+static ::google::protobuf::Message const * const file_default_instances[] = {
+  reinterpret_cast<const ::google::protobuf::Message*>(&_ProductInfo_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_SoftwarePackage_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_SoftwarePackageList_default_instance_),
+};
 
 namespace {
 
-GOOGLE_PROTOBUF_DECLARE_ONCE(protobuf_AssignDescriptors_once_);
-inline void protobuf_AssignDescriptorsOnce() {
-  ::google::protobuf::GoogleOnceInit(&protobuf_AssignDescriptors_once_,
-                 &protobuf_AssignDesc_arizona_5fapi_5fserver_2eproto);
+void protobuf_AssignDescriptors() {
+  AddDescriptors();
+  ::google::protobuf::MessageFactory* factory = NULL;
+  AssignDescriptors(
+      "arizona_api_server.proto", schemas, file_default_instances, TableStruct::offsets, factory,
+      file_level_metadata, NULL, NULL);
 }
 
+void protobuf_AssignDescriptorsOnce() {
+  static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
+  ::google::protobuf::GoogleOnceInit(&once, &protobuf_AssignDescriptors);
+}
+
+void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      ProductInfo_descriptor_, &ProductInfo::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      SoftwarePackage_descriptor_, &SoftwarePackage::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      SoftwarePackageList_descriptor_, &SoftwarePackageList::default_instance());
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 3);
 }
 
 }  // namespace
 
-void protobuf_ShutdownFile_arizona_5fapi_5fserver_2eproto() {
-  delete ProductInfo::default_instance_;
-  delete ProductInfo_reflection_;
-  delete SoftwarePackage::default_instance_;
-  delete SoftwarePackage_reflection_;
-  delete SoftwarePackageList::default_instance_;
-  delete SoftwarePackageList_reflection_;
+void TableStruct::Shutdown() {
+  _ProductInfo_default_instance_.Shutdown();
+  delete file_level_metadata[0].reflection;
+  _SoftwarePackage_default_instance_.Shutdown();
+  delete file_level_metadata[1].reflection;
+  _SoftwarePackageList_default_instance_.Shutdown();
+  delete file_level_metadata[2].reflection;
 }
 
-void protobuf_AddDesc_arizona_5fapi_5fserver_2eproto() {
-  static bool already_here = false;
-  if (already_here) return;
-  already_here = true;
+void TableStruct::InitDefaultsImpl() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
-  ::google::protobuf::protobuf_AddDesc_google_2fprotobuf_2fwrappers_2eproto();
-  ::nanorpc::protobuf_AddDesc_nanorpc_2frpc_5ftypes_2eproto();
+  ::google::protobuf::internal::InitProtobufDefaults();
+  ::google::protobuf::protobuf_google_2fprotobuf_2fempty_2eproto::InitDefaults();
+  ::google::protobuf::protobuf_google_2fprotobuf_2fwrappers_2eproto::InitDefaults();
+  ::nanorpc::protobuf_nanorpc_2frpc_5ftypes_2eproto::InitDefaults();
+  _ProductInfo_default_instance_.DefaultConstruct();
+  _SoftwarePackage_default_instance_.DefaultConstruct();
+  _SoftwarePackageList_default_instance_.DefaultConstruct();
+}
+
+void InitDefaults() {
+  static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
+  ::google::protobuf::GoogleOnceInit(&once, &TableStruct::InitDefaultsImpl);
+}
+void AddDescriptorsImpl() {
+  InitDefaults();
+  static const char descriptor[] = {
+      "\n\030arizona_api_server.proto\022\023arizona_api_"
+      "service\032\033google/protobuf/empty.proto\032\036go"
+      "ogle/protobuf/wrappers.proto\032\027nanorpc/rp"
+      "c_types.proto\"\232\001\n\013ProductInfo\022\017\n\007version"
+      "\030\001 \001(\t\022\026\n\016version_string\030\002 \001(\t\022\025\n\rserial"
+      "_number\030\003 \001(\r\022\020\n\010platform\030\004 \001(\t\022\022\n\nbase_"
+      "model\030\005 \001(\t\022\r\n\005model\030\006 \001(\t\022\026\n\016make_and_m"
+      "odel\030\007 \001(\t\"\335\001\n\017SoftwarePackage\022\021\n\tfile_n"
+      "ame\030\001 \001(\t\022\021\n\tfull_path\030\002 \001(\t\022\023\n\013descript"
+      "ion\030\003 \001(\t\022\017\n\007version\030\004 \001(\t\022\026\n\016version_st"
+      "ring\030\005 \001(\t\022\021\n\tfile_size\030\006 \001(\004\022\026\n\016space_r"
+      "equired\030\007 \001(\004\022\016\n\006usable\030\010 \001(\010\022\017\n\007trusted"
+      "\030\t \001(\010\022\032\n\022supported_products\030\n \001(\t\"I\n\023So"
+      "ftwarePackageList\0222\n\004list\030\001 \003(\0132$.arizon"
+      "a_api_service.SoftwarePackage2b\n\024Softwar"
+      "eUpdateEvents\022D\n\022PackageListChanged\022\026.go"
+      "ogle.protobuf.Empty\032\026.google.protobuf.Em"
+      "pty\032\004\350\213,\0012b\n\024ProductInfoInterface\022J\n\016Get"
+      "ProductInfo\022\026.google.protobuf.Empty\032 .ar"
+      "izona_api_service.ProductInfo2\341\002\n\027Softwa"
+      "reUpdateInterface\022X\n\024GetAvailablePackage"
+      "s\022\026.google.protobuf.Empty\032(.arizona_api_"
+      "service.SoftwarePackageList\022T\n\030StartPack"
+      "ageInstallation\022\034.google.protobuf.String"
+      "Value\032\032.google.protobuf.BoolValue\022I\n\rDel"
+      "etePackage\022\034.google.protobuf.StringValue"
+      "\032\032.google.protobuf.BoolValue\022K\n\023GetPacka"
+      "geStorePath\022\026.google.protobuf.Empty\032\034.go"
+      "ogle.protobuf.StringValueb\006proto3"
+  };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\030arizona_api_server.proto\022\023arizona_api_"
-    "service\032\036google/protobuf/wrappers.proto\032"
-    "\027nanorpc/rpc_types.proto\"\232\001\n\013ProductInfo"
-    "\022\017\n\007version\030\001 \001(\t\022\026\n\016version_string\030\002 \001("
-    "\t\022\025\n\rserial_number\030\003 \001(\r\022\020\n\010platform\030\004 \001"
-    "(\t\022\022\n\nbase_model\030\005 \001(\t\022\r\n\005model\030\006 \001(\t\022\026\n"
-    "\016make_and_model\030\007 \001(\t\"\335\001\n\017SoftwarePackag"
-    "e\022\021\n\tfile_name\030\001 \001(\t\022\021\n\tfull_path\030\002 \001(\t\022"
-    "\023\n\013description\030\003 \001(\t\022\017\n\007version\030\004 \001(\t\022\026\n"
-    "\016version_string\030\005 \001(\t\022\021\n\tfile_size\030\006 \001(\004"
-    "\022\026\n\016space_required\030\007 \001(\004\022\016\n\006usable\030\010 \001(\010"
-    "\022\017\n\007trusted\030\t \001(\010\022\032\n\022supported_products\030"
-    "\n \001(\t\"I\n\023SoftwarePackageList\0222\n\004list\030\001 \003"
-    "(\0132$.arizona_api_service.SoftwarePackage"
-    "2V\n\024SoftwareUpdateEvents\0228\n\022PackageListC"
-    "hanged\022\020.nanorpc.RpcVoid\032\020.nanorpc.RpcVo"
-    "id\032\004\350\213,\0012\\\n\024ProductInfoInterface\022D\n\016GetP"
-    "roductInfo\022\020.nanorpc.RpcVoid\032 .arizona_a"
-    "pi_service.ProductInfo2\325\002\n\027SoftwareUpdat"
-    "eInterface\022R\n\024GetAvailablePackages\022\020.nan"
-    "orpc.RpcVoid\032(.arizona_api_service.Softw"
-    "arePackageList\022T\n\030StartPackageInstallati"
-    "on\022\034.google.protobuf.StringValue\032\032.googl"
-    "e.protobuf.BoolValue\022I\n\rDeletePackage\022\034."
-    "google.protobuf.StringValue\032\032.google.pro"
-    "tobuf.BoolValue\022E\n\023GetPackageStorePath\022\020"
-    ".nanorpc.RpcVoid\032\034.google.protobuf.Strin"
-    "gValueb\006proto3", 1094);
+      descriptor, 1153);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "arizona_api_server.proto", &protobuf_RegisterTypes);
-  ProductInfo::default_instance_ = new ProductInfo();
-  SoftwarePackage::default_instance_ = new SoftwarePackage();
-  SoftwarePackageList::default_instance_ = new SoftwarePackageList();
-  ProductInfo::default_instance_->InitAsDefaultInstance();
-  SoftwarePackage::default_instance_->InitAsDefaultInstance();
-  SoftwarePackageList::default_instance_->InitAsDefaultInstance();
-  ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_arizona_5fapi_5fserver_2eproto);
+  ::google::protobuf::protobuf_google_2fprotobuf_2fempty_2eproto::AddDescriptors();
+  ::google::protobuf::protobuf_google_2fprotobuf_2fwrappers_2eproto::AddDescriptors();
+  ::nanorpc::protobuf_nanorpc_2frpc_5ftypes_2eproto::AddDescriptors();
+  ::google::protobuf::internal::OnShutdown(&TableStruct::Shutdown);
 }
 
+void AddDescriptors() {
+  static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
+  ::google::protobuf::GoogleOnceInit(&once, &AddDescriptorsImpl);
+}
 // Force AddDescriptors() to be called at static initialization time.
-struct StaticDescriptorInitializer_arizona_5fapi_5fserver_2eproto {
-  StaticDescriptorInitializer_arizona_5fapi_5fserver_2eproto() {
-    protobuf_AddDesc_arizona_5fapi_5fserver_2eproto();
+struct StaticDescriptorInitializer {
+  StaticDescriptorInitializer() {
+    AddDescriptors();
   }
-} static_descriptor_initializer_arizona_5fapi_5fserver_2eproto_;
+} static_descriptor_initializer;
 
-namespace {
-
-static void MergeFromFail(int line) GOOGLE_ATTRIBUTE_COLD;
-static void MergeFromFail(int line) {
-  GOOGLE_CHECK(false) << __FILE__ << ":" << line;
-}
-
-}  // namespace
+}  // namespace protobuf_arizona_5fapi_5fserver_2eproto
 
 
 // ===================================================================
@@ -210,33 +198,54 @@ const int ProductInfo::kMakeAndModelFieldNumber;
 
 ProductInfo::ProductInfo()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_arizona_5fapi_5fserver_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:arizona_api_service.ProductInfo)
 }
-
-void ProductInfo::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 ProductInfo::ProductInfo(const ProductInfo& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  version_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.version().size() > 0) {
+    version_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.version_);
+  }
+  version_string_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.version_string().size() > 0) {
+    version_string_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.version_string_);
+  }
+  platform_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.platform().size() > 0) {
+    platform_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.platform_);
+  }
+  base_model_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.base_model().size() > 0) {
+    base_model_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.base_model_);
+  }
+  model_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.model().size() > 0) {
+    model_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.model_);
+  }
+  make_and_model_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.make_and_model().size() > 0) {
+    make_and_model_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.make_and_model_);
+  }
+  serial_number_ = from.serial_number_;
   // @@protoc_insertion_point(copy_constructor:arizona_api_service.ProductInfo)
 }
 
 void ProductInfo::SharedCtor() {
-    _is_default_instance_ = false;
-  ::google::protobuf::internal::GetEmptyString();
-  _cached_size_ = 0;
   version_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   version_string_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  serial_number_ = 0u;
   platform_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   base_model_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   model_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   make_and_model_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  serial_number_ = 0u;
+  _cached_size_ = 0;
 }
 
 ProductInfo::~ProductInfo() {
@@ -251,8 +260,6 @@ void ProductInfo::SharedDtor() {
   base_model_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   model_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   make_and_model_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (this != default_instance_) {
-  }
 }
 
 void ProductInfo::SetCachedSize(int size) const {
@@ -261,16 +268,14 @@ void ProductInfo::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* ProductInfo::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return ProductInfo_descriptor_;
+  protobuf_arizona_5fapi_5fserver_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_arizona_5fapi_5fserver_2eproto::file_level_metadata[0].descriptor;
 }
 
 const ProductInfo& ProductInfo::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_arizona_5fapi_5fserver_2eproto();
-  return *default_instance_;
+  protobuf_arizona_5fapi_5fserver_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-ProductInfo* ProductInfo::default_instance_ = NULL;
 
 ProductInfo* ProductInfo::New(::google::protobuf::Arena* arena) const {
   ProductInfo* n = new ProductInfo;
@@ -284,11 +289,11 @@ void ProductInfo::Clear() {
 // @@protoc_insertion_point(message_clear_start:arizona_api_service.ProductInfo)
   version_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   version_string_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  serial_number_ = 0u;
   platform_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   base_model_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   model_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   make_and_model_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  serial_number_ = 0u;
 }
 
 bool ProductInfo::MergePartialFromCodedStream(
@@ -297,13 +302,13 @@ bool ProductInfo::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:arizona_api_service.ProductInfo)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional string version = 1;
+      // string version = 1;
       case 1: {
-        if (tag == 10) {
+        if (tag == 10u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_version()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -313,14 +318,12 @@ bool ProductInfo::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_version_string;
         break;
       }
 
-      // optional string version_string = 2;
+      // string version_string = 2;
       case 2: {
-        if (tag == 18) {
-         parse_version_string:
+        if (tag == 18u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_version_string()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -330,29 +333,25 @@ bool ProductInfo::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(24)) goto parse_serial_number;
         break;
       }
 
-      // optional uint32 serial_number = 3;
+      // uint32 serial_number = 3;
       case 3: {
-        if (tag == 24) {
-         parse_serial_number:
+        if (tag == 24u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
                  input, &serial_number_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(34)) goto parse_platform;
         break;
       }
 
-      // optional string platform = 4;
+      // string platform = 4;
       case 4: {
-        if (tag == 34) {
-         parse_platform:
+        if (tag == 34u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_platform()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -362,14 +361,12 @@ bool ProductInfo::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(42)) goto parse_base_model;
         break;
       }
 
-      // optional string base_model = 5;
+      // string base_model = 5;
       case 5: {
-        if (tag == 42) {
-         parse_base_model:
+        if (tag == 42u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_base_model()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -379,14 +376,12 @@ bool ProductInfo::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(50)) goto parse_model;
         break;
       }
 
-      // optional string model = 6;
+      // string model = 6;
       case 6: {
-        if (tag == 50) {
-         parse_model:
+        if (tag == 50u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_model()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -396,14 +391,12 @@ bool ProductInfo::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(58)) goto parse_make_and_model;
         break;
       }
 
-      // optional string make_and_model = 7;
+      // string make_and_model = 7;
       case 7: {
-        if (tag == 58) {
-         parse_make_and_model:
+        if (tag == 58u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_make_and_model()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -413,7 +406,6 @@ bool ProductInfo::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -441,7 +433,7 @@ failure:
 void ProductInfo::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:arizona_api_service.ProductInfo)
-  // optional string version = 1;
+  // string version = 1;
   if (this->version().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->version().data(), this->version().length(),
@@ -451,7 +443,7 @@ void ProductInfo::SerializeWithCachedSizes(
       1, this->version(), output);
   }
 
-  // optional string version_string = 2;
+  // string version_string = 2;
   if (this->version_string().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->version_string().data(), this->version_string().length(),
@@ -461,12 +453,12 @@ void ProductInfo::SerializeWithCachedSizes(
       2, this->version_string(), output);
   }
 
-  // optional uint32 serial_number = 3;
+  // uint32 serial_number = 3;
   if (this->serial_number() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(3, this->serial_number(), output);
   }
 
-  // optional string platform = 4;
+  // string platform = 4;
   if (this->platform().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->platform().data(), this->platform().length(),
@@ -476,7 +468,7 @@ void ProductInfo::SerializeWithCachedSizes(
       4, this->platform(), output);
   }
 
-  // optional string base_model = 5;
+  // string base_model = 5;
   if (this->base_model().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->base_model().data(), this->base_model().length(),
@@ -486,7 +478,7 @@ void ProductInfo::SerializeWithCachedSizes(
       5, this->base_model(), output);
   }
 
-  // optional string model = 6;
+  // string model = 6;
   if (this->model().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->model().data(), this->model().length(),
@@ -496,7 +488,7 @@ void ProductInfo::SerializeWithCachedSizes(
       6, this->model(), output);
   }
 
-  // optional string make_and_model = 7;
+  // string make_and_model = 7;
   if (this->make_and_model().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->make_and_model().data(), this->make_and_model().length(),
@@ -509,10 +501,11 @@ void ProductInfo::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:arizona_api_service.ProductInfo)
 }
 
-::google::protobuf::uint8* ProductInfo::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* ProductInfo::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:arizona_api_service.ProductInfo)
-  // optional string version = 1;
+  // string version = 1;
   if (this->version().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->version().data(), this->version().length(),
@@ -523,7 +516,7 @@ void ProductInfo::SerializeWithCachedSizes(
         1, this->version(), target);
   }
 
-  // optional string version_string = 2;
+  // string version_string = 2;
   if (this->version_string().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->version_string().data(), this->version_string().length(),
@@ -534,12 +527,12 @@ void ProductInfo::SerializeWithCachedSizes(
         2, this->version_string(), target);
   }
 
-  // optional uint32 serial_number = 3;
+  // uint32 serial_number = 3;
   if (this->serial_number() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(3, this->serial_number(), target);
   }
 
-  // optional string platform = 4;
+  // string platform = 4;
   if (this->platform().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->platform().data(), this->platform().length(),
@@ -550,7 +543,7 @@ void ProductInfo::SerializeWithCachedSizes(
         4, this->platform(), target);
   }
 
-  // optional string base_model = 5;
+  // string base_model = 5;
   if (this->base_model().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->base_model().data(), this->base_model().length(),
@@ -561,7 +554,7 @@ void ProductInfo::SerializeWithCachedSizes(
         5, this->base_model(), target);
   }
 
-  // optional string model = 6;
+  // string model = 6;
   if (this->model().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->model().data(), this->model().length(),
@@ -572,7 +565,7 @@ void ProductInfo::SerializeWithCachedSizes(
         6, this->model(), target);
   }
 
-  // optional string make_and_model = 7;
+  // string make_and_model = 7;
   if (this->make_and_model().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->make_and_model().data(), this->make_and_model().length(),
@@ -587,69 +580,70 @@ void ProductInfo::SerializeWithCachedSizes(
   return target;
 }
 
-int ProductInfo::ByteSize() const {
+size_t ProductInfo::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:arizona_api_service.ProductInfo)
-  int total_size = 0;
+  size_t total_size = 0;
 
-  // optional string version = 1;
+  // string version = 1;
   if (this->version().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->version());
   }
 
-  // optional string version_string = 2;
+  // string version_string = 2;
   if (this->version_string().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->version_string());
   }
 
-  // optional uint32 serial_number = 3;
-  if (this->serial_number() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::UInt32Size(
-        this->serial_number());
-  }
-
-  // optional string platform = 4;
+  // string platform = 4;
   if (this->platform().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->platform());
   }
 
-  // optional string base_model = 5;
+  // string base_model = 5;
   if (this->base_model().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->base_model());
   }
 
-  // optional string model = 6;
+  // string model = 6;
   if (this->model().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->model());
   }
 
-  // optional string make_and_model = 7;
+  // string make_and_model = 7;
   if (this->make_and_model().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->make_and_model());
   }
 
+  // uint32 serial_number = 3;
+  if (this->serial_number() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->serial_number());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void ProductInfo::MergeFrom(const ::google::protobuf::Message& from) {
 // @@protoc_insertion_point(generalized_merge_from_start:arizona_api_service.ProductInfo)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const ProductInfo* source = 
+  GOOGLE_DCHECK_NE(&from, this);
+  const ProductInfo* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const ProductInfo>(
           &from);
   if (source == NULL) {
@@ -663,7 +657,8 @@ void ProductInfo::MergeFrom(const ::google::protobuf::Message& from) {
 
 void ProductInfo::MergeFrom(const ProductInfo& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:arizona_api_service.ProductInfo)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from.version().size() > 0) {
 
     version_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.version_);
@@ -671,9 +666,6 @@ void ProductInfo::MergeFrom(const ProductInfo& from) {
   if (from.version_string().size() > 0) {
 
     version_string_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.version_string_);
-  }
-  if (from.serial_number() != 0) {
-    set_serial_number(from.serial_number());
   }
   if (from.platform().size() > 0) {
 
@@ -690,6 +682,9 @@ void ProductInfo::MergeFrom(const ProductInfo& from) {
   if (from.make_and_model().size() > 0) {
 
     make_and_model_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.make_and_model_);
+  }
+  if (from.serial_number() != 0) {
+    set_serial_number(from.serial_number());
   }
 }
 
@@ -708,7 +703,6 @@ void ProductInfo::CopyFrom(const ProductInfo& from) {
 }
 
 bool ProductInfo::IsInitialized() const {
-
   return true;
 }
 
@@ -719,61 +713,65 @@ void ProductInfo::Swap(ProductInfo* other) {
 void ProductInfo::InternalSwap(ProductInfo* other) {
   version_.Swap(&other->version_);
   version_string_.Swap(&other->version_string_);
-  std::swap(serial_number_, other->serial_number_);
   platform_.Swap(&other->platform_);
   base_model_.Swap(&other->base_model_);
   model_.Swap(&other->model_);
   make_and_model_.Swap(&other->make_and_model_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(serial_number_, other->serial_number_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata ProductInfo::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = ProductInfo_descriptor_;
-  metadata.reflection = ProductInfo_reflection_;
-  return metadata;
+  protobuf_arizona_5fapi_5fserver_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_arizona_5fapi_5fserver_2eproto::file_level_metadata[0];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // ProductInfo
 
-// optional string version = 1;
+// string version = 1;
 void ProductInfo::clear_version() {
   version_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& ProductInfo::version() const {
+const ::std::string& ProductInfo::version() const {
   // @@protoc_insertion_point(field_get:arizona_api_service.ProductInfo.version)
-  return version_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return version_.GetNoArena();
 }
- void ProductInfo::set_version(const ::std::string& value) {
+void ProductInfo::set_version(const ::std::string& value) {
   
   version_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:arizona_api_service.ProductInfo.version)
 }
- void ProductInfo::set_version(const char* value) {
+#if LANG_CXX11
+void ProductInfo::set_version(::std::string&& value) {
+  
+  version_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:arizona_api_service.ProductInfo.version)
+}
+#endif
+void ProductInfo::set_version(const char* value) {
   
   version_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:arizona_api_service.ProductInfo.version)
 }
- void ProductInfo::set_version(const char* value, size_t size) {
+void ProductInfo::set_version(const char* value, size_t size) {
   
   version_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:arizona_api_service.ProductInfo.version)
 }
- ::std::string* ProductInfo::mutable_version() {
+::std::string* ProductInfo::mutable_version() {
   
   // @@protoc_insertion_point(field_mutable:arizona_api_service.ProductInfo.version)
   return version_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* ProductInfo::release_version() {
+::std::string* ProductInfo::release_version() {
   // @@protoc_insertion_point(field_release:arizona_api_service.ProductInfo.version)
   
   return version_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void ProductInfo::set_allocated_version(::std::string* version) {
+void ProductInfo::set_allocated_version(::std::string* version) {
   if (version != NULL) {
     
   } else {
@@ -783,41 +781,49 @@ void ProductInfo::clear_version() {
   // @@protoc_insertion_point(field_set_allocated:arizona_api_service.ProductInfo.version)
 }
 
-// optional string version_string = 2;
+// string version_string = 2;
 void ProductInfo::clear_version_string() {
   version_string_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& ProductInfo::version_string() const {
+const ::std::string& ProductInfo::version_string() const {
   // @@protoc_insertion_point(field_get:arizona_api_service.ProductInfo.version_string)
-  return version_string_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return version_string_.GetNoArena();
 }
- void ProductInfo::set_version_string(const ::std::string& value) {
+void ProductInfo::set_version_string(const ::std::string& value) {
   
   version_string_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:arizona_api_service.ProductInfo.version_string)
 }
- void ProductInfo::set_version_string(const char* value) {
+#if LANG_CXX11
+void ProductInfo::set_version_string(::std::string&& value) {
+  
+  version_string_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:arizona_api_service.ProductInfo.version_string)
+}
+#endif
+void ProductInfo::set_version_string(const char* value) {
   
   version_string_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:arizona_api_service.ProductInfo.version_string)
 }
- void ProductInfo::set_version_string(const char* value, size_t size) {
+void ProductInfo::set_version_string(const char* value, size_t size) {
   
   version_string_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:arizona_api_service.ProductInfo.version_string)
 }
- ::std::string* ProductInfo::mutable_version_string() {
+::std::string* ProductInfo::mutable_version_string() {
   
   // @@protoc_insertion_point(field_mutable:arizona_api_service.ProductInfo.version_string)
   return version_string_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* ProductInfo::release_version_string() {
+::std::string* ProductInfo::release_version_string() {
   // @@protoc_insertion_point(field_release:arizona_api_service.ProductInfo.version_string)
   
   return version_string_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void ProductInfo::set_allocated_version_string(::std::string* version_string) {
+void ProductInfo::set_allocated_version_string(::std::string* version_string) {
   if (version_string != NULL) {
     
   } else {
@@ -827,55 +833,63 @@ void ProductInfo::clear_version_string() {
   // @@protoc_insertion_point(field_set_allocated:arizona_api_service.ProductInfo.version_string)
 }
 
-// optional uint32 serial_number = 3;
+// uint32 serial_number = 3;
 void ProductInfo::clear_serial_number() {
   serial_number_ = 0u;
 }
- ::google::protobuf::uint32 ProductInfo::serial_number() const {
+::google::protobuf::uint32 ProductInfo::serial_number() const {
   // @@protoc_insertion_point(field_get:arizona_api_service.ProductInfo.serial_number)
   return serial_number_;
 }
- void ProductInfo::set_serial_number(::google::protobuf::uint32 value) {
+void ProductInfo::set_serial_number(::google::protobuf::uint32 value) {
   
   serial_number_ = value;
   // @@protoc_insertion_point(field_set:arizona_api_service.ProductInfo.serial_number)
 }
 
-// optional string platform = 4;
+// string platform = 4;
 void ProductInfo::clear_platform() {
   platform_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& ProductInfo::platform() const {
+const ::std::string& ProductInfo::platform() const {
   // @@protoc_insertion_point(field_get:arizona_api_service.ProductInfo.platform)
-  return platform_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return platform_.GetNoArena();
 }
- void ProductInfo::set_platform(const ::std::string& value) {
+void ProductInfo::set_platform(const ::std::string& value) {
   
   platform_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:arizona_api_service.ProductInfo.platform)
 }
- void ProductInfo::set_platform(const char* value) {
+#if LANG_CXX11
+void ProductInfo::set_platform(::std::string&& value) {
+  
+  platform_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:arizona_api_service.ProductInfo.platform)
+}
+#endif
+void ProductInfo::set_platform(const char* value) {
   
   platform_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:arizona_api_service.ProductInfo.platform)
 }
- void ProductInfo::set_platform(const char* value, size_t size) {
+void ProductInfo::set_platform(const char* value, size_t size) {
   
   platform_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:arizona_api_service.ProductInfo.platform)
 }
- ::std::string* ProductInfo::mutable_platform() {
+::std::string* ProductInfo::mutable_platform() {
   
   // @@protoc_insertion_point(field_mutable:arizona_api_service.ProductInfo.platform)
   return platform_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* ProductInfo::release_platform() {
+::std::string* ProductInfo::release_platform() {
   // @@protoc_insertion_point(field_release:arizona_api_service.ProductInfo.platform)
   
   return platform_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void ProductInfo::set_allocated_platform(::std::string* platform) {
+void ProductInfo::set_allocated_platform(::std::string* platform) {
   if (platform != NULL) {
     
   } else {
@@ -885,41 +899,49 @@ void ProductInfo::clear_platform() {
   // @@protoc_insertion_point(field_set_allocated:arizona_api_service.ProductInfo.platform)
 }
 
-// optional string base_model = 5;
+// string base_model = 5;
 void ProductInfo::clear_base_model() {
   base_model_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& ProductInfo::base_model() const {
+const ::std::string& ProductInfo::base_model() const {
   // @@protoc_insertion_point(field_get:arizona_api_service.ProductInfo.base_model)
-  return base_model_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return base_model_.GetNoArena();
 }
- void ProductInfo::set_base_model(const ::std::string& value) {
+void ProductInfo::set_base_model(const ::std::string& value) {
   
   base_model_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:arizona_api_service.ProductInfo.base_model)
 }
- void ProductInfo::set_base_model(const char* value) {
+#if LANG_CXX11
+void ProductInfo::set_base_model(::std::string&& value) {
+  
+  base_model_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:arizona_api_service.ProductInfo.base_model)
+}
+#endif
+void ProductInfo::set_base_model(const char* value) {
   
   base_model_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:arizona_api_service.ProductInfo.base_model)
 }
- void ProductInfo::set_base_model(const char* value, size_t size) {
+void ProductInfo::set_base_model(const char* value, size_t size) {
   
   base_model_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:arizona_api_service.ProductInfo.base_model)
 }
- ::std::string* ProductInfo::mutable_base_model() {
+::std::string* ProductInfo::mutable_base_model() {
   
   // @@protoc_insertion_point(field_mutable:arizona_api_service.ProductInfo.base_model)
   return base_model_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* ProductInfo::release_base_model() {
+::std::string* ProductInfo::release_base_model() {
   // @@protoc_insertion_point(field_release:arizona_api_service.ProductInfo.base_model)
   
   return base_model_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void ProductInfo::set_allocated_base_model(::std::string* base_model) {
+void ProductInfo::set_allocated_base_model(::std::string* base_model) {
   if (base_model != NULL) {
     
   } else {
@@ -929,41 +951,49 @@ void ProductInfo::clear_base_model() {
   // @@protoc_insertion_point(field_set_allocated:arizona_api_service.ProductInfo.base_model)
 }
 
-// optional string model = 6;
+// string model = 6;
 void ProductInfo::clear_model() {
   model_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& ProductInfo::model() const {
+const ::std::string& ProductInfo::model() const {
   // @@protoc_insertion_point(field_get:arizona_api_service.ProductInfo.model)
-  return model_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return model_.GetNoArena();
 }
- void ProductInfo::set_model(const ::std::string& value) {
+void ProductInfo::set_model(const ::std::string& value) {
   
   model_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:arizona_api_service.ProductInfo.model)
 }
- void ProductInfo::set_model(const char* value) {
+#if LANG_CXX11
+void ProductInfo::set_model(::std::string&& value) {
+  
+  model_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:arizona_api_service.ProductInfo.model)
+}
+#endif
+void ProductInfo::set_model(const char* value) {
   
   model_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:arizona_api_service.ProductInfo.model)
 }
- void ProductInfo::set_model(const char* value, size_t size) {
+void ProductInfo::set_model(const char* value, size_t size) {
   
   model_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:arizona_api_service.ProductInfo.model)
 }
- ::std::string* ProductInfo::mutable_model() {
+::std::string* ProductInfo::mutable_model() {
   
   // @@protoc_insertion_point(field_mutable:arizona_api_service.ProductInfo.model)
   return model_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* ProductInfo::release_model() {
+::std::string* ProductInfo::release_model() {
   // @@protoc_insertion_point(field_release:arizona_api_service.ProductInfo.model)
   
   return model_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void ProductInfo::set_allocated_model(::std::string* model) {
+void ProductInfo::set_allocated_model(::std::string* model) {
   if (model != NULL) {
     
   } else {
@@ -973,41 +1003,49 @@ void ProductInfo::clear_model() {
   // @@protoc_insertion_point(field_set_allocated:arizona_api_service.ProductInfo.model)
 }
 
-// optional string make_and_model = 7;
+// string make_and_model = 7;
 void ProductInfo::clear_make_and_model() {
   make_and_model_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& ProductInfo::make_and_model() const {
+const ::std::string& ProductInfo::make_and_model() const {
   // @@protoc_insertion_point(field_get:arizona_api_service.ProductInfo.make_and_model)
-  return make_and_model_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return make_and_model_.GetNoArena();
 }
- void ProductInfo::set_make_and_model(const ::std::string& value) {
+void ProductInfo::set_make_and_model(const ::std::string& value) {
   
   make_and_model_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:arizona_api_service.ProductInfo.make_and_model)
 }
- void ProductInfo::set_make_and_model(const char* value) {
+#if LANG_CXX11
+void ProductInfo::set_make_and_model(::std::string&& value) {
+  
+  make_and_model_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:arizona_api_service.ProductInfo.make_and_model)
+}
+#endif
+void ProductInfo::set_make_and_model(const char* value) {
   
   make_and_model_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:arizona_api_service.ProductInfo.make_and_model)
 }
- void ProductInfo::set_make_and_model(const char* value, size_t size) {
+void ProductInfo::set_make_and_model(const char* value, size_t size) {
   
   make_and_model_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:arizona_api_service.ProductInfo.make_and_model)
 }
- ::std::string* ProductInfo::mutable_make_and_model() {
+::std::string* ProductInfo::mutable_make_and_model() {
   
   // @@protoc_insertion_point(field_mutable:arizona_api_service.ProductInfo.make_and_model)
   return make_and_model_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* ProductInfo::release_make_and_model() {
+::std::string* ProductInfo::release_make_and_model() {
   // @@protoc_insertion_point(field_release:arizona_api_service.ProductInfo.make_and_model)
   
   return make_and_model_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void ProductInfo::set_allocated_make_and_model(::std::string* make_and_model) {
+void ProductInfo::set_allocated_make_and_model(::std::string* make_and_model) {
   if (make_and_model != NULL) {
     
   } else {
@@ -1036,36 +1074,57 @@ const int SoftwarePackage::kSupportedProductsFieldNumber;
 
 SoftwarePackage::SoftwarePackage()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_arizona_5fapi_5fserver_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:arizona_api_service.SoftwarePackage)
 }
-
-void SoftwarePackage::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 SoftwarePackage::SoftwarePackage(const SoftwarePackage& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  file_name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.file_name().size() > 0) {
+    file_name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.file_name_);
+  }
+  full_path_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.full_path().size() > 0) {
+    full_path_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.full_path_);
+  }
+  description_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.description().size() > 0) {
+    description_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.description_);
+  }
+  version_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.version().size() > 0) {
+    version_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.version_);
+  }
+  version_string_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.version_string().size() > 0) {
+    version_string_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.version_string_);
+  }
+  supported_products_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.supported_products().size() > 0) {
+    supported_products_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.supported_products_);
+  }
+  ::memcpy(&file_size_, &from.file_size_,
+    reinterpret_cast<char*>(&trusted_) -
+    reinterpret_cast<char*>(&file_size_) + sizeof(trusted_));
   // @@protoc_insertion_point(copy_constructor:arizona_api_service.SoftwarePackage)
 }
 
 void SoftwarePackage::SharedCtor() {
-    _is_default_instance_ = false;
-  ::google::protobuf::internal::GetEmptyString();
-  _cached_size_ = 0;
   file_name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   full_path_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   description_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   version_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   version_string_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  file_size_ = GOOGLE_ULONGLONG(0);
-  space_required_ = GOOGLE_ULONGLONG(0);
-  usable_ = false;
-  trusted_ = false;
   supported_products_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ::memset(&file_size_, 0, reinterpret_cast<char*>(&trusted_) -
+    reinterpret_cast<char*>(&file_size_) + sizeof(trusted_));
+  _cached_size_ = 0;
 }
 
 SoftwarePackage::~SoftwarePackage() {
@@ -1080,8 +1139,6 @@ void SoftwarePackage::SharedDtor() {
   version_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   version_string_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   supported_products_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (this != default_instance_) {
-  }
 }
 
 void SoftwarePackage::SetCachedSize(int size) const {
@@ -1090,16 +1147,14 @@ void SoftwarePackage::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* SoftwarePackage::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return SoftwarePackage_descriptor_;
+  protobuf_arizona_5fapi_5fserver_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_arizona_5fapi_5fserver_2eproto::file_level_metadata[1].descriptor;
 }
 
 const SoftwarePackage& SoftwarePackage::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_arizona_5fapi_5fserver_2eproto();
-  return *default_instance_;
+  protobuf_arizona_5fapi_5fserver_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-SoftwarePackage* SoftwarePackage::default_instance_ = NULL;
 
 SoftwarePackage* SoftwarePackage::New(::google::protobuf::Arena* arena) const {
   SoftwarePackage* n = new SoftwarePackage;
@@ -1111,35 +1166,14 @@ SoftwarePackage* SoftwarePackage::New(::google::protobuf::Arena* arena) const {
 
 void SoftwarePackage::Clear() {
 // @@protoc_insertion_point(message_clear_start:arizona_api_service.SoftwarePackage)
-#if defined(__clang__)
-#define ZR_HELPER_(f) \
-  _Pragma("clang diagnostic push") \
-  _Pragma("clang diagnostic ignored \"-Winvalid-offsetof\"") \
-  __builtin_offsetof(SoftwarePackage, f) \
-  _Pragma("clang diagnostic pop")
-#else
-#define ZR_HELPER_(f) reinterpret_cast<char*>(\
-  &reinterpret_cast<SoftwarePackage*>(16)->f)
-#endif
-
-#define ZR_(first, last) do {\
-  ::memset(&first, 0,\
-           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
-} while (0)
-
-  ZR_(file_size_, space_required_);
   file_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   full_path_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   description_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   version_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   version_string_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  usable_ = false;
-  trusted_ = false;
   supported_products_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-
-#undef ZR_HELPER_
-#undef ZR_
-
+  ::memset(&file_size_, 0, reinterpret_cast<char*>(&trusted_) -
+    reinterpret_cast<char*>(&file_size_) + sizeof(trusted_));
 }
 
 bool SoftwarePackage::MergePartialFromCodedStream(
@@ -1148,13 +1182,13 @@ bool SoftwarePackage::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:arizona_api_service.SoftwarePackage)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional string file_name = 1;
+      // string file_name = 1;
       case 1: {
-        if (tag == 10) {
+        if (tag == 10u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_file_name()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -1164,14 +1198,12 @@ bool SoftwarePackage::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_full_path;
         break;
       }
 
-      // optional string full_path = 2;
+      // string full_path = 2;
       case 2: {
-        if (tag == 18) {
-         parse_full_path:
+        if (tag == 18u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_full_path()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -1181,14 +1213,12 @@ bool SoftwarePackage::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(26)) goto parse_description;
         break;
       }
 
-      // optional string description = 3;
+      // string description = 3;
       case 3: {
-        if (tag == 26) {
-         parse_description:
+        if (tag == 26u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_description()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -1198,14 +1228,12 @@ bool SoftwarePackage::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(34)) goto parse_version;
         break;
       }
 
-      // optional string version = 4;
+      // string version = 4;
       case 4: {
-        if (tag == 34) {
-         parse_version:
+        if (tag == 34u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_version()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -1215,14 +1243,12 @@ bool SoftwarePackage::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(42)) goto parse_version_string;
         break;
       }
 
-      // optional string version_string = 5;
+      // string version_string = 5;
       case 5: {
-        if (tag == 42) {
-         parse_version_string:
+        if (tag == 42u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_version_string()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -1232,74 +1258,64 @@ bool SoftwarePackage::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(48)) goto parse_file_size;
         break;
       }
 
-      // optional uint64 file_size = 6;
+      // uint64 file_size = 6;
       case 6: {
-        if (tag == 48) {
-         parse_file_size:
+        if (tag == 48u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
                  input, &file_size_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(56)) goto parse_space_required;
         break;
       }
 
-      // optional uint64 space_required = 7;
+      // uint64 space_required = 7;
       case 7: {
-        if (tag == 56) {
-         parse_space_required:
+        if (tag == 56u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
                  input, &space_required_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(64)) goto parse_usable;
         break;
       }
 
-      // optional bool usable = 8;
+      // bool usable = 8;
       case 8: {
-        if (tag == 64) {
-         parse_usable:
+        if (tag == 64u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
                  input, &usable_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(72)) goto parse_trusted;
         break;
       }
 
-      // optional bool trusted = 9;
+      // bool trusted = 9;
       case 9: {
-        if (tag == 72) {
-         parse_trusted:
+        if (tag == 72u) {
+
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
                  input, &trusted_)));
-
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(82)) goto parse_supported_products;
         break;
       }
 
-      // optional string supported_products = 10;
+      // string supported_products = 10;
       case 10: {
-        if (tag == 82) {
-         parse_supported_products:
+        if (tag == 82u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_supported_products()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -1309,7 +1325,6 @@ bool SoftwarePackage::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -1337,7 +1352,7 @@ failure:
 void SoftwarePackage::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:arizona_api_service.SoftwarePackage)
-  // optional string file_name = 1;
+  // string file_name = 1;
   if (this->file_name().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->file_name().data(), this->file_name().length(),
@@ -1347,7 +1362,7 @@ void SoftwarePackage::SerializeWithCachedSizes(
       1, this->file_name(), output);
   }
 
-  // optional string full_path = 2;
+  // string full_path = 2;
   if (this->full_path().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->full_path().data(), this->full_path().length(),
@@ -1357,7 +1372,7 @@ void SoftwarePackage::SerializeWithCachedSizes(
       2, this->full_path(), output);
   }
 
-  // optional string description = 3;
+  // string description = 3;
   if (this->description().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->description().data(), this->description().length(),
@@ -1367,7 +1382,7 @@ void SoftwarePackage::SerializeWithCachedSizes(
       3, this->description(), output);
   }
 
-  // optional string version = 4;
+  // string version = 4;
   if (this->version().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->version().data(), this->version().length(),
@@ -1377,7 +1392,7 @@ void SoftwarePackage::SerializeWithCachedSizes(
       4, this->version(), output);
   }
 
-  // optional string version_string = 5;
+  // string version_string = 5;
   if (this->version_string().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->version_string().data(), this->version_string().length(),
@@ -1387,27 +1402,27 @@ void SoftwarePackage::SerializeWithCachedSizes(
       5, this->version_string(), output);
   }
 
-  // optional uint64 file_size = 6;
+  // uint64 file_size = 6;
   if (this->file_size() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt64(6, this->file_size(), output);
   }
 
-  // optional uint64 space_required = 7;
+  // uint64 space_required = 7;
   if (this->space_required() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt64(7, this->space_required(), output);
   }
 
-  // optional bool usable = 8;
+  // bool usable = 8;
   if (this->usable() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(8, this->usable(), output);
   }
 
-  // optional bool trusted = 9;
+  // bool trusted = 9;
   if (this->trusted() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(9, this->trusted(), output);
   }
 
-  // optional string supported_products = 10;
+  // string supported_products = 10;
   if (this->supported_products().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->supported_products().data(), this->supported_products().length(),
@@ -1420,10 +1435,11 @@ void SoftwarePackage::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:arizona_api_service.SoftwarePackage)
 }
 
-::google::protobuf::uint8* SoftwarePackage::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* SoftwarePackage::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:arizona_api_service.SoftwarePackage)
-  // optional string file_name = 1;
+  // string file_name = 1;
   if (this->file_name().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->file_name().data(), this->file_name().length(),
@@ -1434,7 +1450,7 @@ void SoftwarePackage::SerializeWithCachedSizes(
         1, this->file_name(), target);
   }
 
-  // optional string full_path = 2;
+  // string full_path = 2;
   if (this->full_path().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->full_path().data(), this->full_path().length(),
@@ -1445,7 +1461,7 @@ void SoftwarePackage::SerializeWithCachedSizes(
         2, this->full_path(), target);
   }
 
-  // optional string description = 3;
+  // string description = 3;
   if (this->description().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->description().data(), this->description().length(),
@@ -1456,7 +1472,7 @@ void SoftwarePackage::SerializeWithCachedSizes(
         3, this->description(), target);
   }
 
-  // optional string version = 4;
+  // string version = 4;
   if (this->version().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->version().data(), this->version().length(),
@@ -1467,7 +1483,7 @@ void SoftwarePackage::SerializeWithCachedSizes(
         4, this->version(), target);
   }
 
-  // optional string version_string = 5;
+  // string version_string = 5;
   if (this->version_string().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->version_string().data(), this->version_string().length(),
@@ -1478,27 +1494,27 @@ void SoftwarePackage::SerializeWithCachedSizes(
         5, this->version_string(), target);
   }
 
-  // optional uint64 file_size = 6;
+  // uint64 file_size = 6;
   if (this->file_size() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(6, this->file_size(), target);
   }
 
-  // optional uint64 space_required = 7;
+  // uint64 space_required = 7;
   if (this->space_required() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(7, this->space_required(), target);
   }
 
-  // optional bool usable = 8;
+  // bool usable = 8;
   if (this->usable() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(8, this->usable(), target);
   }
 
-  // optional bool trusted = 9;
+  // bool trusted = 9;
   if (this->trusted() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(9, this->trusted(), target);
   }
 
-  // optional string supported_products = 10;
+  // string supported_products = 10;
   if (this->supported_products().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->supported_products().data(), this->supported_products().length(),
@@ -1513,86 +1529,87 @@ void SoftwarePackage::SerializeWithCachedSizes(
   return target;
 }
 
-int SoftwarePackage::ByteSize() const {
+size_t SoftwarePackage::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:arizona_api_service.SoftwarePackage)
-  int total_size = 0;
+  size_t total_size = 0;
 
-  // optional string file_name = 1;
+  // string file_name = 1;
   if (this->file_name().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->file_name());
   }
 
-  // optional string full_path = 2;
+  // string full_path = 2;
   if (this->full_path().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->full_path());
   }
 
-  // optional string description = 3;
+  // string description = 3;
   if (this->description().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->description());
   }
 
-  // optional string version = 4;
+  // string version = 4;
   if (this->version().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->version());
   }
 
-  // optional string version_string = 5;
+  // string version_string = 5;
   if (this->version_string().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->version_string());
   }
 
-  // optional uint64 file_size = 6;
-  if (this->file_size() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::UInt64Size(
-        this->file_size());
-  }
-
-  // optional uint64 space_required = 7;
-  if (this->space_required() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::UInt64Size(
-        this->space_required());
-  }
-
-  // optional bool usable = 8;
-  if (this->usable() != 0) {
-    total_size += 1 + 1;
-  }
-
-  // optional bool trusted = 9;
-  if (this->trusted() != 0) {
-    total_size += 1 + 1;
-  }
-
-  // optional string supported_products = 10;
+  // string supported_products = 10;
   if (this->supported_products().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->supported_products());
   }
 
+  // uint64 file_size = 6;
+  if (this->file_size() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt64Size(
+        this->file_size());
+  }
+
+  // uint64 space_required = 7;
+  if (this->space_required() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt64Size(
+        this->space_required());
+  }
+
+  // bool usable = 8;
+  if (this->usable() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // bool trusted = 9;
+  if (this->trusted() != 0) {
+    total_size += 1 + 1;
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void SoftwarePackage::MergeFrom(const ::google::protobuf::Message& from) {
 // @@protoc_insertion_point(generalized_merge_from_start:arizona_api_service.SoftwarePackage)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const SoftwarePackage* source = 
+  GOOGLE_DCHECK_NE(&from, this);
+  const SoftwarePackage* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const SoftwarePackage>(
           &from);
   if (source == NULL) {
@@ -1606,7 +1623,8 @@ void SoftwarePackage::MergeFrom(const ::google::protobuf::Message& from) {
 
 void SoftwarePackage::MergeFrom(const SoftwarePackage& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:arizona_api_service.SoftwarePackage)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from.file_name().size() > 0) {
 
     file_name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.file_name_);
@@ -1627,6 +1645,10 @@ void SoftwarePackage::MergeFrom(const SoftwarePackage& from) {
 
     version_string_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.version_string_);
   }
+  if (from.supported_products().size() > 0) {
+
+    supported_products_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.supported_products_);
+  }
   if (from.file_size() != 0) {
     set_file_size(from.file_size());
   }
@@ -1638,10 +1660,6 @@ void SoftwarePackage::MergeFrom(const SoftwarePackage& from) {
   }
   if (from.trusted() != 0) {
     set_trusted(from.trusted());
-  }
-  if (from.supported_products().size() > 0) {
-
-    supported_products_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.supported_products_);
   }
 }
 
@@ -1660,7 +1678,6 @@ void SoftwarePackage::CopyFrom(const SoftwarePackage& from) {
 }
 
 bool SoftwarePackage::IsInitialized() const {
-
   return true;
 }
 
@@ -1674,61 +1691,65 @@ void SoftwarePackage::InternalSwap(SoftwarePackage* other) {
   description_.Swap(&other->description_);
   version_.Swap(&other->version_);
   version_string_.Swap(&other->version_string_);
+  supported_products_.Swap(&other->supported_products_);
   std::swap(file_size_, other->file_size_);
   std::swap(space_required_, other->space_required_);
   std::swap(usable_, other->usable_);
   std::swap(trusted_, other->trusted_);
-  supported_products_.Swap(&other->supported_products_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata SoftwarePackage::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = SoftwarePackage_descriptor_;
-  metadata.reflection = SoftwarePackage_reflection_;
-  return metadata;
+  protobuf_arizona_5fapi_5fserver_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_arizona_5fapi_5fserver_2eproto::file_level_metadata[1];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // SoftwarePackage
 
-// optional string file_name = 1;
+// string file_name = 1;
 void SoftwarePackage::clear_file_name() {
   file_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& SoftwarePackage::file_name() const {
+const ::std::string& SoftwarePackage::file_name() const {
   // @@protoc_insertion_point(field_get:arizona_api_service.SoftwarePackage.file_name)
-  return file_name_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return file_name_.GetNoArena();
 }
- void SoftwarePackage::set_file_name(const ::std::string& value) {
+void SoftwarePackage::set_file_name(const ::std::string& value) {
   
   file_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:arizona_api_service.SoftwarePackage.file_name)
 }
- void SoftwarePackage::set_file_name(const char* value) {
+#if LANG_CXX11
+void SoftwarePackage::set_file_name(::std::string&& value) {
+  
+  file_name_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:arizona_api_service.SoftwarePackage.file_name)
+}
+#endif
+void SoftwarePackage::set_file_name(const char* value) {
   
   file_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:arizona_api_service.SoftwarePackage.file_name)
 }
- void SoftwarePackage::set_file_name(const char* value, size_t size) {
+void SoftwarePackage::set_file_name(const char* value, size_t size) {
   
   file_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:arizona_api_service.SoftwarePackage.file_name)
 }
- ::std::string* SoftwarePackage::mutable_file_name() {
+::std::string* SoftwarePackage::mutable_file_name() {
   
   // @@protoc_insertion_point(field_mutable:arizona_api_service.SoftwarePackage.file_name)
   return file_name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* SoftwarePackage::release_file_name() {
+::std::string* SoftwarePackage::release_file_name() {
   // @@protoc_insertion_point(field_release:arizona_api_service.SoftwarePackage.file_name)
   
   return file_name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void SoftwarePackage::set_allocated_file_name(::std::string* file_name) {
+void SoftwarePackage::set_allocated_file_name(::std::string* file_name) {
   if (file_name != NULL) {
     
   } else {
@@ -1738,41 +1759,49 @@ void SoftwarePackage::clear_file_name() {
   // @@protoc_insertion_point(field_set_allocated:arizona_api_service.SoftwarePackage.file_name)
 }
 
-// optional string full_path = 2;
+// string full_path = 2;
 void SoftwarePackage::clear_full_path() {
   full_path_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& SoftwarePackage::full_path() const {
+const ::std::string& SoftwarePackage::full_path() const {
   // @@protoc_insertion_point(field_get:arizona_api_service.SoftwarePackage.full_path)
-  return full_path_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return full_path_.GetNoArena();
 }
- void SoftwarePackage::set_full_path(const ::std::string& value) {
+void SoftwarePackage::set_full_path(const ::std::string& value) {
   
   full_path_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:arizona_api_service.SoftwarePackage.full_path)
 }
- void SoftwarePackage::set_full_path(const char* value) {
+#if LANG_CXX11
+void SoftwarePackage::set_full_path(::std::string&& value) {
+  
+  full_path_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:arizona_api_service.SoftwarePackage.full_path)
+}
+#endif
+void SoftwarePackage::set_full_path(const char* value) {
   
   full_path_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:arizona_api_service.SoftwarePackage.full_path)
 }
- void SoftwarePackage::set_full_path(const char* value, size_t size) {
+void SoftwarePackage::set_full_path(const char* value, size_t size) {
   
   full_path_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:arizona_api_service.SoftwarePackage.full_path)
 }
- ::std::string* SoftwarePackage::mutable_full_path() {
+::std::string* SoftwarePackage::mutable_full_path() {
   
   // @@protoc_insertion_point(field_mutable:arizona_api_service.SoftwarePackage.full_path)
   return full_path_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* SoftwarePackage::release_full_path() {
+::std::string* SoftwarePackage::release_full_path() {
   // @@protoc_insertion_point(field_release:arizona_api_service.SoftwarePackage.full_path)
   
   return full_path_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void SoftwarePackage::set_allocated_full_path(::std::string* full_path) {
+void SoftwarePackage::set_allocated_full_path(::std::string* full_path) {
   if (full_path != NULL) {
     
   } else {
@@ -1782,41 +1811,49 @@ void SoftwarePackage::clear_full_path() {
   // @@protoc_insertion_point(field_set_allocated:arizona_api_service.SoftwarePackage.full_path)
 }
 
-// optional string description = 3;
+// string description = 3;
 void SoftwarePackage::clear_description() {
   description_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& SoftwarePackage::description() const {
+const ::std::string& SoftwarePackage::description() const {
   // @@protoc_insertion_point(field_get:arizona_api_service.SoftwarePackage.description)
-  return description_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return description_.GetNoArena();
 }
- void SoftwarePackage::set_description(const ::std::string& value) {
+void SoftwarePackage::set_description(const ::std::string& value) {
   
   description_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:arizona_api_service.SoftwarePackage.description)
 }
- void SoftwarePackage::set_description(const char* value) {
+#if LANG_CXX11
+void SoftwarePackage::set_description(::std::string&& value) {
+  
+  description_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:arizona_api_service.SoftwarePackage.description)
+}
+#endif
+void SoftwarePackage::set_description(const char* value) {
   
   description_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:arizona_api_service.SoftwarePackage.description)
 }
- void SoftwarePackage::set_description(const char* value, size_t size) {
+void SoftwarePackage::set_description(const char* value, size_t size) {
   
   description_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:arizona_api_service.SoftwarePackage.description)
 }
- ::std::string* SoftwarePackage::mutable_description() {
+::std::string* SoftwarePackage::mutable_description() {
   
   // @@protoc_insertion_point(field_mutable:arizona_api_service.SoftwarePackage.description)
   return description_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* SoftwarePackage::release_description() {
+::std::string* SoftwarePackage::release_description() {
   // @@protoc_insertion_point(field_release:arizona_api_service.SoftwarePackage.description)
   
   return description_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void SoftwarePackage::set_allocated_description(::std::string* description) {
+void SoftwarePackage::set_allocated_description(::std::string* description) {
   if (description != NULL) {
     
   } else {
@@ -1826,41 +1863,49 @@ void SoftwarePackage::clear_description() {
   // @@protoc_insertion_point(field_set_allocated:arizona_api_service.SoftwarePackage.description)
 }
 
-// optional string version = 4;
+// string version = 4;
 void SoftwarePackage::clear_version() {
   version_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& SoftwarePackage::version() const {
+const ::std::string& SoftwarePackage::version() const {
   // @@protoc_insertion_point(field_get:arizona_api_service.SoftwarePackage.version)
-  return version_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return version_.GetNoArena();
 }
- void SoftwarePackage::set_version(const ::std::string& value) {
+void SoftwarePackage::set_version(const ::std::string& value) {
   
   version_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:arizona_api_service.SoftwarePackage.version)
 }
- void SoftwarePackage::set_version(const char* value) {
+#if LANG_CXX11
+void SoftwarePackage::set_version(::std::string&& value) {
+  
+  version_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:arizona_api_service.SoftwarePackage.version)
+}
+#endif
+void SoftwarePackage::set_version(const char* value) {
   
   version_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:arizona_api_service.SoftwarePackage.version)
 }
- void SoftwarePackage::set_version(const char* value, size_t size) {
+void SoftwarePackage::set_version(const char* value, size_t size) {
   
   version_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:arizona_api_service.SoftwarePackage.version)
 }
- ::std::string* SoftwarePackage::mutable_version() {
+::std::string* SoftwarePackage::mutable_version() {
   
   // @@protoc_insertion_point(field_mutable:arizona_api_service.SoftwarePackage.version)
   return version_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* SoftwarePackage::release_version() {
+::std::string* SoftwarePackage::release_version() {
   // @@protoc_insertion_point(field_release:arizona_api_service.SoftwarePackage.version)
   
   return version_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void SoftwarePackage::set_allocated_version(::std::string* version) {
+void SoftwarePackage::set_allocated_version(::std::string* version) {
   if (version != NULL) {
     
   } else {
@@ -1870,41 +1915,49 @@ void SoftwarePackage::clear_version() {
   // @@protoc_insertion_point(field_set_allocated:arizona_api_service.SoftwarePackage.version)
 }
 
-// optional string version_string = 5;
+// string version_string = 5;
 void SoftwarePackage::clear_version_string() {
   version_string_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& SoftwarePackage::version_string() const {
+const ::std::string& SoftwarePackage::version_string() const {
   // @@protoc_insertion_point(field_get:arizona_api_service.SoftwarePackage.version_string)
-  return version_string_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return version_string_.GetNoArena();
 }
- void SoftwarePackage::set_version_string(const ::std::string& value) {
+void SoftwarePackage::set_version_string(const ::std::string& value) {
   
   version_string_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:arizona_api_service.SoftwarePackage.version_string)
 }
- void SoftwarePackage::set_version_string(const char* value) {
+#if LANG_CXX11
+void SoftwarePackage::set_version_string(::std::string&& value) {
+  
+  version_string_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:arizona_api_service.SoftwarePackage.version_string)
+}
+#endif
+void SoftwarePackage::set_version_string(const char* value) {
   
   version_string_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:arizona_api_service.SoftwarePackage.version_string)
 }
- void SoftwarePackage::set_version_string(const char* value, size_t size) {
+void SoftwarePackage::set_version_string(const char* value, size_t size) {
   
   version_string_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:arizona_api_service.SoftwarePackage.version_string)
 }
- ::std::string* SoftwarePackage::mutable_version_string() {
+::std::string* SoftwarePackage::mutable_version_string() {
   
   // @@protoc_insertion_point(field_mutable:arizona_api_service.SoftwarePackage.version_string)
   return version_string_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* SoftwarePackage::release_version_string() {
+::std::string* SoftwarePackage::release_version_string() {
   // @@protoc_insertion_point(field_release:arizona_api_service.SoftwarePackage.version_string)
   
   return version_string_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void SoftwarePackage::set_allocated_version_string(::std::string* version_string) {
+void SoftwarePackage::set_allocated_version_string(::std::string* version_string) {
   if (version_string != NULL) {
     
   } else {
@@ -1914,97 +1967,105 @@ void SoftwarePackage::clear_version_string() {
   // @@protoc_insertion_point(field_set_allocated:arizona_api_service.SoftwarePackage.version_string)
 }
 
-// optional uint64 file_size = 6;
+// uint64 file_size = 6;
 void SoftwarePackage::clear_file_size() {
   file_size_ = GOOGLE_ULONGLONG(0);
 }
- ::google::protobuf::uint64 SoftwarePackage::file_size() const {
+::google::protobuf::uint64 SoftwarePackage::file_size() const {
   // @@protoc_insertion_point(field_get:arizona_api_service.SoftwarePackage.file_size)
   return file_size_;
 }
- void SoftwarePackage::set_file_size(::google::protobuf::uint64 value) {
+void SoftwarePackage::set_file_size(::google::protobuf::uint64 value) {
   
   file_size_ = value;
   // @@protoc_insertion_point(field_set:arizona_api_service.SoftwarePackage.file_size)
 }
 
-// optional uint64 space_required = 7;
+// uint64 space_required = 7;
 void SoftwarePackage::clear_space_required() {
   space_required_ = GOOGLE_ULONGLONG(0);
 }
- ::google::protobuf::uint64 SoftwarePackage::space_required() const {
+::google::protobuf::uint64 SoftwarePackage::space_required() const {
   // @@protoc_insertion_point(field_get:arizona_api_service.SoftwarePackage.space_required)
   return space_required_;
 }
- void SoftwarePackage::set_space_required(::google::protobuf::uint64 value) {
+void SoftwarePackage::set_space_required(::google::protobuf::uint64 value) {
   
   space_required_ = value;
   // @@protoc_insertion_point(field_set:arizona_api_service.SoftwarePackage.space_required)
 }
 
-// optional bool usable = 8;
+// bool usable = 8;
 void SoftwarePackage::clear_usable() {
   usable_ = false;
 }
- bool SoftwarePackage::usable() const {
+bool SoftwarePackage::usable() const {
   // @@protoc_insertion_point(field_get:arizona_api_service.SoftwarePackage.usable)
   return usable_;
 }
- void SoftwarePackage::set_usable(bool value) {
+void SoftwarePackage::set_usable(bool value) {
   
   usable_ = value;
   // @@protoc_insertion_point(field_set:arizona_api_service.SoftwarePackage.usable)
 }
 
-// optional bool trusted = 9;
+// bool trusted = 9;
 void SoftwarePackage::clear_trusted() {
   trusted_ = false;
 }
- bool SoftwarePackage::trusted() const {
+bool SoftwarePackage::trusted() const {
   // @@protoc_insertion_point(field_get:arizona_api_service.SoftwarePackage.trusted)
   return trusted_;
 }
- void SoftwarePackage::set_trusted(bool value) {
+void SoftwarePackage::set_trusted(bool value) {
   
   trusted_ = value;
   // @@protoc_insertion_point(field_set:arizona_api_service.SoftwarePackage.trusted)
 }
 
-// optional string supported_products = 10;
+// string supported_products = 10;
 void SoftwarePackage::clear_supported_products() {
   supported_products_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& SoftwarePackage::supported_products() const {
+const ::std::string& SoftwarePackage::supported_products() const {
   // @@protoc_insertion_point(field_get:arizona_api_service.SoftwarePackage.supported_products)
-  return supported_products_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return supported_products_.GetNoArena();
 }
- void SoftwarePackage::set_supported_products(const ::std::string& value) {
+void SoftwarePackage::set_supported_products(const ::std::string& value) {
   
   supported_products_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:arizona_api_service.SoftwarePackage.supported_products)
 }
- void SoftwarePackage::set_supported_products(const char* value) {
+#if LANG_CXX11
+void SoftwarePackage::set_supported_products(::std::string&& value) {
+  
+  supported_products_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:arizona_api_service.SoftwarePackage.supported_products)
+}
+#endif
+void SoftwarePackage::set_supported_products(const char* value) {
   
   supported_products_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:arizona_api_service.SoftwarePackage.supported_products)
 }
- void SoftwarePackage::set_supported_products(const char* value, size_t size) {
+void SoftwarePackage::set_supported_products(const char* value, size_t size) {
   
   supported_products_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:arizona_api_service.SoftwarePackage.supported_products)
 }
- ::std::string* SoftwarePackage::mutable_supported_products() {
+::std::string* SoftwarePackage::mutable_supported_products() {
   
   // @@protoc_insertion_point(field_mutable:arizona_api_service.SoftwarePackage.supported_products)
   return supported_products_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* SoftwarePackage::release_supported_products() {
+::std::string* SoftwarePackage::release_supported_products() {
   // @@protoc_insertion_point(field_release:arizona_api_service.SoftwarePackage.supported_products)
   
   return supported_products_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void SoftwarePackage::set_allocated_supported_products(::std::string* supported_products) {
+void SoftwarePackage::set_allocated_supported_products(::std::string* supported_products) {
   if (supported_products != NULL) {
     
   } else {
@@ -2024,24 +2085,22 @@ const int SoftwarePackageList::kListFieldNumber;
 
 SoftwarePackageList::SoftwarePackageList()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_arizona_5fapi_5fserver_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:arizona_api_service.SoftwarePackageList)
 }
-
-void SoftwarePackageList::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
 SoftwarePackageList::SoftwarePackageList(const SoftwarePackageList& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
+      _internal_metadata_(NULL),
+      list_(from.list_),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:arizona_api_service.SoftwarePackageList)
 }
 
 void SoftwarePackageList::SharedCtor() {
-    _is_default_instance_ = false;
   _cached_size_ = 0;
 }
 
@@ -2051,8 +2110,6 @@ SoftwarePackageList::~SoftwarePackageList() {
 }
 
 void SoftwarePackageList::SharedDtor() {
-  if (this != default_instance_) {
-  }
 }
 
 void SoftwarePackageList::SetCachedSize(int size) const {
@@ -2061,16 +2118,14 @@ void SoftwarePackageList::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* SoftwarePackageList::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return SoftwarePackageList_descriptor_;
+  protobuf_arizona_5fapi_5fserver_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_arizona_5fapi_5fserver_2eproto::file_level_metadata[2].descriptor;
 }
 
 const SoftwarePackageList& SoftwarePackageList::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_arizona_5fapi_5fserver_2eproto();
-  return *default_instance_;
+  protobuf_arizona_5fapi_5fserver_2eproto::InitDefaults();
+  return *internal_default_instance();
 }
-
-SoftwarePackageList* SoftwarePackageList::default_instance_ = NULL;
 
 SoftwarePackageList* SoftwarePackageList::New(::google::protobuf::Arena* arena) const {
   SoftwarePackageList* n = new SoftwarePackageList;
@@ -2091,23 +2146,20 @@ bool SoftwarePackageList::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:arizona_api_service.SoftwarePackageList)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
       // repeated .arizona_api_service.SoftwarePackage list = 1;
       case 1: {
-        if (tag == 10) {
+        if (tag == 10u) {
           DO_(input->IncrementRecursionDepth());
-         parse_loop_list:
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtualNoRecursionDepth(
                 input, add_list()));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(10)) goto parse_loop_list;
         input->UnsafeDecrementRecursionDepth();
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -2144,42 +2196,47 @@ void SoftwarePackageList::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:arizona_api_service.SoftwarePackageList)
 }
 
-::google::protobuf::uint8* SoftwarePackageList::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* SoftwarePackageList::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:arizona_api_service.SoftwarePackageList)
   // repeated .arizona_api_service.SoftwarePackage list = 1;
   for (unsigned int i = 0, n = this->list_size(); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        1, this->list(i), target);
+      InternalWriteMessageNoVirtualToArray(
+        1, this->list(i), false, target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:arizona_api_service.SoftwarePackageList)
   return target;
 }
 
-int SoftwarePackageList::ByteSize() const {
+size_t SoftwarePackageList::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:arizona_api_service.SoftwarePackageList)
-  int total_size = 0;
+  size_t total_size = 0;
 
   // repeated .arizona_api_service.SoftwarePackage list = 1;
-  total_size += 1 * this->list_size();
-  for (int i = 0; i < this->list_size(); i++) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->list(i));
+  {
+    unsigned int count = this->list_size();
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->list(i));
+    }
   }
 
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
+  _cached_size_ = cached_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void SoftwarePackageList::MergeFrom(const ::google::protobuf::Message& from) {
 // @@protoc_insertion_point(generalized_merge_from_start:arizona_api_service.SoftwarePackageList)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const SoftwarePackageList* source = 
+  GOOGLE_DCHECK_NE(&from, this);
+  const SoftwarePackageList* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const SoftwarePackageList>(
           &from);
   if (source == NULL) {
@@ -2193,7 +2250,8 @@ void SoftwarePackageList::MergeFrom(const ::google::protobuf::Message& from) {
 
 void SoftwarePackageList::MergeFrom(const SoftwarePackageList& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:arizona_api_service.SoftwarePackageList)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   list_.MergeFrom(from.list_);
 }
 
@@ -2212,7 +2270,6 @@ void SoftwarePackageList::CopyFrom(const SoftwarePackageList& from) {
 }
 
 bool SoftwarePackageList::IsInitialized() const {
-
   return true;
 }
 
@@ -2222,16 +2279,12 @@ void SoftwarePackageList::Swap(SoftwarePackageList* other) {
 }
 void SoftwarePackageList::InternalSwap(SoftwarePackageList* other) {
   list_.UnsafeArenaSwap(&other->list_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata SoftwarePackageList::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = SoftwarePackageList_descriptor_;
-  metadata.reflection = SoftwarePackageList_reflection_;
-  return metadata;
+  protobuf_arizona_5fapi_5fserver_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_arizona_5fapi_5fserver_2eproto::file_level_metadata[2];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS

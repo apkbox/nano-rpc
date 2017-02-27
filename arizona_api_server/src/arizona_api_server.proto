@@ -1,5 +1,6 @@
 syntax = "proto3";
 
+import "google/protobuf/empty.proto";
 import "google/protobuf/wrappers.proto";
 import "nanorpc/rpc_types.proto";
 
@@ -35,17 +36,17 @@ message SoftwarePackageList {
 
 service SoftwareUpdateEvents {
 	option(nanorpc.event_source) = true;
-	rpc PackageListChanged (nanorpc.RpcVoid) returns (nanorpc.RpcVoid);
+	rpc PackageListChanged (google.protobuf.Empty) returns (google.protobuf.Empty);
 }
 
 service ProductInfoInterface {
-	rpc GetProductInfo (nanorpc.RpcVoid) returns (ProductInfo);
+	rpc GetProductInfo (google.protobuf.Empty) returns (ProductInfo);
 }
 
 service SoftwareUpdateInterface {
-	rpc GetAvailablePackages (nanorpc.RpcVoid) returns (SoftwarePackageList);
+	rpc GetAvailablePackages (google.protobuf.Empty) returns (SoftwarePackageList);
 	rpc StartPackageInstallation (google.protobuf.StringValue) returns (google.protobuf.BoolValue);
 	rpc DeletePackage (google.protobuf.StringValue) returns (google.protobuf.BoolValue);
-	rpc GetPackageStorePath (nanorpc.RpcVoid) returns (google.protobuf.StringValue);
+	rpc GetPackageStorePath (google.protobuf.Empty) returns (google.protobuf.StringValue);
 }
 

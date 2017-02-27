@@ -58,9 +58,6 @@ message RpcMessage {
 	RpcResult result = 3;
 }
 
-message RpcVoid {
-}
-
 message WideStringValue {
 	string value = 1;
 }

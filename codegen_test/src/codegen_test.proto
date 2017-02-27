@@ -1,5 +1,6 @@
 syntax = "proto3";
 
+import "google/protobuf/empty.proto";
 import "google/protobuf/wrappers.proto";
 import "nanorpc/rpc_types.proto";
 
@@ -86,49 +87,49 @@ service TestServiceInteface {
 //	}
 
 
-	rpc Method_V_V (nanorpc.RpcVoid) returns (nanorpc.RpcVoid);
+	rpc Method_V_V (google.protobuf.Empty) returns (google.protobuf.Empty);
 
-	rpc Method_V_b (google.protobuf.BoolValue) returns (nanorpc.RpcVoid);
-	rpc Method_V_i (google.protobuf.Int32Value) returns (nanorpc.RpcVoid);
-	rpc Method_V_u (google.protobuf.UInt32Value) returns (nanorpc.RpcVoid);
-	rpc Method_V_s (nanorpc.SInt32Value) returns (nanorpc.RpcVoid);
+	rpc Method_V_b (google.protobuf.BoolValue) returns (google.protobuf.Empty);
+	rpc Method_V_i (google.protobuf.Int32Value) returns (google.protobuf.Empty);
+	rpc Method_V_u (google.protobuf.UInt32Value) returns (google.protobuf.Empty);
+	rpc Method_V_s (nanorpc.SInt32Value) returns (google.protobuf.Empty);
 
-	rpc Method_V_I (google.protobuf.Int64Value) returns (nanorpc.RpcVoid);
-	rpc Method_V_U (google.protobuf.UInt64Value) returns (nanorpc.RpcVoid);
-	rpc Method_V_S (nanorpc.SInt64Value) returns (nanorpc.RpcVoid);
+	rpc Method_V_I (google.protobuf.Int64Value) returns (google.protobuf.Empty);
+	rpc Method_V_U (google.protobuf.UInt64Value) returns (google.protobuf.Empty);
+	rpc Method_V_S (nanorpc.SInt64Value) returns (google.protobuf.Empty);
 
-	rpc Method_V_f (google.protobuf.FloatValue) returns (nanorpc.RpcVoid);
-	rpc Method_V_d (google.protobuf.DoubleValue) returns (nanorpc.RpcVoid);
+	rpc Method_V_f (google.protobuf.FloatValue) returns (google.protobuf.Empty);
+	rpc Method_V_d (google.protobuf.DoubleValue) returns (google.protobuf.Empty);
 
-	rpc Method_V_E (EnumType_wrapper__) returns (nanorpc.RpcVoid);
+	rpc Method_V_E (EnumType_wrapper__) returns (google.protobuf.Empty);
 
-	rpc Method_V_A (google.protobuf.StringValue) returns (nanorpc.RpcVoid);
-	rpc Method_V_W (nanorpc.WideStringValue) returns (nanorpc.RpcVoid);
+	rpc Method_V_A (google.protobuf.StringValue) returns (google.protobuf.Empty);
+	rpc Method_V_W (nanorpc.WideStringValue) returns (google.protobuf.Empty);
 
-	rpc Method_V_M (StructType) returns (nanorpc.RpcVoid);
+	rpc Method_V_M (StructType) returns (google.protobuf.Empty);
 
-	rpc Method_b_V (nanorpc.RpcVoid) returns (google.protobuf.BoolValue);
-	rpc Method_i_V (nanorpc.RpcVoid) returns (google.protobuf.Int32Value);
-	rpc Method_u_V (nanorpc.RpcVoid) returns (google.protobuf.UInt32Value);
-	rpc Method_s_V (nanorpc.RpcVoid) returns (nanorpc.SInt32Value);
+	rpc Method_b_V (google.protobuf.Empty) returns (google.protobuf.BoolValue);
+	rpc Method_i_V (google.protobuf.Empty) returns (google.protobuf.Int32Value);
+	rpc Method_u_V (google.protobuf.Empty) returns (google.protobuf.UInt32Value);
+	rpc Method_s_V (google.protobuf.Empty) returns (nanorpc.SInt32Value);
 
-	rpc Method_I_V (nanorpc.RpcVoid) returns (google.protobuf.Int64Value);
-	rpc Method_U_V (nanorpc.RpcVoid) returns (google.protobuf.UInt64Value);
-	rpc Method_S_V (nanorpc.RpcVoid) returns (nanorpc.SInt64Value);
+	rpc Method_I_V (google.protobuf.Empty) returns (google.protobuf.Int64Value);
+	rpc Method_U_V (google.protobuf.Empty) returns (google.protobuf.UInt64Value);
+	rpc Method_S_V (google.protobuf.Empty) returns (nanorpc.SInt64Value);
 
-	rpc Method_f_V (nanorpc.RpcVoid) returns (google.protobuf.FloatValue);
-	rpc Method_d_V (nanorpc.RpcVoid) returns (google.protobuf.DoubleValue);
+	rpc Method_f_V (google.protobuf.Empty) returns (google.protobuf.FloatValue);
+	rpc Method_d_V (google.protobuf.Empty) returns (google.protobuf.DoubleValue);
 
-	rpc Method_E_V (nanorpc.RpcVoid) returns (EnumType_wrapper__);
+	rpc Method_E_V (google.protobuf.Empty) returns (EnumType_wrapper__);
 
-	rpc Method_A_V (nanorpc.RpcVoid) returns (google.protobuf.StringValue);
-	rpc Method_W_V (nanorpc.RpcVoid) returns (nanorpc.WideStringValue);
+	rpc Method_A_V (google.protobuf.Empty) returns (google.protobuf.StringValue);
+	rpc Method_W_V (google.protobuf.Empty) returns (nanorpc.WideStringValue);
 
-	rpc Method_M_V (nanorpc.RpcVoid) returns (StructType);
+	rpc Method_M_V (google.protobuf.Empty) returns (StructType);
 
-	rpc Method_V_biuIUsSfdEAWM (Method_V_biuIUsSfdEAWM_args__) returns (nanorpc.RpcVoid);
+	rpc Method_V_biuIUsSfdEAWM (Method_V_biuIUsSfdEAWM_args__) returns (google.protobuf.Empty);
 
-	rpc AsyncMethod_V_V (nanorpc.RpcVoid) returns (nanorpc.RpcVoid) {
+	rpc AsyncMethod_V_V (google.protobuf.Empty) returns (google.protobuf.Empty) {
 		option (nanorpc.async) = true;
 	}
 }
