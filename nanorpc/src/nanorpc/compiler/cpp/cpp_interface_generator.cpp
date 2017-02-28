@@ -32,17 +32,17 @@ std::string GetInterfaceDefinitions(
         if (method_model.is_property()) {
           if (method_model.getter() != nullptr)
             vars["getter_signature"] =
-                GetPropertySignature(method_model.getter(), false);
+                GetPropertySignature(method_model.getter(), false, true);
 
           if (method_model.setter() != nullptr)
             vars["setter_signature"] =
-                GetPropertySignature(method_model.setter(), true);
+                GetPropertySignature(method_model.setter(), true, true);
 
           printer.Print(vars, "virtual $getter_signature$ = 0;\n");
           printer.Print(vars, "virtual $setter_signature$ = 0;\n");
         } else {
           vars["method_signature"] =
-              GetMethodSignature(method_model, std::string());
+              GetMethodSignature(method_model, std::string(), true);
           printer.Print(vars, "virtual $method_signature$ = 0;\n");
         }
       }

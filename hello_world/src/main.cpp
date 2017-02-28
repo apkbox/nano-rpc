@@ -18,10 +18,11 @@ namespace hw = ::hello_world;
 
 class OrderDeskEventsListener : public hw::OrderDeskEvents {
 public:
-  OrderDeskEventsListener(hw::OrderDesk *order_desk, int *orders_done)
+  OrderDeskEventsListener(hw::OrderDesk_Proxy *order_desk, int *orders_done)
       : order_desk_(order_desk), orders_done_(orders_done) {}
 
-  void OrderStatusChanged(uint32_t order_id,
+  void OrderStatusChanged(nanorpc::ServerContextInterface *context,
+                          uint32_t order_id,
                           bool is_ready,
                           bool reading_taken,
                           bool drink_taken) override {
@@ -34,7 +35,7 @@ public:
   }
 
 private:
-  hw::OrderDesk *order_desk_;
+  hw::OrderDesk_Proxy *order_desk_;
   int *orders_done_;
 };
 

@@ -15,7 +15,7 @@ const std::string &SoftwareUpdateEvents_Stub::GetInterfaceName() const {
 
 bool SoftwareUpdateEvents_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcResult *rpc_result) {
   if (rpc_call.method() == "PackageListChanged") {
-    impl_->PackageListChanged();
+    impl_->PackageListChanged(nullptr);
     return true;
   }
 
@@ -34,7 +34,7 @@ const std::string &ProductInfoInterface_Stub::GetInterfaceName() const {
 bool ProductInfoInterface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcResult *rpc_result) {
   if (rpc_call.method() == "GetProductInfo") {
     ProductInfo out__;
-    impl_->GetProductInfo(&out__);
+    impl_->GetProductInfo(nullptr, &out__);
 
     out__.SerializeToString(rpc_result->mutable_result_data());
     return true;
@@ -55,7 +55,7 @@ const std::string &SoftwareUpdateInterface_Stub::GetInterfaceName() const {
 bool SoftwareUpdateInterface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcResult *rpc_result) {
   if (rpc_call.method() == "GetAvailablePackages") {
     SoftwarePackageList out__;
-    impl_->GetAvailablePackages(&out__);
+    impl_->GetAvailablePackages(nullptr, &out__);
 
     out__.SerializeToString(rpc_result->mutable_result_data());
     return true;
@@ -67,7 +67,7 @@ bool SoftwareUpdateInterface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, 
 
     bool out__;
     google::protobuf::BoolValue out_pb__;
-    out__ = impl_->StartPackageInstallation(value);
+    out__ = impl_->StartPackageInstallation(nullptr, value);
 
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
@@ -80,7 +80,7 @@ bool SoftwareUpdateInterface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, 
 
     bool out__;
     google::protobuf::BoolValue out_pb__;
-    out__ = impl_->DeletePackage(value);
+    out__ = impl_->DeletePackage(nullptr, value);
 
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
@@ -88,7 +88,7 @@ bool SoftwareUpdateInterface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, 
   } else if (rpc_call.method() == "GetPackageStorePath") {
     std::string out__;
     google::protobuf::StringValue out_pb__;
-    impl_->GetPackageStorePath(&out__);
+    impl_->GetPackageStorePath(nullptr, &out__);
 
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());

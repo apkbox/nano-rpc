@@ -23,7 +23,7 @@ void GenerateEventProxyDeclaration(
   //  - Event proxy has one member
   //      nanorpc::IRpcMessageSender *sender_;
   /* clang-format off */
-  printer.Print(vars, "class $service_name$_EventProxy : public $service_name$ {\n");
+  printer.Print(vars, "class $service_name$_EventProxy {\n");
   printer.Print(vars, "public:\n");
   printer.Indent();
   printer.Print(vars, "explicit $service_name$_EventProxy(nanorpc::EventSourceInterface *event_source)\n");
@@ -38,8 +38,8 @@ void GenerateEventProxyDeclaration(
       assert(false);
     } else {
       vars["method_signature"] =
-          GetMethodSignature(method_model, std::string());
-      printer.Print(vars, "$method_signature$ override;\n");
+          GetMethodSignature(method_model, std::string(), false);
+      printer.Print(vars, "$method_signature$;\n");
     }
   }
 
@@ -59,7 +59,7 @@ void GenerateProxyDeclaration(pb::io::Printer &printer,
   vars["service_name"] = service_model.name();
 
   /* clang-format off */
-  printer.Print(vars, "class $service_name$_Proxy : public $service_name$ {\n");
+  printer.Print(vars, "class $service_name$_Proxy {\n");
   printer.Print(vars, "public:\n");
   printer.Indent();
   printer.Print(vars, "explicit $service_name$_Proxy(nanorpc::ServiceProxyInterface *client, nanorpc::RpcObjectId object_id = 0)\n");
@@ -73,18 +73,18 @@ void GenerateProxyDeclaration(pb::io::Printer &printer,
     if (method_model.is_property()) {
       if (method_model.getter() != nullptr)
         vars["getter_signature"] =
-            GetPropertySignature(method_model.getter(), false);
+            GetPropertySignature(method_model.getter(), false, false);
 
       if (method_model.setter() != nullptr)
         vars["setter_signature"] =
-            GetPropertySignature(method_model.setter(), true);
+            GetPropertySignature(method_model.setter(), true, false);
 
-      printer.Print(vars, "$getter_signature$ override;\n");
-      printer.Print(vars, "$setter_signature$ override;\n");
+      printer.Print(vars, "$getter_signature$;\n");
+      printer.Print(vars, "$setter_signature$;\n");
     } else {
       vars["method_signature"] =
-          GetMethodSignature(method_model, std::string());
-      printer.Print(vars, "$method_signature$ override;\n");
+          GetMethodSignature(method_model, std::string(), false);
+      printer.Print(vars, "$method_signature$;\n");
     }
   }
 
@@ -231,8 +231,8 @@ void GenerateProxyImplementation(pb::io::Printer &printer,
     vars["method_name"] = method.name();
     vars["method_signature"] =
         service.is_event_source()
-            ? GetMethodSignature(method, service.name() + "_EventProxy")
-            : GetMethodSignature(method, service.name() + "_Proxy");
+            ? GetMethodSignature(method, service.name() + "_EventProxy", false)
+            : GetMethodSignature(method, service.name() + "_Proxy", false);
     vars["return_type"] = "void";
 
     printer.Print(vars, "$method_signature$ {\n");

@@ -110,7 +110,12 @@ void GenerateStubMethodCallImplementation(
     printer.Print(vars, "out__ = ");
 
   // Call interface method
-  printer.Print(vars, "impl_->$method_name$(");
+  printer.Print(vars, "impl_->$method_name$(nullptr");
+  if (method.arguments().size() > 0 ||
+      (!method.return_type().is_void() &&
+       method.return_type().is_reference_type())) {
+    printer.Print(", ");
+  }
 
   // Specify arguments
   for (size_t j = 0; j < method.arguments().size(); ++j) {

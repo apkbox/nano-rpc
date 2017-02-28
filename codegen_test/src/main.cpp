@@ -18,40 +18,40 @@ public:
   {
   }
 
-  void Method_V_V() override { ++void_method_calls_; }
-  void Method_V_b(bool value) override { b_ = value; }
-  void Method_V_i(int32_t value) override { i_ = value; }
-  void Method_V_u(uint32_t value) override { u_ = value; }
-  void Method_V_s(int32_t value) override { s_ = value; }
-  void Method_V_I(int64_t value) override { I_ = value; }
-  void Method_V_U(uint64_t value) override { U_ = value; }
-  void Method_V_S(int64_t value) override { S_ = value; }
-  void Method_V_f(float value) override { f_ = value; }
-  void Method_V_d(double value) override { d_ = value; }
-  void Method_V_E(codegen_test::EnumType value) override { E_ = value; }
-  void Method_V_A(const std::string &value) override { A_ = value; }
-  void Method_V_W(const std::string &value) override { W_ = value; }
-  void Method_V_M(const codegen_test::StructType &value) override { M_ = value; }
-  bool Method_b_V() override { return b_; }
-  int32_t Method_i_V() override { return i_; }
-  uint32_t Method_u_V() override { return u_; }
-  int32_t Method_s_V() override { return s_; }
-  int64_t Method_I_V() override { return I_; }
-  uint64_t Method_U_V() override { return U_; }
-  int64_t Method_S_V() override { return S_; }
-  float Method_f_V() override { return f_; }
-  double Method_d_V() override { return d_; }
-  codegen_test::EnumType Method_E_V() override { return E_; }
-  void Method_A_V(std::string *out__) override { *out__ = A_; }
-  void Method_W_V(std::string *out__) override { *out__ = W_; }
-  void Method_M_V(codegen_test::StructType *out__) override { *out__ = M_; }
-  void Method_V_biuIUsSfdEAWM(bool bool_value, int32_t int32_value, uint32_t uint32_value, int64_t int64_value, uint64_t uint64_value, 
+  void Method_V_V(nanorpc::ServerContextInterface *) override { ++void_method_calls_; }
+  void Method_V_b(nanorpc::ServerContextInterface *, bool value) override { b_ = value; }
+  void Method_V_i(nanorpc::ServerContextInterface *, int32_t value) override { i_ = value; }
+  void Method_V_u(nanorpc::ServerContextInterface *, uint32_t value) override { u_ = value; }
+  void Method_V_s(nanorpc::ServerContextInterface *, int32_t value) override { s_ = value; }
+  void Method_V_I(nanorpc::ServerContextInterface *, int64_t value) override { I_ = value; }
+  void Method_V_U(nanorpc::ServerContextInterface *, uint64_t value) override { U_ = value; }
+  void Method_V_S(nanorpc::ServerContextInterface *, int64_t value) override { S_ = value; }
+  void Method_V_f(nanorpc::ServerContextInterface *, float value) override { f_ = value; }
+  void Method_V_d(nanorpc::ServerContextInterface *, double value) override { d_ = value; }
+  void Method_V_E(nanorpc::ServerContextInterface *, codegen_test::EnumType value) override { E_ = value; }
+  void Method_V_A(nanorpc::ServerContextInterface *, const std::string &value) override { A_ = value; }
+  void Method_V_W(nanorpc::ServerContextInterface *, const std::string &value) override { W_ = value; }
+  void Method_V_M(nanorpc::ServerContextInterface *, const codegen_test::StructType &value) override { M_ = value; }
+  bool Method_b_V(nanorpc::ServerContextInterface *) override { return b_; }
+  int32_t Method_i_V(nanorpc::ServerContextInterface *) override { return i_; }
+  uint32_t Method_u_V(nanorpc::ServerContextInterface *) override { return u_; }
+  int32_t Method_s_V(nanorpc::ServerContextInterface *) override { return s_; }
+  int64_t Method_I_V(nanorpc::ServerContextInterface *) override { return I_; }
+  uint64_t Method_U_V(nanorpc::ServerContextInterface *) override { return U_; }
+  int64_t Method_S_V(nanorpc::ServerContextInterface *) override { return S_; }
+  float Method_f_V(nanorpc::ServerContextInterface *) override { return f_; }
+  double Method_d_V(nanorpc::ServerContextInterface *) override { return d_; }
+  codegen_test::EnumType Method_E_V(nanorpc::ServerContextInterface *) override { return E_; }
+  void Method_A_V(nanorpc::ServerContextInterface *, std::string *out__) override { *out__ = A_; }
+  void Method_W_V(nanorpc::ServerContextInterface *, std::string *out__) override { *out__ = W_; }
+  void Method_M_V(nanorpc::ServerContextInterface *, codegen_test::StructType *out__) override { *out__ = M_; }
+  void Method_V_biuIUsSfdEAWM(nanorpc::ServerContextInterface *, bool bool_value, int32_t int32_value, uint32_t uint32_value, int64_t int64_value, uint64_t uint64_value, 
     int32_t sint32_value, int64_t sint64_value, float float_value, double double_value, 
     codegen_test::EnumType enum_value, const std::string &string_value, 
     const std::string &wstring_value, const codegen_test::StructType &struct_value) override {
 
   }
-  void AsyncMethod_V_V() override {
+  void AsyncMethod_V_V(nanorpc::ServerContextInterface *) override {
     ++void_method_calls_;
   }
 

@@ -13,24 +13,24 @@ class SoftwareUpdateEvents {
 public:
   virtual ~SoftwareUpdateEvents() {}
 
-  virtual void PackageListChanged() = 0;
+  virtual void PackageListChanged(nanorpc::ServerContextInterface *context) = 0;
 };
 
 class ProductInfoInterface {
 public:
   virtual ~ProductInfoInterface() {}
 
-  virtual void GetProductInfo(ProductInfo *out__) = 0;
+  virtual void GetProductInfo(nanorpc::ServerContextInterface *context, ProductInfo *out__) = 0;
 };
 
 class SoftwareUpdateInterface {
 public:
   virtual ~SoftwareUpdateInterface() {}
 
-  virtual void GetAvailablePackages(SoftwarePackageList *out__) = 0;
-  virtual bool StartPackageInstallation(const std::string &value) = 0;
-  virtual bool DeletePackage(const std::string &value) = 0;
-  virtual void GetPackageStorePath(std::string *out__) = 0;
+  virtual void GetAvailablePackages(nanorpc::ServerContextInterface *context, SoftwarePackageList *out__) = 0;
+  virtual bool StartPackageInstallation(nanorpc::ServerContextInterface *context, const std::string &value) = 0;
+  virtual bool DeletePackage(nanorpc::ServerContextInterface *context, const std::string &value) = 0;
+  virtual void GetPackageStorePath(nanorpc::ServerContextInterface *context, std::string *out__) = 0;
 };
 
 class SoftwareUpdateEvents_Stub : public nanorpc::ServiceInterface {
@@ -78,14 +78,14 @@ private:
   nanorpc::ObjectManagerInterface* object_manager_;
 };
 
-class SoftwareUpdateEvents_EventProxy : public SoftwareUpdateEvents {
+class SoftwareUpdateEvents_EventProxy {
 public:
   explicit SoftwareUpdateEvents_EventProxy(nanorpc::EventSourceInterface *event_source)
       : event_source_(event_source) {}
 
   virtual ~SoftwareUpdateEvents_EventProxy() {}
 
-  void PackageListChanged() override;
+  void PackageListChanged();
 
 private:
   nanorpc::EventSourceInterface *event_source_;
@@ -98,7 +98,7 @@ public:
 
   virtual ~ProductInfoInterface_Proxy();
 
-  void GetProductInfo(ProductInfo *out__) override;
+  void GetProductInfo(ProductInfo *out__);
 
 private:
   nanorpc::ServiceProxyInterface *client_;
@@ -112,10 +112,10 @@ public:
 
   virtual ~SoftwareUpdateInterface_Proxy();
 
-  void GetAvailablePackages(SoftwarePackageList *out__) override;
-  bool StartPackageInstallation(const std::string &value) override;
-  bool DeletePackage(const std::string &value) override;
-  void GetPackageStorePath(std::string *out__) override;
+  void GetAvailablePackages(SoftwarePackageList *out__);
+  bool StartPackageInstallation(const std::string &value);
+  bool DeletePackage(const std::string &value);
+  void GetPackageStorePath(std::string *out__);
 
 private:
   nanorpc::ServiceProxyInterface *client_;

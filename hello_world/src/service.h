@@ -33,7 +33,8 @@ public:
         events_(event_source),
         server_(std::thread(&OrderDeskImpl::ServerThread, this)) {}
 
-  int32_t CreateOrder(hello_world::DrinkType drink,
+  int32_t CreateOrder(nanorpc::ServerContextInterface *context,
+                      hello_world::DrinkType drink,
                       hello_world::ReadingType reading) override {
     Order order(drink, reading);
     std::lock_guard<std::mutex> lock(mtx_);
@@ -53,13 +54,15 @@ public:
     catch (...) {}
   }
 
-  bool IsOrderReady(int order_number) override {
+  bool IsOrderReady(nanorpc::ServerContextInterface *context,
+                    int order_number) override {
     std::cout << "OrderDeskImpl: Asked 'is order ready?'." << std::endl;
     std::lock_guard<std::mutex> lock(mtx_);
     return completed_orders_.find(order_number) != completed_orders_.end();
   }
 
-  hello_world::DrinkType GetDrink(int order_number) override {
+  hello_world::DrinkType GetDrink(nanorpc::ServerContextInterface *context,
+                                  int order_number) override {
     std::cout << "OrderDeskImpl: Getting drink." << std::endl;
     std::lock_guard<std::mutex> lock(mtx_);
     auto &order = completed_orders_.find(order_number);
@@ -76,7 +79,8 @@ public:
     return hello_world::NoDrink;
   }
 
-  hello_world::ReadingType GetReading(int order_number) override {
+  hello_world::ReadingType GetReading(nanorpc::ServerContextInterface *context,
+                                      int order_number) override {
     std::cout << "OrderDeskImpl: Getting reading." << std::endl;
     std::lock_guard<std::mutex> lock(mtx_);
     auto &order = completed_orders_.find(order_number);

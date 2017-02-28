@@ -15,7 +15,7 @@ const std::string &TestServiceInteface_Stub::GetInterfaceName() const {
 
 bool TestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcResult *rpc_result) {
   if (rpc_call.method() == "Method_V_V") {
-    impl_->Method_V_V();
+    impl_->Method_V_V(nullptr);
     return true;
   } else if (rpc_call.method() == "Method_V_b") {
     google::protobuf::BoolValue in_arg__;
@@ -23,7 +23,7 @@ bool TestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nano
     in_arg__.ParseFromString(rpc_call.call_data());
     bool value = in_arg__.value();
 
-    impl_->Method_V_b(value);
+    impl_->Method_V_b(nullptr, value);
     return true;
   } else if (rpc_call.method() == "Method_V_i") {
     google::protobuf::Int32Value in_arg__;
@@ -31,7 +31,7 @@ bool TestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nano
     in_arg__.ParseFromString(rpc_call.call_data());
     int32_t value = in_arg__.value();
 
-    impl_->Method_V_i(value);
+    impl_->Method_V_i(nullptr, value);
     return true;
   } else if (rpc_call.method() == "Method_V_u") {
     google::protobuf::UInt32Value in_arg__;
@@ -39,7 +39,7 @@ bool TestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nano
     in_arg__.ParseFromString(rpc_call.call_data());
     uint32_t value = in_arg__.value();
 
-    impl_->Method_V_u(value);
+    impl_->Method_V_u(nullptr, value);
     return true;
   } else if (rpc_call.method() == "Method_V_s") {
     nanorpc::SInt32Value in_arg__;
@@ -47,7 +47,7 @@ bool TestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nano
     in_arg__.ParseFromString(rpc_call.call_data());
     int32_t value = in_arg__.value();
 
-    impl_->Method_V_s(value);
+    impl_->Method_V_s(nullptr, value);
     return true;
   } else if (rpc_call.method() == "Method_V_I") {
     google::protobuf::Int64Value in_arg__;
@@ -55,7 +55,7 @@ bool TestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nano
     in_arg__.ParseFromString(rpc_call.call_data());
     int64_t value = in_arg__.value();
 
-    impl_->Method_V_I(value);
+    impl_->Method_V_I(nullptr, value);
     return true;
   } else if (rpc_call.method() == "Method_V_U") {
     google::protobuf::UInt64Value in_arg__;
@@ -63,7 +63,7 @@ bool TestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nano
     in_arg__.ParseFromString(rpc_call.call_data());
     uint64_t value = in_arg__.value();
 
-    impl_->Method_V_U(value);
+    impl_->Method_V_U(nullptr, value);
     return true;
   } else if (rpc_call.method() == "Method_V_S") {
     nanorpc::SInt64Value in_arg__;
@@ -71,7 +71,7 @@ bool TestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nano
     in_arg__.ParseFromString(rpc_call.call_data());
     int64_t value = in_arg__.value();
 
-    impl_->Method_V_S(value);
+    impl_->Method_V_S(nullptr, value);
     return true;
   } else if (rpc_call.method() == "Method_V_f") {
     google::protobuf::FloatValue in_arg__;
@@ -79,7 +79,7 @@ bool TestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nano
     in_arg__.ParseFromString(rpc_call.call_data());
     float value = in_arg__.value();
 
-    impl_->Method_V_f(value);
+    impl_->Method_V_f(nullptr, value);
     return true;
   } else if (rpc_call.method() == "Method_V_d") {
     google::protobuf::DoubleValue in_arg__;
@@ -87,7 +87,7 @@ bool TestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nano
     in_arg__.ParseFromString(rpc_call.call_data());
     double value = in_arg__.value();
 
-    impl_->Method_V_d(value);
+    impl_->Method_V_d(nullptr, value);
     return true;
   } else if (rpc_call.method() == "Method_V_E") {
     EnumType_wrapper__ in_arg__;
@@ -95,7 +95,7 @@ bool TestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nano
     in_arg__.ParseFromString(rpc_call.call_data());
     EnumType value = in_arg__.value();
 
-    impl_->Method_V_E(value);
+    impl_->Method_V_E(nullptr, value);
     return true;
   } else if (rpc_call.method() == "Method_V_A") {
     google::protobuf::StringValue in_arg__;
@@ -103,7 +103,7 @@ bool TestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nano
     in_arg__.ParseFromString(rpc_call.call_data());
     const std::string &value = in_arg__.value();
 
-    impl_->Method_V_A(value);
+    impl_->Method_V_A(nullptr, value);
     return true;
   } else if (rpc_call.method() == "Method_V_W") {
     nanorpc::WideStringValue in_arg__;
@@ -111,7 +111,7 @@ bool TestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nano
     in_arg__.ParseFromString(rpc_call.call_data());
     const std::string &value = in_arg__.value();
 
-    impl_->Method_V_W(value);
+    impl_->Method_V_W(nullptr, value);
     return true;
   } else if (rpc_call.method() == "Method_V_M") {
     StructType in_arg__;
@@ -119,12 +119,12 @@ bool TestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nano
     in_arg__.ParseFromString(rpc_call.call_data());
     const StructType &value = in_arg__;
 
-    impl_->Method_V_M(value);
+    impl_->Method_V_M(nullptr, value);
     return true;
   } else if (rpc_call.method() == "Method_b_V") {
     bool out__;
     google::protobuf::BoolValue out_pb__;
-    out__ = impl_->Method_b_V();
+    out__ = impl_->Method_b_V(nullptr);
 
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
@@ -132,7 +132,7 @@ bool TestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nano
   } else if (rpc_call.method() == "Method_i_V") {
     int32_t out__;
     google::protobuf::Int32Value out_pb__;
-    out__ = impl_->Method_i_V();
+    out__ = impl_->Method_i_V(nullptr);
 
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
@@ -140,7 +140,7 @@ bool TestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nano
   } else if (rpc_call.method() == "Method_u_V") {
     uint32_t out__;
     google::protobuf::UInt32Value out_pb__;
-    out__ = impl_->Method_u_V();
+    out__ = impl_->Method_u_V(nullptr);
 
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
@@ -148,7 +148,7 @@ bool TestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nano
   } else if (rpc_call.method() == "Method_s_V") {
     int32_t out__;
     nanorpc::SInt32Value out_pb__;
-    out__ = impl_->Method_s_V();
+    out__ = impl_->Method_s_V(nullptr);
 
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
@@ -156,7 +156,7 @@ bool TestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nano
   } else if (rpc_call.method() == "Method_I_V") {
     int64_t out__;
     google::protobuf::Int64Value out_pb__;
-    out__ = impl_->Method_I_V();
+    out__ = impl_->Method_I_V(nullptr);
 
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
@@ -164,7 +164,7 @@ bool TestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nano
   } else if (rpc_call.method() == "Method_U_V") {
     uint64_t out__;
     google::protobuf::UInt64Value out_pb__;
-    out__ = impl_->Method_U_V();
+    out__ = impl_->Method_U_V(nullptr);
 
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
@@ -172,7 +172,7 @@ bool TestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nano
   } else if (rpc_call.method() == "Method_S_V") {
     int64_t out__;
     nanorpc::SInt64Value out_pb__;
-    out__ = impl_->Method_S_V();
+    out__ = impl_->Method_S_V(nullptr);
 
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
@@ -180,7 +180,7 @@ bool TestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nano
   } else if (rpc_call.method() == "Method_f_V") {
     float out__;
     google::protobuf::FloatValue out_pb__;
-    out__ = impl_->Method_f_V();
+    out__ = impl_->Method_f_V(nullptr);
 
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
@@ -188,7 +188,7 @@ bool TestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nano
   } else if (rpc_call.method() == "Method_d_V") {
     double out__;
     google::protobuf::DoubleValue out_pb__;
-    out__ = impl_->Method_d_V();
+    out__ = impl_->Method_d_V(nullptr);
 
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
@@ -196,7 +196,7 @@ bool TestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nano
   } else if (rpc_call.method() == "Method_E_V") {
     EnumType out__;
     EnumType_wrapper__ out_pb__;
-    out__ = impl_->Method_E_V();
+    out__ = impl_->Method_E_V(nullptr);
 
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
@@ -204,7 +204,7 @@ bool TestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nano
   } else if (rpc_call.method() == "Method_A_V") {
     std::string out__;
     google::protobuf::StringValue out_pb__;
-    impl_->Method_A_V(&out__);
+    impl_->Method_A_V(nullptr, &out__);
 
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
@@ -212,14 +212,14 @@ bool TestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nano
   } else if (rpc_call.method() == "Method_W_V") {
     std::string out__;
     nanorpc::WideStringValue out_pb__;
-    impl_->Method_W_V(&out__);
+    impl_->Method_W_V(nullptr, &out__);
 
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
     return true;
   } else if (rpc_call.method() == "Method_M_V") {
     StructType out__;
-    impl_->Method_M_V(&out__);
+    impl_->Method_M_V(nullptr, &out__);
 
     out__.SerializeToString(rpc_result->mutable_result_data());
     return true;
@@ -241,10 +241,10 @@ bool TestServiceInteface_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nano
     const std::string &wstring_value = args__.wstring_value();
     const StructType &struct_value = args__.struct_value();
 
-    impl_->Method_V_biuIUsSfdEAWM(bool_value, int32_value, uint32_value, int64_value, uint64_value, sint32_value, sint64_value, float_value, double_value, enum_value, string_value, wstring_value, struct_value);
+    impl_->Method_V_biuIUsSfdEAWM(nullptr, bool_value, int32_value, uint32_value, int64_value, uint64_value, sint32_value, sint64_value, float_value, double_value, enum_value, string_value, wstring_value, struct_value);
     return true;
   } else if (rpc_call.method() == "AsyncMethod_V_V") {
-    impl_->AsyncMethod_V_V();
+    impl_->AsyncMethod_V_V(nullptr);
     return false;
   }
 

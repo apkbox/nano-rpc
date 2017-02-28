@@ -3,8 +3,8 @@
 #include <string>
 #include <vector>
 
-#include "google\protobuf\io\printer.h"
-#include "google\protobuf\io\zero_copy_stream_impl_lite.h"
+#include "google/protobuf/io/printer.h"
+#include "google/protobuf/io/zero_copy_stream_impl_lite.h"
 
 #include "nanorpc/rpc_types.pb.h"
 
@@ -15,6 +15,7 @@ namespace pb = google::protobuf;
 namespace pbc = google::protobuf::compiler;
 
 std::string GetPropertySignature(const code_model::MethodModel *method,
+                                 bool server,
                                  bool setter) {
   std::string output;
   {
@@ -30,15 +31,29 @@ std::string GetPropertySignature(const code_model::MethodModel *method,
     vars["type_name"] = type.name();
 
     if (type.is_reference_type()) {
-      if (setter)
-        printer.Print(vars, "void set_$method_name$(const $type_name$ &value)");
-      else
-        printer.Print(vars, "void get_$method_name$($type_name$ *value) const");
+      if (setter) {
+        printer.Print(vars, "void set_$method_name$(");
+        if (server)
+          printer.Print(vars, "nanorpc::ServerContextInterface *context, ");
+        printer.Print(vars, "const $type_name$ &value)");
+      } else {
+        printer.Print(vars, "void get_$method_name$(");
+        if (server)
+          printer.Print(vars, "nanorpc::ServerContextInterface *context, ");
+        printer.Print(vars, "$type_name$ *value) const");
+      }
     } else {
-      if (setter)
-        printer.Print(vars, "void set_$method_name$($type_name$ value)");
-      else
-        printer.Print(vars, "$type_name$ get_$method_name$() const");
+      if (setter) {
+        printer.Print(vars, "void set_$method_name$(");
+        if (server)
+          printer.Print(vars, "nanorpc::ServerContextInterface *context, ");
+        printer.Print(vars, "$type_name$ value)");
+      } else {
+        printer.Print(vars, "$type_name$ get_$method_name$(");
+        if (server)
+          printer.Print(vars, "nanorpc::ServerContextInterface *context, ");
+        printer.Print(vars, ") const");
+      }
     }
   }
 
@@ -46,7 +61,8 @@ std::string GetPropertySignature(const code_model::MethodModel *method,
 }
 
 std::string GetMethodSignature(const code_model::MethodModel &method,
-                               const std::string &service_name) {
+                               const std::string &service_name,
+                               bool server) {
   std::string output;
   {
     // Scope the output stream so it closes and finalizes output to the string.
@@ -58,10 +74,20 @@ std::string GetMethodSignature(const code_model::MethodModel &method,
     vars["method_name"] = method.name();
     vars["output_type_name"] = method.return_type().name();
 
-    if (method.return_type().is_reference_type())
+    if (method.return_type().is_reference_type()) {
       printer.Print(vars, "void $service_name_prefix$$method_name$(");
-    else
+      if (server)
+        printer.Print(vars, "nanorpc::ServerContextInterface *context");
+    } else {
       printer.Print(vars, "$output_type_name$ $service_name_prefix$$method_name$(");
+      if (server)
+        printer.Print(vars, "nanorpc::ServerContextInterface *context");
+    }
+
+    if (server && (method.arguments().size() > 0 ||
+                   method.return_type().is_reference_type())) {
+      printer.Print(", ");
+    }
 
     for (size_t i = 0; i < method.arguments().size(); ++i) {
       const auto &arg = method.arguments()[i];

@@ -190,6 +190,10 @@ public:
   virtual void DeleteObject(RpcObjectId object_id) = 0;
 };
 
+class ServerContextInterface {
+public:
+  virtual ~ServerContextInterface() {}
+};
 
 }  // namespace nanorpc
 

@@ -23,7 +23,7 @@ bool OrderDeskEvents_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc:
     bool reading_taken = args__.reading_taken();
     bool drink_taken = args__.drink_taken();
 
-    impl_->OrderStatusChanged(order, is_ready, reading_taken, drink_taken);
+    impl_->OrderStatusChanged(nullptr, order, is_ready, reading_taken, drink_taken);
     return true;
   }
 
@@ -49,7 +49,7 @@ bool OrderDesk_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcRe
 
     int32_t out__;
     google::protobuf::Int32Value out_pb__;
-    out__ = impl_->CreateOrder(drink, reading);
+    out__ = impl_->CreateOrder(nullptr, drink, reading);
 
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
@@ -62,7 +62,7 @@ bool OrderDesk_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcRe
 
     bool out__;
     google::protobuf::BoolValue out_pb__;
-    out__ = impl_->IsOrderReady(value);
+    out__ = impl_->IsOrderReady(nullptr, value);
 
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
@@ -75,7 +75,7 @@ bool OrderDesk_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcRe
 
     DrinkType out__;
     DrinkType_wrapper__ out_pb__;
-    out__ = impl_->GetDrink(value);
+    out__ = impl_->GetDrink(nullptr, value);
 
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());
@@ -88,7 +88,7 @@ bool OrderDesk_Stub::CallMethod(const nanorpc::RpcCall &rpc_call, nanorpc::RpcRe
 
     ReadingType out__;
     ReadingType_wrapper__ out_pb__;
-    out__ = impl_->GetReading(value);
+    out__ = impl_->GetReading(nullptr, value);
 
     out_pb__.set_value(out__);
     out_pb__.SerializeToString(rpc_result->mutable_result_data());

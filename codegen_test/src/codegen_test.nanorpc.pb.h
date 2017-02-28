@@ -13,35 +13,35 @@ class TestServiceInteface {
 public:
   virtual ~TestServiceInteface() {}
 
-  virtual void Method_V_V() = 0;
-  virtual void Method_V_b(bool value) = 0;
-  virtual void Method_V_i(int32_t value) = 0;
-  virtual void Method_V_u(uint32_t value) = 0;
-  virtual void Method_V_s(int32_t value) = 0;
-  virtual void Method_V_I(int64_t value) = 0;
-  virtual void Method_V_U(uint64_t value) = 0;
-  virtual void Method_V_S(int64_t value) = 0;
-  virtual void Method_V_f(float value) = 0;
-  virtual void Method_V_d(double value) = 0;
-  virtual void Method_V_E(EnumType value) = 0;
-  virtual void Method_V_A(const std::string &value) = 0;
-  virtual void Method_V_W(const std::string &value) = 0;
-  virtual void Method_V_M(const StructType &value) = 0;
-  virtual bool Method_b_V() = 0;
-  virtual int32_t Method_i_V() = 0;
-  virtual uint32_t Method_u_V() = 0;
-  virtual int32_t Method_s_V() = 0;
-  virtual int64_t Method_I_V() = 0;
-  virtual uint64_t Method_U_V() = 0;
-  virtual int64_t Method_S_V() = 0;
-  virtual float Method_f_V() = 0;
-  virtual double Method_d_V() = 0;
-  virtual EnumType Method_E_V() = 0;
-  virtual void Method_A_V(std::string *out__) = 0;
-  virtual void Method_W_V(std::string *out__) = 0;
-  virtual void Method_M_V(StructType *out__) = 0;
-  virtual void Method_V_biuIUsSfdEAWM(bool bool_value, int32_t int32_value, uint32_t uint32_value, int64_t int64_value, uint64_t uint64_value, int32_t sint32_value, int64_t sint64_value, float float_value, double double_value, EnumType enum_value, const std::string &string_value, const std::string &wstring_value, const StructType &struct_value) = 0;
-  virtual void AsyncMethod_V_V() = 0;
+  virtual void Method_V_V(nanorpc::ServerContextInterface *context) = 0;
+  virtual void Method_V_b(nanorpc::ServerContextInterface *context, bool value) = 0;
+  virtual void Method_V_i(nanorpc::ServerContextInterface *context, int32_t value) = 0;
+  virtual void Method_V_u(nanorpc::ServerContextInterface *context, uint32_t value) = 0;
+  virtual void Method_V_s(nanorpc::ServerContextInterface *context, int32_t value) = 0;
+  virtual void Method_V_I(nanorpc::ServerContextInterface *context, int64_t value) = 0;
+  virtual void Method_V_U(nanorpc::ServerContextInterface *context, uint64_t value) = 0;
+  virtual void Method_V_S(nanorpc::ServerContextInterface *context, int64_t value) = 0;
+  virtual void Method_V_f(nanorpc::ServerContextInterface *context, float value) = 0;
+  virtual void Method_V_d(nanorpc::ServerContextInterface *context, double value) = 0;
+  virtual void Method_V_E(nanorpc::ServerContextInterface *context, EnumType value) = 0;
+  virtual void Method_V_A(nanorpc::ServerContextInterface *context, const std::string &value) = 0;
+  virtual void Method_V_W(nanorpc::ServerContextInterface *context, const std::string &value) = 0;
+  virtual void Method_V_M(nanorpc::ServerContextInterface *context, const StructType &value) = 0;
+  virtual bool Method_b_V(nanorpc::ServerContextInterface *context) = 0;
+  virtual int32_t Method_i_V(nanorpc::ServerContextInterface *context) = 0;
+  virtual uint32_t Method_u_V(nanorpc::ServerContextInterface *context) = 0;
+  virtual int32_t Method_s_V(nanorpc::ServerContextInterface *context) = 0;
+  virtual int64_t Method_I_V(nanorpc::ServerContextInterface *context) = 0;
+  virtual uint64_t Method_U_V(nanorpc::ServerContextInterface *context) = 0;
+  virtual int64_t Method_S_V(nanorpc::ServerContextInterface *context) = 0;
+  virtual float Method_f_V(nanorpc::ServerContextInterface *context) = 0;
+  virtual double Method_d_V(nanorpc::ServerContextInterface *context) = 0;
+  virtual EnumType Method_E_V(nanorpc::ServerContextInterface *context) = 0;
+  virtual void Method_A_V(nanorpc::ServerContextInterface *context, std::string *out__) = 0;
+  virtual void Method_W_V(nanorpc::ServerContextInterface *context, std::string *out__) = 0;
+  virtual void Method_M_V(nanorpc::ServerContextInterface *context, StructType *out__) = 0;
+  virtual void Method_V_biuIUsSfdEAWM(nanorpc::ServerContextInterface *context, bool bool_value, int32_t int32_value, uint32_t uint32_value, int64_t int64_value, uint64_t uint64_value, int32_t sint32_value, int64_t sint64_value, float float_value, double double_value, EnumType enum_value, const std::string &string_value, const std::string &wstring_value, const StructType &struct_value) = 0;
+  virtual void AsyncMethod_V_V(nanorpc::ServerContextInterface *context) = 0;
 };
 
 class TestServiceInteface_Stub : public nanorpc::ServiceInterface {
@@ -59,42 +59,42 @@ private:
   nanorpc::ObjectManagerInterface* object_manager_;
 };
 
-class TestServiceInteface_Proxy : public TestServiceInteface {
+class TestServiceInteface_Proxy {
 public:
   explicit TestServiceInteface_Proxy(nanorpc::ServiceProxyInterface *client, nanorpc::RpcObjectId object_id = 0)
       : client_(client), object_id_(object_id) {}
 
   virtual ~TestServiceInteface_Proxy();
 
-  void Method_V_V() override;
-  void Method_V_b(bool value) override;
-  void Method_V_i(int32_t value) override;
-  void Method_V_u(uint32_t value) override;
-  void Method_V_s(int32_t value) override;
-  void Method_V_I(int64_t value) override;
-  void Method_V_U(uint64_t value) override;
-  void Method_V_S(int64_t value) override;
-  void Method_V_f(float value) override;
-  void Method_V_d(double value) override;
-  void Method_V_E(EnumType value) override;
-  void Method_V_A(const std::string &value) override;
-  void Method_V_W(const std::string &value) override;
-  void Method_V_M(const StructType &value) override;
-  bool Method_b_V() override;
-  int32_t Method_i_V() override;
-  uint32_t Method_u_V() override;
-  int32_t Method_s_V() override;
-  int64_t Method_I_V() override;
-  uint64_t Method_U_V() override;
-  int64_t Method_S_V() override;
-  float Method_f_V() override;
-  double Method_d_V() override;
-  EnumType Method_E_V() override;
-  void Method_A_V(std::string *out__) override;
-  void Method_W_V(std::string *out__) override;
-  void Method_M_V(StructType *out__) override;
-  void Method_V_biuIUsSfdEAWM(bool bool_value, int32_t int32_value, uint32_t uint32_value, int64_t int64_value, uint64_t uint64_value, int32_t sint32_value, int64_t sint64_value, float float_value, double double_value, EnumType enum_value, const std::string &string_value, const std::string &wstring_value, const StructType &struct_value) override;
-  void AsyncMethod_V_V() override;
+  void Method_V_V();
+  void Method_V_b(bool value);
+  void Method_V_i(int32_t value);
+  void Method_V_u(uint32_t value);
+  void Method_V_s(int32_t value);
+  void Method_V_I(int64_t value);
+  void Method_V_U(uint64_t value);
+  void Method_V_S(int64_t value);
+  void Method_V_f(float value);
+  void Method_V_d(double value);
+  void Method_V_E(EnumType value);
+  void Method_V_A(const std::string &value);
+  void Method_V_W(const std::string &value);
+  void Method_V_M(const StructType &value);
+  bool Method_b_V();
+  int32_t Method_i_V();
+  uint32_t Method_u_V();
+  int32_t Method_s_V();
+  int64_t Method_I_V();
+  uint64_t Method_U_V();
+  int64_t Method_S_V();
+  float Method_f_V();
+  double Method_d_V();
+  EnumType Method_E_V();
+  void Method_A_V(std::string *out__);
+  void Method_W_V(std::string *out__);
+  void Method_M_V(StructType *out__);
+  void Method_V_biuIUsSfdEAWM(bool bool_value, int32_t int32_value, uint32_t uint32_value, int64_t int64_value, uint64_t uint64_value, int32_t sint32_value, int64_t sint64_value, float float_value, double double_value, EnumType enum_value, const std::string &string_value, const std::string &wstring_value, const StructType &struct_value);
+  void AsyncMethod_V_V();
 
 private:
   nanorpc::ServiceProxyInterface *client_;

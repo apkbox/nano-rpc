@@ -17,9 +17,11 @@ class FileDescriptor;
 
 // cpp_generator.cpp
 std::string GetPropertySignature(const code_model::MethodModel *method,
-                                 bool setter);
+                                 bool setter,
+                                 bool server);
 std::string GetMethodSignature(const code_model::MethodModel &method,
-                               const std::string &service_name);
+                               const std::string &service_name,
+                               bool server);
 std::string GetHeaderPrologue(const ::google::protobuf::FileDescriptor *file);
 std::string GetHeaderEpilogue(const ::google::protobuf::FileDescriptor *file);
 std::string GetSourcePrologue(const ::google::protobuf::FileDescriptor *file);

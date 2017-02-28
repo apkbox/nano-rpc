@@ -13,17 +13,17 @@ class OrderDeskEvents {
 public:
   virtual ~OrderDeskEvents() {}
 
-  virtual void OrderStatusChanged(uint32_t order, bool is_ready, bool reading_taken, bool drink_taken) = 0;
+  virtual void OrderStatusChanged(nanorpc::ServerContextInterface *context, uint32_t order, bool is_ready, bool reading_taken, bool drink_taken) = 0;
 };
 
 class OrderDesk {
 public:
   virtual ~OrderDesk() {}
 
-  virtual int32_t CreateOrder(DrinkType drink, ReadingType reading) = 0;
-  virtual bool IsOrderReady(int32_t value) = 0;
-  virtual DrinkType GetDrink(int32_t value) = 0;
-  virtual ReadingType GetReading(int32_t value) = 0;
+  virtual int32_t CreateOrder(nanorpc::ServerContextInterface *context, DrinkType drink, ReadingType reading) = 0;
+  virtual bool IsOrderReady(nanorpc::ServerContextInterface *context, int32_t value) = 0;
+  virtual DrinkType GetDrink(nanorpc::ServerContextInterface *context, int32_t value) = 0;
+  virtual ReadingType GetReading(nanorpc::ServerContextInterface *context, int32_t value) = 0;
 };
 
 class OrderDeskEvents_Stub : public nanorpc::ServiceInterface {
@@ -56,30 +56,30 @@ private:
   nanorpc::ObjectManagerInterface* object_manager_;
 };
 
-class OrderDeskEvents_EventProxy : public OrderDeskEvents {
+class OrderDeskEvents_EventProxy {
 public:
   explicit OrderDeskEvents_EventProxy(nanorpc::EventSourceInterface *event_source)
       : event_source_(event_source) {}
 
   virtual ~OrderDeskEvents_EventProxy() {}
 
-  void OrderStatusChanged(uint32_t order, bool is_ready, bool reading_taken, bool drink_taken) override;
+  void OrderStatusChanged(uint32_t order, bool is_ready, bool reading_taken, bool drink_taken);
 
 private:
   nanorpc::EventSourceInterface *event_source_;
 };
 
-class OrderDesk_Proxy : public OrderDesk {
+class OrderDesk_Proxy {
 public:
   explicit OrderDesk_Proxy(nanorpc::ServiceProxyInterface *client, nanorpc::RpcObjectId object_id = 0)
       : client_(client), object_id_(object_id) {}
 
   virtual ~OrderDesk_Proxy();
 
-  int32_t CreateOrder(DrinkType drink, ReadingType reading) override;
-  bool IsOrderReady(int32_t value) override;
-  DrinkType GetDrink(int32_t value) override;
-  ReadingType GetReading(int32_t value) override;
+  int32_t CreateOrder(DrinkType drink, ReadingType reading);
+  bool IsOrderReady(int32_t value);
+  DrinkType GetDrink(int32_t value);
+  ReadingType GetReading(int32_t value);
 
 private:
   nanorpc::ServiceProxyInterface *client_;
