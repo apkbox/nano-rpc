@@ -41,4 +41,10 @@ bool EventService::HasInterface(const std::string &event_interface_name) {
          event_interfaces_.end();
 }
 
+const std::string RpcEventFilter::kServiceName{"NanoRpc.RpcEventFilter"};
+
+const std::string &RpcEventFilter::GetInterfaceName() const {
+  return kServiceName;
+}
+
 }  // namespace nanorpc

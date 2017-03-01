@@ -40,7 +40,7 @@ struct ResponseMessage {
 };
 
 void ServerThreadProc() {
-#if 0
+#if 1
   std::cout << "SERVER: Starting... " << std::endl;
   nanorpc::WinsockServerTransport transport("2345");
   auto channel = transport.Listen();

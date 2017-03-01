@@ -5,6 +5,8 @@
 #include <memory>
 #include <string>
 
+#include "google/protobuf/wrappers.pb.h"
+
 namespace nanorpc {
 
 ServerContext::ServerContext(std::unique_ptr<ChannelInterface> &channel,
@@ -68,8 +70,27 @@ bool ServerContext::SendEvent(const RpcCall &call) {
   // is an explicit attempt to reconnect.
 
   // Do not send event if client never asked for it.
+  // Do it before filter as it is faster.
   if (!event_service_.HasInterface(call.service()))
     return false;
+
+  // TODO: Find EventFilter interface first and make a call.
+  // This way the user code can decide whether the event applies to the current
+  // connection, especially in case of global events (via Server instance).
+  // Note that this potentially slows down event delivery and increases latency,
+  // so this feature may be opt in or optimized.
+  // TODO: Questions:
+  //    - Should filter be global, local or just plain callback?
+  auto event_filter = global_services_->GetService(RpcEventFilter::kServiceName);
+  if (event_filter != nullptr) {
+    RpcResult result;
+    event_filter->CallMethod(/*context,*/ call, &result);
+    google::protobuf::BoolValue b;
+    if (b.ParseFromString(result.result_data())) {
+      if (!b.value())
+        return false;
+    }
+  }
 
   RpcMessage event_message;
   event_message.set_id(0);

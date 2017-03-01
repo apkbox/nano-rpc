@@ -28,6 +28,13 @@ private:
   std::set<std::string> event_interfaces_;
 };
 
+class RpcEventFilter : public ServiceInterface {
+public:
+  static const std::string kServiceName;
+
+  const std::string &GetInterfaceName() const override;
+};
+
 }  // namespace
 
 #endif  // NANO_RPC_EVENT_SERVICE_HPP__
